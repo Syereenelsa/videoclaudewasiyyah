@@ -1,0 +1,78 @@
+<template>
+  <style>
+#bicara{position:absolute;inset:0;overflow:visible;font-family:'Montserrat',sans-serif;color:#FFF8E7;pointer-events:none}
+#bicara .panel{position:absolute;left:100px;width:810px;top:296px;border-radius:38px;
+  background:linear-gradient(165deg,rgba(13,42,34,.92),rgba(4,17,14,.90));
+  border:1.5px solid rgba(233,196,106,.45);
+  box-shadow:0 30px 70px rgba(0,0,0,.50),inset 0 1px 0 rgba(255,255,255,.10);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow:visible}
+#bicara .krow{position:absolute;left:0;right:0;top:20px;display:flex;justify-content:center}
+#bicara .kick{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#F6D98B,#E2B65A);
+  color:#0A241C;font-weight:800;font-size:30px;letter-spacing:.07em;padding:10px 22px;border-radius:999px;
+  text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+#bicara .row{position:absolute;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:18px;text-align:center}
+#bicara .t-sm{font-weight:700;font-size:32px;color:rgba(255,248,231,.86)}
+#bicara .t-md{font-weight:800;font-size:44px;letter-spacing:-.01em}
+#bicara .t-lg{font-weight:900;font-size:64px;letter-spacing:-.02em;line-height:1}
+#bicara .t-xl{font-weight:900;font-size:110px;letter-spacing:-.03em;line-height:1}
+#bicara .gold{background:linear-gradient(180deg,#FFF0C2 0%,#F2CF76 45%,#C9962E 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#bicara .ice{background:linear-gradient(180deg,#FFFFFF 0%,#CFEFFF 45%,#6EC6FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#bicara .redt{color:#FF7A7A}
+#bicara .greent{color:#6CF0B4}
+#bicara .chip{display:inline-flex;align-items:center;gap:12px;padding:12px 20px;border-radius:22px;
+  background:rgba(255,248,231,.08);border:1.5px solid rgba(255,248,231,.18);font-weight:800;font-size:32px;position:relative}
+#bicara .chip .ico{flex:none}
+#bicara .pill{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;
+  background:rgba(233,196,106,.16);border:1.5px solid rgba(233,196,106,.55);font-weight:800;font-size:30px;color:#FFE9AE}
+#bicara .bar{position:relative;height:30px;border-radius:999px;background:rgba(255,255,255,.10);overflow:hidden}
+#bicara .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:999px;transform-origin:0 50%}
+#bicara .stamp{display:inline-flex;align-items:center;gap:14px;padding:12px 30px;border:5px solid currentColor;border-radius:18px;
+  font-weight:900;font-size:56px;letter-spacing:.05em}
+
+#bicara .col{width:370px;padding:16px 16px;border-radius:26px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+#bicara .col .h{display:flex;align-items:center;gap:8px;font-weight:900;font-size:38px}
+#bicara .col .s{font-weight:700;font-size:29px;line-height:1.2;color:rgba(255,248,231,.9)}
+</style>
+  <div id="bicara" data-composition-id="bicara" data-width="1080" data-height="1920">
+
+    <div class="panel" id="bi-panel" style="height:340px">
+      <div class="krow"><span class="kick" id="bi-kick"><svg class="ico" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0A241C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"/><path d="M2 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg> Ketika bicara kuasa</span></div>
+      <div class="row" style="top:78px"><span class="t-sm" id="bi-sub"><svg class="ico" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v5h5"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg> Semua aset dibentangkan</span></div>
+      <div class="row" style="top:132px;gap:16px" id="bi-cols">
+        <div class="col" id="bi-c1" style="background:rgba(94,230,168,.10);border:1.5px solid rgba(94,230,168,.6)"><div class="h greent"><svg class="ico" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#5EE6A8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> ADA HIBAH</div><div class="s" id="bi-c1s">Terkeluar daripada<br/>aset faraid</div></div>
+        <div class="col" id="bi-c2" style="background:rgba(255,107,107,.10);border:1.5px solid rgba(255,122,122,.6)"><div class="h redt"><svg class="ico" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FF6B6B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg> TIADA HIBAH</div><div class="s" id="bi-c2s">Ikut faraid /<br/>muafakat waris</div></div>
+      </div>
+      <div id="bi-ph2" style="opacity:0">
+        <div class="row" style="top:86px"><span class="t-md" id="bi-ks" style="font-size:38px"><svg class="ico" width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> Kata sepakat semua waris</span></div>
+        <div class="row" style="top:162px"><span class="stamp" id="bi-ok" style="color:#F2CF76;font-size:50px;flex-direction:column;gap:2px;padding:10px 30px"><span style="display:flex;align-items:center;gap:12px"><svg class="ico" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> SURAT KUASA</span><span style="font-size:28px;letter-spacing:.2em">DIKELUARKAN</span></span></div>
+      </div>
+    </div>
+
+  </div>
+  <script>
+
+const tl = gsap.timeline({ paused: true });
+const IN=(s,t,o={})=>tl.fromTo(s,{opacity:0,y:o.y??26,scale:o.s??0.94,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:o.d??0.42,ease:o.e??'power3.out',stagger:o.st??0},t);
+const POP=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??0.35},{opacity:1,scale:1,duration:o.d??0.5,ease:'back.out(2.2)',stagger:o.st??0},t);
+const SLAM=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??1.9,filter:'blur(10px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:o.d??0.24,ease:'power4.in'},t);
+const OUT=(s,t,d=0.28)=>tl.to(s,{opacity:0,y:-18,filter:'blur(8px)',duration:d,ease:'power2.in'},t);
+const COUNT=(s,a,b,t,d,f,e='power2.out')=>{const el=document.querySelector(s);const o={v:a};tl.fromTo(o,{v:a},{v:b,duration:d,ease:e,onUpdate:()=>{el.textContent=f(o.v)}},t);};
+const RM=(v)=>'RM'+Math.round(v).toLocaleString('en-US');
+
+
+    IN('#bi-panel',0.05,{y:-30});
+    POP('#bi-kick',0.1);
+    IN('#bi-sub',2.4);
+    IN('#bi-c1',4.75,{y:30});
+    IN('#bi-c1s',5.6,{y:10});
+    IN('#bi-c2',8.3,{y:30});
+    IN('#bi-c2s',10.35,{y:10});
+    OUT('#bi-cols,#bi-sub',13.05);
+    tl.set('#bi-ph2',{opacity:1},13.3);
+    IN('#bi-ks',13.3);
+    SLAM('#bi-ok',16.3,{s:2.0});
+    OUT('#bi-panel',17.75);
+
+    window.__timelines["bicara"] = tl;
+  </script>
+</template>

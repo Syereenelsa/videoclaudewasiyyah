@@ -1,0 +1,74 @@
+<template>
+  <style>
+#third{position:absolute;inset:0;overflow:visible;font-family:'Montserrat',sans-serif;color:#FFF8E7;pointer-events:none}
+#third .panel{position:absolute;left:100px;width:810px;top:296px;border-radius:38px;
+  background:linear-gradient(165deg,rgba(13,42,34,.92),rgba(4,17,14,.90));
+  border:1.5px solid rgba(233,196,106,.45);
+  box-shadow:0 30px 70px rgba(0,0,0,.50),inset 0 1px 0 rgba(255,255,255,.10);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow:visible}
+#third .krow{position:absolute;left:0;right:0;top:20px;display:flex;justify-content:center}
+#third .kick{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#F6D98B,#E2B65A);
+  color:#0A241C;font-weight:800;font-size:30px;letter-spacing:.07em;padding:10px 22px;border-radius:999px;
+  text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+#third .row{position:absolute;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:18px;text-align:center}
+#third .t-sm{font-weight:700;font-size:32px;color:rgba(255,248,231,.86)}
+#third .t-md{font-weight:800;font-size:44px;letter-spacing:-.01em}
+#third .t-lg{font-weight:900;font-size:64px;letter-spacing:-.02em;line-height:1}
+#third .t-xl{font-weight:900;font-size:110px;letter-spacing:-.03em;line-height:1}
+#third .gold{background:linear-gradient(180deg,#FFF0C2 0%,#F2CF76 45%,#C9962E 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#third .ice{background:linear-gradient(180deg,#FFFFFF 0%,#CFEFFF 45%,#6EC6FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#third .redt{color:#FF7A7A}
+#third .greent{color:#6CF0B4}
+#third .chip{display:inline-flex;align-items:center;gap:12px;padding:12px 20px;border-radius:22px;
+  background:rgba(255,248,231,.08);border:1.5px solid rgba(255,248,231,.18);font-weight:800;font-size:32px;position:relative}
+#third .chip .ico{flex:none}
+#third .pill{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;
+  background:rgba(233,196,106,.16);border:1.5px solid rgba(233,196,106,.55);font-weight:800;font-size:30px;color:#FFE9AE}
+#third .bar{position:relative;height:30px;border-radius:999px;background:rgba(255,255,255,.10);overflow:hidden}
+#third .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:999px;transform-origin:0 50%}
+#third .stamp{display:inline-flex;align-items:center;gap:14px;padding:12px 30px;border:5px solid currentColor;border-radius:18px;
+  font-weight:900;font-size:56px;letter-spacing:.05em}
+</style>
+  <div id="third" data-composition-id="third" data-width="1080" data-height="1920">
+
+    <div class="panel" id="th-panel" style="height:340px">
+      <div class="krow"><span class="kick" id="th-kick"><svg class="ico" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0A241C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg> Guna 3rd party trustee?</span></div>
+      <div id="th-ph1">
+        <div class="row" style="top:80px"><span class="t-sm">Kebanyakannya caj</span></div>
+        <div class="row" style="top:122px"><span class="t-xl redt" id="th-2" style="font-size:160px">2%<span style="font-size:100px">++</span></span></div>
+      </div>
+      <div id="th-ph2" style="opacity:0">
+        <div class="row" style="top:80px"><span class="t-sm">Setiap</span><span class="t-md gold" id="th-1j">RM1 JUTA</span><span class="t-sm">aset</span></div>
+        <div class="row" style="top:146px"><span class="t-lg" style="font-size:72px">=</span><span class="t-xl redt" id="th-20k" style="font-size:112px">RM0</span></div>
+        <div class="row" style="top:276px"><span class="t-sm" id="th-al" style="color:#FFB3B3;font-size:30px">minimum — ditanggung waris</span></div>
+      </div>
+    </div>
+
+  </div>
+  <script>
+
+const tl = gsap.timeline({ paused: true });
+const IN=(s,t,o={})=>tl.fromTo(s,{opacity:0,y:o.y??26,scale:o.s??0.94,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:o.d??0.42,ease:o.e??'power3.out',stagger:o.st??0},t);
+const POP=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??0.35},{opacity:1,scale:1,duration:o.d??0.5,ease:'back.out(2.2)',stagger:o.st??0},t);
+const SLAM=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??1.9,filter:'blur(10px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:o.d??0.24,ease:'power4.in'},t);
+const OUT=(s,t,d=0.28)=>tl.to(s,{opacity:0,y:-18,filter:'blur(8px)',duration:d,ease:'power2.in'},t);
+const COUNT=(s,a,b,t,d,f,e='power2.out')=>{const el=document.querySelector(s);const o={v:a};tl.fromTo(o,{v:a},{v:b,duration:d,ease:e,onUpdate:()=>{el.textContent=f(o.v)}},t);};
+const RM=(v)=>'RM'+Math.round(v).toLocaleString('en-US');
+
+
+    IN('#th-panel',0.05,{y:-30});
+    POP('#th-kick',0.65);
+    IN('#th-ph1',2.05,{y:16});
+    SLAM('#th-2',3.05,{s:2.2});
+    OUT('#th-ph1',5.15);
+    tl.set('#th-ph2',{opacity:1},5.4);
+    IN('#th-1j',5.45);
+    tl.fromTo('#th-20k',{opacity:0,scale:0.7},{opacity:1,scale:1,duration:0.3,ease:'power3.out'},7.75);
+    COUNT('#th-20k',0,20000,7.8,0.6,RM);
+    tl.fromTo('#th-20k',{scale:1.18},{scale:1,duration:0.35,ease:'back.out(2.5)',immediateRender:false},8.4);
+    IN('#th-al',8.95,{y:10});
+    OUT('#th-panel',10.13);
+
+    window.__timelines["third"] = tl;
+  </script>
+</template>

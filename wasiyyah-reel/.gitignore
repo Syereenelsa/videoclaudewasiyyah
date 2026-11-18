@@ -1,0 +1,5 @@
+# Large media (A-roll ~240 MB) is kept out of git; see README for how it was produced
+assets/aroll.mp4
+renders/
+.hyperframes/
+node_modules/

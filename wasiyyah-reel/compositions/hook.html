@@ -1,0 +1,83 @@
+<template>
+  <style>
+#hook{position:absolute;inset:0;overflow:visible;font-family:'Montserrat',sans-serif;color:#FFF8E7;pointer-events:none}
+#hook .panel{position:absolute;left:100px;width:810px;top:296px;border-radius:38px;
+  background:linear-gradient(165deg,rgba(13,42,34,.92),rgba(4,17,14,.90));
+  border:1.5px solid rgba(233,196,106,.45);
+  box-shadow:0 30px 70px rgba(0,0,0,.50),inset 0 1px 0 rgba(255,255,255,.10);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow:visible}
+#hook .krow{position:absolute;left:0;right:0;top:20px;display:flex;justify-content:center}
+#hook .kick{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#F6D98B,#E2B65A);
+  color:#0A241C;font-weight:800;font-size:30px;letter-spacing:.07em;padding:10px 22px;border-radius:999px;
+  text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+#hook .row{position:absolute;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:18px;text-align:center}
+#hook .t-sm{font-weight:700;font-size:32px;color:rgba(255,248,231,.86)}
+#hook .t-md{font-weight:800;font-size:44px;letter-spacing:-.01em}
+#hook .t-lg{font-weight:900;font-size:64px;letter-spacing:-.02em;line-height:1}
+#hook .t-xl{font-weight:900;font-size:110px;letter-spacing:-.03em;line-height:1}
+#hook .gold{background:linear-gradient(180deg,#FFF0C2 0%,#F2CF76 45%,#C9962E 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#hook .ice{background:linear-gradient(180deg,#FFFFFF 0%,#CFEFFF 45%,#6EC6FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#hook .redt{color:#FF7A7A}
+#hook .greent{color:#6CF0B4}
+#hook .chip{display:inline-flex;align-items:center;gap:12px;padding:12px 20px;border-radius:22px;
+  background:rgba(255,248,231,.08);border:1.5px solid rgba(255,248,231,.18);font-weight:800;font-size:32px;position:relative}
+#hook .chip .ico{flex:none}
+#hook .pill{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;
+  background:rgba(233,196,106,.16);border:1.5px solid rgba(233,196,106,.55);font-weight:800;font-size:30px;color:#FFE9AE}
+#hook .bar{position:relative;height:30px;border-radius:999px;background:rgba(255,255,255,.10);overflow:hidden}
+#hook .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:999px;transform-origin:0 50%}
+#hook .stamp{display:inline-flex;align-items:center;gap:14px;padding:12px 30px;border:5px solid currentColor;border-radius:18px;
+  font-weight:900;font-size:56px;letter-spacing:.05em}
+
+#hook .dim{position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse at 50% 40%,rgba(3,14,11,.55),rgba(1,6,5,.88))}
+#hook .top{position:absolute;left:120px;width:768px;top:300px;text-align:center}
+#hook .hl{font-weight:900;font-size:72px;line-height:1.04;letter-spacing:-.02em;text-shadow:0 6px 30px rgba(0,0,0,.65);margin-top:26px}
+#hook .hw{display:inline-block}
+#hook .giant{position:absolute;left:120px;width:768px;top:400px;text-align:center}
+#hook .g-label{display:inline-flex;align-items:center;gap:12px;font-weight:800;font-size:38px;letter-spacing:.14em;color:#CFEFFF}
+#hook .g-num{font-weight:900;font-size:300px;line-height:.92;letter-spacing:-.05em;margin-top:18px;filter:drop-shadow(0 0 40px rgba(110,198,255,.55))}
+#hook .g-rm{font-size:130px;letter-spacing:-.02em;vertical-align:top;margin-right:6px}
+#hook .g-bil{font-weight:900;font-size:136px;letter-spacing:.08em;line-height:1;margin-top:4px;filter:drop-shadow(0 8px 30px rgba(0,0,0,.6))}
+#hook .g-sub{font-weight:700;font-size:40px;margin-top:26px;color:rgba(255,248,231,.92)}
+</style>
+  <div id="hook" data-composition-id="hook" data-width="1080" data-height="1920">
+
+    <div class="dim" id="hook-dim"></div>
+    <div class="top" id="hook-top">
+      <span class="kick" id="hook-kick" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#F6D98B,#E2B65A);color:#0A241C;font-weight:800;font-size:32px;letter-spacing:.08em;padding:11px 24px;border-radius:999px"><svg class="ico" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0A241C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> TAHUKAH ANDA?</span>
+      <div class="hl"><span class="hw" id="hook-w1">Aset</span> <span class="hw" id="hook-w2">terbeku</span><br/>di Malaysia<br/>sekarang mencecah…</div>
+    </div>
+    <div class="giant" id="hook-giant">
+      <div class="g-label" id="hook-glabel"><svg class="ico" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#CFEFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2v20"/><path d="M20 16l-4-4 4-4"/><path d="M4 8l4 4-4 4"/><path d="M16 4l-4 4-4-4"/><path d="M8 20l4-4 4 4"/></svg> ASET TERBEKU</div>
+      <div class="g-num" id="hook-gnum"><span class="ice"><span class="g-rm">RM</span><span id="hook-n">0</span></span></div>
+      <div class="g-bil" id="hook-gbil"><span class="gold">BILION</span></div>
+    </div>
+
+  </div>
+  <script>
+
+const tl = gsap.timeline({ paused: true });
+const IN=(s,t,o={})=>tl.fromTo(s,{opacity:0,y:o.y??26,scale:o.s??0.94,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:o.d??0.42,ease:o.e??'power3.out',stagger:o.st??0},t);
+const POP=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??0.35},{opacity:1,scale:1,duration:o.d??0.5,ease:'back.out(2.2)',stagger:o.st??0},t);
+const SLAM=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??1.9,filter:'blur(10px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:o.d??0.24,ease:'power4.in'},t);
+const OUT=(s,t,d=0.28)=>tl.to(s,{opacity:0,y:-18,filter:'blur(8px)',duration:d,ease:'power2.in'},t);
+const COUNT=(s,a,b,t,d,f,e='power2.out')=>{const el=document.querySelector(s);const o={v:a};tl.fromTo(o,{v:a},{v:b,duration:d,ease:e,onUpdate:()=>{el.textContent=f(o.v)}},t);};
+const RM=(v)=>'RM'+Math.round(v).toLocaleString('en-US');
+
+
+    tl.fromTo('#hook-top',{scale:1.05},{scale:1,duration:0.6,ease:'power2.out'},0);
+    tl.to('#hook-w1,#hook-w2',{color:'#9ADBFF',duration:0.15},0.8);
+    tl.fromTo('#hook-w2',{scale:1},{scale:1.12,duration:0.18,yoyo:true,repeat:1,ease:'power2.out'},1.19);
+    tl.to('#hook-top',{y:-160,opacity:0,filter:'blur(10px)',duration:0.3,ease:'power3.in'},2.5);
+    tl.to('#hook-dim',{opacity:1,duration:0.35,ease:'power2.out'},2.5);
+    IN('#hook-glabel',2.62,{y:30});
+    tl.fromTo('#hook-gnum',{opacity:0,scale:0.55},{opacity:1,scale:1,duration:0.3,ease:'power3.out'},2.66);
+    COUNT('#hook-n',0,90,2.69,0.68,v=>Math.round(v),'power2.in');
+    tl.fromTo('#hook-gnum',{scale:1.28},{scale:1,duration:0.4,ease:'back.out(2.5)',immediateRender:false},3.37);
+    SLAM('#hook-gbil',3.86,{s:2.4,d:0.18});
+    tl.to('#hook-giant',{scale:1.18,opacity:0,filter:'blur(14px)',duration:0.24,ease:'power3.in'},4.48);
+    tl.to('#hook-dim',{opacity:0,duration:0.24,ease:'power2.in'},4.48);
+
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

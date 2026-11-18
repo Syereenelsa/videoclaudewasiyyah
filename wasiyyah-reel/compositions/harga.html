@@ -1,0 +1,73 @@
+<template>
+  <style>
+#harga{position:absolute;inset:0;overflow:visible;font-family:'Montserrat',sans-serif;color:#FFF8E7;pointer-events:none}
+#harga .panel{position:absolute;left:100px;width:810px;top:296px;border-radius:38px;
+  background:linear-gradient(165deg,rgba(13,42,34,.92),rgba(4,17,14,.90));
+  border:1.5px solid rgba(233,196,106,.45);
+  box-shadow:0 30px 70px rgba(0,0,0,.50),inset 0 1px 0 rgba(255,255,255,.10);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow:visible}
+#harga .krow{position:absolute;left:0;right:0;top:20px;display:flex;justify-content:center}
+#harga .kick{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#F6D98B,#E2B65A);
+  color:#0A241C;font-weight:800;font-size:30px;letter-spacing:.07em;padding:10px 22px;border-radius:999px;
+  text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+#harga .row{position:absolute;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:18px;text-align:center}
+#harga .t-sm{font-weight:700;font-size:32px;color:rgba(255,248,231,.86)}
+#harga .t-md{font-weight:800;font-size:44px;letter-spacing:-.01em}
+#harga .t-lg{font-weight:900;font-size:64px;letter-spacing:-.02em;line-height:1}
+#harga .t-xl{font-weight:900;font-size:110px;letter-spacing:-.03em;line-height:1}
+#harga .gold{background:linear-gradient(180deg,#FFF0C2 0%,#F2CF76 45%,#C9962E 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#harga .ice{background:linear-gradient(180deg,#FFFFFF 0%,#CFEFFF 45%,#6EC6FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#harga .redt{color:#FF7A7A}
+#harga .greent{color:#6CF0B4}
+#harga .chip{display:inline-flex;align-items:center;gap:12px;padding:12px 20px;border-radius:22px;
+  background:rgba(255,248,231,.08);border:1.5px solid rgba(255,248,231,.18);font-weight:800;font-size:32px;position:relative}
+#harga .chip .ico{flex:none}
+#harga .pill{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;
+  background:rgba(233,196,106,.16);border:1.5px solid rgba(233,196,106,.55);font-weight:800;font-size:30px;color:#FFE9AE}
+#harga .bar{position:relative;height:30px;border-radius:999px;background:rgba(255,255,255,.10);overflow:hidden}
+#harga .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:999px;transform-origin:0 50%}
+#harga .stamp{display:inline-flex;align-items:center;gap:14px;padding:12px 30px;border:5px solid currentColor;border-radius:18px;
+  font-weight:900;font-size:56px;letter-spacing:.05em}
+</style>
+  <div id="harga" data-composition-id="harga" data-width="1080" data-height="1920">
+
+    <div class="panel" id="hg-panel" style="height:340px">
+      <div class="krow"><span class="kick" id="hg-kick"><svg class="ico" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0A241C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Tiada caj selepas kematian</span></div>
+      <div class="row" style="top:110px" id="hg-big"><span class="t-lg gold" style="font-size:96px">TIADA CAJ</span></div>
+      <div id="hg-ph2" style="opacity:0">
+        <div class="row" style="top:78px"><span class="t-sm">Hanya serendah</span></div>
+        <div class="row" style="top:116px;align-items:flex-end;gap:8px"><span class="t-xl gold" id="hg-price" style="font-size:116px">RM32.40</span><span class="t-md" style="margin-bottom:16px;font-size:38px">/bulan</span></div>
+      </div>
+      <div class="row" style="top:262px" id="hg-pills"><span class="pill" id="hg-p1"><svg class="ico" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Termasuk SST</span><span class="pill" id="hg-p2"><svg class="ico" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></svg> 15 tahun</span></div>
+      <div class="row" style="top:262px"><span class="pill" id="hg-2j" style="opacity:0"><svg class="ico" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg> Urus aset sehingga RM2 JUTA</span></div>
+    </div>
+
+  </div>
+  <script>
+
+const tl = gsap.timeline({ paused: true });
+const IN=(s,t,o={})=>tl.fromTo(s,{opacity:0,y:o.y??26,scale:o.s??0.94,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:o.d??0.42,ease:o.e??'power3.out',stagger:o.st??0},t);
+const POP=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??0.35},{opacity:1,scale:1,duration:o.d??0.5,ease:'back.out(2.2)',stagger:o.st??0},t);
+const SLAM=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??1.9,filter:'blur(10px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:o.d??0.24,ease:'power4.in'},t);
+const OUT=(s,t,d=0.28)=>tl.to(s,{opacity:0,y:-18,filter:'blur(8px)',duration:d,ease:'power2.in'},t);
+const COUNT=(s,a,b,t,d,f,e='power2.out')=>{const el=document.querySelector(s);const o={v:a};tl.fromTo(o,{v:a},{v:b,duration:d,ease:e,onUpdate:()=>{el.textContent=f(o.v)}},t);};
+const RM=(v)=>'RM'+Math.round(v).toLocaleString('en-US');
+
+
+    IN('#hg-panel',0.03,{y:-30});
+    POP('#hg-kick',0.05);
+    SLAM('#hg-big',0.15,{s:1.8});
+    OUT('#hg-big',1.9,0.25);
+    tl.set('#hg-ph2',{opacity:1},2.1);
+    IN('#hg-ph2 .t-sm',2.1,{y:10});
+    tl.fromTo('#hg-price',{opacity:0,scale:0.6},{opacity:1,scale:1,duration:0.4,ease:'back.out(2)'},2.9);
+    COUNT('#hg-price',0,32.40,2.95,0.9,v=>'RM'+v.toFixed(2));
+    POP('#hg-p1',5.7);
+    POP('#hg-p2',7.2);
+    OUT('#hg-pills',10.05,0.2);
+    POP('#hg-2j',10.3);
+    OUT('#hg-panel',11.83);
+
+    window.__timelines["harga"] = tl;
+  </script>
+</template>

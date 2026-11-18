@@ -1,0 +1,72 @@
+<template>
+  <style>
+#assets{position:absolute;inset:0;overflow:visible;font-family:'Montserrat',sans-serif;color:#FFF8E7;pointer-events:none}
+#assets .panel{position:absolute;left:100px;width:810px;top:296px;border-radius:38px;
+  background:linear-gradient(165deg,rgba(13,42,34,.92),rgba(4,17,14,.90));
+  border:1.5px solid rgba(233,196,106,.45);
+  box-shadow:0 30px 70px rgba(0,0,0,.50),inset 0 1px 0 rgba(255,255,255,.10);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow:visible}
+#assets .krow{position:absolute;left:0;right:0;top:20px;display:flex;justify-content:center}
+#assets .kick{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#F6D98B,#E2B65A);
+  color:#0A241C;font-weight:800;font-size:30px;letter-spacing:.07em;padding:10px 22px;border-radius:999px;
+  text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+#assets .row{position:absolute;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:18px;text-align:center}
+#assets .t-sm{font-weight:700;font-size:32px;color:rgba(255,248,231,.86)}
+#assets .t-md{font-weight:800;font-size:44px;letter-spacing:-.01em}
+#assets .t-lg{font-weight:900;font-size:64px;letter-spacing:-.02em;line-height:1}
+#assets .t-xl{font-weight:900;font-size:110px;letter-spacing:-.03em;line-height:1}
+#assets .gold{background:linear-gradient(180deg,#FFF0C2 0%,#F2CF76 45%,#C9962E 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#assets .ice{background:linear-gradient(180deg,#FFFFFF 0%,#CFEFFF 45%,#6EC6FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#assets .redt{color:#FF7A7A}
+#assets .greent{color:#6CF0B4}
+#assets .chip{display:inline-flex;align-items:center;gap:12px;padding:12px 20px;border-radius:22px;
+  background:rgba(255,248,231,.08);border:1.5px solid rgba(255,248,231,.18);font-weight:800;font-size:32px;position:relative}
+#assets .chip .ico{flex:none}
+#assets .pill{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;
+  background:rgba(233,196,106,.16);border:1.5px solid rgba(233,196,106,.55);font-weight:800;font-size:30px;color:#FFE9AE}
+#assets .bar{position:relative;height:30px;border-radius:999px;background:rgba(255,255,255,.10);overflow:hidden}
+#assets .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:999px;transform-origin:0 50%}
+#assets .stamp{display:inline-flex;align-items:center;gap:14px;padding:12px 30px;border:5px solid currentColor;border-radius:18px;
+  font-weight:900;font-size:56px;letter-spacing:.05em}
+
+#assets .frost{position:absolute;inset:-1px;border-radius:24px;background:linear-gradient(160deg,rgba(207,239,255,.55),rgba(110,198,255,.28));border:1.5px solid rgba(207,239,255,.9);opacity:0}
+#assets .lockb{position:absolute;right:-16px;top:-26px;width:42px;height:42px;border-radius:50%;background:#CFEFFF;display:flex;align-items:center;justify-content:center;opacity:0;box-shadow:0 6px 16px rgba(0,0,0,.35)}
+</style>
+  <div id="assets" data-composition-id="assets" data-width="1080" data-height="1920">
+
+    <div class="panel" id="as-panel" style="height:344px">
+      <div class="krow"><span class="kick" id="as-kick"><svg class="ico" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0A241C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20"/><path d="M12 2v20"/><path d="M20 16l-4-4 4-4"/><path d="M4 8l4 4-4 4"/><path d="M16 4l-4 4-4-4"/><path d="M8 20l4-4 4 4"/></svg> Aset yang dibekukan</span></div>
+      <div class="row" style="top:94px;gap:14px"><span class="chip" id="as-c0"><svg class="ico" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg><span>Kereta</span><span class="frost" id="as-fr0"></span><span class="lockb" id="as-lk0"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A2A3A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></span><span class="chip" id="as-c1"><svg class="ico" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Rumah</span><span class="frost" id="as-fr1"></span><span class="lockb" id="as-lk1"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A2A3A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></span><span class="chip" id="as-c2"><svg class="ico" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22h18"/><path d="M6 18v-7"/><path d="M10 18v-7"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M12 2l8 5H4z"/></svg><span>Akaun Bank</span><span class="frost" id="as-fr2"></span><span class="lockb" id="as-lk2"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A2A3A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></span></div>
+      <div class="row" style="top:184px;gap:14px"><span class="chip" id="as-c3"><svg class="ico" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7l-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg><span>ASB</span><span class="frost" id="as-fr3"></span><span class="lockb" id="as-lk3"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A2A3A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></span><span class="chip" id="as-c4"><svg class="ico" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="M16.71 13.88l.7.71-2.82 2.82"/></svg><span>Tabung Haji</span><span class="frost" id="as-fr4"></span><span class="lockb" id="as-lk4"><svg class="ico" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0A2A3A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span></span></div>
+      <div class="row" style="top:268px"><span class="pill" id="as-ban" style="background:rgba(255,107,107,.14);border-color:rgba(255,122,122,.7);color:#FFB3B3"><svg class="ico" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF6B6B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg> Tak boleh dikeluarkan</span></div>
+    </div>
+
+  </div>
+  <script>
+
+const tl = gsap.timeline({ paused: true });
+const IN=(s,t,o={})=>tl.fromTo(s,{opacity:0,y:o.y??26,scale:o.s??0.94,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:o.d??0.42,ease:o.e??'power3.out',stagger:o.st??0},t);
+const POP=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??0.35},{opacity:1,scale:1,duration:o.d??0.5,ease:'back.out(2.2)',stagger:o.st??0},t);
+const SLAM=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??1.9,filter:'blur(10px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:o.d??0.24,ease:'power4.in'},t);
+const OUT=(s,t,d=0.28)=>tl.to(s,{opacity:0,y:-18,filter:'blur(8px)',duration:d,ease:'power2.in'},t);
+const COUNT=(s,a,b,t,d,f,e='power2.out')=>{const el=document.querySelector(s);const o={v:a};tl.fromTo(o,{v:a},{v:b,duration:d,ease:e,onUpdate:()=>{el.textContent=f(o.v)}},t);};
+const RM=(v)=>'RM'+Math.round(v).toLocaleString('en-US');
+
+
+    IN('#as-panel',0.02,{y:-30});
+    POP('#as-kick',0.1);
+    POP('#as-c0',0.07);
+    POP('#as-c1',0.87);
+    POP('#as-c2',1.63);
+    POP('#as-c3',2.33);
+    POP('#as-c4',3.01);
+
+    tl.to('#as-fr0,#as-fr1,#as-fr2,#as-fr3,#as-fr4',{opacity:1,duration:0.3,stagger:0.07,ease:'power2.out'},4.2);
+    POP('#as-lk0,#as-lk1,#as-lk2,#as-lk3,#as-lk4',4.25,{st:0.07});
+    tl.fromTo('#as-panel',{x:0},{x:7,duration:0.05,yoyo:true,repeat:5,ease:'none'},4.25);
+    POP('#as-ban',5.25);
+    OUT('#as-panel',6.15);
+
+    window.__timelines["assets"] = tl;
+  </script>
+</template>
