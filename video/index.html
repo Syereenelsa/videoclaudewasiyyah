@@ -53,6 +53,9 @@
   /* S3 */
   .doc{width:420px;height:520px;background:var(--cream);color:#16251f;border-radius:28px;position:relative;padding:60px 50px;text-align:left;box-shadow:0 40px 80px rgba(0,0,0,.4)}
   .doc .t{font-size:52px;font-weight:800;color:#0A3B2C;line-height:1.05}
+  #docs3 .doc{width:380px;height:440px;padding:48px 40px}
+  #docs3 .doc .t{font-size:44px}
+  #docs3 .seal{width:100px;height:100px;right:32px;bottom:32px}
   .doc .ln{height:16px;border-radius:8px;background:#d9d2bf;margin-top:26px}
   .seal{position:absolute;right:40px;bottom:40px;width:120px;height:120px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;color:#1b1406}
   .seal .icon{width:70px;height:70px;color:#1b1406}
@@ -176,10 +179,17 @@
   <!-- S3 SURAT KUASA -->
   <section class="scene" id="s3">
     <div class="p a">Untuk <b style="color:var(--cream)">keluarkan duit</b> &amp; <b style="color:var(--cream)">tukar nama geran</b>,<br>waris WAJIB dapatkan</div>
-    <div class="doc" id="doc3">
-      <div class="t">SURAT<br>KUASA</div>
-      <div class="ln" style="width:90%"></div><div class="ln" style="width:75%"></div><div class="ln" style="width:85%"></div><div class="ln" style="width:55%"></div>
-      <div class="seal"><div class="icon"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></div></div>
+    <div class="row" id="docs3" style="gap:34px">
+      <div class="doc" id="doc3">
+        <div class="t">SURAT<br>KUASA</div>
+        <div class="ln" style="width:90%"></div><div class="ln" style="width:75%"></div><div class="ln" style="width:85%"></div><div class="ln" style="width:55%"></div>
+        <div class="seal"><div class="icon"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></div></div>
+      </div>
+      <div class="doc" id="doc3b">
+        <div class="t">PERINTAH<br><span style="font-size:35px">PEMBAHAGIAN</span></div>
+        <div class="ln" style="width:90%"></div><div class="ln" style="width:75%"></div><div class="ln" style="width:85%"></div><div class="ln" style="width:55%"></div>
+        <div class="seal"><div class="icon"><svg class="ic" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></div></div>
+      </div>
     </div>
     <div class="p a">dari</div>
     <div class="row">
@@ -190,7 +200,7 @@
 
   <!-- S4 TIMELINE -->
   <section class="scene" id="s4">
-    <div class="h2 a">Proses dapatkan<br><span class="gold">Surat Kuasa</span></div>
+    <div class="h2 a" style="font-size:62px">Proses dapatkan<br><span class="gold">Surat Kuasa &amp;<br>Perintah Pembahagian</span></div>
     <div class="tl">
       <div class="vline" id="vline"></div>
       <div class="step"><div class="dot"><div class="icon"><svg class="ic" viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h7M9 8h3"/></svg></div></div><div class="tx">Ikut proses &amp;<br>lengkapkan dokumen</div></div>
@@ -226,7 +236,7 @@
     <div id="s6a" style="display:flex;flex-direction:column;align-items:center;gap:40px">
       <div class="p a">Setelah dapat <b style="color:var(--cream)">kata sepakat</b>…</div>
       <div class="badge a" style="width:220px;height:220px;background:var(--green)"><div class="icon" style="width:130px;height:130px;color:#04241A"><svg class="ic" viewBox="0 0 24 24" style="stroke-width:2.4"><path d="M5 12l5 5 9-10"/></svg></div></div>
-      <div class="h2 a">barulah<br><span class="gold">Surat Kuasa</span><br>dikeluarkan</div>
+      <div class="h2 a" style="font-size:66px">barulah<br><span class="gold">Surat Kuasa &amp;<br>Perintah Pembahagian</span><br>dikeluarkan</div>
     </div>
     <div id="s6b" class="abs" style="inset:0;padding:240px 90px 200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;visibility:hidden">
       <div class="h2 b">Masalahnya…</div>
@@ -249,7 +259,7 @@
   <section class="scene" id="s8">
     <div class="p a">Sebab itu kami perkenalkan</div>
     <div class="logo a"><div class="n">WASITAH<br>INTAN</div><div class="s">OLEH WASIYYAH BERHAD</div></div>
-    <div class="h3 a">Kami bantu urus pusaka anda<br>sehingga dapat <span class="gold">Surat Kuasa<br>&amp; Distribution Order</span></div>
+    <div class="h3 a">Kami bantu urus pusaka anda<br>sehingga dapat <span class="gold">Surat Kuasa<br>&amp; Perintah Pembahagian</span></div>
   </section>
 
   <section class="scene" id="s8b">
@@ -278,11 +288,11 @@
   <section class="scene" id="s10">
     <div class="p a">Bila apa-apa berlaku pada anda…</div>
     <div class="h2 a">Keluarga <span class="gold">tak perlu</span> cari 3rd party trustee.</div>
-    <div class="h3 a" style="color:var(--muted)">Kami bantu proses dokumen<br>sehingga dapat <b style="color:var(--cream)">Surat Kuasa</b><br>&amp; <b style="color:var(--cream)">Distribution Order</b>.</div>
+    <div class="h3 a" style="color:var(--muted)">Kami bantu proses dokumen<br>sehingga dapat <b style="color:var(--cream)">Surat Kuasa</b><br>&amp; <b style="color:var(--cream)">Perintah Pembahagian</b>.</div>
   </section>
 
   <section class="scene" id="s10b">
-    <div class="p a">Dengan <b class="gold">Distribution Order</b>,<br>keluarga boleh terus ke</div>
+    <div class="p a">Dengan <b class="gold">Perintah Pembahagian</b>,<br>keluarga boleh terus ke</div>
     <div class="dest">
       <div class="card d"><div class="icon"><svg class="ic" viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11"/><rect x="3" y="11" width="18" height="6" rx="2"/><circle cx="7.5" cy="17" r="1.8"/><circle cx="16.5" cy="17" r="1.8"/></svg></div><div class="n">JPJ</div><div class="d">Tukar nama<br>kenderaan</div></div>
       <div class="card d"><div class="icon"><svg class="ic" viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg></div><div class="n">Pejabat Tanah</div><div class="d">Tukar nama<br>geran</div></div>
@@ -401,8 +411,10 @@ scene('s2', 1, (w,t0)=>{
 scene('s3', 2, (w,t0)=>{
   up(q('#s3 .a',0), w(14.0));                      fx('rise', w(14.0));
   tl.fromTo('#doc3',{autoAlpha:0,y:200,rotation:-8},{autoAlpha:1,y:0,rotation:-3,duration:1,ease:'back.out(1.4)'},w(18.1));
+  tl.fromTo('#doc3b',{autoAlpha:0,y:200,rotation:8},{autoAlpha:1,y:0,rotation:3,duration:1,ease:'back.out(1.4)'},w(18.1)+.45);
+  fx('paper', w(18.1)+.45, {g:.8});
   fx('paper', w(18.1));
-  pop('#doc3 .seal', w(18.9), {s:0});              fx('stamp', w(18.9));
+  pop('#docs3 .seal', w(18.9), {s:0,st:.25});      fx('stamp', w(18.9)); fx('stamp', w(18.9)+.25, {g:.8});
   up(q('#s3 .a',1), w(19.0));
   pop(q('#s3 .c',0), w(19.76));                    fx('pop', w(19.76));
   pop(q('#s3 .c',1), w(20.92));                    fx('pop', w(20.92), {p:1.1});
