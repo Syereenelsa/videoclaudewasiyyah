@@ -25,8 +25,8 @@ npx hyperframes@0.9.66 preview --background
 - `tools/build.py`: regenerates everything from `tools/words_edit.json` and `tools/pieces.json` (keeps the colour grade already on `#aroll`)
 - `tools/grade.json`: the colour grade payload
 
-## Names to confirm
+## Product names (confirmed)
 
-- "Wasiyyah **Khairat Pusaka**": Whisper heard "karya pusaka"
-- "Wasiyyah **Intan**": Whisper heard "wasitah intan/intern"
-- "Syarikat Wasiyyah Berhad": as spoken
+- Wasiyyah **Khairiat Pusaka**
+- **Wasitah Intan**
+- Syarikat Wasiyyah Berhad

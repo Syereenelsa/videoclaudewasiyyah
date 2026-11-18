@@ -352,8 +352,8 @@ add_scene("brand", s0, s1, """
     <div class="panel" id="br-panel" style="height:330px">
       <div class="krow"><span class="kick" id="br-kick">{icon('shield',30,'#0A241C',2.6)} Penyelesaiannya</span></div>
       <div class="row" style="top:76px"><span class="t-sm" id="br-sy">Syarikat</span></div>
-      <div class="row" style="top:112px;overflow:hidden" data-layout-allow-overflow><span class="wm gold" id="br-wm">Wasiyyah</span><span class="shine" id="br-sh"></span></div>
-      <div class="row" style="top:258px" id="br-kp"><span class="rule"></span><span style="font-weight:800;font-size:40px;letter-spacing:.2em;color:#FFE9AE">KHAIRAT PUSAKA</span><span class="rule r"></span></div>
+      <div class="row" style="top:104px;padding:6px 0 34px;overflow:hidden" data-layout-allow-overflow><span class="wm gold" id="br-wm">Wasiyyah</span><span class="shine" id="br-sh"></span></div>
+      <div class="row" style="top:258px" id="br-kp"><span class="rule"></span><span style="font-weight:800;font-size:40px;letter-spacing:.2em;color:#FFE9AE">KHAIRIAT PUSAKA</span><span class="rule r"></span></div>
     </div>
 """, f"""
     IN('#br-panel',{t(71.5)},{{y:-30}});
@@ -425,7 +425,7 @@ add_scene("banding", s0, s1, """
     <div class="panel" id="bd-panel" style="height:346px">
       <div class="krow"><span class="kick" id="bd-kick">Bandingkan • aset RM2 juta</span></div>
       <div class="cmp" style="top:76px" id="bd-r1"><div class="ch"><span>3rd party trustee (2%)</span><b class="redt" id="bd-v1">RM40,000++</b></div><div class="bar"><i id="bd-b1" style="width:100%;background:linear-gradient(90deg,#FF6B6B,#FF9A7A)"></i></div></div>
-      <div class="cmp" style="top:166px" id="bd-r2"><div class="ch"><span>Wasiyyah Intan (15 thn)</span><b class="gold" id="bd-v2">RM0</b></div><div class="bar"><i id="bd-b2" style="width:14.6%;background:linear-gradient(90deg,#C9962E,#F2CF76)"></i></div></div>
+      <div class="cmp" style="top:166px" id="bd-r2"><div class="ch"><span>Wasitah Intan (15 thn)</span><b class="gold" id="bd-v2">RM0</b></div><div class="bar"><i id="bd-b2" style="width:14.6%;background:linear-gradient(90deg,#C9962E,#F2CF76)"></i></div></div>
       <div class="row" style="top:262px"><span class="stamp" id="bd-save" style="color:#6CF0B4;font-size:38px;padding:6px 22px;border-width:4px">{icon('cash',42,GREEN,2.4)} JIMAT LEBIH RM34,000</span></div>
     </div>
 """, f"""
@@ -486,7 +486,7 @@ add_scene("cta", s0, s1, """
 # ================================================================ CAPTIONS
 SKIP = {"ataupun", "kerana"}
 KEY = set("""kematian terbeku dibekukan kereta rumah akaun bank asb tabung haji surat kuasa geran pejabat tanah mahkamah tinggi
-6 7 bulan tangguh hibah faraid muafakat kata sepakat third party 2% rm1 juta rm20,000 wasiyyah khairat pusaka tiada cas
+6 7 bulan tangguh hibah faraid muafakat kata sepakat third party 2% rm1 juta rm20,000 wasiyyah khairiat wasitah pusaka tiada cas
 rm32.40 15 tahun rm2 rm5,832 jpj cairkan duit lindungi contact bicara intan""".split())
 cw = [w for w in words if w["lab"] != "A" and w["text"].strip(",.?").lower() not in SKIP]
 groups, cur = [], []
