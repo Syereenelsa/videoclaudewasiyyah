@@ -13,11 +13,11 @@ Baca dalam Bahasa Melayu Malaysia dengan sebutan dan loghat Malaysia standard, b
 05: Ketika bicara kuasa, semua aset dibentangkan. Aset yang ada hibah akan terkeluar dari aset faraid. Yang tiada hibah, ikut faraid atau muafakat waris.
 06: Setelah dapat kata sepakat, barulah Surat Kuasa dikeluarkan. Masalahnya... ramai waris tak mampu uruskan proses ini. Akibatnya, banyak aset terus terbeku.
 07: Nak minta bantuan third party trustee? Kebanyakannya caj dua peratus ke atas. Setiap satu juta ringgit — dua puluh ribu ringgit.
-08: Sebab itu, Wasiyyah Berhad perkenalkan Wasitah Intan. Kami bantu uruskan pusaka anda, sehingga dapat Surat Kuasa.
+08: Sebab itu, Wasiyyah Berhad perkenalkan Wasitah Intan. Kami bantu uruskan pusaka anda, sehingga dapat Surat Kuasa dan Distribution Order.
 09: Tiada caj selepas kematian. Hanya tiga puluh dua ringgit empat puluh sen sebulan, selama lima belas tahun. Kami uruskan aset sehingga dua juta ringgit.
 10: Bandingkan. Aset dua juta — caj third party trustee empat puluh ribu ke atas. Wasitah Intan? Jumlahnya lima ribu, lapan ratus tiga puluh dua ringgit sahaja.
-11: Bila apa-apa berlaku pada anda, keluarga tak perlu cari third party trustee. Kami yang bantu, sampai dapat Surat Kuasa.
-12: Dah dapat Surat Kuasa, keluarga boleh terus ke J, P, J, Pejabat Tanah dan bank — untuk tukar nama dan cairkan duit.
+11: Bila apa-apa berlaku pada anda, keluarga tak perlu cari third party trustee. Kami yang bantu, sampai dapat Surat Kuasa dan Distribution Order.
+12: Dengan Distribution Order, keluarga boleh terus ke J, P, J, Pejabat Tanah dan bank — untuk tukar nama dan cairkan duit.
 13: Dan bezanya bila ada dokumen hibah — dokumen itu dibentangkan semasa bicara kuasa, supaya aset tersebut terkeluar dari bahagian faraid.
 14: Lindungi aset anda. Mudahkan urusan keluarga. Wasitah Intan, oleh Wasiyyah Berhad. Hubungi kami hari ini.
 
