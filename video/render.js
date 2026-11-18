@@ -1,6 +1,7 @@
 // Usage:
 //   node render.js stills out_dir t1 t2 ...       -> PNG per timestamp
 //   node render.js video out.mp4 [fps] [workers]  -> MP4 (1080x1920)
+//   node render.js cues out.json                  -> SFX cue sheet + duration
 const { chromium } = require('playwright');
 const { spawn, execFileSync } = require('child_process');
 const path = require('path');
@@ -62,6 +63,15 @@ async function video(out, fps = 30, workers = 4) {
   console.log(`done: ${out} (${dur.toFixed(1)}s, ${total} frames)`);
 }
 
+async function cues(out) {
+  const browser = await chromium.launch();
+  const page = await openPage(browser);
+  const data = await page.evaluate(() => ({ duration: window.DURATION, cues: window.SFX }));
+  fs.writeFileSync(out, JSON.stringify(data, null, 1));
+  await browser.close();
+  console.log(`${data.cues.length} cues, ${data.duration}s -> ${out}`);
+}
+
 const [mode, out, ...rest] = process.argv.slice(2);
-(mode === 'stills' ? stills(out, rest) : video(out, +(rest[0] || 30), +(rest[1] || 4)))
+(mode === 'stills' ? stills(out, rest) : mode === 'cues' ? cues(out) : video(out, +(rest[0] || 30), +(rest[1] || 4)))
   .catch(e => { console.error(e); process.exit(1); });
