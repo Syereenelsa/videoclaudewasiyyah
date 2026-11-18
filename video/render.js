@@ -66,7 +66,7 @@ async function video(out, fps = 30, workers = 4) {
 async function cues(out) {
   const browser = await chromium.launch();
   const page = await openPage(browser);
-  const data = await page.evaluate(() => ({ duration: window.DURATION, cues: window.SFX }));
+  const data = await page.evaluate(() => ({ duration: window.DURATION, cues: window.SFX, vo: window.VO, vo_src: window.VO_SRC }));
   fs.writeFileSync(out, JSON.stringify(data, null, 1));
   await browser.close();
   console.log(`${data.cues.length} cues, ${data.duration}s -> ${out}`);

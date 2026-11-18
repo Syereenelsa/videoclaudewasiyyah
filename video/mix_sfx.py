@@ -306,6 +306,35 @@ def fftconv(x, h):
     return np.fft.irfft(np.fft.rfft(x, n) * np.fft.rfft(h, n), n)[:len(x)]
 
 
+def voice_track(data, n):
+    import subprocess, os
+    src = os.path.join(os.path.dirname(os.path.abspath(__file__)), data['vo_src'])
+    raw = subprocess.run(['ffmpeg', '-loglevel', 'error', '-i', src, '-ac', '1', '-ar', str(SR), '-f', 'f32le', '-'],
+                         capture_output=True, check=True).stdout
+    src = np.frombuffer(raw, np.float32).astype(float)
+    src /= np.max(np.abs(src))
+    out = np.zeros(n)
+    f = int(.015 * SR)
+    for c in data['vo']:
+        seg = src[int(c['a'] * SR):int(c['b'] * SR)].copy()
+        seg[:f] *= np.linspace(0, 1, f); seg[-f:] *= np.linspace(1, 0, f)
+        place(out, seg, c['at'])
+    return out
+
+
+def smooth_env(x, attack, release):
+    # cheap peak follower on a decimated signal, then upsampled
+    hop = 240
+    m = x[:len(x) // hop * hop].reshape(-1, hop).max(axis=1)
+    a, r = np.exp(-hop / (attack * SR)), np.exp(-hop / (release * SR))
+    e = np.zeros_like(m); v = 0.0
+    for i, s in enumerate(m):
+        v = a * v + (1 - a) * s if s > v else r * v + (1 - r) * s
+        e[i] = v
+    e = np.repeat(e, hop)
+    return np.pad(e, (0, len(x) - len(e)), mode='edge')
+
+
 def main(cue_path, out_path):
     data = json.load(open(cue_path))
     dur = data['duration']
@@ -326,9 +355,18 @@ def main(cue_path, out_path):
     mix = mix[:int(dur * SR)]
     irl, irr = reverb_ir()
     wet = np.stack([fftconv(mix[:, 0], irl), fftconv(mix[:, 1], irr)], axis=1)
-    out = mix + wet * 0.22
+    sfx = mix + wet * 0.22
+    sfx /= np.max(np.abs(sfx))
+    if data.get('vo'):
+        vo = voice_track(data, len(sfx))
+        # duck the effects while someone is speaking
+        env = smooth_env(np.abs(vo), attack=.02, release=.35)
+        duck = 1 - 0.55 * np.clip(env / 0.08, 0, 1)
+        out = vo[:, None] * 0.9 + sfx * 0.42 * duck[:, None]
+    else:
+        out = sfx
     peak = np.max(np.abs(out))
-    out = np.tanh(out / peak * 1.4) / np.tanh(1.4) * 0.89  # gentle limiter, ~-1 dBFS
+    out = np.tanh(out / peak * 1.2) / np.tanh(1.2) * 0.89  # gentle limiter, ~-1 dBFS
     fade = int(.8 * SR)
     out[-fade:] *= np.linspace(1, 0, fade)[:, None]
     pcm = (out * 32767).astype('<i2')
