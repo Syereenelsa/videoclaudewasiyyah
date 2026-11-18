@@ -24,13 +24,13 @@ GREEN = "#5EE6A8"
 BASE_CSS = """
 #ROOT{position:absolute;inset:0;overflow:visible;font-family:'Montserrat',sans-serif;color:#FFF8E7;pointer-events:none}
 #ROOT .panel{position:absolute;left:100px;width:810px;top:296px;border-radius:38px;
-  background:linear-gradient(165deg,rgba(13,42,34,.92),rgba(4,17,14,.90));
+  background:linear-gradient(165deg,rgba(16,36,68,.92),rgba(6,15,32,.90));
   border:1.5px solid rgba(233,196,106,.45);
   box-shadow:0 30px 70px rgba(0,0,0,.50),inset 0 1px 0 rgba(255,255,255,.10);
   backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow:visible}
 #ROOT .krow{position:absolute;left:0;right:0;top:20px;display:flex;justify-content:center}
 #ROOT .kick{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#F6D98B,#E2B65A);
-  color:#0A241C;font-weight:800;font-size:30px;letter-spacing:.07em;padding:10px 22px;border-radius:999px;
+  color:#0B1F3A;font-weight:800;font-size:30px;letter-spacing:.07em;padding:10px 22px;border-radius:999px;
   text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,.35)}
 #ROOT .row{position:absolute;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:18px;text-align:center}
 #ROOT .t-sm{font-weight:700;font-size:32px;color:rgba(255,248,231,.86)}
@@ -93,7 +93,7 @@ def L(start):
 # ================================================================ 1. HOOK
 s0, s1 = 0.0, 4.75; t = L(s0)
 add_scene("hook", s0, s1, """
-#hook .dim{position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse at 50% 40%,rgba(3,14,11,.55),rgba(1,6,5,.88))}
+#hook .dim{position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse at 50% 40%,rgba(4,12,28,.55),rgba(2,6,16,.88))}
 #hook .top{position:absolute;left:120px;width:768px;top:300px;text-align:center}
 #hook .hl{font-weight:900;font-size:62px;line-height:1.04;letter-spacing:-.02em;text-shadow:0 6px 30px rgba(0,0,0,.65);margin-top:26px}
 #hook .hw{display:inline-block}
@@ -106,7 +106,7 @@ add_scene("hook", s0, s1, """
 """, f"""
     <div class="dim" id="hook-dim"></div>
     <div class="top" id="hook-top">
-      <span class="kick" id="hook-kick" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#F6D98B,#E2B65A);color:#0A241C;font-weight:800;font-size:32px;letter-spacing:.08em;padding:11px 24px;border-radius:999px">{icon('alert',34,'#0A241C',2.6)} TAHUKAH ANDA?</span>
+      <span class="kick" id="hook-kick" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#F6D98B,#E2B65A);color:#0B1F3A;font-weight:800;font-size:32px;letter-spacing:.08em;padding:11px 24px;border-radius:999px">{icon('alert',34,'#0B1F3A',2.6)} TAHUKAH ANDA?</span>
       <div class="hl"><span class="hw" id="hook-w1">Aset</span> <span class="hw" id="hook-w2">terbeku</span><br/>di Malaysia<br/>sekarang mencecah…</div>
     </div>
     <div class="giant" id="hook-giant">
@@ -164,7 +164,7 @@ add_scene("assets", s0, s1, """
 #assets .lockb{position:absolute;right:-16px;top:-26px;width:42px;height:42px;border-radius:50%;background:#CFEFFF;display:flex;align-items:center;justify-content:center;opacity:0;box-shadow:0 6px 16px rgba(0,0,0,.35)}
 """, f"""
     <div class="panel" id="as-panel" style="height:344px">
-      <div class="krow"><span class="kick" id="as-kick">{icon('snow',30,'#0A241C',2.6)} Aset yang dibekukan</span></div>
+      <div class="krow"><span class="kick" id="as-kick">{icon('snow',30,'#0B1F3A',2.6)} Aset yang dibekukan</span></div>
       <div class="row" style="top:94px;gap:14px">{chip_html.split('<span class="chip" id="as-c3"')[0]}</div>
       <div class="row" style="top:184px;gap:14px"><span class="chip" id="as-c3"{chip_html.split('<span class="chip" id="as-c3"')[1]}</div>
       <div class="row" style="top:268px"><span class="pill" id="as-ban" style="background:rgba(255,107,107,.14);border-color:rgba(255,122,122,.7);color:#FFB3B3">{icon('x',32,RED,3)} Tak boleh dikeluarkan</span></div>
@@ -183,13 +183,13 @@ add_scene("assets", s0, s1, """
 # ================================================================ 4. SURAT KUASA (D)
 s0, s1 = 14.75, 22.45; t = L(s0)
 add_scene("surat", s0, s1, """
-#surat .doc{display:flex;align-items:center;gap:18px;padding:16px 28px;border-radius:28px;background:linear-gradient(180deg,#FFF8E7,#F1E3C2);color:#0A241C;box-shadow:0 18px 40px rgba(0,0,0,.4)}
+#surat .doc{display:flex;align-items:center;gap:18px;padding:16px 28px;border-radius:28px;background:linear-gradient(180deg,#FFF8E7,#F1E3C2);color:#0B1F3A;box-shadow:0 18px 40px rgba(0,0,0,.4)}
 #surat .seal{position:absolute;right:40px;top:100px;width:104px;height:104px;border-radius:50%;border:5px solid #C9962E;color:#C9962E;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:28px;letter-spacing:.04em;background:rgba(255,248,231,.95)}
 """, f"""
     <div class="panel" id="su-panel" style="height:340px">
       <div class="krow"><span class="kick" id="su-kick">Nak keluarkan duit &amp; tukar geran?</span></div>
       <div class="row" style="top:80px"><span class="t-sm" id="su-l1">Waris <b>WAJIB</b> dapatkan</span></div>
-      <div class="row" style="top:128px"><div class="doc" id="su-doc">{icon('file',60,'#0A241C',2)}<div style="text-align:left"><div style="font-weight:900;font-size:54px;letter-spacing:-.01em;line-height:1" id="su-title">SURAT KUASA</div><div style="font-weight:700;font-size:28px;opacity:.75;margin-top:6px">Letter of Administration</div></div></div></div>
+      <div class="row" style="top:128px"><div class="doc" id="su-doc">{icon('file',60,'#0B1F3A',2)}<div style="text-align:left"><div style="font-weight:900;font-size:54px;letter-spacing:-.01em;line-height:1" id="su-title">SURAT KUASA</div><div style="font-weight:700;font-size:28px;opacity:.75;margin-top:6px">Letter of Administration</div></div></div></div>
       <div class="seal" id="su-seal">WAJIB</div>
       <div class="row" style="top:262px"><span class="pill" id="su-p1">{icon('map',34,GOLD,2.4)} Pejabat Tanah</span><span class="t-sm" id="su-or">atau</span><span class="pill" id="su-p2">{icon('scale',34,GOLD,2.4)} Mahkamah Tinggi</span></div>
     </div>
@@ -215,7 +215,7 @@ add_scene("tarikh", s0, s1, """
 #tarikh .blab{display:flex;justify-content:space-between;font-weight:800;font-size:28px;margin-top:8px;color:rgba(255,248,231,.85)}
 """, f"""
     <div class="panel" id="ta-panel" style="height:346px">
-      <div class="krow"><span class="kick" id="ta-kick">{icon('hourglass',30,'#0A241C',2.6)} Prosesnya panjang</span></div>
+      <div class="krow"><span class="kick" id="ta-kick">{icon('hourglass',30,'#0B1F3A',2.6)} Prosesnya panjang</span></div>
       <div id="ta-ph1">
         <div class="row" style="top:80px"><span class="t-sm" id="ta-lab">{icon('calendar',34,GOLD,2.4)} Tarikh bicara kuasa biasanya</span></div>
         <div class="row" style="top:124px"><span class="t-xl gold" id="ta-num">6–7</span><span class="t-lg" id="ta-bln" style="font-size:62px">BULAN</span></div>
@@ -263,7 +263,7 @@ add_scene("bicara", s0, s1, """
 #bicara .col .s{font-weight:700;font-size:29px;line-height:1.2;color:rgba(255,248,231,.9)}
 """, f"""
     <div class="panel" id="bi-panel" style="height:340px">
-      <div class="krow"><span class="kick" id="bi-kick">{icon('scale',30,'#0A241C',2.6)} Ketika bicara kuasa</span></div>
+      <div class="krow"><span class="kick" id="bi-kick">{icon('scale',30,'#0B1F3A',2.6)} Ketika bicara kuasa</span></div>
       <div class="row" style="top:78px"><span class="t-sm" id="bi-sub">{icon('file',34,GOLD,2.4)} Semua aset dibentangkan</span></div>
       <div class="row" style="top:132px;gap:16px" id="bi-cols">
         <div class="col" id="bi-c1" style="background:rgba(94,230,168,.10);border:1.5px solid rgba(94,230,168,.6)"><div class="h greent">{icon('check',44,GREEN,3)} ADA HIBAH</div><div class="s" id="bi-c1s">Terkeluar daripada<br/>aset faraid</div></div>
@@ -315,7 +315,7 @@ add_scene("masalah", s0, s1, "", f"""
 s0, s1 = 61.05, 71.45; t = L(s0)
 add_scene("third", s0, s1, "", f"""
     <div class="panel" id="th-panel" style="height:340px">
-      <div class="krow"><span class="kick" id="th-kick">{icon('help',30,'#0A241C',2.6)} Guna 3rd party trustee?</span></div>
+      <div class="krow"><span class="kick" id="th-kick">{icon('help',30,'#0B1F3A',2.6)} Guna 3rd party trustee?</span></div>
       <div id="th-ph1">
         <div class="row" style="top:80px"><span class="t-sm">Kebanyakannya caj</span></div>
         <div class="row" style="top:122px"><span class="t-xl redt" id="th-2" style="font-size:160px">2%<span style="font-size:100px">++</span></span></div>
@@ -350,7 +350,7 @@ add_scene("brand", s0, s1, """
 #brand .rule.r{background:linear-gradient(90deg,#E9C46A,transparent)}
 """, f"""
     <div class="panel" id="br-panel" style="height:330px">
-      <div class="krow"><span class="kick" id="br-kick">{icon('shield',30,'#0A241C',2.6)} Penyelesaiannya</span></div>
+      <div class="krow"><span class="kick" id="br-kick">{icon('shield',30,'#0B1F3A',2.6)} Penyelesaiannya</span></div>
       <div class="row" style="top:76px"><span class="t-sm" id="br-sy">Syarikat</span></div>
       <div class="row" style="top:104px;padding:6px 0 34px;overflow:hidden" data-layout-allow-overflow><span class="wm gold" id="br-wm">Wasiyyah</span><span class="shine" id="br-sh"></span></div>
       <div class="row" style="top:258px" id="br-kp"><span class="rule"></span><span style="font-weight:800;font-size:40px;letter-spacing:.2em;color:#FFE9AE">KHAIRIAT PUSAKA</span><span class="rule r"></span></div>
@@ -368,14 +368,14 @@ add_scene("brand", s0, s1, """
 # ================================================================ 10. BANTU (K)
 s0, s1 = 78.5, 84.85; t = L(s0)
 items = [("Uruskan pusaka anda", 80.0), ("Proses semua dokumen", 81.4), ("Sampai dapat SURAT KUASA", 83.0)]
-ih = "".join(f'<div class="ci" id="bt-i{i}"><span class="cb">{icon("check",34,"#0A241C",3.2)}</span><span>{txt}</span></div>' for i, (txt, _) in enumerate(items))
+ih = "".join(f'<div class="ci" id="bt-i{i}"><span class="cb">{icon("check",34,"#0B1F3A",3.2)}</span><span>{txt}</span></div>' for i, (txt, _) in enumerate(items))
 add_scene("bantu", s0, s1, """
 #bantu .cl{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
 #bantu .ci{display:flex;align-items:center;gap:16px;font-weight:800;font-size:36px}
 #bantu .cb{width:50px;height:50px;border-radius:50%;background:linear-gradient(180deg,#F6D98B,#E2B65A);display:flex;align-items:center;justify-content:center;flex:none}
 """, f"""
     <div class="panel" id="bt-panel" style="height:316px">
-      <div class="krow"><span class="kick" id="bt-kick">{icon('shield',30,'#0A241C',2.6)} Kami bantu anda</span></div>
+      <div class="krow"><span class="kick" id="bt-kick">{icon('shield',30,'#0B1F3A',2.6)} Kami bantu anda</span></div>
       <div class="row" style="top:84px"><div class="cl">{ih}</div></div>
     </div>
 """, f"""
@@ -389,7 +389,7 @@ add_scene("bantu", s0, s1, """
 s0, s1 = 84.85, 96.95; t = L(s0)
 add_scene("harga", s0, s1, "", f"""
     <div class="panel" id="hg-panel" style="height:340px">
-      <div class="krow"><span class="kick" id="hg-kick">{icon('check',30,'#0A241C',3)} Tiada caj selepas kematian</span></div>
+      <div class="krow"><span class="kick" id="hg-kick">{icon('check',30,'#0B1F3A',3)} Tiada caj selepas kematian</span></div>
       <div class="row" style="top:110px" id="hg-big"><span class="t-lg gold" style="font-size:96px">TIADA CAJ</span></div>
       <div id="hg-ph2" style="opacity:0">
         <div class="row" style="top:78px"><span class="t-sm">Hanya serendah</span></div>
@@ -450,7 +450,7 @@ add_scene("lepas", s0, s1, """
 #lepas .tile{width:236px;height:128px;border-radius:26px;background:rgba(255,248,231,.08);border:1.5px solid rgba(233,196,106,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:30px}
 """, f"""
     <div class="panel" id="lp-panel" style="height:346px">
-      <div class="krow"><span class="kick" id="lp-kick">{icon('check',30,'#0A241C',3)} Dah dapat surat kuasa</span></div>
+      <div class="krow"><span class="kick" id="lp-kick">{icon('check',30,'#0B1F3A',3)} Dah dapat surat kuasa</span></div>
       <div class="row" style="top:76px"><span class="t-sm" id="lp-l1">Keluarga terus ke</span></div>
       <div class="row" style="top:122px;gap:14px">{th}</div>
       <div class="row" style="top:270px;gap:20px"><span class="pill" id="lp-p1">{icon('check',30,GOLD,3)} Tukar nama</span><span class="pill" id="lp-p2">{icon('check',30,GOLD,3)} Cairkan duit</span></div>
@@ -468,12 +468,12 @@ add_scene("lepas", s0, s1, """
 # ================================================================ 14. CTA (P)
 s0, s1 = 111.3, D; t = L(s0)
 add_scene("cta", s0, s1, """
-#cta .btn{display:inline-flex;align-items:center;gap:14px;padding:18px 34px;border-radius:999px;background:linear-gradient(180deg,#F6D98B,#E2B65A);color:#0A241C;font-weight:900;font-size:36px;box-shadow:0 16px 40px rgba(233,196,106,.35)}
+#cta .btn{display:inline-flex;align-items:center;gap:14px;padding:18px 34px;border-radius:999px;background:linear-gradient(180deg,#F6D98B,#E2B65A);color:#0B1F3A;font-weight:900;font-size:36px;box-shadow:0 16px 40px rgba(233,196,106,.35)}
 """, f"""
     <div class="panel" id="ct-panel" style="height:320px">
       <div class="row" style="top:28px"><span id="ct-sh">{icon('shield',80,GOLD,2)}</span></div>
       <div class="row" style="top:122px"><span class="t-lg gold" id="ct-t" style="font-size:62px">LINDUNGI ASET ANDA</span></div>
-      <div class="row" style="top:210px"><span class="btn" id="ct-btn">{icon('msg',40,'#0A241C',2.6)} Contact saya untuk detail</span></div>
+      <div class="row" style="top:210px"><span class="btn" id="ct-btn">{icon('msg',40,'#0B1F3A',2.6)} Contact saya untuk detail</span></div>
     </div>
 """, f"""
     IN('#ct-panel',{t(111.32)},{{y:-30}});
@@ -520,7 +520,7 @@ with open(os.path.join(PROJ, "compositions", "captions.html"), "w") as f:
     #captions{{position:absolute;inset:0;pointer-events:none}}
     #captions .grp{{position:absolute;left:120px;width:660px;bottom:678px;white-space:nowrap;text-align:center;opacity:0;visibility:hidden;
       font-family:'Montserrat',sans-serif;font-weight:800;font-size:62px;line-height:1.12;letter-spacing:-.01em;color:#FFFFFF;overflow:visible}}
-    #captions .pb{{display:inline-block;padding:8px 24px 12px;border-radius:22px;background:rgba(6,26,23,.74);border:1.5px solid rgba(233,196,106,.28);box-shadow:0 12px 30px rgba(0,0,0,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}}
+    #captions .pb{{display:inline-block;padding:8px 24px 12px;border-radius:22px;background:rgba(8,22,46,.76);border:1.5px solid rgba(233,196,106,.28);box-shadow:0 12px 30px rgba(0,0,0,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}}
     #captions .w{{display:inline-block;text-shadow:0 3px 0 rgba(0,0,0,.35),0 6px 22px rgba(0,0,0,.75);-webkit-text-stroke:1.5px rgba(0,0,0,.25)}}
     #captions .w.k{{color:#FFD873;text-shadow:0 3px 0 rgba(60,40,0,.45),0 0 26px rgba(233,196,106,.45),0 6px 22px rgba(0,0,0,.75)}}
   </style>
@@ -619,21 +619,21 @@ index = f"""<!doctype html>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <style>
       * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-      html, body {{ margin: 0; width: {W}px; height: {H}px; overflow: hidden; background: #071d1b; }}
+      html, body {{ margin: 0; width: {W}px; height: {H}px; overflow: hidden; background: #0A1A33; }}
       #root {{ width: 100%; height: 100%; position: relative; overflow: hidden; font-family: 'Montserrat', sans-serif; }}
       #bg {{ position: absolute; inset: 0; z-index: 0; overflow: hidden;
-        background: radial-gradient(ellipse 120% 70% at 50% 28%, #1E5A51 0%, #103A35 45%, #081F1D 100%); }}
+        background: radial-gradient(ellipse 120% 70% at 50% 28%, #24507F 0%, #14325A 45%, #0A1A33 100%); }}
       #bg-pattern {{ position: absolute; inset: -120px; opacity: .07; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><g fill='none' stroke='%23E9C46A' stroke-width='1.2'><path d='M60 14 L73 47 L106 60 L73 73 L60 106 L47 73 L14 60 L47 47 Z'/><rect x='35' y='35' width='50' height='50' transform='rotate(45 60 60)'/><circle cx='60' cy='60' r='9'/></g></svg>"); background-size: 120px 120px; }}
       .orb {{ position: absolute; border-radius: 50%; }}
       #orb1 {{ left: -220px; top: 120px; width: 760px; height: 760px; background: radial-gradient(circle, rgba(233,196,106,.20) 0%, rgba(233,196,106,0) 65%); }}
-      #orb2 {{ right: -260px; top: 900px; width: 820px; height: 820px; background: radial-gradient(circle, rgba(120,210,190,.16) 0%, rgba(120,210,190,0) 65%); }}
+      #orb2 {{ right: -260px; top: 900px; width: 820px; height: 820px; background: radial-gradient(circle, rgba(120,170,230,.18) 0%, rgba(120,170,230,0) 65%); }}
       #orb3 {{ left: 240px; top: -260px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,240,200,.14) 0%, rgba(255,240,200,0) 65%); }}
       #arch-glow {{ position: absolute; left: {ARCH_L - 60}px; top: {ARCH_T - 60}px; width: {ARCH_W + 120}px; height: {ARCH_H + 120}px; z-index: 1;
         border-radius: {ARCH_W // 2 + 60}px {ARCH_W // 2 + 60}px 90px 90px;
         background: radial-gradient(ellipse at 50% 35%, rgba(233,196,106,.22), rgba(233,196,106,0) 70%); }}
       #arch {{ position: absolute; left: {ARCH_L}px; top: {ARCH_T}px; width: {ARCH_W}px; height: {ARCH_H}px; z-index: 1; overflow: hidden;
         border-radius: {ARCH_W // 2}px {ARCH_W // 2}px 40px 40px;
-        background: radial-gradient(ellipse 80% 55% at 50% 32%, #FBF8EE 0%, #E7E8DA 45%, #BFCDBE 100%);
+        background: radial-gradient(ellipse 80% 55% at 50% 32%, #FBF8EE 0%, #E6ECF2 45%, #BCCBDB 100%);
         box-shadow: 0 0 0 3px #D9B25C, 0 0 0 10px rgba(217,178,92,.16), 0 40px 90px rgba(0,0,0,.45); }}
       #arch-inner {{ position: absolute; inset: 18px; border-radius: {ARCH_W // 2 - 18}px {ARCH_W // 2 - 18}px 26px 26px; border: 1.5px solid rgba(201,150,46,.35); z-index: 2; }}
       #shake {{ position: absolute; inset: 0; }}
