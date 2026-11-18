@@ -132,10 +132,12 @@
     const tl = gsap.timeline({ paused: true });
     document.querySelectorAll('#captions .grp').forEach((g) => {
       const a = +g.dataset.a, b = +g.dataset.b;
-      tl.set(g, { opacity: 1, visibility: 'visible' }, a);
+      tl.set(g, { visibility: 'visible' }, a);
+      tl.fromTo(g, { opacity: 0 }, { opacity: 1, duration: 0.08, immediateRender: false }, a);
+      tl.fromTo(g.querySelector('.pb'), { y: 18, scale: 0.9 }, { y: 0, scale: 1, duration: 0.2, ease: 'back.out(2.2)', immediateRender: false }, a);
       g.querySelectorAll('.w').forEach((w) => {
-        const t = Math.max(a, +w.dataset.t - 0.04);
-        tl.fromTo(w, { opacity: 0, y: 22, scale: 0.86 }, { opacity: 1, y: 0, scale: 1, duration: 0.16, ease: 'back.out(2.4)' }, t);
+        const t = Math.max(a, +w.dataset.t - 0.03);
+        tl.fromTo(w, { scale: 1 }, { scale: 1.1, duration: 0.1, yoyo: true, repeat: 1, ease: 'power2.out', immediateRender: false }, t);
       });
       tl.to(g, { opacity: 0, duration: 0.1, ease: 'power2.in' }, b - 0.1);
       tl.set(g, { opacity: 0, visibility: 'hidden' }, b);

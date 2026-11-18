@@ -189,7 +189,7 @@ add_scene("surat", s0, s1, """
     <div class="panel" id="su-panel" style="height:340px">
       <div class="krow"><span class="kick" id="su-kick">Nak keluarkan duit &amp; tukar geran?</span></div>
       <div class="row" style="top:80px"><span class="t-sm" id="su-l1">Waris <b>WAJIB</b> dapatkan</span></div>
-      <div class="row" style="top:128px"><div class="doc" id="su-doc">{icon('file',60,'#0A241C',2)}<div style="text-align:left"><div style="font-weight:900;font-size:54px;letter-spacing:-.01em;line-height:1" id="su-title">SURAT KUASA</div><div style="font-weight:700;font-size:26px;opacity:.7;margin-top:6px">Letter of Administration</div></div></div></div>
+      <div class="row" style="top:128px"><div class="doc" id="su-doc">{icon('file',60,'#0A241C',2)}<div style="text-align:left"><div style="font-weight:900;font-size:54px;letter-spacing:-.01em;line-height:1" id="su-title">SURAT KUASA</div><div style="font-weight:700;font-size:28px;opacity:.75;margin-top:6px">Letter of Administration</div></div></div></div>
       <div class="seal" id="su-seal">WAJIB</div>
       <div class="row" style="top:262px"><span class="pill" id="su-p1">{icon('map',34,GOLD,2.4)} Pejabat Tanah</span><span class="t-sm" id="su-or">atau</span><span class="pill" id="su-p2">{icon('scale',34,GOLD,2.4)} Mahkamah Tinggi</span></div>
     </div>
@@ -531,10 +531,12 @@ with open(os.path.join(PROJ, "compositions", "captions.html"), "w") as f:
     const tl = gsap.timeline({{ paused: true }});
     document.querySelectorAll('#captions .grp').forEach((g) => {{
       const a = +g.dataset.a, b = +g.dataset.b;
-      tl.set(g, {{ opacity: 1, visibility: 'visible' }}, a);
+      tl.set(g, {{ visibility: 'visible' }}, a);
+      tl.fromTo(g, {{ opacity: 0 }}, {{ opacity: 1, duration: 0.08, immediateRender: false }}, a);
+      tl.fromTo(g.querySelector('.pb'), {{ y: 18, scale: 0.9 }}, {{ y: 0, scale: 1, duration: 0.2, ease: 'back.out(2.2)', immediateRender: false }}, a);
       g.querySelectorAll('.w').forEach((w) => {{
-        const t = Math.max(a, +w.dataset.t - 0.04);
-        tl.fromTo(w, {{ opacity: 0, y: 22, scale: 0.86 }}, {{ opacity: 1, y: 0, scale: 1, duration: 0.16, ease: 'back.out(2.4)' }}, t);
+        const t = Math.max(a, +w.dataset.t - 0.03);
+        tl.fromTo(w, {{ scale: 1 }}, {{ scale: 1.1, duration: 0.1, yoyo: true, repeat: 1, ease: 'power2.out', immediateRender: false }}, t);
       }});
       tl.to(g, {{ opacity: 0, duration: 0.1, ease: 'power2.in' }}, b - 0.1);
       tl.set(g, {{ opacity: 0, visibility: 'hidden' }}, b);
