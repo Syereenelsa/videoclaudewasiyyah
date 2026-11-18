@@ -95,7 +95,7 @@ s0, s1 = 0.0, 4.75; t = L(s0)
 add_scene("hook", s0, s1, """
 #hook .dim{position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse at 50% 40%,rgba(3,14,11,.55),rgba(1,6,5,.88))}
 #hook .top{position:absolute;left:120px;width:768px;top:300px;text-align:center}
-#hook .hl{font-weight:900;font-size:72px;line-height:1.04;letter-spacing:-.02em;text-shadow:0 6px 30px rgba(0,0,0,.65);margin-top:26px}
+#hook .hl{font-weight:900;font-size:62px;line-height:1.04;letter-spacing:-.02em;text-shadow:0 6px 30px rgba(0,0,0,.65);margin-top:26px}
 #hook .hw{display:inline-block}
 #hook .giant{position:absolute;left:120px;width:768px;top:400px;text-align:center}
 #hook .g-label{display:inline-flex;align-items:center;gap:12px;font-weight:800;font-size:38px;letter-spacing:.14em;color:#CFEFFF}
@@ -512,7 +512,7 @@ for gi, g in enumerate(groups):
         spans.append(f'<span class="w{k}" id="cw{gi}_{wi}" data-t="{w["start"]:.3f}">{disp}</span>')
     est = sum(0.66 if c.isupper() or c.isdigit() else (0.3 if c in " .,'il" else 0.6) for c in " ".join(x["text"] for x in g)) * 62
     fs = f' style="font-size:{max(44, int(62 * 640 / est))}px"' if est > 640 else ""
-    cap_html.append(f'      <div class="grp" id="cg{gi}" data-a="{g0:.3f}" data-b="{g1:.3f}"{fs}>{" ".join(spans)}</div>')
+    cap_html.append(f'      <div class="grp" id="cg{gi}" data-a="{g0:.3f}" data-b="{g1:.3f}"{fs}><span class="pb">{" ".join(spans)}</span></div>')
 
 with open(os.path.join(PROJ, "compositions", "captions.html"), "w") as f:
     f.write(f"""<template>
@@ -520,6 +520,7 @@ with open(os.path.join(PROJ, "compositions", "captions.html"), "w") as f:
     #captions{{position:absolute;inset:0;pointer-events:none}}
     #captions .grp{{position:absolute;left:120px;width:660px;bottom:678px;white-space:nowrap;text-align:center;opacity:0;visibility:hidden;
       font-family:'Montserrat',sans-serif;font-weight:800;font-size:62px;line-height:1.12;letter-spacing:-.01em;color:#FFFFFF;overflow:visible}}
+    #captions .pb{{display:inline-block;padding:8px 24px 12px;border-radius:22px;background:rgba(6,26,23,.74);border:1.5px solid rgba(233,196,106,.28);box-shadow:0 12px 30px rgba(0,0,0,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}}
     #captions .w{{display:inline-block;text-shadow:0 3px 0 rgba(0,0,0,.35),0 6px 22px rgba(0,0,0,.75);-webkit-text-stroke:1.5px rgba(0,0,0,.25)}}
     #captions .w.k{{color:#FFD873;text-shadow:0 3px 0 rgba(60,40,0,.45),0 0 26px rgba(233,196,106,.45),0 6px 22px rgba(0,0,0,.75)}}
   </style>
@@ -544,14 +545,12 @@ with open(os.path.join(PROJ, "compositions", "captions.html"), "w") as f:
 """)
 
 # ================================================================ CAMERA framing
-XC, YF = 540.0, 1050.0
-# zoomed out: full-width frame shifted up 250px (face higher, below-chin band free for captions)
-FR = {"A": (1.0, 250.0), "B": (1.08, 309.3)}
-def tf(s, T):
-    return [round(-(XC * s - 540), 2), round(-T * s, 2), s]
-def drift(s, T, k=1.012):
-    s2 = s * k; T2 = YF - (YF - T) * s / s2
-    return tf(round(s2, 4), round(T2, 2))
+# Person (matted) sits inside an arch window. Arch box: left 160, top ARCH_T, 760 x ARCH_H.
+ARCH_L, ARCH_T, ARCH_W, ARCH_H = 200, 470, 680, 919
+FX, FY = 340.0, 362.0   # face anchor inside the arch (screen px, arch-relative)
+def tf(s):
+    return [round(FX - 540 * s, 2), round(FY - 1050 * s, 2), round(s, 4)]
+SA, SB = 0.64, 0.68     # alternate scales at cuts (hide jump cuts)
 cam = []
 which = "A"
 for i, p in enumerate(pieces):
@@ -559,9 +558,10 @@ for i, p in enumerate(pieces):
         which = "B" if which == "A" else "A"
     if p["lab"] == "A":
         which = "A"
-    s, T = FR[which]
+    sc = SA if which == "A" else SB
     dur = 2.5 if p["lab"] == "A" else p["od"]  # hook: push-in takes over at 2.5s
-    cam.append([round(p["out0"], 3), round(dur, 3)] + tf(s, T) + drift(s, T))
+    cam.append([round(p["out0"], 3), round(dur, 3)] + tf(sc) + tf(sc * 1.012))
+HOOK_PUSH = tf(0.85)
 
 # ================================================================ SFX
 SFX = [
@@ -617,16 +617,26 @@ index = f"""<!doctype html>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <style>
       * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-      html, body {{ margin: 0; width: {W}px; height: {H}px; overflow: hidden; background: #000; }}
+      html, body {{ margin: 0; width: {W}px; height: {H}px; overflow: hidden; background: #071d1b; }}
       #root {{ width: 100%; height: 100%; position: relative; overflow: hidden; font-family: 'Montserrat', sans-serif; }}
-      #shake {{ position: absolute; inset: 0; z-index: 1; }}
+      #bg {{ position: absolute; inset: 0; z-index: 0; overflow: hidden;
+        background: radial-gradient(ellipse 120% 70% at 50% 28%, #1E5A51 0%, #103A35 45%, #081F1D 100%); }}
+      #bg-pattern {{ position: absolute; inset: -120px; opacity: .07; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><g fill='none' stroke='%23E9C46A' stroke-width='1.2'><path d='M60 14 L73 47 L106 60 L73 73 L60 106 L47 73 L14 60 L47 47 Z'/><rect x='35' y='35' width='50' height='50' transform='rotate(45 60 60)'/><circle cx='60' cy='60' r='9'/></g></svg>"); background-size: 120px 120px; }}
+      .orb {{ position: absolute; border-radius: 50%; }}
+      #orb1 {{ left: -220px; top: 120px; width: 760px; height: 760px; background: radial-gradient(circle, rgba(233,196,106,.20) 0%, rgba(233,196,106,0) 65%); }}
+      #orb2 {{ right: -260px; top: 900px; width: 820px; height: 820px; background: radial-gradient(circle, rgba(120,210,190,.16) 0%, rgba(120,210,190,0) 65%); }}
+      #orb3 {{ left: 240px; top: -260px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,240,200,.14) 0%, rgba(255,240,200,0) 65%); }}
+      #arch-glow {{ position: absolute; left: {ARCH_L - 60}px; top: {ARCH_T - 60}px; width: {ARCH_W + 120}px; height: {ARCH_H + 120}px; z-index: 1;
+        border-radius: {ARCH_W // 2 + 60}px {ARCH_W // 2 + 60}px 90px 90px;
+        background: radial-gradient(ellipse at 50% 35%, rgba(233,196,106,.22), rgba(233,196,106,0) 70%); }}
+      #arch {{ position: absolute; left: {ARCH_L}px; top: {ARCH_T}px; width: {ARCH_W}px; height: {ARCH_H}px; z-index: 1; overflow: hidden;
+        border-radius: {ARCH_W // 2}px {ARCH_W // 2}px 40px 40px;
+        background: radial-gradient(ellipse 80% 55% at 50% 32%, #FBF8EE 0%, #E7E8DA 45%, #BFCDBE 100%);
+        box-shadow: 0 0 0 3px #D9B25C, 0 0 0 10px rgba(217,178,92,.16), 0 40px 90px rgba(0,0,0,.45); }}
+      #arch-inner {{ position: absolute; inset: 18px; border-radius: {ARCH_W // 2 - 18}px {ARCH_W // 2 - 18}px 26px 26px; border: 1.5px solid rgba(201,150,46,.35); z-index: 2; }}
+      #shake {{ position: absolute; inset: 0; }}
       #cam {{ position: absolute; left: 0; top: 0; width: {W}px; height: {H}px; transform-origin: 0 0; }}
       #aroll {{ position: absolute; left: 0; top: 0; width: {W}px; height: {H}px; object-fit: cover; }}
-      #scrim-top {{ position: absolute; left: 0; right: 0; top: 0; height: 760px; z-index: 2;
-        background: linear-gradient(180deg, rgba(2,10,8,.62) 0%, rgba(2,10,8,.30) 45%, rgba(2,10,8,0) 100%); }}
-      #base {{ position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, #0b231c 0%, #040d0a 100%); }}
-      #scrim-bot {{ position: absolute; left: 0; right: 0; bottom: 0; height: 720px; z-index: 2;
-        background: linear-gradient(0deg, #040d0a 0%, #040d0a 40%, rgba(4,13,10,.6) 62%, rgba(4,13,10,.22) 82%, rgba(4,13,10,0) 100%); }}
       #frost {{ position: absolute; inset: 0; z-index: 3; opacity: 0;
         background: radial-gradient(ellipse at 50% 45%, rgba(160,220,255,0) 45%, rgba(160,220,255,.16) 78%, rgba(220,245,255,.42) 100%);
         box-shadow: inset 0 0 90px rgba(200,240,255,.45); }}
@@ -637,12 +647,12 @@ index = f"""<!doctype html>
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="{D}" data-width="{W}" data-height="{H}">
-      <div id="base" data-layout-ignore></div>
-      <div id="shake"><div id="cam">
-        <video id="aroll" class="clip" src="assets/aroll.mp4" data-start="0" data-duration="{D}" data-track-index="0" data-has-audio="true" data-volume="1" playsinline></video>
-      </div></div>
-      <div id="scrim-top" data-layout-ignore></div>
-      <div id="scrim-bot" data-layout-ignore></div>
+      <div id="bg" data-layout-ignore><div id="bg-pattern"></div><div class="orb" id="orb1"></div><div class="orb" id="orb2"></div><div class="orb" id="orb3"></div></div>
+      <div id="arch-glow" data-layout-ignore></div>
+      <div id="arch" data-layout-ignore><div id="shake"><div id="cam">
+        <video id="aroll" class="clip" src="assets/person.webm" data-start="0" data-duration="{D}" data-track-index="0" muted playsinline></video>
+      </div></div><div id="arch-inner"></div></div>
+      <audio id="voice" class="clip" src="assets/voice.wav" data-start="0" data-duration="{D}" data-volume="1" data-track-index="1"></audio>
       <div id="frost" data-layout-ignore></div>
 {chr(10).join(hosts)}
       <div id="captions" class="clip" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="{D}" data-track-index="3" data-track-kind="captions" data-width="{W}" data-height="{H}"></div>
@@ -657,8 +667,13 @@ index = f"""<!doctype html>
         tl.set('#cam', {{ x: x0, y: y0, scale: s0 }}, t);
         tl.to('#cam', {{ x: x1, y: y1, scale: s1, duration: d, ease: 'none' }}, t);
       }});
-      // giant-hook push-in (2.5s -> 4.7s)
-      tl.to('#cam', {{ scale: 1.25, x: -(540 * 1.25 - 540), y: -(1050 - (1050 - 250) / 1.25) * 1.25, duration: 2.0, ease: 'power2.in' }}, 2.5);
+      // giant-hook push-in (2.5s -> 4.5s)
+      tl.to('#cam', {{ x: {HOOK_PUSH[0]}, y: {HOOK_PUSH[1]}, scale: {HOOK_PUSH[2]}, duration: 2.0, ease: 'power2.in' }}, 2.5);
+      // calm background drift
+      tl.fromTo('#orb1', {{ x: 0, y: 0 }}, {{ x: 160, y: 220, duration: {D}, ease: 'sine.inOut' }}, 0);
+      tl.fromTo('#orb2', {{ x: 0, y: 0 }}, {{ x: -180, y: -260, duration: {D}, ease: 'sine.inOut' }}, 0);
+      tl.fromTo('#orb3', {{ x: 0, y: 0 }}, {{ x: 120, y: 160, duration: {D}, ease: 'sine.inOut' }}, 0);
+      tl.fromTo('#bg-pattern', {{ x: 0, y: 0 }}, {{ x: 60, y: 120, duration: {D}, ease: 'none' }}, 0);
       tl.fromTo('#flash', {{ opacity: 0.85 }}, {{ opacity: 0, duration: 0.22, ease: 'power2.out', immediateRender: false }}, 3.37);
       tl.set('#flash', {{ opacity: 0 }}, 0);
 {frost_js}{shake_js}      window.__timelines["main"] = tl;
