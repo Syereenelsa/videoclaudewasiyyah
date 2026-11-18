@@ -483,7 +483,7 @@ scene('s10', 10, (w,t0)=>{
 // 12 — "Dah dapat Surat Kuasa, keluarga boleh terus ke JPJ, Pejabat Tanah dan bank, untuk tukar nama dan cairkan duit."
 scene('s10b', 11, (w,t0)=>{
   up('#s10b .p', w(99.7));                         fx('rise', w(99.7));
-  [102.3, 103.3, 104.15].forEach((x,k)=>{ pop(q('#s10b .d',k), w(x)); fx('pop', w(x), {p:1+k*.1}); });
+  [102.3, 103.3, 104.15].forEach((x,k)=>{ pop(q('#s10b .dest > .card',k), w(x)); fx('pop', w(x), {p:1+k*.1}); });
   up('#s10b .h2', w(106.1));                       fx('success', w(106.1));
 });
 // 13 — "Dan bezanya bila ada dokumen hibah, dokumen itu dibentangkan semasa bicara kuasa, supaya aset tersebut terkeluar dari bahagian faraid."
