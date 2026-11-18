@@ -544,8 +544,9 @@ with open(os.path.join(PROJ, "compositions", "captions.html"), "w") as f:
 """)
 
 # ================================================================ CAMERA framing
-XC, YF = 525.0, 1050.0
-FR = {"A": (1.30, 440.0), "B": (1.40, 520.0)}
+XC, YF = 540.0, 1050.0
+# zoomed out: full-width frame shifted up 250px (face higher, below-chin band free for captions)
+FR = {"A": (1.0, 250.0), "B": (1.08, 309.3)}
 def tf(s, T):
     return [round(-(XC * s - 540), 2), round(-T * s, 2), s]
 def drift(s, T, k=1.012):
@@ -623,8 +624,9 @@ index = f"""<!doctype html>
       #aroll {{ position: absolute; left: 0; top: 0; width: {W}px; height: {H}px; object-fit: cover; }}
       #scrim-top {{ position: absolute; left: 0; right: 0; top: 0; height: 760px; z-index: 2;
         background: linear-gradient(180deg, rgba(2,10,8,.62) 0%, rgba(2,10,8,.30) 45%, rgba(2,10,8,0) 100%); }}
-      #scrim-bot {{ position: absolute; left: 0; right: 0; bottom: 0; height: 900px; z-index: 2;
-        background: linear-gradient(0deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.32) 45%, rgba(0,0,0,0) 100%); }}
+      #base {{ position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, #0b231c 0%, #040d0a 100%); }}
+      #scrim-bot {{ position: absolute; left: 0; right: 0; bottom: 0; height: 720px; z-index: 2;
+        background: linear-gradient(0deg, #040d0a 0%, #040d0a 40%, rgba(4,13,10,.6) 62%, rgba(4,13,10,.22) 82%, rgba(4,13,10,0) 100%); }}
       #frost {{ position: absolute; inset: 0; z-index: 3; opacity: 0;
         background: radial-gradient(ellipse at 50% 45%, rgba(160,220,255,0) 45%, rgba(160,220,255,.16) 78%, rgba(220,245,255,.42) 100%);
         box-shadow: inset 0 0 90px rgba(200,240,255,.45); }}
@@ -635,6 +637,7 @@ index = f"""<!doctype html>
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="{D}" data-width="{W}" data-height="{H}">
+      <div id="base" data-layout-ignore></div>
       <div id="shake"><div id="cam">
         <video id="aroll" class="clip" src="assets/aroll.mp4" data-start="0" data-duration="{D}" data-track-index="0" data-has-audio="true" data-volume="1" playsinline></video>
       </div></div>
@@ -655,7 +658,7 @@ index = f"""<!doctype html>
         tl.to('#cam', {{ x: x1, y: y1, scale: s1, duration: d, ease: 'none' }}, t);
       }});
       // giant-hook push-in (2.5s -> 4.7s)
-      tl.to('#cam', {{ scale: 1.55, x: -(525 * 1.55 - 540), y: -(1050 - (1050 - 440) * 1.30 / 1.55) * 1.55, duration: 2.0, ease: 'power2.in' }}, 2.5);
+      tl.to('#cam', {{ scale: 1.25, x: -(540 * 1.25 - 540), y: -(1050 - (1050 - 250) / 1.25) * 1.25, duration: 2.0, ease: 'power2.in' }}, 2.5);
       tl.fromTo('#flash', {{ opacity: 0.85 }}, {{ opacity: 0, duration: 0.22, ease: 'power2.out', immediateRender: false }}, 3.37);
       tl.set('#flash', {{ opacity: 0 }}, 0);
 {frost_js}{shake_js}      window.__timelines["main"] = tl;
