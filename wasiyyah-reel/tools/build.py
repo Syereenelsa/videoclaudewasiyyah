@@ -351,8 +351,8 @@ add_scene("brand", s0, s1, """
 """, f"""
     <div class="panel" id="br-panel" style="height:330px">
       <div class="krow"><span class="kick" id="br-kick">{icon('shield',30,'#0B1F3A',2.6)} Penyelesaiannya</span></div>
-      <div class="row" style="top:76px"><span class="t-sm" id="br-sy">Syarikat</span></div>
-      <div class="row" style="top:104px;padding:6px 0 34px;overflow:hidden" data-layout-allow-overflow><span class="wm gold" id="br-wm">Wasiyyah</span><span class="shine" id="br-sh"></span></div>
+      <div class="row" style="top:76px"><span class="t-sm" id="br-sy" style="font-size:30px">Syarikat Wasiyyah Berhad memperkenalkan</span></div>
+      <div class="row" style="top:104px;padding:6px 0 34px;overflow:hidden" data-layout-allow-overflow><span class="wm gold" id="br-wm">Wasitah</span><span class="shine" id="br-sh"></span></div>
       <div class="row" style="top:258px" id="br-kp"><span class="rule"></span><span style="font-weight:800;font-size:40px;letter-spacing:.2em;color:#FFE9AE">KHAIRIAT PUSAKA</span><span class="rule r"></span></div>
     </div>
 """, f"""

@@ -27,6 +27,6 @@ npx hyperframes@0.9.66 preview --background
 
 ## Product names (confirmed)
 
-- Wasiyyah **Khairiat Pusaka**
+- **Wasitah Khairiat Pusaka** (product)
 - **Wasitah Intan**
 - Syarikat Wasiyyah Berhad
