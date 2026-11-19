@@ -30,16 +30,15 @@
   font-weight:900;font-size:56px;letter-spacing:.05em}
 
 #surat .doc{display:flex;align-items:center;gap:18px;padding:16px 28px;border-radius:28px;background:linear-gradient(180deg,#FFF8E7,#F1E3C2);color:#0B1F3A;box-shadow:0 18px 40px rgba(0,0,0,.4)}
-#surat .seal{position:absolute;right:40px;top:100px;width:104px;height:104px;border-radius:50%;border:5px solid #C9962E;color:#C9962E;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:28px;letter-spacing:.04em;background:rgba(255,248,231,.95)}
+#surat .seal{position:absolute;right:22px;top:86px;width:104px;height:104px;border-radius:50%;border:5px solid #C9962E;color:#C9962E;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:28px;letter-spacing:.04em;background:rgba(255,248,231,.95)}
 </style>
   <div id="surat" data-composition-id="surat" data-width="1080" data-height="1920">
 
-    <div class="panel" id="su-panel" style="height:340px;top:439px">
+    <div class="panel" id="su-panel" style="height:380px;top:419px">
       <div class="krow"><span class="kick" id="su-kick">Nak keluarkan duit &amp; tukar geran?</span></div>
       <div class="row" style="top:80px"><span class="t-sm" id="su-l1">Waris <b>WAJIB</b> dapatkan</span></div>
-      <div class="row" style="top:128px"><div class="doc" id="su-doc"><svg class="ico" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#0B1F3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v5h5"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg><div style="text-align:left"><div style="font-weight:900;font-size:54px;letter-spacing:-.01em;line-height:1" id="su-title">SURAT KUASA</div><div style="font-weight:700;font-size:28px;opacity:.75;margin-top:6px">Letter of Administration</div></div></div></div>
-      <div class="seal" id="su-seal">WAJIB</div>
-      <div class="row" style="top:262px"><span class="pill" id="su-p1"><svg class="ico" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15"/><path d="M15 6v15"/></svg> Pejabat Tanah</span><span class="t-sm" id="su-or">atau</span><span class="pill" id="su-p2"><svg class="ico" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"/><path d="M2 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg> Mahkamah Tinggi</span></div>
+      <div class="row" style="top:128px"><div class="doc" id="su-doc"><svg class="ico" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#0B1F3A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v5h5"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg><div style="text-align:left"><div style="font-weight:900;font-size:54px;letter-spacing:-.01em;line-height:1" id="su-title">SURAT KUASA</div><div style="font-weight:900;font-size:34px;color:#8A5A0B;margin-top:6px" id="su-pp">&amp; PERINTAH PEMBAHAGIAN</div></div></div></div>
+      <div class="row" style="top:300px"><span class="pill" id="su-p1"><svg class="ico" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15"/><path d="M15 6v15"/></svg> Pejabat Tanah</span><span class="t-sm" id="su-or">atau</span><span class="pill" id="su-p2"><svg class="ico" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"/><path d="M2 16l3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg> Mahkamah Tinggi</span></div>
     </div>
 
   </div>
@@ -59,7 +58,6 @@ const RM=(v)=>'RM'+Math.round(v).toLocaleString('en-US');
     IN('#su-l1',2.8);
     IN('#su-doc',3.25,{y:30});
     tl.fromTo('#su-title',{scale:1.5,opacity:0.2},{scale:1,opacity:1,duration:0.22,ease:'power4.in'},4.09);
-    tl.fromTo('#su-seal',{opacity:0,scale:2.4,rotation:-35},{opacity:1,scale:1,rotation:-12,duration:0.22,ease:'power4.in'},4.3);
     POP('#su-p1',5.55);
     IN('#su-or',6.35,{y:10,d:0.25});
     POP('#su-p2',6.67);

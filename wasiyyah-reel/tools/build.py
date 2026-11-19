@@ -186,14 +186,13 @@ add_scene("assets", s0, s1, """
 s0, s1 = 14.75, 22.45; t = L(s0)
 add_scene("surat", s0, s1, """
 #surat .doc{display:flex;align-items:center;gap:18px;padding:16px 28px;border-radius:28px;background:linear-gradient(180deg,#FFF8E7,#F1E3C2);color:#0B1F3A;box-shadow:0 18px 40px rgba(0,0,0,.4)}
-#surat .seal{position:absolute;right:40px;top:100px;width:104px;height:104px;border-radius:50%;border:5px solid #C9962E;color:#C9962E;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:28px;letter-spacing:.04em;background:rgba(255,248,231,.95)}
+#surat .seal{position:absolute;right:22px;top:86px;width:104px;height:104px;border-radius:50%;border:5px solid #C9962E;color:#C9962E;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:28px;letter-spacing:.04em;background:rgba(255,248,231,.95)}
 """, f"""
-    <div class="panel" id="su-panel" style="height:340px">
+    <div class="panel" id="su-panel" style="height:380px">
       <div class="krow"><span class="kick" id="su-kick">Nak keluarkan duit &amp; tukar geran?</span></div>
       <div class="row" style="top:80px"><span class="t-sm" id="su-l1">Waris <b>WAJIB</b> dapatkan</span></div>
-      <div class="row" style="top:128px"><div class="doc" id="su-doc">{icon('file',60,'#0B1F3A',2)}<div style="text-align:left"><div style="font-weight:900;font-size:54px;letter-spacing:-.01em;line-height:1" id="su-title">SURAT KUASA</div><div style="font-weight:700;font-size:28px;opacity:.75;margin-top:6px">Letter of Administration</div></div></div></div>
-      <div class="seal" id="su-seal">WAJIB</div>
-      <div class="row" style="top:262px"><span class="pill" id="su-p1">{icon('map',34,GOLD,2.4)} Pejabat Tanah</span><span class="t-sm" id="su-or">atau</span><span class="pill" id="su-p2">{icon('scale',34,GOLD,2.4)} Mahkamah Tinggi</span></div>
+      <div class="row" style="top:128px"><div class="doc" id="su-doc">{icon('file',60,'#0B1F3A',2)}<div style="text-align:left"><div style="font-weight:900;font-size:54px;letter-spacing:-.01em;line-height:1" id="su-title">SURAT KUASA</div><div style="font-weight:900;font-size:34px;color:#8A5A0B;margin-top:6px" id="su-pp">&amp; PERINTAH PEMBAHAGIAN</div></div></div></div>
+      <div class="row" style="top:300px"><span class="pill" id="su-p1">{icon('map',34,GOLD,2.4)} Pejabat Tanah</span><span class="t-sm" id="su-or">atau</span><span class="pill" id="su-p2">{icon('scale',34,GOLD,2.4)} Mahkamah Tinggi</span></div>
     </div>
 """, f"""
     IN('#su-panel',{t(14.8)},{{y:-30}});
@@ -201,7 +200,6 @@ add_scene("surat", s0, s1, """
     IN('#su-l1',{t(17.55)});
     IN('#su-doc',{t(18.0)},{{y:30}});
     tl.fromTo('#su-title',{{scale:1.5,opacity:0.2}},{{scale:1,opacity:1,duration:0.22,ease:'power4.in'}},{t(18.84)});
-    tl.fromTo('#su-seal',{{opacity:0,scale:2.4,rotation:-35}},{{opacity:1,scale:1,rotation:-12,duration:0.22,ease:'power4.in'}},{t(19.05)});
     POP('#su-p1',{t(20.3)});
     IN('#su-or',{t(21.1)},{{y:10,d:0.25}});
     POP('#su-p2',{t(21.42)});
@@ -264,7 +262,7 @@ add_scene("bicara", s0, s1, """
 #bicara .col .h{display:flex;align-items:center;gap:8px;font-weight:900;font-size:38px}
 #bicara .col .s{font-weight:700;font-size:29px;line-height:1.2;color:rgba(255,248,231,.9)}
 """, f"""
-    <div class="panel" id="bi-panel" style="height:340px">
+    <div class="panel" id="bi-panel" style="height:380px">
       <div class="krow"><span class="kick" id="bi-kick">{icon('scale',30,'#0B1F3A',2.6)} Ketika bicara kuasa</span></div>
       <div class="row" style="top:78px"><span class="t-sm" id="bi-sub">{icon('file',34,GOLD,2.4)} Semua aset dibentangkan</span></div>
       <div class="row" style="top:132px;gap:16px" id="bi-cols">
@@ -273,7 +271,7 @@ add_scene("bicara", s0, s1, """
       </div>
       <div id="bi-ph2" style="opacity:0">
         <div class="row" style="top:86px"><span class="t-md" id="bi-ks" style="font-size:38px">{icon('users',46,GOLD,2.4)} Kata sepakat semua waris</span></div>
-        <div class="row" style="top:162px"><span class="stamp" id="bi-ok" style="color:#F2CF76;font-size:50px;flex-direction:column;gap:2px;padding:10px 30px"><span style="display:flex;align-items:center;gap:12px">{icon('check',52,GOLD,3)} SURAT KUASA</span><span style="font-size:28px;letter-spacing:.2em">DIKELUARKAN</span></span></div>
+        <div class="row" style="top:150px"><span class="stamp" id="bi-ok" style="color:#F2CF76;font-size:50px;flex-direction:column;gap:2px;padding:10px 30px"><span style="display:flex;align-items:center;gap:12px">{icon('check',52,GOLD,3)} SURAT KUASA</span><span style="font-size:32px;letter-spacing:.04em">&amp; PERINTAH PEMBAHAGIAN</span><span style="font-size:28px;letter-spacing:.2em;opacity:.85">DIKELUARKAN</span></span></div>
       </div>
     </div>
 """, f"""
@@ -369,14 +367,14 @@ add_scene("brand", s0, s1, """
 
 # ================================================================ 10. BANTU (K)
 s0, s1 = 78.5, 84.85; t = L(s0)
-items = [("Uruskan pusaka anda", 80.0), ("Proses semua dokumen", 81.4), ("Sampai dapat SURAT KUASA", 83.0)]
+items = [("Uruskan pusaka anda", 80.0), ("Proses semua dokumen", 81.4), ("Dapatkan SURAT KUASA", 82.6), ("&amp; PERINTAH PEMBAHAGIAN", 83.5)]
 ih = "".join(f'<div class="ci" id="bt-i{i}"><span class="cb">{icon("check",34,"#0B1F3A",3.2)}</span><span>{txt}</span></div>' for i, (txt, _) in enumerate(items))
 add_scene("bantu", s0, s1, """
 #bantu .cl{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
 #bantu .ci{display:flex;align-items:center;gap:16px;font-weight:800;font-size:36px}
 #bantu .cb{width:50px;height:50px;border-radius:50%;background:linear-gradient(180deg,#F6D98B,#E2B65A);display:flex;align-items:center;justify-content:center;flex:none}
 """, f"""
-    <div class="panel" id="bt-panel" style="height:316px">
+    <div class="panel" id="bt-panel" style="height:384px">
       <div class="krow"><span class="kick" id="bt-kick">{icon('shield',30,'#0B1F3A',2.6)} Kami bantu anda</span></div>
       <div class="row" style="top:84px"><div class="cl">{ih}</div></div>
     </div>
@@ -446,22 +444,23 @@ add_scene("banding", s0, s1, """
 
 # ================================================================ 13. LEPAS (N)
 s0, s1 = 104.05, 111.3; t = L(s0)
-tiles = [("car", "JPJ", 106.85), ("map", "Pejabat Tanah", 107.7), ("bank", "Bank", 108.75)]
-th = "".join(f'<div class="tile" id="lp-t{i}">{icon(ic,54,GOLD,2)}<span>{lab}</span></div>' for i, (ic, lab, _) in enumerate(tiles))
+tiles = [("car", "JPJ", "Surat Kuasa", 106.85), ("map", "Pejabat Tanah", "Perintah<br/>Pembahagian", 107.7), ("bank", "Bank", "Surat Kuasa", 108.75)]
+th = "".join(f'<div class="tile" id="lp-t{i}">{icon(ic,50,GOLD,2)}<span>{lab}</span><span class="doc">{doc}</span></div>' for i, (ic, lab, doc, _) in enumerate(tiles))
 add_scene("lepas", s0, s1, """
-#lepas .tile{width:236px;height:128px;border-radius:26px;background:rgba(255,248,231,.08);border:1.5px solid rgba(233,196,106,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:30px}
+#lepas .tile{width:236px;height:196px;border-radius:26px;background:rgba(255,248,231,.08);border:1.5px solid rgba(233,196,106,.45);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-weight:800;font-size:30px}
+#lepas .tile .doc{font-size:28px;line-height:1.05;color:#F2CF76;text-align:center}
 """, f"""
-    <div class="panel" id="lp-panel" style="height:346px">
-      <div class="krow"><span class="kick" id="lp-kick">{icon('check',30,'#0B1F3A',3)} Dah dapat surat kuasa</span></div>
+    <div class="panel" id="lp-panel" style="height:412px">
+      <div class="krow"><span class="kick" id="lp-kick">{icon('check',30,'#0B1F3A',3)} Dokumen dah siap</span></div>
       <div class="row" style="top:76px"><span class="t-sm" id="lp-l1">Keluarga terus ke</span></div>
       <div class="row" style="top:122px;gap:14px">{th}</div>
-      <div class="row" style="top:270px;gap:20px"><span class="pill" id="lp-p1">{icon('check',30,GOLD,3)} Tukar nama</span><span class="pill" id="lp-p2">{icon('check',30,GOLD,3)} Cairkan duit</span></div>
+      <div class="row" style="top:334px;gap:20px"><span class="pill" id="lp-p1">{icon('check',30,GOLD,3)} Tukar nama</span><span class="pill" id="lp-p2">{icon('check',30,GOLD,3)} Cairkan duit</span></div>
     </div>
 """, f"""
     IN('#lp-panel',{t(104.1)},{{y:-30}});
     POP('#lp-kick',{t(104.15)});
     IN('#lp-l1',{t(105.4)},{{y:10}});
-""" + "".join(f"    POP('#lp-t{i}',{t(tt)});\n" for i, (_, _, tt) in enumerate(tiles)) + f"""
+""" + "".join(f"    POP('#lp-t{i}',{t(tt)});\n" for i, (_, _, _, tt) in enumerate(tiles)) + f"""
     POP('#lp-p1',{t(109.45)});
     POP('#lp-p2',{t(110.4)});
     OUT('#lp-panel',{t(111.05)});
@@ -573,7 +572,7 @@ SFX = [
     ("swish", 5.3, .22), ("lock", 7.42, .42),
     ("whoosh", 8.25, .24), ("pop", 8.37, .30), ("pop", 9.17, .30), ("pop", 9.93, .30), ("pop", 10.63, .30), ("pop", 11.31, .30),
     ("lock", 12.5, .40), ("tick", 13.55, .28),
-    ("whoosh", 14.75, .24), ("stamp", 18.84, .45), ("stamp", 19.05, .25), ("pop", 20.3, .28), ("pop", 21.42, .28),
+    ("whoosh", 14.75, .24), ("stamp", 18.84, .45), ("pop", 20.3, .28), ("pop", 21.42, .28),
     ("swish", 22.5, .24), ("clock", 25.65, .22), ("tick", 30.2, .30), ("tick", 31.75, .30), ("impact", 35.3, .38),
     ("whoosh", 37.55, .24), ("swish", 39.95, .20), ("ding", 42.3, .22), ("pop", 45.85, .28), ("swish", 50.85, .20), ("stamp", 53.85, .32), ("ding", 54.1, .26),
     ("whoosh", 55.6, .24), ("stamp", 57.2, .26), ("lock", 60.25, .40),
