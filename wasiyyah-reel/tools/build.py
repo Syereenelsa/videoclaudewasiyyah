@@ -67,6 +67,8 @@ const RM=(v)=>'RM'+Math.round(v).toLocaleString('en-US');
 
 
 def scene_file(sid, extra_css, body, js, panel_h=None):
+    body = re.sub(r'class="panel" id="([\w-]+)" style="height:(\d+)px"',
+                  lambda m: f'class="panel" id="{m.group(1)}" style="height:{m.group(2)}px;top:{609 - int(m.group(2)) // 2}px"', body)
     return f"""<template>
   <style>{css(sid, extra_css)}</style>
   <div id="{sid}" data-composition-id="{sid}" data-width="{W}" data-height="{H}">
@@ -94,7 +96,7 @@ def L(start):
 s0, s1 = 0.0, 4.75; t = L(s0)
 add_scene("hook", s0, s1, """
 #hook .dim{position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse at 50% 40%,rgba(4,12,28,.55),rgba(2,6,16,.88))}
-#hook .top{position:absolute;left:120px;width:768px;top:300px;text-align:center}
+#hook .top{position:absolute;left:120px;width:768px;top:380px;text-align:center}
 #hook .hl{font-weight:900;font-size:62px;line-height:1.04;letter-spacing:-.02em;text-shadow:0 6px 30px rgba(0,0,0,.65);margin-top:26px}
 #hook .hw{display:inline-block}
 #hook .giant{position:absolute;left:120px;width:768px;top:400px;text-align:center}
@@ -511,14 +513,14 @@ for gi, g in enumerate(groups):
         disp = html.escape(w["text"].rstrip(","))
         spans.append(f'<span class="w{k}" id="cw{gi}_{wi}" data-t="{w["start"]:.3f}">{disp}</span>')
     est = sum(0.66 if c.isupper() or c.isdigit() else (0.3 if c in " .,'il" else 0.6) for c in " ".join(x["text"] for x in g)) * 62
-    fs = f' style="font-size:{max(44, int(62 * 640 / est))}px"' if est > 640 else ""
+    fs = f' style="font-size:{max(44, int(62 * 540 / est))}px"' if est > 540 else ""
     cap_html.append(f'      <div class="grp" id="cg{gi}" data-a="{g0:.3f}" data-b="{g1:.3f}"{fs}><span class="pb">{" ".join(spans)}</span></div>')
 
 with open(os.path.join(PROJ, "compositions", "captions.html"), "w") as f:
     f.write(f"""<template>
   <style>
     #captions{{position:absolute;inset:0;pointer-events:none}}
-    #captions .grp{{position:absolute;left:120px;width:660px;bottom:678px;white-space:nowrap;text-align:center;opacity:0;visibility:hidden;
+    #captions .grp{{position:absolute;left:120px;width:768px;bottom:888px;white-space:nowrap;text-align:center;opacity:0;visibility:hidden;
       font-family:'Montserrat',sans-serif;font-weight:800;font-size:62px;line-height:1.12;letter-spacing:-.01em;color:#FFFFFF;overflow:visible}}
     #captions .pb{{display:inline-block;padding:8px 24px 12px;border-radius:22px;background:rgba(8,22,46,.76);border:1.5px solid rgba(233,196,106,.28);box-shadow:0 12px 30px rgba(0,0,0,.35);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}}
     #captions .w{{display:inline-block;text-shadow:0 3px 0 rgba(0,0,0,.35),0 6px 22px rgba(0,0,0,.75);-webkit-text-stroke:1.5px rgba(0,0,0,.25)}}
@@ -547,12 +549,12 @@ with open(os.path.join(PROJ, "compositions", "captions.html"), "w") as f:
 """)
 
 # ================================================================ CAMERA framing
-# Person (matted) sits inside an arch window. Arch box: left 160, top ARCH_T, 760 x ARCH_H.
-ARCH_L, ARCH_T, ARCH_W, ARCH_H = 200, 470, 680, 919
-FX, FY = 340.0, 362.0   # face anchor inside the arch (screen px, arch-relative)
+# Split layout: explanations on the top half, speaker (matted) full-width on the bottom half.
+STAGE_T = 960            # stage = y 960..1920
+FX, FY = 540.0, 335.0    # face anchor inside the stage (stage-relative px)
 def tf(s):
     return [round(FX - 540 * s, 2), round(FY - 1050 * s, 2), round(s, 4)]
-SA, SB = 0.64, 0.68     # alternate scales at cuts (hide jump cuts)
+SA, SB = 0.86, 0.91     # alternate scales at cuts (hide jump cuts)
 cam = []
 which = "A"
 for i, p in enumerate(pieces):
@@ -563,7 +565,7 @@ for i, p in enumerate(pieces):
     sc = SA if which == "A" else SB
     dur = 2.5 if p["lab"] == "A" else p["od"]  # hook: push-in takes over at 2.5s
     cam.append([round(p["out0"], 3), round(dur, 3)] + tf(sc) + tf(sc * 1.012))
-HOOK_PUSH = tf(0.85)
+HOOK_PUSH = tf(1.05)
 
 # ================================================================ SFX
 SFX = [
@@ -628,15 +630,15 @@ index = f"""<!doctype html>
       #orb1 {{ left: -220px; top: 120px; width: 760px; height: 760px; background: radial-gradient(circle, rgba(233,196,106,.20) 0%, rgba(233,196,106,0) 65%); }}
       #orb2 {{ right: -260px; top: 900px; width: 820px; height: 820px; background: radial-gradient(circle, rgba(120,170,230,.18) 0%, rgba(120,170,230,0) 65%); }}
       #orb3 {{ left: 240px; top: -260px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(255,240,200,.14) 0%, rgba(255,240,200,0) 65%); }}
-      #arch-glow {{ position: absolute; left: {ARCH_L - 60}px; top: {ARCH_T - 60}px; width: {ARCH_W + 120}px; height: {ARCH_H + 120}px; z-index: 1;
-        border-radius: {ARCH_W // 2 + 60}px {ARCH_W // 2 + 60}px 90px 90px;
-        background: radial-gradient(ellipse at 50% 35%, rgba(233,196,106,.22), rgba(233,196,106,0) 70%); }}
-      #arch {{ position: absolute; left: {ARCH_L}px; top: {ARCH_T}px; width: {ARCH_W}px; height: {ARCH_H}px; z-index: 1; overflow: hidden;
-        border-radius: {ARCH_W // 2}px {ARCH_W // 2}px 40px 40px;
-        background: radial-gradient(ellipse 80% 55% at 50% 32%, #FBF8EE 0%, #E6ECF2 45%, #BCCBDB 100%);
-        box-shadow: 0 0 0 3px #D9B25C, 0 0 0 10px rgba(217,178,92,.16), 0 40px 90px rgba(0,0,0,.45); }}
-      #arch-inner {{ position: absolute; inset: 18px; border-radius: {ARCH_W // 2 - 18}px {ARCH_W // 2 - 18}px 26px 26px; border: 1.5px solid rgba(201,150,46,.35); z-index: 2; }}
-      #shake {{ position: absolute; inset: 0; }}
+      #stage {{ position: absolute; left: 0; top: {STAGE_T}px; width: {W}px; height: {H - STAGE_T}px; z-index: 1; overflow: hidden;
+        background: radial-gradient(ellipse 75% 65% at 50% 38%, #3B6FA6 0%, #1D416E 48%, #0D2446 100%); }}
+      #stage-vig {{ position: absolute; inset: 0; z-index: 2; pointer-events: none;
+        background: linear-gradient(180deg, rgba(10,26,51,.55) 0%, rgba(10,26,51,0) 14%, rgba(10,26,51,0) 70%, rgba(6,15,32,.55) 100%); }}
+      #stage-line {{ position: absolute; left: 0; width: {W}px; top: {STAGE_T - 1}px; height: 3px; z-index: 3;
+        background: linear-gradient(90deg, rgba(217,178,92,0), #D9B25C 25%, #F2CF76 50%, #D9B25C 75%, rgba(217,178,92,0)); }}
+      #shake {{ position: absolute; inset: 0;
+        -webkit-mask-image: linear-gradient(90deg, transparent 0px, #000 130px, #000 950px, transparent 1080px);
+        mask-image: linear-gradient(90deg, transparent 0px, #000 130px, #000 950px, transparent 1080px); }}
       #cam {{ position: absolute; left: 0; top: 0; width: {W}px; height: {H}px; transform-origin: 0 0; }}
       #aroll {{ position: absolute; left: 0; top: 0; width: {W}px; height: {H}px; object-fit: cover; }}
       #frost {{ position: absolute; inset: 0; z-index: 3; opacity: 0;
@@ -650,10 +652,10 @@ index = f"""<!doctype html>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="{D}" data-width="{W}" data-height="{H}">
       <div id="bg" data-layout-ignore><div id="bg-pattern"></div><div class="orb" id="orb1"></div><div class="orb" id="orb2"></div><div class="orb" id="orb3"></div></div>
-      <div id="arch-glow" data-layout-ignore></div>
-      <div id="arch" data-layout-ignore><div id="shake"><div id="cam">
+      <div id="stage" data-layout-ignore><div id="shake"><div id="cam">
         <video id="aroll" class="clip" src="assets/person.webm" data-start="0" data-duration="{D}" data-track-index="0" muted playsinline></video>
-      </div></div><div id="arch-inner"></div></div>
+      </div></div><div id="stage-vig"></div></div>
+      <div id="stage-line" data-layout-ignore></div>
       <audio id="voice" class="clip" src="assets/voice.wav" data-start="0" data-duration="{D}" data-volume="1" data-track-index="1"></audio>
       <div id="frost" data-layout-ignore></div>
 {chr(10).join(hosts)}
