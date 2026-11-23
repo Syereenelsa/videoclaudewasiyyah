@@ -456,18 +456,25 @@ with open(os.path.join(PROJ, "compositions", "captions.html"), "w") as f:
 # Split layout: navy panel area on top (cards + captions), speaker in the stage y 960..1920.
 STAGE_T = 960
 FX, FY = 505.0, 950.0     # face anchor in source px
-SX, SY = 505.0, 290.0     # where that anchor sits inside the stage (stage-relative px)
+# The speaker sits in a framed window (x 100..980, y 975..1920) at 0.82x so the whole
+# hijab stays inside the frame, even on the punch-ins.
+WIN_L, WIN_T, WIN_W = 100, 975, 880
+WIN_H = H - WIN_T
+SX, SY = WIN_W / 2, 330.0  # where that anchor sits inside the window (window-relative px)
+BASE, PUNCH = 0.84, 0.90
 def tf(s):
-    return [round(SX - FX * s, 2), round(SY - FY * s, 2), round(s, 4)]
+    x = min(-12.0, max(WIN_W - W * s + 12, SX - FX * s))   # never show the edge of the footage (12 px spare for shakes)
+    y = min(0.0, max(WIN_H + 40 - H * s, SY - FY * s))
+    return [round(x, 2), round(y, 2), round(s, 4)]
 cam, big, held = [], False, 0.0
 for i, p in enumerate(pieces):
     if i > 0 and held >= 1.0:
         big = not big; held = 0.0
     held += p["od"]
-    sc = 1.12 if big else 1.0
-    cam.append([round(p["out0"], 3), round(p["od"], 3)] + tf(sc) + tf(sc + 0.02))
+    sc = PUNCH if big else BASE
+    cam.append([round(p["out0"], 3), round(p["od"], 3)] + tf(sc) + tf(sc + 0.015))
 # Giant hook: hard punch to 1.25 under the overlay; last segment push-in
-GIANT_PUSH = tf(1.25)
+GIANT_PUSH = tf(0.95)
 
 # ================================================================ SFX (no music)
 SFX = [
@@ -523,12 +530,13 @@ index = f"""<!doctype html>
       .orb {{ position: absolute; border-radius: 50%; }}
       #orb1 {{ left: -220px; top: 60px; width: 760px; height: 760px; background: radial-gradient(circle, rgba(233,196,106,.20) 0%, rgba(233,196,106,0) 65%); }}
       #orb3 {{ left: 360px; top: -260px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(140,190,240,.16) 0%, rgba(140,190,240,0) 65%); }}
-      #stage {{ position: absolute; left: 0; top: {STAGE_T}px; width: {W}px; height: {H - STAGE_T}px; z-index: 1; overflow: hidden; background: #0A1A33; }}
+      #stage {{ position: absolute; left: {WIN_L}px; top: {WIN_T}px; width: {WIN_W}px; height: {WIN_H + 40}px; z-index: 1; overflow: hidden; background: #0A1A33;
+        border-radius: 40px; box-shadow: 0 0 0 3px rgba(233,196,106,.75), 0 24px 60px rgba(0,0,0,.5); }}
       #shake {{ position: absolute; inset: -20px; }}
       #cam {{ position: absolute; left: 20px; top: 20px; width: {W}px; height: {H}px; transform-origin: 0 0; }}
       #aroll {{ position: absolute; left: 0; top: 0; width: {W}px; height: {H}px; object-fit: cover; }}
       #stage-vig {{ position: absolute; inset: 0; z-index: 2; pointer-events: none;
-        background: linear-gradient(180deg, rgba(10,26,51,.65) 0%, rgba(10,26,51,0) 12%, rgba(10,26,51,0) 72%, rgba(6,15,32,.5) 100%); }}
+        background: linear-gradient(180deg, rgba(10,26,51,.30) 0%, rgba(10,26,51,0) 6%, rgba(10,26,51,0) 72%, rgba(6,15,32,.5) 100%); }}
       #stage-line {{ position: absolute; left: 0; width: {W}px; top: {STAGE_T - 1}px; height: 3px; z-index: 3;
         background: linear-gradient(90deg, rgba(217,178,92,0), #D9B25C 25%, #F2CF76 50%, #D9B25C 75%, rgba(217,178,92,0)); }}
       #flash {{ position: absolute; inset: 0; z-index: 9; background: #fff; opacity: 0; }}
@@ -542,7 +550,6 @@ index = f"""<!doctype html>
       <div id="stage" data-layout-ignore><div id="shake"><div id="cam">
         <video id="aroll" class="clip" src="assets/aroll.mp4" data-start="0" data-duration="{D}" data-track-index="0" muted playsinline></video>
       </div></div><div id="stage-vig"></div></div>
-      <div id="stage-line" data-layout-ignore></div>
       <audio id="voice" class="clip" src="assets/voice.wav" data-start="0" data-duration="{D}" data-volume="1" data-track-index="1"></audio>
 {chr(10).join(hosts)}
       <div id="captions" class="clip" data-composition-id="captions" data-composition-src="compositions/captions.html" data-start="0" data-duration="{D}" data-track-index="3" data-track-kind="captions" data-width="{W}" data-height="{H}"></div>

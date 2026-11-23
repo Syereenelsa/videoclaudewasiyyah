@@ -19,7 +19,7 @@ Still frames from the current edit are in `../preview-wh/`.
 3. **Media** (`tools/cut_media.py`, outputs kept out of git): `assets/aroll.mp4` (muted, graded in HyperFrames) and `assets/voice.wav`.
 4. **Audio**: highpass at 85 Hz, RNNoise (`sh.rnnn`, mix 0.85) + FFT denoise, EQ (−2.5 dB at 250 Hz, +2.5 dB at 3.2 kHz, −1.5 dB air shelf), compressor (3:1), loudness normalised to −14 LUFS / −1.5 dBTP. No music. 74 sound effects (whoosh, pop, impact, stamp, ding, tick, lock, clock, riser), mixed at 0.16–0.55 under the voice.
 5. **Look**: `media-treatment` skin-soft grade (intensity 0.6; exposure +0.13, highlights −0.24 to tame the LED strip, shadows +0.12, contrast +0.08, temperature +0.03, vibrance +0.06, vignette 0.12). See `tools/grade.json`.
-6. **Layout**: split screen. Navy and gold cards sit on top, and the speaker fills the bottom stage (y 960–1920). Framing alternates between 1.00× and 1.12× punch-ins at cuts to hide jump cuts, with a slow push-in. The giant hook adds a hard 1.25× punch.
+6. **Layout**: split screen. Navy and gold cards sit on top, and the speaker sits in a gold-framed window (x 100–980, y 975–1920) at 0.84× so the whole hijab stays in frame. Framing alternates between 0.84× and 0.90× punch-ins at cuts to hide jump cuts, with a slow push-in. The giant hook punches to 0.95×.
 7. **Safe zones**: all text sits inside the shared TikTok / Reels / Shorts safe area (y 288–1248; x 120–888, narrowing to 120–780 below y 840). Cards sit at y 296–714. Captions sit in a 768 px band bottom-anchored at y 840, so they never cover the face, the username or the like/comment/share rail. `hyperframes check` passes with 0 errors.
 
 ## Structure
