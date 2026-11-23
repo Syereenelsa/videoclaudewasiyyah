@@ -1,0 +1,88 @@
+<template>
+  <style>
+#contoh{position:absolute;inset:0;overflow:visible;font-family:'Montserrat',sans-serif;color:#FFF8E7;pointer-events:none}
+#contoh .panel{position:absolute;left:100px;width:800px;top:322px;border-radius:38px;
+  background:linear-gradient(165deg,rgba(16,36,68,.93),rgba(6,15,32,.91));
+  border:1.5px solid rgba(233,196,106,.45);
+  box-shadow:0 30px 70px rgba(0,0,0,.50),inset 0 1px 0 rgba(255,255,255,.10);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow:visible}
+#contoh .krow{position:absolute;left:0;right:0;top:-26px;display:flex;justify-content:center}
+#contoh .kick{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#F6D98B,#E2B65A);
+  color:#0B1F3A;font-weight:800;font-size:30px;letter-spacing:.06em;padding:10px 24px;border-radius:999px;
+  text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,.35);white-space:nowrap}
+#contoh .num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;
+  background:#0B1F3A;color:#F2CF76;font-weight:900;font-size:28px;letter-spacing:0}
+#contoh .row{position:absolute;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:18px;text-align:center}
+#contoh .t-sm{font-weight:700;font-size:32px;color:rgba(255,248,231,.86)}
+#contoh .t-md{font-weight:800;font-size:44px;letter-spacing:-.01em}
+#contoh .t-lg{font-weight:900;font-size:64px;letter-spacing:-.02em;line-height:1}
+#contoh .t-xl{font-weight:900;font-size:110px;letter-spacing:-.03em;line-height:1}
+#contoh .gold{background:linear-gradient(180deg,#FFF0C2 0%,#F2CF76 45%,#C9962E 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#contoh .ice{background:linear-gradient(180deg,#FFFFFF 0%,#CFEFFF 45%,#6EC6FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#contoh .redt{color:#FF7A7A}
+#contoh .greent{color:#6CF0B4}
+#contoh .col{position:absolute;top:58px;width:362px;display:flex;flex-direction:column;align-items:center;gap:14px}
+#contoh .col.l{left:22px} #contoh .col.r{right:22px}
+#contoh .vline{position:absolute;left:399px;top:64px;bottom:28px;width:2px;background:linear-gradient(180deg,rgba(233,196,106,0),rgba(233,196,106,.6),rgba(233,196,106,0))}
+#contoh .vs{position:absolute;left:372px;top:66px;width:56px;height:56px;border-radius:50%;background:#0B1F3A;border:2px solid rgba(233,196,106,.7);
+  color:#F2CF76;font-weight:900;font-size:28px;display:flex;align-items:center;justify-content:center}
+#contoh .hd{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;border-radius:16px;font-weight:900;font-size:38px;letter-spacing:.06em}
+#contoh .hd.w{background:rgba(233,196,106,.16);border:1.5px solid rgba(233,196,106,.6);color:#FFE3A0}
+#contoh .hd.h{background:rgba(94,230,168,.14);border:1.5px solid rgba(94,230,168,.6);color:#A8F5D2}
+#contoh .it{display:flex;align-items:center;gap:12px;width:100%;padding:12px 16px;border-radius:20px;
+  background:rgba(255,248,231,.07);border:1.5px solid rgba(255,248,231,.14);font-weight:800;font-size:30px;line-height:1.12;text-align:left}
+#contoh .it .ico{flex:none}
+#contoh .it small{display:block;font-weight:600;font-size:28px;color:rgba(255,248,231,.72);margin-top:3px}
+#contoh .chip{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:18px;
+  background:rgba(255,248,231,.08);border:1.5px solid rgba(255,248,231,.18);font-weight:800;font-size:30px;white-space:nowrap}
+#contoh .pill{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;
+  background:rgba(233,196,106,.16);border:1.5px solid rgba(233,196,106,.55);font-weight:800;font-size:30px;color:#FFE9AE}
+#contoh .stamp{display:inline-flex;align-items:center;gap:14px;padding:10px 28px;border:5px solid currentColor;border-radius:18px;
+  font-weight:900;font-size:52px;letter-spacing:.05em;background:rgba(6,15,32,.55)}
+
+#contoh .node{display:flex;flex-direction:column;align-items:center;gap:6px;font-weight:800;font-size:32px}
+#contoh .circ{width:112px;height:112px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,248,231,.08);border:2px solid rgba(233,196,106,.6)}
+#contoh .arw{position:relative;width:110px;height:6px;border-radius:3px;background:rgba(255,248,231,.15);overflow:hidden}
+#contoh .arw i{position:absolute;inset:0;background:linear-gradient(90deg,#E9C46A,#5EE6A8);transform-origin:0 50%}
+</style>
+  <div id="contoh" data-composition-id="contoh" data-width="1080" data-height="1920">
+
+    <div class="panel" id="ct-panel" style="height:360px">
+      <div class="krow"><span class="kick" id="ct-kick"><svg class="ico" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0B1F3A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg> Contoh</span></div>
+      <div class="row" style="top:56px;gap:22px">
+        <div class="node" id="ct-ali"><div class="circ"><svg class="ico" width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>Encik Ali</div>
+        <div class="arw"><i id="ct-a1"></i></div>
+        <div class="node" id="ct-rumah"><div class="circ"><svg class="ico" width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg></div>Rumah</div>
+        <div class="arw"><i id="ct-a2"></i></div>
+        <div class="node" id="ct-isteri"><div class="circ" style="border-color:rgba(94,230,168,.8)"><svg class="ico" width="58" height="58" viewBox="0 0 24 24" fill="none" stroke="#5EE6A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>Isteri</div>
+      </div>
+      <div class="row" style="top:250px;gap:16px"><span class="pill" id="ct-hibah" style="background:rgba(94,230,168,.14);border-color:rgba(94,230,168,.7);color:#A8F5D2"><svg class="ico" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#5EE6A8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg> Hibah betul &amp; sah</span>
+        <span class="stamp greent" id="ct-milik" style="font-size:38px;padding:6px 18px;border-width:4px"><svg class="ico" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#5EE6A8" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> MILIK ISTERI</span></div>
+    </div>
+
+  </div>
+  <script>
+
+const tl = gsap.timeline({ paused: true });
+const IN=(s,t,o={})=>tl.fromTo(s,{opacity:0,y:o.y??26,scale:o.s??0.94,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:o.d??0.42,ease:o.e??'power3.out',stagger:o.st??0},t);
+const POP=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??0.35},{opacity:1,scale:1,duration:o.d??0.5,ease:'back.out(2.2)',stagger:o.st??0},t);
+const SLAM=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??1.9,filter:'blur(10px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:o.d??0.24,ease:'power4.in'},t);
+const SLIDE=(s,t,o={})=>tl.fromTo(s,{opacity:0,x:o.x??-40},{opacity:1,x:0,duration:o.d??0.4,ease:'power3.out',stagger:o.st??0},t);
+const OUT=(s,t,d=0.28)=>tl.to(s,{opacity:0,y:-18,filter:'blur(8px)',duration:d,ease:'power2.in'},t);
+const DIM=(s,t,o=0.5)=>tl.to(s,{opacity:o,duration:0.3,ease:'power2.out'},t);
+
+
+    IN('#ct-panel',0.02,{y:-30});
+    POP('#ct-kick',0.1);
+    POP('#ct-ali',0.8);
+    tl.fromTo('#ct-a1',{scaleX:0},{scaleX:1,duration:0.45,ease:'power2.out'},1.45);
+    POP('#ct-rumah',1.85);
+    tl.fromTo('#ct-a2',{scaleX:0},{scaleX:1,duration:0.45,ease:'power2.out'},2.3);
+    POP('#ct-isteri',2.8);
+    POP('#ct-hibah',3.65);
+    tl.fromTo('#ct-milik',{opacity:0,scale:2.2,rotation:-10},{opacity:1,scale:1,rotation:-3,duration:0.22,ease:'power4.in'},6.8);
+    OUT('#ct-panel',9.42);
+
+    window.__timelines["contoh"] = tl;
+  </script>
+</template>

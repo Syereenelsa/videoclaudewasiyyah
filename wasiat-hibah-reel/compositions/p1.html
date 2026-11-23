@@ -1,0 +1,76 @@
+<template>
+  <style>
+#p1{position:absolute;inset:0;overflow:visible;font-family:'Montserrat',sans-serif;color:#FFF8E7;pointer-events:none}
+#p1 .panel{position:absolute;left:100px;width:800px;top:322px;border-radius:38px;
+  background:linear-gradient(165deg,rgba(16,36,68,.93),rgba(6,15,32,.91));
+  border:1.5px solid rgba(233,196,106,.45);
+  box-shadow:0 30px 70px rgba(0,0,0,.50),inset 0 1px 0 rgba(255,255,255,.10);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow:visible}
+#p1 .krow{position:absolute;left:0;right:0;top:-26px;display:flex;justify-content:center}
+#p1 .kick{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#F6D98B,#E2B65A);
+  color:#0B1F3A;font-weight:800;font-size:30px;letter-spacing:.06em;padding:10px 24px;border-radius:999px;
+  text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,.35);white-space:nowrap}
+#p1 .num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;
+  background:#0B1F3A;color:#F2CF76;font-weight:900;font-size:28px;letter-spacing:0}
+#p1 .row{position:absolute;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:18px;text-align:center}
+#p1 .t-sm{font-weight:700;font-size:32px;color:rgba(255,248,231,.86)}
+#p1 .t-md{font-weight:800;font-size:44px;letter-spacing:-.01em}
+#p1 .t-lg{font-weight:900;font-size:64px;letter-spacing:-.02em;line-height:1}
+#p1 .t-xl{font-weight:900;font-size:110px;letter-spacing:-.03em;line-height:1}
+#p1 .gold{background:linear-gradient(180deg,#FFF0C2 0%,#F2CF76 45%,#C9962E 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#p1 .ice{background:linear-gradient(180deg,#FFFFFF 0%,#CFEFFF 45%,#6EC6FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#p1 .redt{color:#FF7A7A}
+#p1 .greent{color:#6CF0B4}
+#p1 .col{position:absolute;top:58px;width:362px;display:flex;flex-direction:column;align-items:center;gap:14px}
+#p1 .col.l{left:22px} #p1 .col.r{right:22px}
+#p1 .vline{position:absolute;left:399px;top:64px;bottom:28px;width:2px;background:linear-gradient(180deg,rgba(233,196,106,0),rgba(233,196,106,.6),rgba(233,196,106,0))}
+#p1 .vs{position:absolute;left:372px;top:66px;width:56px;height:56px;border-radius:50%;background:#0B1F3A;border:2px solid rgba(233,196,106,.7);
+  color:#F2CF76;font-weight:900;font-size:28px;display:flex;align-items:center;justify-content:center}
+#p1 .hd{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;border-radius:16px;font-weight:900;font-size:38px;letter-spacing:.06em}
+#p1 .hd.w{background:rgba(233,196,106,.16);border:1.5px solid rgba(233,196,106,.6);color:#FFE3A0}
+#p1 .hd.h{background:rgba(94,230,168,.14);border:1.5px solid rgba(94,230,168,.6);color:#A8F5D2}
+#p1 .it{display:flex;align-items:center;gap:12px;width:100%;padding:12px 16px;border-radius:20px;
+  background:rgba(255,248,231,.07);border:1.5px solid rgba(255,248,231,.14);font-weight:800;font-size:30px;line-height:1.12;text-align:left}
+#p1 .it .ico{flex:none}
+#p1 .it small{display:block;font-weight:600;font-size:28px;color:rgba(255,248,231,.72);margin-top:3px}
+#p1 .chip{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:18px;
+  background:rgba(255,248,231,.08);border:1.5px solid rgba(255,248,231,.18);font-weight:800;font-size:30px;white-space:nowrap}
+#p1 .pill{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;
+  background:rgba(233,196,106,.16);border:1.5px solid rgba(233,196,106,.55);font-weight:800;font-size:30px;color:#FFE9AE}
+#p1 .stamp{display:inline-flex;align-items:center;gap:14px;padding:10px 28px;border:5px solid currentColor;border-radius:18px;
+  font-weight:900;font-size:52px;letter-spacing:.05em;background:rgba(6,15,32,.55)}
+</style>
+  <div id="p1" data-composition-id="p1" data-width="1080" data-height="1920">
+
+    <div class="panel" id="p1-panel" style="height:300px">
+      <div class="krow"><span class="kick" id="p1-kick"><span class="num">1</span>Bila berkuat kuasa?</span></div>
+      <div class="vline" id="p1-vl"></div><div class="vs" id="p1-vs">VS</div>
+      <div class="col l"><span class="hd w" id="p1-hl"><svg class="ico" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#FFE3A0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v5h5"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg> WASIAT</span><div class="it" id="p1-a"><svg class="ico" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.17a2 2 0 0 0-.59-1.42L12 12l-4.41 4.41A2 2 0 0 0 7 17.83V22"/><path d="M7 2v4.17a2 2 0 0 0 .59 1.42L12 12l4.41-4.41A2 2 0 0 0 17 6.17V2"/></svg><div>Selepas<small>kita meninggal dunia</small></div></div></div>
+      <div class="col r"><span class="hd h" id="p1-hr"><svg class="ico" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#A8F5D2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg> HIBAH</span><div class="it" id="p1-b"><svg class="ico" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#5EE6A8" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><div>Semasa<small>kita masih hidup</small></div></div></div>
+    </div>
+
+  </div>
+  <script>
+
+const tl = gsap.timeline({ paused: true });
+const IN=(s,t,o={})=>tl.fromTo(s,{opacity:0,y:o.y??26,scale:o.s??0.94,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:o.d??0.42,ease:o.e??'power3.out',stagger:o.st??0},t);
+const POP=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??0.35},{opacity:1,scale:1,duration:o.d??0.5,ease:'back.out(2.2)',stagger:o.st??0},t);
+const SLAM=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??1.9,filter:'blur(10px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:o.d??0.24,ease:'power4.in'},t);
+const SLIDE=(s,t,o={})=>tl.fromTo(s,{opacity:0,x:o.x??-40},{opacity:1,x:0,duration:o.d??0.4,ease:'power3.out',stagger:o.st??0},t);
+const OUT=(s,t,d=0.28)=>tl.to(s,{opacity:0,y:-18,filter:'blur(8px)',duration:d,ease:'power2.in'},t);
+const DIM=(s,t,o=0.5)=>tl.to(s,{opacity:o,duration:0.3,ease:'power2.out'},t);
+
+
+    IN('#p1-panel',0.02,{y:-30});
+    POP('#p1-kick',0.1);
+    POP('#p1-hl',2.85,{s:0.5});
+    POP('#p1-hr',5.5,{s:0.5});
+    tl.fromTo('#p1-vl',{scaleY:0},{scaleY:1,duration:0.5,ease:'power2.out'},0.3);
+    POP('#p1-vs',0.35);
+    SLIDE('#p1-a',3.73);
+    SLIDE('#p1-b',7.2);
+    OUT('#p1-panel',8.52);
+
+    window.__timelines["p1"] = tl;
+  </script>
+</template>

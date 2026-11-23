@@ -1,0 +1,7 @@
+# Large media is kept out of git; see README for how it was produced
+assets/aroll.mp4
+assets/voice.wav
+renders/
+.hyperframes/
+node_modules/
+__pycache__/

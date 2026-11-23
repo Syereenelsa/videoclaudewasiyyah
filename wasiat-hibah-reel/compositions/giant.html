@@ -1,0 +1,81 @@
+<template>
+  <style>
+#giant{position:absolute;inset:0;overflow:visible;font-family:'Montserrat',sans-serif;color:#FFF8E7;pointer-events:none}
+#giant .panel{position:absolute;left:100px;width:800px;top:322px;border-radius:38px;
+  background:linear-gradient(165deg,rgba(16,36,68,.93),rgba(6,15,32,.91));
+  border:1.5px solid rgba(233,196,106,.45);
+  box-shadow:0 30px 70px rgba(0,0,0,.50),inset 0 1px 0 rgba(255,255,255,.10);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow:visible}
+#giant .krow{position:absolute;left:0;right:0;top:-26px;display:flex;justify-content:center}
+#giant .kick{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#F6D98B,#E2B65A);
+  color:#0B1F3A;font-weight:800;font-size:30px;letter-spacing:.06em;padding:10px 24px;border-radius:999px;
+  text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,.35);white-space:nowrap}
+#giant .num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;
+  background:#0B1F3A;color:#F2CF76;font-weight:900;font-size:28px;letter-spacing:0}
+#giant .row{position:absolute;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:18px;text-align:center}
+#giant .t-sm{font-weight:700;font-size:32px;color:rgba(255,248,231,.86)}
+#giant .t-md{font-weight:800;font-size:44px;letter-spacing:-.01em}
+#giant .t-lg{font-weight:900;font-size:64px;letter-spacing:-.02em;line-height:1}
+#giant .t-xl{font-weight:900;font-size:110px;letter-spacing:-.03em;line-height:1}
+#giant .gold{background:linear-gradient(180deg,#FFF0C2 0%,#F2CF76 45%,#C9962E 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#giant .ice{background:linear-gradient(180deg,#FFFFFF 0%,#CFEFFF 45%,#6EC6FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#giant .redt{color:#FF7A7A}
+#giant .greent{color:#6CF0B4}
+#giant .col{position:absolute;top:58px;width:362px;display:flex;flex-direction:column;align-items:center;gap:14px}
+#giant .col.l{left:22px} #giant .col.r{right:22px}
+#giant .vline{position:absolute;left:399px;top:64px;bottom:28px;width:2px;background:linear-gradient(180deg,rgba(233,196,106,0),rgba(233,196,106,.6),rgba(233,196,106,0))}
+#giant .vs{position:absolute;left:372px;top:66px;width:56px;height:56px;border-radius:50%;background:#0B1F3A;border:2px solid rgba(233,196,106,.7);
+  color:#F2CF76;font-weight:900;font-size:28px;display:flex;align-items:center;justify-content:center}
+#giant .hd{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;border-radius:16px;font-weight:900;font-size:38px;letter-spacing:.06em}
+#giant .hd.w{background:rgba(233,196,106,.16);border:1.5px solid rgba(233,196,106,.6);color:#FFE3A0}
+#giant .hd.h{background:rgba(94,230,168,.14);border:1.5px solid rgba(94,230,168,.6);color:#A8F5D2}
+#giant .it{display:flex;align-items:center;gap:12px;width:100%;padding:12px 16px;border-radius:20px;
+  background:rgba(255,248,231,.07);border:1.5px solid rgba(255,248,231,.14);font-weight:800;font-size:30px;line-height:1.12;text-align:left}
+#giant .it .ico{flex:none}
+#giant .it small{display:block;font-weight:600;font-size:28px;color:rgba(255,248,231,.72);margin-top:3px}
+#giant .chip{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:18px;
+  background:rgba(255,248,231,.08);border:1.5px solid rgba(255,248,231,.18);font-weight:800;font-size:30px;white-space:nowrap}
+#giant .pill{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;
+  background:rgba(233,196,106,.16);border:1.5px solid rgba(233,196,106,.55);font-weight:800;font-size:30px;color:#FFE9AE}
+#giant .stamp{display:inline-flex;align-items:center;gap:14px;padding:10px 28px;border:5px solid currentColor;border-radius:18px;
+  font-weight:900;font-size:52px;letter-spacing:.05em;background:rgba(6,15,32,.55)}
+
+#giant .dim{position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse at 50% 45%,rgba(8,22,46,.80),rgba(2,6,16,.94))}
+#giant .stack{position:absolute;left:120px;width:768px;top:330px;text-align:center}
+#giant .g{font-weight:900;font-size:176px;letter-spacing:-.04em;line-height:.9}
+#giant .ne{font-weight:900;font-size:150px;line-height:.9;color:#FF7A7A;filter:drop-shadow(0 0 40px rgba(255,107,107,.55));margin:10px 0}
+#giant .cap{display:inline-block;margin-top:34px;font-weight:800;font-size:44px;letter-spacing:.1em;color:#FFF8E7;padding:10px 22px;border-top:3px solid rgba(233,196,106,.7);border-bottom:3px solid rgba(233,196,106,.7)}
+</style>
+  <div id="giant" data-composition-id="giant" data-width="1080" data-height="1920">
+
+    <div class="dim" id="gi-dim"></div>
+    <div class="stack">
+      <div class="g gold" id="gi-w" style="filter:drop-shadow(0 0 36px rgba(233,196,106,.45))">WASIAT</div>
+      <div class="ne" id="gi-ne">≠</div>
+      <div class="g" id="gi-h" style="color:#A8F5D2;filter:drop-shadow(0 0 36px rgba(94,230,168,.45))">HIBAH</div>
+      <div class="cap" id="gi-cap">DUA PERKARA BERBEZA</div>
+    </div>
+
+  </div>
+  <script>
+
+const tl = gsap.timeline({ paused: true });
+const IN=(s,t,o={})=>tl.fromTo(s,{opacity:0,y:o.y??26,scale:o.s??0.94,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:o.d??0.42,ease:o.e??'power3.out',stagger:o.st??0},t);
+const POP=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??0.35},{opacity:1,scale:1,duration:o.d??0.5,ease:'back.out(2.2)',stagger:o.st??0},t);
+const SLAM=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??1.9,filter:'blur(10px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:o.d??0.24,ease:'power4.in'},t);
+const SLIDE=(s,t,o={})=>tl.fromTo(s,{opacity:0,x:o.x??-40},{opacity:1,x:0,duration:o.d??0.4,ease:'power3.out',stagger:o.st??0},t);
+const OUT=(s,t,d=0.28)=>tl.to(s,{opacity:0,y:-18,filter:'blur(8px)',duration:d,ease:'power2.in'},t);
+const DIM=(s,t,o=0.5)=>tl.to(s,{opacity:o,duration:0.3,ease:'power2.out'},t);
+
+
+    DIM('#gi-dim',0,1);
+    SLAM('#gi-w',0.37,{s:2.6,d:0.2});
+    SLAM('#gi-h',1.0,{s:2.6,d:0.2});
+    tl.fromTo('#gi-ne',{opacity:0,scale:0,rotation:-180},{opacity:1,scale:1,rotation:0,duration:0.4,ease:'back.out(2.4)'},1.55);
+    IN('#gi-cap',1.65,{y:20,d:0.3});
+    tl.to('#giant .stack',{scale:1.15,opacity:0,filter:'blur(14px)',duration:0.2,ease:'power3.in'},3.07);
+    tl.to('#gi-dim',{opacity:0,duration:0.2},3.07);
+
+    window.__timelines["giant"] = tl;
+  </script>
+</template>

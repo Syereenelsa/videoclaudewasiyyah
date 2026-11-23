@@ -1,0 +1,78 @@
+<template>
+  <style>
+#p3{position:absolute;inset:0;overflow:visible;font-family:'Montserrat',sans-serif;color:#FFF8E7;pointer-events:none}
+#p3 .panel{position:absolute;left:100px;width:800px;top:322px;border-radius:38px;
+  background:linear-gradient(165deg,rgba(16,36,68,.93),rgba(6,15,32,.91));
+  border:1.5px solid rgba(233,196,106,.45);
+  box-shadow:0 30px 70px rgba(0,0,0,.50),inset 0 1px 0 rgba(255,255,255,.10);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow:visible}
+#p3 .krow{position:absolute;left:0;right:0;top:-26px;display:flex;justify-content:center}
+#p3 .kick{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#F6D98B,#E2B65A);
+  color:#0B1F3A;font-weight:800;font-size:30px;letter-spacing:.06em;padding:10px 24px;border-radius:999px;
+  text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,.35);white-space:nowrap}
+#p3 .num{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;
+  background:#0B1F3A;color:#F2CF76;font-weight:900;font-size:28px;letter-spacing:0}
+#p3 .row{position:absolute;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:18px;text-align:center}
+#p3 .t-sm{font-weight:700;font-size:32px;color:rgba(255,248,231,.86)}
+#p3 .t-md{font-weight:800;font-size:44px;letter-spacing:-.01em}
+#p3 .t-lg{font-weight:900;font-size:64px;letter-spacing:-.02em;line-height:1}
+#p3 .t-xl{font-weight:900;font-size:110px;letter-spacing:-.03em;line-height:1}
+#p3 .gold{background:linear-gradient(180deg,#FFF0C2 0%,#F2CF76 45%,#C9962E 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#p3 .ice{background:linear-gradient(180deg,#FFFFFF 0%,#CFEFFF 45%,#6EC6FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+#p3 .redt{color:#FF7A7A}
+#p3 .greent{color:#6CF0B4}
+#p3 .col{position:absolute;top:58px;width:362px;display:flex;flex-direction:column;align-items:center;gap:14px}
+#p3 .col.l{left:22px} #p3 .col.r{right:22px}
+#p3 .vline{position:absolute;left:399px;top:64px;bottom:28px;width:2px;background:linear-gradient(180deg,rgba(233,196,106,0),rgba(233,196,106,.6),rgba(233,196,106,0))}
+#p3 .vs{position:absolute;left:372px;top:66px;width:56px;height:56px;border-radius:50%;background:#0B1F3A;border:2px solid rgba(233,196,106,.7);
+  color:#F2CF76;font-weight:900;font-size:28px;display:flex;align-items:center;justify-content:center}
+#p3 .hd{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;border-radius:16px;font-weight:900;font-size:38px;letter-spacing:.06em}
+#p3 .hd.w{background:rgba(233,196,106,.16);border:1.5px solid rgba(233,196,106,.6);color:#FFE3A0}
+#p3 .hd.h{background:rgba(94,230,168,.14);border:1.5px solid rgba(94,230,168,.6);color:#A8F5D2}
+#p3 .it{display:flex;align-items:center;gap:12px;width:100%;padding:12px 16px;border-radius:20px;
+  background:rgba(255,248,231,.07);border:1.5px solid rgba(255,248,231,.14);font-weight:800;font-size:30px;line-height:1.12;text-align:left}
+#p3 .it .ico{flex:none}
+#p3 .it small{display:block;font-weight:600;font-size:28px;color:rgba(255,248,231,.72);margin-top:3px}
+#p3 .chip{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border-radius:18px;
+  background:rgba(255,248,231,.08);border:1.5px solid rgba(255,248,231,.18);font-weight:800;font-size:30px;white-space:nowrap}
+#p3 .pill{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;
+  background:rgba(233,196,106,.16);border:1.5px solid rgba(233,196,106,.55);font-weight:800;font-size:30px;color:#FFE9AE}
+#p3 .stamp{display:inline-flex;align-items:center;gap:14px;padding:10px 28px;border:5px solid currentColor;border-radius:18px;
+  font-weight:900;font-size:52px;letter-spacing:.05em;background:rgba(6,15,32,.55)}
+</style>
+  <div id="p3" data-composition-id="p3" data-width="1080" data-height="1920">
+
+    <div class="panel" id="p3-panel" style="height:350px">
+      <div class="krow"><span class="kick" id="p3-kick"><span class="num">3</span>Berapa banyak?</span></div>
+      <div class="vline" id="p3-vl"></div><div class="vs" id="p3-vs">VS</div>
+      <div class="col l"><span class="hd w" id="p3-hl"><svg class="ico" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#FFE3A0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7z"/><path d="M14 2v5h5"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg> WASIAT</span><div class="it" id="p3-a" style="justify-content:center;gap:18px"><svg width="120" height="120" viewBox="0 0 120 120" class="ico"><circle cx="60" cy="60" r="46" fill="none" stroke="rgba(255,248,231,.14)" stroke-width="22"/><circle id="p3-pa" cx="60" cy="60" r="46" fill="none" stroke="#E9C46A" stroke-width="22" stroke-dasharray="0 289.0" transform="rotate(-90 60 60)"/></svg><div><span style="font-size:62px;font-weight:900" class="gold">1/3</span><small>maksimum harta pusaka bersih</small></div></div></div>
+      <div class="col r"><span class="hd h" id="p3-hr"><svg class="ico" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#A8F5D2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg> HIBAH</span><div class="it" id="p3-b" style="justify-content:center;gap:18px"><svg width="120" height="120" viewBox="0 0 120 120" class="ico"><circle cx="60" cy="60" r="46" fill="none" stroke="rgba(255,248,231,.14)" stroke-width="22"/><circle id="p3-pb" cx="60" cy="60" r="46" fill="none" stroke="#5EE6A8" stroke-width="22" stroke-dasharray="0 289.0" transform="rotate(-90 60 60)"/></svg><div><span style="font-size:50px;font-weight:900;color:#A8F5D2">TIADA HAD</span><small>1/3 seperti wasiat</small></div></div></div>
+    </div>
+
+  </div>
+  <script>
+
+const tl = gsap.timeline({ paused: true });
+const IN=(s,t,o={})=>tl.fromTo(s,{opacity:0,y:o.y??26,scale:o.s??0.94,filter:'blur(8px)'},{opacity:1,y:0,scale:1,filter:'blur(0px)',duration:o.d??0.42,ease:o.e??'power3.out',stagger:o.st??0},t);
+const POP=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??0.35},{opacity:1,scale:1,duration:o.d??0.5,ease:'back.out(2.2)',stagger:o.st??0},t);
+const SLAM=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??1.9,filter:'blur(10px)'},{opacity:1,scale:1,filter:'blur(0px)',duration:o.d??0.24,ease:'power4.in'},t);
+const SLIDE=(s,t,o={})=>tl.fromTo(s,{opacity:0,x:o.x??-40},{opacity:1,x:0,duration:o.d??0.4,ease:'power3.out',stagger:o.st??0},t);
+const OUT=(s,t,d=0.28)=>tl.to(s,{opacity:0,y:-18,filter:'blur(8px)',duration:d,ease:'power2.in'},t);
+const DIM=(s,t,o=0.5)=>tl.to(s,{opacity:o,duration:0.3,ease:'power2.out'},t);
+
+
+    IN('#p3-panel',0.02,{y:-30});
+    POP('#p3-kick',0.1);
+    POP('#p3-hl',3.45,{s:0.5});
+    POP('#p3-hr',9.5,{s:0.5});
+    tl.fromTo('#p3-vl',{scaleY:0},{scaleY:1,duration:0.5,ease:'power2.out'},0.3);
+    POP('#p3-vs',0.35);
+    IN('#p3-a',3.45);
+    IN('#p3-b',9.5);
+    tl.to('#p3-pa',{attr:{'stroke-dasharray':'96.3 289.0'},duration:0.7,ease:'power2.out'},6.2);
+    tl.to('#p3-pb',{attr:{'stroke-dasharray':'289.0 289.0'},duration:0.9,ease:'power2.out'},10.35);
+    OUT('#p3-panel',12.72);
+
+    window.__timelines["p3"] = tl;
+  </script>
+</template>
