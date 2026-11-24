@@ -1,6 +1,6 @@
 # Hibah Bersyarat promo (RM499): HyperFrames explainer
 
-A vertical (1080×1920) infographic explainer, 1:32.5 long. It has sound effects only: no voiceover and no music yet.
+A vertical (1080×1920) infographic explainer, 2:13.5 long, timed to the voiceover in `assets/voiceover.wav` (the supplied recording, high-passed at 70 Hz and loudness-normalised to −16 LUFS, 48 kHz). Sound effects sit under the voice. There is no music.
 
 ## Preview
 
@@ -15,17 +15,17 @@ Rendered preview: `../preview-hibah/hibah-promo-preview.mp4`
 
 | # | Time | Scene |
 |---|------|-------|
-| 1 | 0–5.5 | Hook: RUMAH MASIH DALAM LOAN? |
-| 2 | 5.5–12.7 | Years of instalments (pay → house, financing bar) |
-| 3 | 12.7–17.9 | "Jika sesuatu berlaku kepada anda…" |
-| 4 | 17.9–25.7 | Reality: house, loan balance, family all still there |
-| 5 | 25.7–31.7 | Tangle: estate, documents, bank |
-| 6 | 31.7–37.9 | Solution: Hibah Bersyarat document |
-| 7 | 37.9–47.3 | Difference at bicara kuasa: without vs with hibah |
-| 8 | 47.3–53.8 | Proof: Syariah court validation, news headlines, 15,000+ customers, MBOR |
-| 9 | 53.8–60.3 | Price: RM2,600 → RM499, until 31 Dec 2026 |
-| 10 | 60.3–75.2 | 4 steps (link → documents → script in 1 week → online akad via UsraHDD) |
-| 11 | 75.2–81.7 | CTA WhatsApp 019-660 5789 + brand |
-| 12 | 81.7–92.5 | Terms & conditions |
+| 1 | 0–7.3 | Hook: RUMAH MASIH DALAM LOAN? |
+| 2 | 7.3–14.6 | Years of instalments |
+| 3 | 14.6–21 | "Jika sesuatu berlaku kepada anda…" |
+| 4 | 21–33.8 | Reality: house, loan balance, family |
+| 5 | 33.8–40 | Tangle: estate, documents, bank |
+| 6 | 40–48.4 | Solution: Hibah Bersyarat |
+| 7 | 48.4–62.5 | Difference at bicara kuasa |
+| 8 | 62.5–70.6 | Proof: Syariah court, news, 15,000+, MBOR |
+| 9 | 70.6–79.4 | Price RM2,600 → RM499 |
+| 10 | 79.4–105.5 | 4 steps + "Siap!" |
+| 11 | 105.5–122 | CTA WhatsApp + brand |
+| 12 | 122–133.5 | Terms & conditions |
 
 Every time in `index.html` is absolute (seconds on the root timeline).
