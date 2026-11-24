@@ -70,9 +70,9 @@ const DIM=(s,t,o=0.5)=>tl.to(s,{opacity:o,duration:0.3,ease:'power2.out'},t);
 
     DIM('#gi-dim',0,1);
     SLAM('#gi-w',0.37,{s:2.6,d:0.2});
-    SLAM('#gi-h',1.0,{s:2.6,d:0.2});
-    tl.fromTo('#gi-ne',{opacity:0,scale:0,rotation:-180},{opacity:1,scale:1,rotation:0,duration:0.4,ease:'back.out(2.4)'},1.55);
-    IN('#gi-cap',1.65,{y:20,d:0.3});
+    SLAM('#gi-h',0.999,{s:2.6,d:0.2});
+    tl.fromTo('#gi-ne',{opacity:0,scale:0,rotation:-180},{opacity:1,scale:1,rotation:0,duration:0.4,ease:'back.out(2.4)'},1.549);
+    IN('#gi-cap',1.649,{y:20,d:0.3});
     tl.to('#giant .stack',{scale:1.15,opacity:0,filter:'blur(14px)',duration:0.2,ease:'power3.in'},3.07);
     tl.to('#gi-dim',{opacity:0,duration:0.2},3.07);
 

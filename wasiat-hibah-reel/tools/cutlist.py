@@ -8,7 +8,7 @@ tx = json.load(open(f"{HERE}/transcript_src.json"))
 db = np.load(sys.argv[1])  # 10 ms frames, dBFS of the cleaned voice
 KEEP = [0,1,2,3,4,5,6, 9,10,11,12,13,14,15,16, 18,19,20,21,22,23, 24,27, 28,29, 31,32, 34,35,36]
 # Whisper slips fixed after a second pass on the clip (and by meaning)
-FIX = {(5,"menindal"):"meninggal", (10,"asetnya"):"asasnya", (20,"ketat"):"tertakluk", (20,"lalu."):"kepada", (28,"mecik."):"magik.", (29,"pembelikan"):"pemilikan", (29,"penyelamatan"):"penyerahan",
+FIX = {(5,"menindal"):"meninggal", (10,"asetnya"):"asasnya", (20,"ketat"):"tertakluk", (20,"lalu."):"kepada", (28,"mecik."):"magik.", (29,"hukum"):"rukun", (29,"pembelikan"):"pemilikan", (29,"penyelamatan"):"penyerahan",
        (12,"perwasiat."):"pewasiat."}
 DROP = {(21,"Tidak"),(21,"tertakluk"),(21,"kepada")}  # sentence 20+21 is one line: "...masih tertakluk kepada proses pentadbiran pusaka."
 CROP_START = {27: 120.55}  # drop 'Tetapi,' (its contrast was in the cut lines 25-26)
@@ -27,11 +27,15 @@ for k in KEEP:
     ws = tx[k]["words"]
     prev_end = tx[k-1]["words"][-1]["e"] if k > 0 else 0
     nxt_start = tx[k+1]["words"][0]["s"] if k+1 < len(tx) else len(db)/100
-    a = first_voiced(max(prev_end - 0.1, ws[0]["s"] - 0.35), ws[0]["s"] + 0.4)
-    b = last_voiced(ws[-1]["e"] - 0.5, min(nxt_start + 0.1, ws[-1]["e"] + 0.35))
-    a = max(0, a - PAD)
+    # never reach into a dropped neighbour: a sliver of it reads as a stray word
+    lo = prev_end - 0.1 if (k - 1) in KEEP else prev_end + 0.03
+    hi = nxt_start + 0.1 if (k + 1) in KEEP else nxt_start - 0.03
+    a = first_voiced(max(lo, ws[0]["s"] - 0.35), ws[0]["s"] + 0.4)
+    b = last_voiced(ws[-1]["e"] - 0.5, min(hi, ws[-1]["e"] + 0.35))
+    a = max(0, a - PAD, lo if (k - 1) not in KEEP else 0)
     if k in CROP_START: a = CROP_START[k]
-    spans.append([k, a, b + PAD])
+    b = b + PAD if (k + 1) in KEEP else min(b + PAD, hi)
+    spans.append([k, a, b])
 # merge spans of consecutive sentences that touch
 pieces = []
 for k, a, b in spans:
@@ -47,6 +51,21 @@ for k, a, b in spans:
             f = g
         else: f += 1
     pieces.append([k, cur, b])
+# Neighbouring sentences spoken without a pause give overlapping spans: the tail of one
+# would play again at the head of the next (heard as a doubled word). Cut them at the
+# quietest frame inside the overlap instead, and drop pieces swallowed by the previous one.
+pieces.sort(key=lambda p: p[1])
+fixed = []
+for k, a, b in pieces:
+    if fixed and a < fixed[-1][2]:
+        pa, pb = fixed[-1][1], fixed[-1][2]
+        if b <= pb:
+            continue  # fully inside the previous piece
+        f0, f1 = int(a * 100), int(pb * 100)
+        cut = (f0 + int(np.argmin(db[f0:f1 + 1]))) / 100 if f1 > f0 else a
+        fixed[-1][2] = cut; a = cut
+    fixed.append([k, a, b])
+pieces = fixed
 FR = 30.0  # snap to the source frame grid so video and audio cut on the same instants
 pieces = [[k, round(a * FR) / FR, round(b * FR) / FR] for k, a, b in pieces]
 pieces = [p for p in pieces if p[2] - p[1] >= 2 / FR]

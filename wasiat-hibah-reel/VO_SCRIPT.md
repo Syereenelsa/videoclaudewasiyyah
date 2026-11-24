@@ -1,6 +1,6 @@
 # Skrip Voice Over: "Wasiat ≠ Hibah: 4 Perbezaan"
 
-**Durasi sasaran: 1:50** (±108 s bercakap) · **Tempo: laju & yakin** (lebih kurang 2.7 perkataan sesaat) · **Nada: kakak yang berpengalaman, bukan ceramah**
+**Durasi sasaran: 1:46** (±104 s bercakap) · **Tempo: laju & yakin** (lebih kurang 2.7 perkataan sesaat) · **Nada: kakak yang berpengalaman, bukan ceramah**
 
 Masa di sebelah kiri ikut timeline edit sekarang. Kalau rakam semula, cuba ikut panjang setiap baris. Tak perlu tepat sampai milisaat, sebab lepas rakam aku akan transcribe VO baru dan susun semula animasi ikut suara kau.
 
@@ -73,7 +73,7 @@ Tanda bacaan:
 | Masa | Baris | Arahan |
 |---|---|---|
 | 1:26 – 1:28 | Tapi ingat, / hibah **bukan magik**. ⬇ | Serius sikit. |
-| 1:28 – 1:35 | Kalau hukum dan syarat tak dipenuhi, / contohnya isu pemilikan atau penyerahan harta, / hibah **boleh dipertikaikan**. // | |
+| 1:28 – 1:35 | Kalau rukun dan syarat tak dipenuhi, / contohnya isu pemilikan atau penyerahan harta, / hibah **boleh dipertikaikan**. // | |
 
 ## 9. RUMUSAN (1:35 – 1:41)
 
@@ -121,7 +121,7 @@ Tanda bacaan:
 > Kalau dia buat hibah dengan betul dan sah, rumah itu boleh jadi milik isteri mengikut struktur hibah tersebut.
 >
 > Tapi ingat, hibah bukan magik.
-> Kalau hukum dan syarat tak dipenuhi, contohnya isu pemilikan atau penyerahan harta, hibah boleh dipertikaikan.
+> Kalau rukun dan syarat tak dipenuhi, contohnya isu pemilikan atau penyerahan harta, hibah boleh dipertikaikan.
 >
 > Jadi, sebenarnya kita tak perlu pilih antara wasiat atau hibah. Keduanya saling melengkapi.
 >

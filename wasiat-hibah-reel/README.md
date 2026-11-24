@@ -1,6 +1,6 @@
 # Wasiat ≠ Hibah reel: HyperFrames edit
 
-A vertical (1080×1920) reel built from the original 2:51 talking-head video, cut down to **1:50.2**.
+A vertical (1080×1920) reel built from the original 2:51 talking-head video, cut down to **1:46.1**.
 The voice-over script is in [`VO_SCRIPT.md`](VO_SCRIPT.md).
 
 ## Preview (no render yet)
@@ -15,7 +15,7 @@ Still frames from the current edit are in `../preview-wh/`.
 ## How it was built
 
 1. **Transcribe**: faster-whisper `large-v3` (Malay) with word timestamps (`tools/transcript_src.json`). Doubtful words were re-checked on short clips: "masih **tertakluk** kepada", "hibah bukan **magik**", "isu **pemilikan** atau **penyerahan**".
-2. **Cut** (`tools/cutlist.py`): five repeated or overly detailed lines were dropped (see VO_SCRIPT.md). Every pause ≥ 0.22 s was removed using an energy envelope of the cleaned voice. Cuts snap to the 30 fps frame grid, and the whole edit runs at 1.10× speed with pitch preserved. Result: 56 pieces, 110.2 s.
+2. **Cut** (`tools/cutlist.py`): five repeated or overly detailed lines were dropped (see VO_SCRIPT.md). Every pause ≥ 0.22 s was removed using an energy envelope of the cleaned voice. Where two sentences run on without a pause, the cut falls at the quietest frame between them, so no syllable plays twice. Cuts never reach into a dropped line. They snap to the 30 fps frame grid, and the whole edit runs at 1.10× speed with pitch preserved. Result: 52 pieces, 106.1 s. The cut was checked by transcribing the edited voice track again: no word repeats.
 3. **Media** (`tools/cut_media.py`, outputs kept out of git): `assets/aroll.mp4` (muted, graded in HyperFrames) and `assets/voice.wav`.
 4. **Audio**: highpass at 85 Hz, RNNoise (`sh.rnnn`, mix 0.85) + FFT denoise, EQ (−2.5 dB at 250 Hz, +2.5 dB at 3.2 kHz, −1.5 dB air shelf), compressor (3:1), loudness normalised to −14 LUFS / −1.5 dBTP. No music. 74 sound effects (whoosh, pop, impact, stamp, ding, tick, lock, clock, riser), mixed at 0.16–0.55 under the voice.
 5. **Look**: `media-treatment` skin-soft grade (intensity 0.6; exposure +0.13, highlights −0.24 to tame the LED strip, shadows +0.12, contrast +0.08, temperature +0.03, vibrance +0.06, vignette 0.12). See `tools/grade.json`.
@@ -45,5 +45,6 @@ Still frames from the current edit are in `../preview-wh/`.
 python3 tools/cutlist.py <db.npy>                          # cut list + word timings
 python3 tools/cut_media.py <src.mp4> <clean_voice.wav> <workdir>
 python3 tools/build.py                                     # index.html + compositions/*
+                                                           # (scene times are authored on pieces_v1.json and mapped to the current cut)
 npm run check
 ```

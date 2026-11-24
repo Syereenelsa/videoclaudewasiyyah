@@ -13,6 +13,21 @@ W, H = 1080, 1920
 words = json.load(open(os.path.join(HERE, "words_edit.json")))
 pieces = json.load(open(os.path.join(HERE, "pieces.json")))
 D = round(pieces[-1]["out0"] + pieces[-1]["od"], 2)
+SPEED = 1.10
+# Scene, SFX and effect times below were authored on the first cut (pieces_v1.json).
+# M() maps an authored time to the current cut through the source clock, so the
+# animations stay on their words after the cut list changes.
+pieces_v1 = json.load(open(os.path.join(HERE, "pieces_v1.json")))
+D_OLD = round(pieces_v1[-1]["out0"] + pieces_v1[-1]["od"], 2)
+def M(t):
+    old = next((p for p in reversed(pieces_v1) if p["out0"] <= t + 1e-6), pieces_v1[0])
+    src = old["s0"] + (t - old["out0"]) * SPEED
+    cand = [p for p in pieces if p["s0"] - 1e-6 <= src <= p["s1"] + 1e-6]
+    if cand:
+        p = next((c for c in cand if c["sent"] == old["sent"]), cand[0])
+        return round(min(D, p["out0"] + (src - p["s0"]) / SPEED), 3)
+    nxt = [p for p in pieces if p["s0"] > src]
+    return round(nxt[0]["out0"] if nxt else D, 3)
 os.makedirs(os.path.join(PROJ, "compositions"), exist_ok=True)
 
 GOLD, ICE, RED, GREEN, NAVY = "#E9C46A", "#9ADBFF", "#FF6B6B", "#5EE6A8", "#0B1F3A"
@@ -84,7 +99,7 @@ SCENES = []
 
 
 def add_scene(sid, start, end, extra_css, body, js):
-    SCENES.append((sid, start, end))
+    SCENES.append((sid, M(start), M(end)))
     with open(os.path.join(PROJ, "compositions", f"{sid}.html"), "w") as f:
         f.write(f"""<template>
   <style>{css(sid, extra_css)}</style>
@@ -101,7 +116,7 @@ def add_scene(sid, start, end, extra_css, body, js):
 
 
 def L(start):
-    return lambda g: round(g - start, 3)
+    return lambda g: round(M(g) - M(start), 3)
 
 
 def kick(n, text, extra=""):
@@ -365,7 +380,7 @@ add_scene("lengkap", s0, s1, "", f"""
 """)
 
 # ================================================================ 12. CTA (100.9 - end)
-s0, s1 = 100.9, D; t = L(s0)
+s0, s1 = 100.9, D_OLD; t = L(s0)
 add_scene("cta", s0, s1, """
 #cta .bub{display:inline-flex;align-items:center;gap:14px;padding:14px 26px;border-radius:26px 26px 26px 6px;background:#FFF8E7;color:#0B1F3A;font-weight:900;font-size:46px;box-shadow:0 16px 36px rgba(0,0,0,.45)}
 #cta .btn{display:inline-flex;align-items:center;gap:12px;padding:12px 26px;border-radius:999px;background:linear-gradient(180deg,#FF6A88,#E2365B);color:#fff;font-weight:900;font-size:36px;box-shadow:0 12px 28px rgba(226,54,91,.45)}
@@ -389,7 +404,7 @@ add_scene("cta", s0, s1, """
 """)
 
 # ================================================================ CAPTIONS
-HIDE = [(0.0, 10.35)]  # hook, stamp and giant hook already carry those words  # the giant hook carries those words
+HIDE = [(0.0, M(10.35))]  # hook, stamp and giant hook already carry those words  # the giant hook carries those words
 KEY = set("""wasiat wasiat, hibah hibah. hibah? faraid faraid. waris waris-waris rumah rumahnya anak anak. isteri isteri. suami
 meninggal hidup sesiapa satu per tiga had tertakluk pentadbiran pusaka pusaka. sah sah, sempurna magik. dipertikaikan
 melengkapi. komen follow part 2. empat perbezaan tidak semestinya. berbeza. persetujuan""".split())
@@ -497,6 +512,7 @@ def wav_len(n):
     w = wave.open(os.path.join(PROJ, "assets", "sfx", f"{n}.wav")); return w.getnframes() / w.getframerate()
 lens = {n: wav_len(n) for n in set(x[0] for x in SFX)}
 sfx_html, lane_end = [], [0.0] * 4
+SFX = [(n, M(st), v) for n, st, v in SFX]
 for i, (n, st, v) in enumerate(SFX):
     d = round(min(lens[n], D - st), 3)
     lane = next(k for k in range(4) if lane_end[k] <= st)
@@ -508,11 +524,11 @@ hosts = [f'      <div id="{sid}" class="clip scene" data-composition-id="{sid}" 
          for sid, a, b in SCENES]
 SHAKE = [(2.56, 8), (5.62, 12), (7.42, 14), (8.05, 10), (87.45, 6), (94.1, 6), (83.3, 5)]
 shake_js = ""
-for a, amp in SHAKE:
+for a, amp in [(M(a), amp) for a, amp in SHAKE]:
     for k, (dx, dy) in enumerate([(1, -0.6), (-0.8, 0.9), (0.6, -0.4), (-0.4, 0.5), (0.2, -0.2), (0, 0)]):
         shake_js += f"      tl.to('#shake',{{x:{dx*amp:.1f},y:{dy*amp:.1f},duration:0.035,ease:'none'}},{a+k*0.035:.3f});\n"
 FLASH = [5.6, 7.42, 8.05]
-flash_js = "".join(f"      tl.fromTo('#flash',{{opacity:0.7}},{{opacity:0,duration:0.22,ease:'power2.out',immediateRender:false}},{a});\n" for a in FLASH)
+flash_js = "".join(f"      tl.fromTo('#flash',{{opacity:0.7}},{{opacity:0,duration:0.22,ease:'power2.out',immediateRender:false}},{a});\n" for a in map(M, FLASH))
 
 index = f"""<!doctype html>
 <html lang="ms" data-resolution="portrait">
@@ -564,7 +580,7 @@ index = f"""<!doctype html>
         tl.set('#cam', {{ x: x0, y: y0, scale: s0 }}, t);
         tl.to('#cam', {{ x: x1, y: y1, scale: s1, duration: d, ease: 'none' }}, t);
       }});
-      tl.to('#cam', {{ x: {GIANT_PUSH[0]}, y: {GIANT_PUSH[1]}, scale: {GIANT_PUSH[2]}, duration: 0.25, ease: 'power3.out' }}, 7.42);
+      tl.to('#cam', {{ x: {GIANT_PUSH[0]}, y: {GIANT_PUSH[1]}, scale: {GIANT_PUSH[2]}, duration: 0.25, ease: 'power3.out' }}, {M(7.42)});
       tl.set('#flash', {{ opacity: 0 }}, 0);
       tl.fromTo('#orb1', {{ x: 0, y: 0 }}, {{ x: 200, y: 160, duration: {D}, ease: 'sine.inOut' }}, 0);
       tl.fromTo('#orb3', {{ x: 0, y: 0 }}, {{ x: -160, y: 200, duration: {D}, ease: 'sine.inOut' }}, 0);

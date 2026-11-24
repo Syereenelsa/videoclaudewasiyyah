@@ -74,13 +74,13 @@ const DIM=(s,t,o=0.5)=>tl.to(s,{opacity:o,duration:0.3,ease:'power2.out'},t);
 
     DIM('#hk-dim',0,1);
     POP('#hk-tag',0.05,{s:0.5});
-    IN('#hk-l1',0.3);
-    POP('#hk-house',2.5,{s:0.2});
-    SLAM('#hk-rumah',2.56,{s:2.2});
-    IN('#hk-auto',2.75,{y:20});
-    SLAM('#hk-anak',3.66,{s:2.4,d:0.2});
-    tl.fromTo('#hk-anak',{scale:1},{scale:1.08,duration:0.25,yoyo:true,repeat:1,ease:'sine.inOut',immediateRender:false},4.1);
-    tl.to('#hk-l1,#hk-l2,#hk-l3,#hk-tag',{opacity:0.25,filter:'blur(3px)',duration:0.2},4.75);
+    IN('#hk-l1',0.269);
+    POP('#hk-house',2.469,{s:0.2});
+    SLAM('#hk-rumah',2.529,{s:2.2});
+    IN('#hk-auto',2.719,{y:20});
+    SLAM('#hk-anak',3.629,{s:2.4,d:0.2});
+    tl.fromTo('#hk-anak',{scale:1},{scale:1.08,duration:0.25,yoyo:true,repeat:1,ease:'sine.inOut',immediateRender:false},4.069);
+    tl.to('#hk-l1,#hk-l2,#hk-l3,#hk-tag',{opacity:0.25,filter:'blur(3px)',duration:0.2},4.72);
 
     window.__timelines["hook"] = tl;
   </script>
