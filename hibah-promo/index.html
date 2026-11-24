@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="ms" data-resolution="portrait">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body { width:1080px; height:1920px; overflow:hidden; background:#0A1A33; }
+#root { width:100%; height:100%; position:relative; overflow:hidden; font-family:'Montserrat',sans-serif; color:#FFF8E7; }
+
+/* ---------- background ---------- */
+#bg { position:absolute; inset:0; z-index:0; overflow:hidden;
+  background:radial-gradient(ellipse 120% 75% at 50% 32%, #24507F 0%, #14325A 45%, #0A1A33 100%); }
+#bg-pattern { position:absolute; inset:-120px; opacity:.07; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><g fill='none' stroke='%23E9C46A' stroke-width='1.2'><path d='M60 14 L73 47 L106 60 L73 73 L60 106 L47 73 L14 60 L47 47 Z'/><rect x='35' y='35' width='50' height='50' transform='rotate(45 60 60)'/><circle cx='60' cy='60' r='9'/></g></svg>"); background-size:120px 120px; }
+.orb { position:absolute; border-radius:50%; }
+#orb1 { left:-220px; top:120px; width:760px; height:760px; background:radial-gradient(circle, rgba(233,196,106,.20) 0%, rgba(233,196,106,0) 65%); }
+#orb2 { right:-260px; top:900px; width:820px; height:820px; background:radial-gradient(circle, rgba(120,170,230,.18) 0%, rgba(120,170,230,0) 65%); }
+#orb3 { left:240px; top:-260px; width:600px; height:600px; background:radial-gradient(circle, rgba(255,240,200,.14) 0%, rgba(255,240,200,0) 65%); }
+#dark { position:absolute; inset:0; z-index:1; opacity:0; background:radial-gradient(ellipse 70% 45% at 50% 34%, rgba(6,15,32,0) 0%, rgba(6,15,32,.88) 100%); }
+#flash { position:absolute; inset:0; z-index:20; background:#fff; opacity:0; pointer-events:none; }
+#shake { position:absolute; inset:0; z-index:5; }
+
+/* ---------- shared ---------- */
+.scene { position:absolute; inset:0; }
+.abs { position:absolute; }
+.row { position:absolute; left:0; right:0; display:flex; justify-content:center; align-items:center; text-align:center; }
+.kick { display:inline-flex; align-items:center; gap:10px; background:linear-gradient(180deg,#F6D98B,#E2B65A); color:#0B1F3A;
+  font-weight:800; font-size:30px; letter-spacing:.08em; padding:10px 24px; border-radius:999px; text-transform:uppercase;
+  box-shadow:0 10px 24px rgba(0,0,0,.35); }
+.kick.red { background:linear-gradient(180deg,#FF9A9A,#E85D5D); color:#2A0A0A; }
+.kick.green { background:linear-gradient(180deg,#8AF5C6,#3DD598); color:#06281A; }
+.h { font-weight:900; letter-spacing:-.02em; line-height:1.08; }
+.t { font-weight:700; line-height:1.3; color:rgba(255,248,231,.92); }
+.gold { background:linear-gradient(180deg,#FFF0C2 0%,#F2CF76 45%,#C9962E 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.goldc { color:#F2CF76; }
+.redt { color:#FF7A7A; }
+.greent { color:#6CF0B4; }
+.muted { color:rgba(255,248,231,.62); }
+.card { position:absolute; border-radius:34px; background:linear-gradient(165deg,rgba(16,36,68,.94),rgba(6,15,32,.92));
+  border:1.5px solid rgba(233,196,106,.45); box-shadow:0 30px 70px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.10); }
+.pill { display:inline-flex; align-items:center; gap:12px; padding:12px 24px; border-radius:999px; background:rgba(233,196,106,.16);
+  border:1.5px solid rgba(233,196,106,.6); font-weight:800; font-size:32px; color:#FFE9AE; }
+.chip { display:inline-flex; align-items:center; gap:10px; padding:10px 18px; border-radius:18px; background:rgba(255,248,231,.08);
+  border:1.5px solid rgba(255,248,231,.22); font-weight:800; font-size:28px; color:#FFF8E7; }
+.stamp { display:inline-flex; align-items:center; gap:14px; padding:12px 30px; border:6px solid currentColor; border-radius:18px;
+  font-weight:900; font-size:54px; letter-spacing:.05em; }
+.house { filter:drop-shadow(0 26px 40px rgba(0,0,0,.45)); }
+
+/* S2 */
+#s2-wallet { left:120px; top:640px; width:270px; height:210px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; }
+.coin { position:absolute; left:220px; top:700px; width:90px; height:90px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  background:radial-gradient(circle at 35% 30%,#FFF0C2,#E2B65A 55%,#A87A22); color:#5A3D07; font-weight:900; font-size:30px;
+  box-shadow:0 10px 24px rgba(0,0,0,.4), inset 0 -4px 0 rgba(0,0,0,.18); opacity:0; }
+.bar { position:relative; height:30px; border-radius:999px; background:rgba(255,255,255,.10); overflow:hidden; }
+.bar i { position:absolute; left:0; top:0; bottom:0; width:100%; border-radius:999px; transform-origin:0 50%;
+  background:linear-gradient(90deg,#C9962E,#F2CF76); }
+
+/* S4 */
+.rcard { position:absolute; left:130px; width:820px; height:136px; display:flex; align-items:center; gap:26px; padding:0 34px; }
+.rcard .ic { flex:none; width:80px; height:80px; border-radius:22px; display:flex; align-items:center; justify-content:center; background:rgba(233,196,106,.14); }
+.rcard .tx { font-weight:800; font-size:38px; flex:1; line-height:1.15; }
+.rcard .ok { flex:none; font-weight:900; font-size:26px; color:#0B1F3A; background:#F2CF76; padding:8px 16px; border-radius:999px; }
+
+/* S5 */
+.node { position:absolute; width:300px; display:flex; flex-direction:column; align-items:center; gap:10px; padding:22px 10px; }
+.node .ic { width:76px; height:76px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(255,122,122,.16); border:2px solid rgba(255,122,122,.6); }
+.node .tx { font-weight:800; font-size:32px; text-align:center; }
+
+/* S6 doc */
+#s6-doc { position:absolute; left:250px; top:560px; width:580px; height:400px; border-radius:26px; background:linear-gradient(170deg,#FFFBF0,#F3E6C4);
+  box-shadow:0 40px 80px rgba(0,0,0,.55); color:#0B1F3A; overflow:visible; }
+#s6-doc .ln { position:absolute; left:50px; height:12px; border-radius:6px; background:rgba(11,31,58,.14); }
+#s6-seal { position:absolute; right:-40px; bottom:-46px; width:170px; height:170px; border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#FFF0C2,#E2B65A 55%,#A87A22); border:6px solid #FFF3D0;
+  display:flex; align-items:center; justify-content:center; text-align:center; color:#4A3205; font-weight:900; font-size:20px; line-height:1.1;
+  box-shadow:0 16px 30px rgba(0,0,0,.45); }
+
+/* S7 */
+.cmp { left:110px; width:860px; height:270px; }
+.cmp .lab { position:absolute; left:34px; top:-24px; }
+.pie { position:absolute; width:170px; height:170px; border-radius:50%;
+  background:conic-gradient(#E9C46A 0 25%, #6EA8E8 0 50%, #FF9A9A 0 70%, #8AF5C6 0 85%, #C7B6FF 0 100%);
+  box-shadow:0 0 0 6px rgba(255,255,255,.12); }
+
+/* S8 */
+.news { position:absolute; left:130px; width:820px; padding:28px 34px; border-radius:20px; background:#FFFDF7; color:#121212;
+  box-shadow:0 30px 60px rgba(0,0,0,.5); border-left:12px solid #C9962E; }
+.news .src { font-weight:800; font-size:28px; letter-spacing:.06em; text-transform:uppercase; color:#8A6416; margin-bottom:10px; }
+.news .hl { font-family:Georgia,'Times New Roman',serif; font-weight:700; font-size:40px; line-height:1.18; color:#111; }
+
+/* S9 */
+#s9-rays { position:absolute; left:40px; top:240px; width:1000px; height:1000px; border-radius:50%; opacity:0;
+  background:repeating-conic-gradient(rgba(242,207,118,.16) 0 6deg, rgba(242,207,118,0) 6deg 18deg);
+  -webkit-mask-image:radial-gradient(circle, #000 20%, transparent 68%); mask-image:radial-gradient(circle, #000 20%, transparent 68%); }
+#s9-strike { position:absolute; left:-12px; right:-12px; top:50%; height:12px; margin-top:-6px; background:#FF5A5A; border-radius:6px; transform-origin:0 50%; }
+
+/* S10 */
+#s10-line-bg { position:absolute; left:177px; top:450px; width:6px; height:680px; border-radius:3px; background:rgba(255,248,231,.14); }
+#s10-line { position:absolute; left:177px; top:450px; width:6px; height:680px; border-radius:3px; background:linear-gradient(180deg,#F2CF76,#C9962E); transform-origin:50% 0; }
+.step { position:absolute; left:120px; width:800px; }
+.step .num { position:absolute; left:0; top:0; width:120px; height:120px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(180deg,#F6D98B,#E2B65A); color:#0B1F3A; font-weight:900; font-size:54px; box-shadow:0 0 0 10px rgba(233,196,106,.18), 0 14px 30px rgba(0,0,0,.4); }
+.step .body { position:absolute; left:150px; top:4px; width:650px; }
+.step .ti { font-weight:900; font-size:44px; letter-spacing:-.01em; line-height:1.1; }
+.step .su { font-weight:700; font-size:30px; line-height:1.3; color:rgba(255,248,231,.85); margin-top:8px; }
+.step .chips { display:grid; grid-template-columns:285px 375px; gap:10px; margin-top:12px; }
+
+/* S11 */
+#s11-wa { left:140px; top:560px; width:800px; height:190px; border-radius:40px; background:linear-gradient(180deg,#3BE07E,#1DA851);
+  box-shadow:0 26px 60px rgba(0,0,0,.45), inset 0 2px 0 rgba(255,255,255,.35); display:flex; align-items:center; gap:28px; padding:0 40px; color:#fff; }
+#s11-wa .big { font-weight:900; font-size:72px; letter-spacing:.01em; line-height:1; }
+#s11-wa .sm { font-weight:800; font-size:30px; letter-spacing:.06em; text-transform:uppercase; opacity:.95; margin-bottom:8px; }
+#s11-ring { left:140px; top:560px; width:800px; height:190px; border-radius:40px; border:5px solid #3BE07E; opacity:0; }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="92.5" data-width="1080" data-height="1920">
+
+  <div id="bg" data-layout-ignore><div id="bg-pattern"></div><div class="orb" id="orb1"></div><div class="orb" id="orb2"></div><div class="orb" id="orb3"></div></div>
+  <div id="dark" data-layout-ignore></div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="hg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2B5C92"/><stop offset="1" stop-color="#14325A"/></linearGradient>
+      <linearGradient id="rg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF0C2"/><stop offset="1" stop-color="#C9962E"/></linearGradient></defs></svg>
+  <div id="shake">
+
+  <!-- ===================== S1 HOOK 0–4.6 ===================== -->
+  <div id="s1" class="clip scene" data-start="0" data-duration="5.5" data-track-index="2">
+    <svg id="s1-house" class="abs house" style="left:320px;top:300px" width="440" height="400" viewBox="0 0 220 200">
+      
+      <rect x="150" y="30" width="22" height="46" rx="3" fill="#C9962E"/>
+      <path d="M110 12 L206 92 L190 92 L190 188 L30 188 L30 92 L14 92 Z" fill="url(#hg1)" stroke="#E9C46A" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M110 12 L206 92 L184 92 L110 32 L36 92 L14 92 Z" fill="url(#rg1)"/>
+      <rect x="92" y="122" width="36" height="66" rx="5" fill="#E9C46A"/>
+      <rect x="48" y="112" width="30" height="30" rx="4" fill="#FFE9AE" opacity=".9"/>
+      <rect x="142" y="112" width="30" height="30" rx="4" fill="#FFE9AE" opacity=".9"/>
+    </svg>
+    <div class="row" style="top:610px"><span id="s1-stamp" class="stamp redt" style="background:rgba(20,6,6,.55)">MASIH DALAM LOAN</span></div>
+    <div class="row" style="top:800px"><span id="s1-t1" class="h" style="font-size:98px">RUMAH MASIH</span></div>
+    <div class="row" style="top:920px"><span id="s1-t2" class="h gold" style="font-size:98px">DALAM LOAN?</span></div>
+    <div class="row" style="top:1090px;padding:0 160px"><span id="s1-sub" class="t" style="font-size:42px">Rumah dah ada. Tapi masa depan keluarga, <span class="goldc">dah dirancang?</span></span></div>
+  </div>
+
+  <!-- ===================== S2 ANSURAN 4.6–10.4 ===================== -->
+  <div id="s2" class="clip scene" data-start="5.5" data-duration="7.2" data-track-index="2">
+    <div class="row" style="top:300px"><span id="s2-kick" class="kick">Setiap bulan</span></div>
+    <div class="row" style="top:390px;padding:0 160px"><span id="s2-h" class="h" style="font-size:66px">Bertahun-tahun bayar <span class="gold">ansuran rumah</span></span></div>
+    <div id="s2-wallet" class="card">
+      <svg width="86" height="86" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
+      <span style="font-weight:900;font-size:36px;letter-spacing:.08em">GAJI</span>
+    </div>
+    <svg id="s2-house" class="abs house" style="left:640px;top:600px" width="300" height="273" viewBox="0 0 220 200">
+      <rect x="150" y="30" width="22" height="46" rx="3" fill="#C9962E"/>
+      <path d="M110 12 L206 92 L190 92 L190 188 L30 188 L30 92 L14 92 Z" fill="url(#hg1)" stroke="#E9C46A" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M110 12 L206 92 L184 92 L110 32 L36 92 L14 92 Z" fill="url(#rg1)"/>
+      <rect x="92" y="122" width="36" height="66" rx="5" fill="#E9C46A"/>
+      <rect x="48" y="112" width="30" height="30" rx="4" fill="#FFE9AE" opacity=".9"/>
+      <rect x="142" y="112" width="30" height="30" rx="4" fill="#FFE9AE" opacity=".9"/>
+    </svg>
+    <div class="coin" id="c1">RM</div><div class="coin" id="c2">RM</div><div class="coin" id="c3">RM</div><div class="coin" id="c4">RM</div>
+    <div id="s2-prog" class="card" style="left:130px;top:930px;width:820px;height:150px;padding:26px 36px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px">
+        <span style="font-weight:800;font-size:32px">Tempoh pembiayaan</span>
+        <span style="font-weight:900;font-size:36px" class="goldc"><span id="s2-yr">Tahun 1</span><span class="muted" style="font-size:28px"> / 35</span></span>
+      </div>
+      <div class="bar"><i id="s2-fill" style="transform:scaleX(0)"></i></div>
+    </div>
+    <div class="row" style="top:1130px;padding:0 160px"><span id="s2-cap" class="t" style="font-size:38px">Sebahagian gaji anda untuk rumah tempat <span class="goldc">keluarga berteduh.</span></span></div>
+  </div>
+
+  <!-- ===================== S3 JIKA 10.4–14.6 ===================== -->
+  <div id="s3" class="clip scene" data-start="12.7" data-duration="5.2" data-track-index="2">
+    <div id="s3-glow" class="abs" style="left:240px;top:300px;width:600px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(255,233,174,.22),rgba(255,233,174,0) 65%)"></div>
+    <svg id="s3-house" class="abs house" style="left:390px;top:400px" width="300" height="273" viewBox="0 0 220 200">
+      <rect x="150" y="30" width="22" height="46" rx="3" fill="#C9962E"/>
+      <path d="M110 12 L206 92 L190 92 L190 188 L30 188 L30 92 L14 92 Z" fill="url(#hg1)" stroke="#E9C46A" stroke-width="5" stroke-linejoin="round"/>
+      <path d="M110 12 L206 92 L184 92 L110 32 L36 92 L14 92 Z" fill="url(#rg1)"/>
+      <rect x="92" y="122" width="36" height="66" rx="5" fill="#E9C46A"/>
+      <rect x="48" y="112" width="30" height="30" rx="4" fill="#3A4E6A"/>
+      <rect x="142" y="112" width="30" height="30" rx="4" fill="#3A4E6A"/>
+    </svg>
+    <div class="row" style="top:770px"><span id="s3-a" class="t muted" style="font-size:44px;font-style:italic">Tetapi pernahkah anda terfikir…</span></div>
+    <div class="row" style="top:860px;padding:0 160px"><span id="s3-b" class="h" style="font-size:58px">Jika sesuatu berlaku kepada anda,</span></div>
+    <div class="row" style="top:1070px;padding:0 160px"><span id="s3-c" class="h gold" style="font-size:54px;line-height:1.15">bagaimana dengan rumah yang masih dalam loan itu?</span></div>
+  </div>
+
+  <!-- ===================== S4 REALITI 14.6–22.4 ===================== -->
+  <div id="s4" class="clip scene" data-start="17.9" data-duration="7.8" data-track-index="2">
+    <div class="row" style="top:300px"><span id="s4-kick" class="kick">Realitinya</span></div>
+    <div id="s4-c1" class="card rcard" style="top:400px">
+      <div class="ic"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M10 21v-6h4v6"/></svg></div>
+      <div class="tx">Rumah masih ada</div><div class="ok">✓</div></div>
+    <div id="s4-c2" class="card rcard" style="top:560px">
+      <div class="ic"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg></div>
+      <div class="tx">Baki pinjaman masih ada</div><div class="ok">✓</div></div>
+    <div id="s4-c3" class="card rcard" style="top:720px">
+      <div class="ic"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2 21v-2a5 5 0 0 1 10 0v2"/><path d="M13 21v-1.5a4 4 0 0 1 8 0V21"/></svg></div>
+      <div class="tx">Keluarga masih perlukan tempat tinggal</div><div class="ok">✓</div></div>
+    <div class="row" style="top:930px;padding:0 160px"><span id="s4-a" class="t" style="font-size:40px">Namun, apabila pemilik rumah meninggal dunia…</span></div>
+    <div class="row" style="top:1030px;padding:0 160px"><span id="s4-b" class="h" style="font-size:52px;line-height:1.15">urusan harta &amp; pembiayaan boleh jadi <span class="redt">rumit</span> tanpa perancangan.</span></div>
+  </div>
+
+  <!-- ===================== S5 KUSUT 22.4–28.4 ===================== -->
+  <div id="s5" class="clip scene" data-start="25.7" data-duration="6" data-track-index="2">
+    <div class="row" style="top:290px"><span id="s5-kick" class="kick red">Keluarga perlu berdepan</span></div>
+    <svg id="s5-tangle" class="abs" style="left:0;top:0" width="1080" height="1920" viewBox="0 0 1080 1920" fill="none" stroke="#FF7A7A" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 1">
+      <path class="tg" pathLength="1" d="M280 520 C 420 560, 300 700, 470 690 S 600 560, 540 760"/>
+      <path class="tg" pathLength="1" d="M800 520 C 640 600, 820 690, 610 700 S 470 860, 560 780"/>
+      <path class="tg" pathLength="1" d="M540 1030 C 380 980, 700 940, 520 900 S 380 820, 520 800"/>
+      <path class="tg" pathLength="1" d="M300 540 C 500 900, 760 420, 760 960"/>
+      <path class="tg" pathLength="1" d="M780 540 C 560 980, 320 520, 330 960"/>
+    </svg>
+    <div id="s5-n1" class="node card" style="left:110px;top:380px"><div class="ic"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF9A9A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0z"/><path d="M19 7l-3 7a3 3 0 0 0 6 0z"/></svg></div><div class="tx">Urusan pusaka</div></div>
+    <div id="s5-n2" class="node card" style="left:670px;top:380px"><div class="ic"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF9A9A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/></svg></div><div class="tx">Dokumentasi</div></div>
+    <div id="s5-n3" class="node card" style="left:390px;top:960px"><div class="ic"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#FF9A9A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M4 10h16"/><path d="M12 3l9 5H3z"/><path d="M6 10v8"/><path d="M10 10v8"/><path d="M14 10v8"/><path d="M18 10v8"/></svg></div><div class="tx">Pihak bank</div></div>
+    <svg id="s5-house" class="abs house" style="left:430px;top:640px" width="220" height="200" viewBox="0 0 220 200">
+      <path d="M110 12 L206 92 L190 92 L190 188 L30 188 L30 92 L14 92 Z" fill="url(#hg1)" stroke="#E9C46A" stroke-width="6" stroke-linejoin="round"/>
+      <path d="M110 12 L206 92 L184 92 L110 32 L36 92 L14 92 Z" fill="url(#rg1)"/>
+      <rect x="92" y="122" width="36" height="66" rx="5" fill="#E9C46A"/>
+    </svg>
+    <div id="s5-lock" class="abs" style="left:590px;top:600px;width:96px;height:96px;border-radius:50%;background:#E85D5D;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(0,0,0,.45)">
+      <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+    <div class="row" style="top:1180px;padding:0 160px"><span id="s5-cap" class="t" style="font-size:38px">Urusan boleh jadi <span class="redt">berliku</span> jika tiada perancangan.</span></div>
+  </div>
+
+  <!-- ===================== S6 PENYELESAIAN 28.4–34.6 ===================== -->
+  <div id="s6" class="clip scene" data-start="31.7" data-duration="6.2" data-track-index="2">
+    <div class="row" style="top:290px"><span id="s6-kick" class="kick green">Penyelesaian</span></div>
+    <div class="row" style="top:375px;padding:0 160px"><span id="s6-h" class="t" style="font-size:42px">Rancang harta walaupun rumah <span class="goldc">belum habis bayar.</span></span></div>
+    <div id="s6-doc">
+      <div style="position:absolute;left:50px;top:40px;font-weight:800;font-size:22px;letter-spacing:.2em;color:#8A6416" data-layout-ignore>DOKUMEN</div>
+      <div style="position:absolute;left:50px;top:74px;font-weight:900;font-size:62px;letter-spacing:-.01em;line-height:1">HIBAH<br>BERSYARAT</div>
+      <div class="ln" style="top:230px;width:470px"></div><div class="ln" style="top:262px;width:420px"></div><div class="ln" style="top:294px;width:450px"></div><div class="ln" style="top:326px;width:260px"></div>
+      <div id="s6-seal" data-layout-ignore>WASIYYAH<br>SHOPPE<br>BERHAD</div>
+    </div>
+    <div class="row" style="top:1010px;padding:0 160px"><span id="s6-a" class="t" style="font-size:38px">Rancang pemberian rumah kepada <span class="goldc">penerima pilihan anda</span>, tertakluk kepada syarat &amp; terma hibah.</span></div>
+    <div class="row" style="top:1160px;padding:0 160px"><span id="s6-pill" class="pill" style="font-size:30px">✓ Rumah dalam pembiayaan? Boleh mula merancang.</span></div>
+  </div>
+
+  <!-- ===================== S7 BANDING 34.6–44 ===================== -->
+  <div id="s7" class="clip scene" data-start="37.9" data-duration="9.4" data-track-index="2">
+    <div class="row" style="top:280px"><span id="s7-kick" class="kick">Bezanya di bicara kuasa</span></div>
+    <!-- row A -->
+    <div id="s7-a" class="card cmp" style="top:390px;border-color:rgba(255,122,122,.55)">
+      <div class="lab"><span class="kick red" style="font-size:28px;padding:8px 18px">✕ Tanpa hibah</span></div>
+      <svg id="s7-a-house" class="abs house" style="left:60px;top:70px" width="180" height="164" viewBox="0 0 220 200">
+        <path d="M110 12 L206 92 L190 92 L190 188 L30 188 L30 92 L14 92 Z" fill="url(#hg1)" stroke="#E9C46A" stroke-width="7" stroke-linejoin="round"/>
+        <path d="M110 12 L206 92 L184 92 L110 32 L36 92 L14 92 Z" fill="url(#rg1)"/><rect x="92" y="122" width="36" height="66" rx="5" fill="#E9C46A"/></svg>
+      <svg class="abs" style="left:270px;top:130px" width="200" height="50" viewBox="0 0 200 50" fill="none" stroke="#FF9A9A" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path id="s7-a-arr" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M6 25 H186 M166 8 L188 25 L166 42"/></svg>
+      <div id="s7-a-pie" class="pie" style="left:535px;top:42px"></div>
+      <div id="s7-a-t" class="abs" style="left:450px;top:222px;width:340px;text-align:center;font-weight:800;font-size:28px">Diagih ikut <span class="redt">faraid</span></div>
+    </div>
+    <!-- row B -->
+    <div id="s7-b" class="card cmp" style="top:700px;border-color:rgba(108,240,180,.6)">
+      <div class="lab"><span class="kick green" style="font-size:28px;padding:8px 18px">✓ Dengan hibah</span></div>
+      <svg id="s7-b-house" class="abs house" style="left:60px;top:70px" width="180" height="164" viewBox="0 0 220 200">
+        <path d="M110 12 L206 92 L190 92 L190 188 L30 188 L30 92 L14 92 Z" fill="url(#hg1)" stroke="#E9C46A" stroke-width="7" stroke-linejoin="round"/>
+        <path d="M110 12 L206 92 L184 92 L110 32 L36 92 L14 92 Z" fill="url(#rg1)"/><rect x="92" y="122" width="36" height="66" rx="5" fill="#E9C46A"/></svg>
+      <div id="s7-b-doc" class="abs" style="left:190px;top:46px;width:74px;height:92px;border-radius:10px;background:#FFFBF0;box-shadow:0 8px 18px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;color:#0B1F3A" data-layout-ignore>HIBAH</div>
+      <svg class="abs" style="left:270px;top:130px" width="200" height="50" viewBox="0 0 200 50" fill="none" stroke="#6CF0B4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path id="s7-b-arr" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" d="M6 25 H186 M166 8 L188 25 L166 42"/></svg>
+      <div id="s7-b-p" class="abs" style="left:540px;top:36px;width:170px;height:170px;border-radius:50%;background:radial-gradient(circle,rgba(108,240,180,.30),rgba(108,240,180,.06));border:4px solid #6CF0B4;display:flex;align-items:center;justify-content:center">
+        <svg width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="#FFF8E7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a8 8 0 0 1 16 0v1"/></svg></div>
+      <div id="s7-b-t" class="abs" style="left:410px;top:222px;width:430px;text-align:center;font-weight:800;font-size:28px">Kepada <span class="greent">penerima pilihan</span></div>
+    </div>
+    <div class="row" style="top:1010px;padding:0 160px"><span id="s7-c" class="t" style="font-size:34px">Dokumen hibah dibentangkan semasa bicara kuasa supaya rumah <span class="goldc">dikeluarkan daripada pembahagian faraid.*</span></span></div>
+    <div class="row" style="top:1170px;padding:0 150px"><span id="s7-d" class="t muted" style="font-size:28px">*Tertakluk kepada pengesahan pihak berkuasa. Hibah tidak menghapuskan baki pinjaman.</span></div>
+  </div>
+
+  <!-- ===================== S8 BUKTI 44–50.5 ===================== -->
+  <div id="s8" class="clip scene" data-start="47.3" data-duration="6.5" data-track-index="2">
+    <div class="row" style="top:285px"><span id="s8-kick" class="kick green">✓ Terbukti</span></div>
+    <div class="row" style="top:370px;padding:0 160px"><span id="s8-a" class="t" style="font-size:40px">Hibah digital Wasiyyah telah mendapat pengesahan daripada</span></div>
+    <div class="row" style="top:480px"><span id="s8-b" class="h gold" style="font-size:72px">MAHKAMAH SYARIAH</span></div>
+    <div id="s8-n1" class="news" style="top:620px">
+      <div class="src">DagangNews · 11 Feb 2026</div>
+      <div class="hl">“Wasiyyah Cipta Sejarah Pendigitalan Hibah, Diiktiraf Malaysia Book of Records”</div></div>
+    <div id="s8-n2" class="news" style="top:850px">
+      <div class="src">Berita Harian · April 2024</div>
+      <div class="hl">“Hibah Digital Wasiyyah Diiktiraf Mahkamah Syariah”</div></div>
+    <div class="row" style="top:1110px;gap:18px"><span id="s8-c1" class="pill"><span id="s8-num">15,000</span>+ pelanggan</span><span id="s8-c2" class="pill">🏆 Diiktiraf MBOR</span></div>
+  </div>
+
+  <!-- ===================== S9 HARGA 50.5–57 ===================== -->
+  <div id="s9" class="clip scene" data-start="53.8" data-duration="6.5" data-track-index="2">
+    <div id="s9-rays"></div>
+    <div class="row" style="top:290px"><span id="s9-kick" class="kick">Harga promosi</span></div>
+    <div class="row" style="top:380px"><span id="s9-h" class="h" style="font-size:56px">Rancang hibah rumah anda</span></div>
+    <div class="row" style="top:490px"><span id="s9-old" class="t muted" style="font-size:34px">Harga asal&nbsp; <span style="position:relative;display:inline-block;font-weight:900;font-size:72px;color:rgba(255,248,231,.8)">RM2,600<i id="s9-strike"></i></span></span></div>
+    <div class="row" style="top:640px"><span id="s9-now" class="kick" style="font-size:34px">Sekarang</span></div>
+    <div class="row" style="top:700px"><span id="s9-price" class="h gold" style="font-size:210px;line-height:1">RM499</span></div>
+    <div class="row" style="top:935px"><span id="s9-sahaja" class="h" style="font-size:70px;letter-spacing:.06em">SAHAJA!</span></div>
+    <div class="row" style="top:1080px"><span id="s9-p1" class="pill">🏠 Untuk rumah yang masih dalam loan</span></div>
+    <div class="row" style="top:1170px"><span id="s9-p2" class="pill" style="background:rgba(255,122,122,.18);border-color:#FF7A7A;color:#FFD0D0">⏳ Sehingga 31 Disember 2026</span></div>
+  </div>
+
+  <!-- ===================== S10 LANGKAH 57–70 ===================== -->
+  <div id="s10" class="clip scene" data-start="60.3" data-duration="14.9" data-track-index="2">
+    <div class="row" style="top:280px"><span id="s10-kick" class="kick">4 langkah mudah</span></div>
+    <div id="s10-steps">
+      <div id="s10-line-bg"></div><div id="s10-line"></div>
+      <div id="s10-1" class="step" style="top:390px">
+        <div class="num">1</div>
+        <div class="body"><div class="ti">Daftar &amp; bayar</div><div class="su">Anda terima <span class="goldc">1 pautan</span> untuk daftar dan bayar RM499.</div></div></div>
+      <div id="s10-2" class="step" style="top:580px">
+        <div class="num">2</div>
+        <div class="body"><div class="ti">Muat naik dokumen</div><div class="su">Softcopy melalui pautan yang sama:</div>
+          <div class="chips"><span class="chip">📄 SNP</span><span class="chip">📄 Loan offer</span><span class="chip">🛡️ MRTA / MRTT</span><span class="chip">🪪 IC penerima hibah</span></div></div></div>
+      <div id="s10-3" class="step" style="top:880px">
+        <div class="num">3</div>
+        <div class="body"><div class="ti">Skrip akad disiapkan</div><div class="su">Pihak kami sediakan skrip akad ijab qabul dalam <span class="goldc">1 minggu.</span></div></div></div>
+      <div id="s10-4" class="step" style="top:1070px">
+        <div class="num">4</div>
+        <div class="body"><div class="ti">Akad ijab qabul <span class="greent">online</span></div><div class="su">Sesi akad melalui aplikasi <span class="goldc">UsraHDD</span>.</div></div></div>
+    </div>
+    <!-- finale -->
+    <div id="s10-fin" class="abs" style="left:0;top:0;width:1080px;height:1920px">
+      <div class="row" style="top:440px"><div id="s10-doc" style="position:relative;width:420px;height:300px;border-radius:24px;background:linear-gradient(170deg,#FFFBF0,#F3E6C4);box-shadow:0 40px 80px rgba(0,0,0,.55);color:#0B1F3A">
+        <div style="position:absolute;left:40px;top:40px;font-weight:900;font-size:50px;line-height:1">DOKUMEN<br>HIBAH</div>
+        <div style="position:absolute;left:40px;top:170px;width:300px;height:10px;border-radius:5px;background:rgba(11,31,58,.14)"></div>
+        <div style="position:absolute;left:40px;top:198px;width:250px;height:10px;border-radius:5px;background:rgba(11,31,58,.14)"></div>
+        <div id="s10-ok" style="position:absolute;right:-34px;bottom:-34px;width:130px;height:130px;border-radius:50%;background:#3DD598;border:6px solid #EFFFF7;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 28px rgba(0,0,0,.4)">
+          <svg width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+      </div></div>
+      <div class="row" style="top:830px"><span id="s10-f1" class="h gold" style="font-size:72px">SIAP!</span></div>
+      <div class="row" style="top:940px;padding:0 160px"><span id="s10-f2" class="t" style="font-size:42px">Rumah anda dirancang untuk sampai kepada <span class="goldc">penerima yang anda pilih.</span></span></div>
+    </div>
+  </div>
+
+  <!-- ===================== S11 CTA 70–76.5 ===================== -->
+  <div id="s11" class="clip scene" data-start="75.2" data-duration="6.5" data-track-index="2">
+    <div class="row" style="top:300px;padding:0 160px"><span id="s11-a" class="t goldc" style="font-size:40px">Jangan tunggu rumah habis bayar.</span></div>
+    <div class="row" style="top:370px;padding:0 160px"><span id="s11-b" class="h" style="font-size:62px">Nak tahu rumah anda layak?</span></div>
+    <div id="s11-ring" class="abs"></div>
+    <div id="s11-wa" class="abs">
+      <svg width="110" height="110" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
+      <div><div class="sm">WhatsApp sekarang</div><div class="big">019-660 5789</div></div>
+    </div>
+    <div class="row" style="top:790px;padding:0 160px"><span id="s11-c" class="t" style="font-size:32px">Semakan kelayakan &amp; maklumat promosi</span></div>
+    <div class="row" style="top:880px"><span id="s11-d" class="pill" style="font-size:28px">Promosi RM499 · sehingga 31.12.2026</span></div>
+    <div class="row" style="top:1000px"><span id="s11-line" style="display:block;width:520px;height:3px;background:linear-gradient(90deg,rgba(217,178,92,0),#F2CF76,rgba(217,178,92,0))"></span></div>
+    <div class="row" style="top:1030px"><span id="s11-brand" class="h gold" style="font-size:50px;letter-spacing:.03em">WASIYYAH SHOPPE BERHAD</span></div>
+    <div class="row" style="top:1112px"><span id="s11-tag" class="t" style="font-size:34px;font-style:italic">Perancangan harta untuk ketenangan keluarga.</span></div>
+  </div>
+
+  <!-- ===================== S12 DISCLAIMER 76.5–81 ===================== -->
+  <div id="s12" class="clip scene" data-start="81.7" data-duration="10.8" data-track-index="2">
+    <div class="row" style="top:300px"><span id="s12-brand" class="h gold" style="font-size:46px;letter-spacing:.04em">WASIYYAH SHOPPE BERHAD</span></div>
+    <div class="row" style="top:370px"><span id="s12-wa" class="pill" style="background:rgba(59,224,126,.16);border-color:#3BE07E;color:#D8FFE8">WhatsApp 019-660 5789</span></div>
+    <div id="s12-card" class="card" style="left:130px;top:500px;width:820px;padding:38px 42px">
+      <div style="font-weight:900;font-size:30px;letter-spacing:.1em;color:#F2CF76;margin-bottom:16px">TERMA &amp; SYARAT</div>
+      <div style="font-weight:600;font-size:28px;line-height:1.45;color:rgba(255,248,231,.88)">Terma dan syarat tertakluk kepada pihak Wasiyyah Shoppe Berhad. Kelayakan, skop perkhidmatan dan pelaksanaan hibah bergantung kepada dokumen serta syarat yang berkenaan. Hibah tidak menghapuskan baki pinjaman atau mengubah hak pihak bank ke atas hartanah yang masih dicagarkan. Promosi sah sehingga 31 Disember 2026.</div>
+    </div>
+  </div>
+
+  </div><!-- /shake -->
+  <div id="flash" data-layout-ignore></div>
+
+  <!-- ===================== SFX ===================== -->
+  <audio id="x01" class="clip" src="assets/sfx/whoosh.wav" data-start="0.05" data-duration="0.55" data-volume="0.35" data-track-index="4"></audio>
+  <audio id="x02" class="clip" src="assets/sfx/impact.wav" data-start="0.4" data-duration="1.4" data-volume="0.55" data-track-index="5"></audio>
+  <audio id="x03" class="clip" src="assets/sfx/stamp.wav" data-start="1.45" data-duration="0.35" data-volume="0.55" data-track-index="4"></audio>
+  <audio id="x04" class="clip" src="assets/sfx/pop.wav" data-start="2.35" data-duration="0.12" data-volume="0.3" data-track-index="6"></audio>
+  <audio id="x05" class="clip" src="assets/sfx/swish.wav" data-start="5.52" data-duration="0.32" data-volume="0.35" data-track-index="4"></audio>
+  <audio id="x06" class="clip" src="assets/sfx/cash.wav" data-start="6.95" data-duration="0.6" data-volume="0.3" data-track-index="5"></audio>
+  <audio id="x07" class="clip" src="assets/sfx/cash.wav" data-start="7.65" data-duration="0.6" data-volume="0.3" data-track-index="6"></audio>
+  <audio id="x08" class="clip" src="assets/sfx/cash.wav" data-start="8.35" data-duration="0.6" data-volume="0.3" data-track-index="5"></audio>
+  <audio id="x09" class="clip" src="assets/sfx/cash.wav" data-start="9.05" data-duration="0.6" data-volume="0.3" data-track-index="6"></audio>
+  <audio id="x10" class="clip" src="assets/sfx/clock.wav" data-start="12.75" data-duration="2" data-volume="0.3" data-track-index="4"></audio>
+  <audio id="x11" class="clip" src="assets/sfx/impact.wav" data-start="13.95" data-duration="1.4" data-volume="0.35" data-track-index="5"></audio>
+  <audio id="x12" class="clip" src="assets/sfx/whoosh.wav" data-start="17.95" data-duration="0.55" data-volume="0.3" data-track-index="4"></audio>
+  <audio id="x13" class="clip" src="assets/sfx/pop.wav" data-start="18.3" data-duration="0.12" data-volume="0.4" data-track-index="5"></audio>
+  <audio id="x14" class="clip" src="assets/sfx/pop.wav" data-start="19.3" data-duration="0.12" data-volume="0.4" data-track-index="6"></audio>
+  <audio id="x15" class="clip" src="assets/sfx/pop.wav" data-start="20.3" data-duration="0.12" data-volume="0.4" data-track-index="5"></audio>
+  <audio id="x16" class="clip" src="assets/sfx/impact.wav" data-start="22.55" data-duration="1.4" data-volume="0.3" data-track-index="4"></audio>
+  <audio id="x17" class="clip" src="assets/sfx/swish.wav" data-start="25.75" data-duration="0.32" data-volume="0.35" data-track-index="4"></audio>
+  <audio id="x18" class="clip" src="assets/sfx/lock.wav" data-start="26.5" data-duration="0.5" data-volume="0.5" data-track-index="5"></audio>
+  <audio id="x19" class="clip" src="assets/sfx/pop.wav" data-start="26.9" data-duration="0.12" data-volume="0.35" data-track-index="6"></audio>
+  <audio id="x20" class="clip" src="assets/sfx/pop.wav" data-start="27.4" data-duration="0.12" data-volume="0.35" data-track-index="6"></audio>
+  <audio id="x21" class="clip" src="assets/sfx/pop.wav" data-start="27.9" data-duration="0.12" data-volume="0.35" data-track-index="6"></audio>
+  <audio id="x22" class="clip" src="assets/sfx/riser.wav" data-start="30.3" data-duration="1.6" data-volume="0.3" data-track-index="4"></audio>
+  <audio id="x23" class="clip" src="assets/sfx/whoosh.wav" data-start="32.75" data-duration="0.55" data-volume="0.4" data-track-index="5"></audio>
+  <audio id="x24" class="clip" src="assets/sfx/stamp.wav" data-start="33.9" data-duration="0.35" data-volume="0.55" data-track-index="6"></audio>
+  <audio id="x25" class="clip" src="assets/sfx/ding.wav" data-start="35.9" data-duration="1.2" data-volume="0.3" data-track-index="4"></audio>
+  <audio id="x26" class="clip" src="assets/sfx/swish.wav" data-start="37.95" data-duration="0.32" data-volume="0.35" data-track-index="5"></audio>
+  <audio id="x27" class="clip" src="assets/sfx/pop.wav" data-start="38.5" data-duration="0.12" data-volume="0.35" data-track-index="6"></audio>
+  <audio id="x28" class="clip" src="assets/sfx/whoosh.wav" data-start="39.3" data-duration="0.55" data-volume="0.3" data-track-index="4"></audio>
+  <audio id="x29" class="clip" src="assets/sfx/impact.wav" data-start="39.8" data-duration="1.4" data-volume="0.25" data-track-index="5"></audio>
+  <audio id="x30" class="clip" src="assets/sfx/pop.wav" data-start="40.9" data-duration="0.12" data-volume="0.35" data-track-index="6"></audio>
+  <audio id="x31" class="clip" src="assets/sfx/whoosh.wav" data-start="41.6" data-duration="0.55" data-volume="0.3" data-track-index="4"></audio>
+  <audio id="x32" class="clip" src="assets/sfx/ding.wav" data-start="42.1" data-duration="1.2" data-volume="0.45" data-track-index="5"></audio>
+  <audio id="x33" class="clip" src="assets/sfx/swish.wav" data-start="47.35" data-duration="0.32" data-volume="0.35" data-track-index="4"></audio>
+  <audio id="x34" class="clip" src="assets/sfx/stamp.wav" data-start="48.25" data-duration="0.35" data-volume="0.55" data-track-index="5"></audio>
+  <audio id="x35" class="clip" src="assets/sfx/whoosh.wav" data-start="48.9" data-duration="0.55" data-volume="0.35" data-track-index="6"></audio>
+  <audio id="x36" class="clip" src="assets/sfx/whoosh.wav" data-start="49.7" data-duration="0.55" data-volume="0.35" data-track-index="4"></audio>
+  <audio id="x37" class="clip" src="assets/sfx/pop.wav" data-start="50.7" data-duration="0.12" data-volume="0.35" data-track-index="5"></audio>
+  <audio id="x38" class="clip" src="assets/sfx/pop.wav" data-start="51.1" data-duration="0.12" data-volume="0.35" data-track-index="6"></audio>
+  <audio id="x39" class="clip" src="assets/sfx/riser.wav" data-start="52.3" data-duration="1.6" data-volume="0.35" data-track-index="4"></audio>
+  <audio id="x40" class="clip" src="assets/sfx/swish.wav" data-start="55.2" data-duration="0.32" data-volume="0.45" data-track-index="5"></audio>
+  <audio id="x41" class="clip" src="assets/sfx/impact.wav" data-start="55.75" data-duration="1.4" data-volume="0.6" data-track-index="6"></audio>
+  <audio id="x42" class="clip" src="assets/sfx/cash.wav" data-start="55.85" data-duration="0.6" data-volume="0.45" data-track-index="4"></audio>
+  <audio id="x43" class="clip" src="assets/sfx/pop.wav" data-start="56.7" data-duration="0.12" data-volume="0.35" data-track-index="5"></audio>
+  <audio id="x44" class="clip" src="assets/sfx/clock.wav" data-start="57.2" data-duration="2" data-volume="0.2" data-track-index="6"></audio>
+  <audio id="x45" class="clip" src="assets/sfx/whoosh.wav" data-start="60.35" data-duration="0.55" data-volume="0.3" data-track-index="4"></audio>
+  <audio id="x46" class="clip" src="assets/sfx/ding.wav" data-start="60.8" data-duration="1.2" data-volume="0.3" data-track-index="5"></audio>
+  <audio id="x47" class="clip" src="assets/sfx/ding.wav" data-start="63.1" data-duration="1.2" data-volume="0.3" data-track-index="6"></audio>
+  <audio id="x48" class="clip" src="assets/sfx/pop.wav" data-start="63.7" data-duration="0.12" data-volume="0.3" data-track-index="4"></audio>
+  <audio id="x49" class="clip" src="assets/sfx/pop.wav" data-start="63.9" data-duration="0.12" data-volume="0.3" data-track-index="4"></audio>
+  <audio id="x50" class="clip" src="assets/sfx/pop.wav" data-start="64.1" data-duration="0.12" data-volume="0.3" data-track-index="4"></audio>
+  <audio id="x51" class="clip" src="assets/sfx/pop.wav" data-start="64.3" data-duration="0.12" data-volume="0.3" data-track-index="4"></audio>
+  <audio id="x52" class="clip" src="assets/sfx/ding.wav" data-start="65.9" data-duration="1.2" data-volume="0.3" data-track-index="5"></audio>
+  <audio id="x53" class="clip" src="assets/sfx/ding.wav" data-start="68.1" data-duration="1.2" data-volume="0.3" data-track-index="6"></audio>
+  <audio id="x54" class="clip" src="assets/sfx/riser.wav" data-start="68.9" data-duration="1.6" data-volume="0.3" data-track-index="4"></audio>
+  <audio id="x55" class="clip" src="assets/sfx/stamp.wav" data-start="70.85" data-duration="0.35" data-volume="0.5" data-track-index="5"></audio>
+  <audio id="x56" class="clip" src="assets/sfx/ding.wav" data-start="71" data-duration="1.2" data-volume="0.4" data-track-index="6"></audio>
+  <audio id="x57" class="clip" src="assets/sfx/swish.wav" data-start="75.25" data-duration="0.32" data-volume="0.35" data-track-index="4"></audio>
+  <audio id="x58" class="clip" src="assets/sfx/pop.wav" data-start="76.4" data-duration="0.12" data-volume="0.45" data-track-index="5"></audio>
+  <audio id="x59" class="clip" src="assets/sfx/ding.wav" data-start="76.5" data-duration="1.2" data-volume="0.4" data-track-index="6"></audio>
+  <audio id="x60" class="clip" src="assets/sfx/impact.wav" data-start="78.1" data-duration="1.4" data-volume="0.3" data-track-index="4"></audio>
+  <audio id="x61" class="clip" src="assets/sfx/swish.wav" data-start="81.7" data-duration="0.32" data-volume="0.3" data-track-index="5"></audio>
+
+  <script>
+  window.__timelines = window.__timelines || {};
+  const tl = gsap.timeline({ paused: true });
+  const IN=(s,t,o={})=>tl.fromTo(s,{opacity:0,y:o.y??30,x:o.x??0,scale:o.s??0.94},{opacity:1,y:0,x:0,scale:1,duration:o.d??0.45,ease:o.e??'power3.out',stagger:o.st??0},t);
+  const POP=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??0.35},{opacity:1,scale:1,duration:o.d??0.5,ease:'back.out(2.2)',stagger:o.st??0},t);
+  const SLAM=(s,t,o={})=>tl.fromTo(s,{opacity:0,scale:o.s??1.9},{opacity:1,scale:1,duration:o.d??0.24,ease:'power4.in'},t);
+  const OUT=(s,t,d=0.3)=>tl.to(s,{opacity:0,duration:d,ease:'power2.in'},t);
+  const DRAW=(s,t,d=0.5,e='power2.inOut')=>tl.fromTo(s,{strokeDashoffset:1},{strokeDashoffset:0,duration:d,ease:e},t);
+  const SHAKE=(t,a=12)=>{const k=[[1,-.6],[-.8,.9],[.6,-.4],[-.4,.5],[.2,-.2],[0,0]];k.forEach((p,i)=>tl.to('#shake',{x:p[0]*a,y:p[1]*a,duration:0.035,ease:'none'},t+i*0.035));};
+  const FLASH=(t,o=.35)=>{tl.fromTo('#flash',{opacity:o},{opacity:0,duration:0.35,ease:'power2.out',immediateRender:false},t);};
+
+  // ambient background drift (whole film)
+  tl.fromTo('#orb1',{x:0,y:0},{x:160,y:120,duration:92.5,ease:'sine.inOut'},0);
+  tl.fromTo('#orb2',{x:0,y:0},{x:-140,y:-160,duration:92.5,ease:'sine.inOut'},0);
+  tl.fromTo('#bg-pattern',{x:0,y:0},{x:-120,y:-240,duration:92.5,ease:'none'},0);
+
+  // ---------- S1 ----------
+  tl.fromTo('#s1-house',{scale:0.9,y:20},{scale:1,y:0,duration:0.6,ease:'back.out(1.8)'},0);
+  tl.fromTo('#s1-t1',{scale:1.06},{scale:1,duration:0.35,ease:'power3.out'},0); SHAKE(0.4,10);
+  tl.fromTo('#s1-t2',{scale:1.08},{scale:1,duration:0.35,ease:'back.out(2)'},0.25);
+  tl.fromTo('#s1-stamp',{opacity:0,scale:2.4,rotation:-8},{opacity:1,scale:1,rotation:-8,duration:0.2,ease:'power4.in'},1.25); SHAKE(1.45,10); FLASH(1.45,.2);
+  tl.fromTo('#s1-house',{rotation:0},{rotation:-2,duration:0.08,yoyo:true,repeat:3,ease:'none',immediateRender:false},1.45);
+  IN('#s1-sub',1.9,{y:20});
+  tl.fromTo('#s1-house',{scale:1},{scale:1.04,duration:2.2,ease:'none',immediateRender:false},2.2);
+  OUT('#s1',5.2);
+
+  // ---------- S2 ----------
+  POP('#s2-kick',5.6); IN('#s2-h',5.75);
+  IN('#s2-wallet',6.1,{x:-60,y:0}); IN('#s2-house',6.2,{x:60,y:0});
+  IN('#s2-prog',6.4,{y:40});
+  ['#c1','#c2','#c3','#c4'].forEach((c,i)=>{
+    const t=6.5+i*0.7;
+    tl.fromTo(c,{opacity:0,x:0,y:0,scale:0.5},{opacity:1,scale:1,duration:0.15,ease:'power2.out'},t);
+    tl.to(c,{x:500,duration:0.5,ease:'power1.inOut'},t+0.05);
+    tl.to(c,{y:-60,duration:0.25,ease:'power2.out'},t+0.05);
+    tl.to(c,{y:20,duration:0.25,ease:'power2.in'},t+0.30);
+    tl.to(c,{opacity:0,scale:0.4,duration:0.12},t+0.45);
+    tl.fromTo('#s2-house',{scale:1},{scale:1.06,duration:0.1,yoyo:true,repeat:1,ease:'power1.out',immediateRender:false},t+0.45);
+  });
+  tl.fromTo('#s2-fill',{scaleX:0},{scaleX:0.23,duration:3.2,ease:'none'},6.5);
+  (()=>{const el=document.querySelector('#s2-yr');const o={v:1};tl.fromTo(o,{v:1},{v:8,duration:3.2,ease:'none',onUpdate:()=>{el.textContent='Tahun '+Math.round(o.v)}},6.5);})();
+  IN('#s2-cap',9.5,{y:20});
+  OUT('#s2',12.4);
+
+  // ---------- S3 ----------
+  tl.to('#dark',{opacity:1,duration:0.6,ease:'power2.out'},12.65);
+  IN('#s3-glow',12.7,{s:0.7,d:0.9}); IN('#s3-house',12.75,{y:20,d:0.7});
+  IN('#s3-a',13,{y:16});
+  SLAM('#s3-b',13.9,{s:1.4,d:0.3});
+  IN('#s3-c',14.7,{y:24});
+  tl.fromTo('#s3-house',{scale:1},{scale:1.08,duration:3.8,ease:'none',immediateRender:false},12.9);
+  OUT('#s3',17.6); tl.to('#dark',{opacity:0,duration:0.5},17.6);
+
+  // ---------- S4 ----------
+  POP('#s4-kick',18);
+  IN('#s4-c1',18.3,{x:-80,y:0}); IN('#s4-c2',19.3,{x:-80,y:0}); IN('#s4-c3',20.3,{x:-80,y:0});
+  POP('#s4-c1 .ok',18.65); POP('#s4-c2 .ok',19.65); POP('#s4-c3 .ok',20.65);
+  IN('#s4-a',21.6,{y:16});
+  IN('#s4-b',22.5,{y:24}); SHAKE(22.6,6);
+  OUT('#s4',25.4);
+
+  // ---------- S5 ----------
+  POP('#s5-kick',25.8);
+  IN('#s5-house',25.9,{s:0.7,d:0.5});
+  POP('#s5-lock',26.5,{s:0.2}); SHAKE(26.55,8);
+  POP('#s5-n1',26.9); POP('#s5-n2',27.4); POP('#s5-n3',27.9);
+  tl.fromTo('#s5-tangle .tg',{strokeDashoffset:1,opacity:.85},{strokeDashoffset:0,opacity:.85,duration:1.4,ease:'power1.inOut',stagger:0.25},27.1);
+  tl.fromTo('#s5-lock',{rotation:0},{rotation:8,duration:0.06,yoyo:true,repeat:5,ease:'none',immediateRender:false},29.5);
+  IN('#s5-cap',29.3,{y:20});
+  OUT('#s5',31.4);
+
+  // ---------- S6 ----------
+  FLASH(31.7,.25);
+  POP('#s6-kick',31.8); IN('#s6-h',32,{y:16});
+  tl.fromTo('#s6-doc',{opacity:0,y:-140,scale:0.85,rotation:-8},{opacity:1,y:0,scale:1,rotation:-2,duration:0.7,ease:'back.out(1.4)'},32.75);
+  tl.fromTo('#s6-seal',{opacity:0,scale:2.6,rotation:-40},{opacity:1,scale:1,rotation:-12,duration:0.22,ease:'power4.in'},33.7); SHAKE(33.9,8);
+  IN('#s6-a',34.7,{y:20});
+  POP('#s6-pill',35.9);
+  tl.fromTo('#s6-doc',{y:0},{y:-14,duration:1.5,ease:'sine.inOut',yoyo:true,repeat:1,immediateRender:false},34.3);
+  OUT('#s6',37.6);
+
+  // ---------- S7 ----------
+  POP('#s7-kick',38);
+  IN('#s7-a',38.5,{y:40}); IN('#s7-a-house',38.8,{s:0.7});
+  DRAW('#s7-a-arr',39.3,0.5);
+  tl.fromTo('#s7-a-pie',{opacity:0,scale:0.3,rotation:-180},{opacity:1,scale:1,rotation:0,duration:0.7,ease:'back.out(1.6)'},39.7);
+  IN('#s7-a-t',40.2,{y:10});
+  IN('#s7-b',40.9,{y:40}); IN('#s7-b-house',41.15,{s:0.7});
+  tl.fromTo('#s7-b-doc',{opacity:0,y:-80,rotation:-30},{opacity:1,y:0,rotation:10,duration:0.45,ease:'back.out(2)'},41.3);
+  DRAW('#s7-b-arr',41.6,0.5);
+  POP('#s7-b-p',42.05,{s:0.3});
+  tl.fromTo('#s7-b-p',{boxShadow:'0 0 0 0 rgba(108,240,180,.6)'},{boxShadow:'0 0 0 30px rgba(108,240,180,0)',duration:0.9,ease:'power2.out',repeat:3,immediateRender:false},42.3);
+  IN('#s7-b-t',42.4,{y:10});
+  IN('#s7-c',43.1,{y:20});
+  IN('#s7-d',44.1,{y:10});
+  OUT('#s7',47);
+
+  // ---------- S8 ----------
+  POP('#s8-kick',47.4); IN('#s8-a',47.6,{y:16});
+  tl.fromTo('#s8-b',{opacity:0,scale:2.2},{opacity:1,scale:1,duration:0.22,ease:'power4.in'},48.05); SHAKE(48.27,10);
+  tl.fromTo('#s8-n1',{opacity:0,x:-700,rotation:-2},{opacity:1,x:0,rotation:-2,duration:0.55,ease:'power3.out'},48.9);
+  tl.fromTo('#s8-n2',{opacity:0,x:700,rotation:1.6},{opacity:1,x:0,rotation:1.6,duration:0.55,ease:'power3.out'},49.7);
+  POP('#s8-c1',50.7); POP('#s8-c2',51.1);
+  (()=>{const el=document.querySelector('#s8-num');const o={v:0};tl.fromTo(o,{v:0},{v:15000,duration:1.0,ease:'power2.out',onUpdate:()=>{el.textContent=Math.round(o.v).toLocaleString('en-US')}},50.7);})();
+  OUT('#s8',53.5);
+
+  // ---------- S9 ----------
+  POP('#s9-kick',53.9); IN('#s9-h',54.1);
+  IN('#s9-old',54.6,{y:16});
+  tl.fromTo('#s9-strike',{scaleX:0,rotation:-6},{scaleX:1,rotation:-6,duration:0.25,ease:'power2.out'},55.2);
+  POP('#s9-now',55.3);
+  tl.fromTo('#s9-price',{opacity:0,scale:3},{opacity:1,scale:1,duration:0.25,ease:'power4.in'},55.5); SHAKE(55.75,18); FLASH(55.75,.45);
+  tl.fromTo('#s9-rays',{opacity:0,rotation:0},{opacity:1,rotation:12,duration:0.6,ease:'power2.out'},55.75);
+  tl.to('#s9-rays',{rotation:60,duration:4.2,ease:'none'},56.35);
+  SLAM('#s9-sahaja',56.1,{s:1.6});
+  tl.fromTo('#s9-price',{scale:1},{scale:1.05,duration:0.5,ease:'sine.inOut',yoyo:true,repeat:5,immediateRender:false},56.6);
+  POP('#s9-p1',56.7); POP('#s9-p2',57.2);
+  OUT('#s9',60);
+
+  // ---------- S10 ----------
+  POP('#s10-kick',60.4);
+  [['#s10-1',60.8],['#s10-2',63.1],['#s10-3',65.9],['#s10-4',68.1]].forEach(([s,t])=>{
+    POP(s+' .num',t,{s:0.2}); IN(s+' .ti',t+0.15,{x:-40,y:0}); IN(s+' .su',t+0.35,{x:-40,y:0});
+  });
+  POP('#s10-2 .chip',63.7,{st:0.2});
+  tl.fromTo('#s10-line',{scaleY:0},{scaleY:0.22,duration:1.4,ease:'power1.inOut'},61.3);
+  tl.to('#s10-line',{scaleY:0.66,duration:1.6,ease:'power1.inOut'},64.3);
+  tl.to('#s10-line',{scaleY:1,duration:1.2,ease:'power1.inOut'},66.9);
+  tl.to('#s10-steps',{opacity:0,scale:0.9,y:-40,duration:0.3,ease:'power2.in'},70.05);
+  tl.fromTo('#s10-doc',{opacity:0,y:-300,rotation:-10},{opacity:1,y:0,rotation:-2,duration:0.55,ease:'back.out(1.5)'},70.4);
+  POP('#s10-ok',70.8,{s:0.2}); SHAKE(70.85,8);
+  SLAM('#s10-f1',70.9,{s:1.6});
+  IN('#s10-f2',71.4,{y:20});
+  OUT('#s10',74.9);
+
+  // ---------- S11 ----------
+  IN('#s11-a',75.3,{y:16}); IN('#s11-b',75.65);
+  POP('#s11-wa',76.4,{s:0.5});
+  tl.fromTo('#s11-ring',{opacity:0.9,scale:1},{opacity:0,scale:1.18,duration:1.0,ease:'power2.out',repeat:4,immediateRender:false},76.8);
+  tl.fromTo('#s11-wa',{scale:1},{scale:1.04,duration:0.5,ease:'sine.inOut',yoyo:true,repeat:9,immediateRender:false},76.9);
+  IN('#s11-c',77,{y:16}); POP('#s11-d',77.5);
+  tl.fromTo('#s11-line',{scaleX:0,opacity:1},{scaleX:1,opacity:1,duration:0.5,ease:'power2.out'},78);
+  IN('#s11-brand',78.1,{y:20,s:0.9}); IN('#s11-tag',78.6,{y:12});
+  OUT('#s11',81.4);
+
+  // ---------- S12 ----------
+  IN('#s12-brand',81.8,{y:16}); POP('#s12-wa',82); IN('#s12-card',82.2,{y:30});
+
+  window.__timelines["main"] = tl;
+  </script>
+</div>
+</body>
+</html>
