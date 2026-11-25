@@ -24,14 +24,14 @@
 
 > Bila berlaku kematian, / semua aset kita akan **terbeku.**
 
-## 3. SENARAI ASET (0:08.9 – 0:14.2)
+## 3. SENARAI ASET (0:08.9 – 0:14.7)
 **Visual:** cip Kereta, Rumah, Akaun Bank, ASB, Tabung Haji muncul satu per satu, lepas tu semua dikunci + "Tak boleh dikeluarkan"
 
 > Kereta. / Rumah. / Akaun bank. / ASB. / **Tabung Haji.** //
 
 *Nada: setiap aset satu ketukan. Ayat "semuanya dibekukan" dibuang sebab ulang babak 2. Kad kunci yang sampaikan mesej tu.*
 
-## 4. SURAT KUASA (0:14.2 – 0:21.0)
+## 4. SURAT KUASA (0:14.7 – 0:21.0)
 **Visual:** dokumen SURAT KUASA / Perintah Pembahagian muncul
 
 > Untuk keluarkan duit dan tukar nama geran, / waris **wajib** dapatkan **surat kuasa** / dari pejabat tanah / atau mahkamah tinggi.

@@ -99,7 +99,7 @@ SCENES = []  # (sid, start, end, html)
 # would land in the cut. Lock right after "Tabung Haji", hold the card briefly, then hand over.
 _haji = next(w for w in words if w["text"].lower().startswith("haji"))
 LOCK2 = round(_haji["end"] + 0.12, 3)
-ASSETS_END2 = round(LOCK2 + 1.45, 3)
+ASSETS_END2 = round(LOCK2 + 1.9, 3)
 # "Sekiranya anda melanggan Wasitah Intan ini," is cut too: the comparison card opens just before "jumlahnya".
 BANDING_S2 = round(next(w for w in words if w["text"].lower().startswith("jumlahnya"))["start"] - 0.35, 3)
 OVR = {"assets": (None, ASSETS_END2), "surat": (ASSETS_END2, None),
@@ -202,7 +202,7 @@ add_scene("assets", s0, s1, """
     tl.to('#as-fr0,#as-fr1,#as-fr2,#as-fr3,#as-fr4',{{opacity:1,duration:0.3,stagger:0.07,ease:'power2.out'}},{round(LOCK2-T(s0),3)});
     POP('#as-lk0,#as-lk1,#as-lk2,#as-lk3,#as-lk4',{round(LOCK2+0.05-T(s0),3)},{{st:0.07}});
     tl.fromTo('#as-panel',{{x:0}},{{x:7,duration:0.05,yoyo:true,repeat:5,ease:'none'}},{round(LOCK2+0.05-T(s0),3)});
-    POP('#as-ban',{round(LOCK2+0.5-T(s0),3)});
+    POP('#as-ban',{round(LOCK2+0.15-T(s0),3)});
     OUT('#as-panel',{round(ASSETS_END2-0.3-T(s0),3)});
 """)
 
@@ -361,7 +361,7 @@ add_scene("third", s0, s1, "", f"""
     tl.fromTo('#th-20k',{{opacity:0,scale:0.7}},{{opacity:1,scale:1,duration:0.3,ease:'power3.out'}},{t(68.8)});
     COUNT('#th-20k',0,20000,{t(68.85)},0.6,RM);
     tl.fromTo('#th-20k',{{scale:1.18}},{{scale:1,duration:0.35,ease:'back.out(2.5)',immediateRender:false}},{t(69.45)});
-    IN('#th-al',{t(70.0)},{{y:10}});
+    IN('#th-al',{round(t(71.18)-1.5,3)},{{y:10}});
     OUT('#th-panel',{t(71.18)});
 """)
 
@@ -536,7 +536,7 @@ for gi, g in enumerate(groups):
         disp = html.escape(w["text"].rstrip(","))
         spans.append(f'<span class="w{k}" id="cw{gi}_{wi}" data-t="{w["start"]:.3f}">{disp}</span>')
     est = sum(0.66 if c.isupper() or c.isdigit() else (0.3 if c in " .,'il" else 0.6) for c in " ".join(x["text"] for x in g)) * 62
-    fs = f' style="font-size:{max(44, int(62 * 540 / est))}px"' if est > 540 else ""
+    fs = f' style="font-size:{max(44, int(62 * 500 / est))}px"' if est > 500 else ""
     cap_html.append(f'      <div class="grp" id="cg{gi}" data-a="{g0:.3f}" data-b="{g1:.3f}"{fs}><span class="pb">{" ".join(spans)}</span></div>')
 
 with open(os.path.join(PROJ, "compositions", "captions.html"), "w") as f:
@@ -595,7 +595,7 @@ SFX = [
     ("riser", 1.75, .32), ("impact", 3.35, .55), ("stamp", 3.86, .42), ("whoosh", 4.45, .30),
     ("swish", 5.3, .22), ("lock", 7.42, .42),
     ("whoosh", 8.25, .24), ("pop", 8.37, .30), ("pop", 9.17, .30), ("pop", 9.93, .30), ("pop", 10.63, .30), ("pop", 11.31, .30),
-    ("lock", ("v2", LOCK2), .40), ("tick", ("v2", LOCK2 + 0.5), .28),
+    ("lock", ("v2", LOCK2), .40), ("tick", ("v2", LOCK2 + 0.15), .28),
     ("whoosh", ("v2", ASSETS_END2), .24), ("stamp", 18.84, .45), ("pop", 20.3, .28), ("pop", 21.42, .28),
     ("swish", 22.5, .24), ("clock", 25.65, .22), ("tick", 30.2, .30), ("tick", 31.75, .30), ("impact", 35.3, .38),
     ("whoosh", 37.55, .24), ("swish", 39.95, .20), ("ding", 42.3, .22), ("pop", 45.85, .28), ("swish", 50.85, .20), ("stamp", 53.85, .32), ("ding", 54.1, .26),
@@ -633,6 +633,7 @@ frost_js = "".join(
 SHAKE = [(T(a), amp) for a, amp in [(3.35, 14), (35.3, 7), (64.1, 6), (7.42, 5)]] + [(LOCK2 + 0.05, 5)]
 shake_js = ""
 for a, amp in SHAKE:
+    a = round(a, 2)
     seq = [(1, -0.6), (-0.8, 0.9), (0.6, -0.4), (-0.4, 0.5), (0.2, -0.2), (0, 0)]
     for k, (dx, dy) in enumerate(seq):
         shake_js += f"    tl.to('#shake',{{x:{dx*amp:.1f},y:{dy*amp:.1f},duration:0.035,ease:'none'}},{a+k*0.035:.3f});\n"
