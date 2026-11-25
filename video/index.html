@@ -6,17 +6,17 @@
 <script src="gsap.min.js"></script>
 <style>
   :root{
-    --bg1:#0A3B2C; --bg2:#04241A; --gold:#D9AE55; --gold2:#F3D58C;
-    --cream:#F7F2E6; --muted:#A9C2B6; --ice:#A8DCF5; --red:#E8604C; --green:#4CC38A;
-    --card:rgba(255,255,255,.06); --line:rgba(217,174,85,.35);
+    --bg1:#3F7DBF; --bg2:#2B609C; --gold:#F2C14E; --gold2:#FFD978;
+    --cream:#FFFFFF; --muted:#DCEBFA; --ice:#E3F6FF; --red:#FF6B57; --green:#6BF0B0;
+    --card:rgba(255,255,255,.12); --line:rgba(255,217,120,.6);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{background:#000;overflow:hidden}
   body{font-family:Inter, "Inter Display", sans-serif;color:var(--cream)}
   #stage{width:1080px;height:1920px;position:relative;overflow:hidden;
-    background:radial-gradient(120% 80% at 50% 0%, #0F5a42 0%, var(--bg1) 40%, var(--bg2) 100%);
+    background:radial-gradient(120% 80% at 50% 0%, #6EA9E0 0%, var(--bg1) 45%, var(--bg2) 100%);
     transform-origin:0 0}
-  #pattern{position:absolute;inset:-200px;opacity:.07}
+  #pattern{position:absolute;inset:-200px;opacity:.10}
   .glow{position:absolute;width:1400px;height:1400px;border-radius:50%;left:-160px;top:500px;
     background:radial-gradient(circle, rgba(217,174,85,.35), transparent 60%);opacity:0}
   header{position:absolute;top:70px;left:80px;right:80px;display:flex;justify-content:space-between;align-items:center;z-index:5}
@@ -33,6 +33,8 @@
   .h2{font-size:76px;font-weight:800;line-height:1.08;letter-spacing:-.015em}
   .h3{font-size:54px;font-weight:700;line-height:1.15}
   .p{font-size:44px;font-weight:500;line-height:1.3;color:var(--muted)}
+  .h1,.h2,.h3,.huge,.money,.price,.step .big,.bar .val,.eq{text-shadow:0 3px 18px rgba(14,42,84,.35)}
+  #freezeWord,#m6c,#bil6c{text-shadow:0 0 30px rgba(140,215,255,.9),0 3px 18px rgba(14,42,84,.4)}
   .gold{color:var(--gold2)} .ice{color:var(--ice)} .red{color:var(--red)} .green{color:var(--green)}
   .hl{background:linear-gradient(transparent 60%, rgba(217,174,85,.45) 60%);padding:0 8px}
   svg.ic{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
@@ -45,14 +47,14 @@
   .asset .icon{width:130px;height:130px}
   .asset .lbl{font-size:44px;font-weight:700}
   .asset.wide{grid-column:1 / span 2;justify-self:center;width:calc(50% - 17px)}
-  .frost{position:absolute;inset:0;background:linear-gradient(135deg,#B6E3F8,#86C6EA);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;color:#06324a;opacity:0}
+  .frost{position:absolute;inset:0;background:linear-gradient(135deg,#D6F1FF,#A9DBF6);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;color:#06324a;opacity:0}
   .frost .icon{color:#06324a;width:90px;height:90px}
   .frost b{font-size:30px;letter-spacing:.2em;color:#fff;background:#0b4f74;padding:6px 18px;border-radius:30px;margin-top:6px}
   .frost .fn{font-size:40px;font-weight:800}
 
   /* S3 */
   .doc{width:420px;height:520px;background:var(--cream);color:#16251f;border-radius:28px;position:relative;padding:60px 50px;text-align:left;box-shadow:0 40px 80px rgba(0,0,0,.4)}
-  .doc .t{font-size:52px;font-weight:800;color:#0A3B2C;line-height:1.05}
+  .doc .t{font-size:52px;font-weight:800;color:#12325C;line-height:1.05}
   #docs3 .doc{width:380px;height:440px;padding:48px 40px}
   #docs3 .doc .t{font-size:44px}
   #docs3 .seal{width:100px;height:100px;right:32px;bottom:32px}
@@ -123,9 +125,9 @@
   /* S11 */
   .box{position:absolute;left:90px;right:90px;border-radius:36px;border:3px dashed var(--line);padding:30px}
   .box .bt{font-size:36px;font-weight:800;letter-spacing:.12em}
-  .achip{position:absolute;height:110px;padding:0 34px;border-radius:24px;background:var(--cream);color:#0A3B2C;font-size:42px;font-weight:800;display:flex;align-items:center;gap:16px}
-  .achip .icon{width:60px;height:60px;color:#0A3B2C}
-  .hdoc{position:absolute;width:250px;height:310px;background:var(--cream);border-radius:22px;padding:34px 28px;color:#0A3B2C;box-shadow:0 30px 60px rgba(0,0,0,.45)}
+  .achip{position:absolute;height:110px;padding:0 34px;border-radius:24px;background:var(--cream);color:#12325C;font-size:42px;font-weight:800;display:flex;align-items:center;gap:16px}
+  .achip .icon{width:60px;height:60px;color:#12325C}
+  .hdoc{position:absolute;width:250px;height:310px;background:var(--cream);border-radius:22px;padding:34px 28px;color:#12325C;box-shadow:0 30px 60px rgba(0,0,0,.45)}
   .hdoc .t{font-size:46px;font-weight:900}
   .hdoc .ln{height:12px;border-radius:6px;background:#d9d2bf;margin-top:20px}
   .stamp{position:absolute;font-size:30px;font-weight:900;letter-spacing:.15em;color:var(--green);border:5px solid var(--green);border-radius:14px;padding:6px 16px;transform:rotate(-12deg)}
@@ -136,7 +138,7 @@
   <svg id="pattern" viewBox="0 0 1480 2320" preserveAspectRatio="xMidYMid slice">
     <defs>
       <pattern id="star" width="160" height="160" patternUnits="userSpaceOnUse">
-        <g fill="none" stroke="#F3D58C" stroke-width="2" transform="translate(80 80)">
+        <g fill="none" stroke="#FFFFFF" stroke-width="2" transform="translate(80 80)">
           <rect x="-40" y="-40" width="80" height="80"/>
           <rect x="-40" y="-40" width="80" height="80" transform="rotate(45)"/>
           <circle r="16"/>
@@ -347,23 +349,23 @@ function fx(name, t, o={}){ SFX.push({name, t:+t.toFixed(3), ...o}); }
 // ---- Voiceover clips: [start, end, extra pause after] in the source VO file (seconds).
 // Cut points sit in the silences between babak; each babak's scene lasts clip + pause.
 const VO_SRC = 'vo/info_wasitah_3.wav';
-const SPD = 1.1;   // voiceover tempo (pitch preserved) — everything below follows it
+const SPD = 1.15;  // voiceover tempo (pitch preserved) — everything below follows it
 const CLIPS = [
-  [0.00, 4.98, 1.0],      // 1 hook
-  [4.98, 12.19, 0.3],     // 2 aset beku
-  [12.19, 21.36, 0.3],    // 3 surat kuasa & perintah pembahagian
-  [21.36, 33.54, 0.5],    // 4 garis masa
-  [33.54, 44.07, 0.3],    // 5 bicara kuasa
+  [0.00, 4.98, 1.0],      // 0 hook
+  [4.98, 12.19, 0.3],     // 1 aset beku
+  [12.19, 21.36, 0.3],    // 2 surat kuasa & perintah pembahagian
+  [21.36, 33.54, 0.4],    // 3 garis masa
+  [33.54, 44.07, 0.15],   // 4 bicara kuasa
+  [119.68, 129.66, 1.3],  // 5 hibah — follows bicara kuasa (skips the read-out "13")
   [44.07, 56.00, 0.2],    // 6 kata sepakat
-  [56.00, 60.50, 0.6],    // 7 RM90 bilion
-  [60.50, 70.71, 0.6],    // 8 caj trustee
-  [70.71, 79.51, 0.3],    // 9 Wasitah Intan
-  [79.51, 91.07, 0.4],    // 10 harga
-  [91.07, 103.71, 0.5],   // 11 banding
-  [103.71, 111.38, 0.3],  // 12 keluarga  (JPJ / tanah / bank babak removed)
-  [119.68, 129.66, 1.6],  // 13 hibah (skips the read-out "13")
-  [129.66, 140.90, 0.2],  // 14 penutup: lindungi aset… terbesar di Malaysia
-  [140.90, 142.92, 3.2],  // 15 CTA: hubungi kami hari ini
+  [56.00, 60.50, 0.5],    // 7 RM90 bilion
+  [60.50, 70.71, 0.5],    // 8 caj trustee
+  [70.71, 79.51, 0.25],   // 9 Wasitah Intan
+  [79.51, 91.07, 0.35],   // 10 harga
+  [91.07, 103.71, 0.4],   // 11 banding
+  [103.71, 111.38, 0.25], // 12 keluarga
+  [129.66, 140.90, 0.2],  // 13 penutup: lindungi aset… terbesar di Malaysia
+  [140.90, 142.92, 3.2],  // 14 CTA: hubungi kami hari ini
 ];
 // Animation cues below were written against the first voiceover take (info_wasitah_1).
 // REMAP pairs [time in take 1, time in current take] for every word both takes share, found by
@@ -386,7 +388,7 @@ const WN = i => x => VO[i].at + (x - VO[i].a)/SPD;        // x = time in current
 
 function scene(id, i, build){
   const s = '#'+id, t0 = START[i], t1 = END[i];
-  if (t0 > 0) fx('whoosh', t0-.15, {g:.55});
+  if (t0 > 0 && id !== 's11') fx('whoosh', t0-.15, {g:.55});
   tl.fromTo(s,{autoAlpha:0,scale:1.04},{autoAlpha:1,scale:1,duration:.5,ease:'power2.out'},t0);
   build(W(i), t0);
   tl.to(s,{autoAlpha:0,scale:.97,duration:.45,ease:'power2.in'},t1-.45);
@@ -449,7 +451,7 @@ scene('s5', 4, (w,t0)=>{
   up('#no5', w(40.9), {y:80});                     fx('pop', w(40.9), {p:.9});
 });
 // 6 — "Setelah dapat kata sepakat, barulah Surat Kuasa dikeluarkan. Masalahnya… ramai waris tak mampu… Akibatnya, banyak aset terus terbeku."
-scene('s6', 5, (w,t0)=>{
+scene('s6', 6, (w,t0)=>{
   up('#s6a .p', w(44.45));                         fx('rise', w(44.45));
   up('#s6a .h2', w(46.2));                         fx('rise', w(46.2), {g:.7});
   pop('#s6a .badge', w(46.85), {s:0});             fx('success', w(46.85));
@@ -462,8 +464,8 @@ scene('s6', 5, (w,t0)=>{
   up(q('#s6b .b',3), w(52.9));                     fx('thud', w(53.8), {g:.8});
 });
 // 6c — "Dan aset terbeku di Malaysia sekarang ini mencecah 90 bilion ringgit." (times in current take)
-scene('s6c', 6, (w,t0)=>{
-  const n = WN(6);
+scene('s6c', 7, (w,t0)=>{
+  const n = WN(7);
   tl.fromTo('#flake6c',{autoAlpha:0,rotation:-90,scale:.4},{autoAlpha:1,rotation:0,scale:1,duration:.9,ease:E},n(56.35));
   tl.to('#flake6c',{rotation:45,duration:3.5,ease:'none'},n(57.2));
   fx('ice', n(56.35));
@@ -475,7 +477,7 @@ scene('s6c', 6, (w,t0)=>{
   tl.to('#m6c',{x:'+=12',duration:.05,repeat:5,yoyo:true,ease:'none'},n(59.4));
 });
 // 7 — "Nak minta bantuan lawyer atau trustee? Kebanyakannya caj 2% ke atas. Setiap satu juta ringgit, dua puluh ribu ringgit."
-scene('s7', 7, (w,t0)=>{
+scene('s7', 8, (w,t0)=>{
   up(q('#s7 .a',0), w(55.05));                     fx('rise', w(55.05));
   up(q('#s7 .a',1), w(57.65));
   tl.fromTo('#s7 .huge',{scale:2,autoAlpha:0},{scale:1,autoAlpha:1,duration:.6,ease:'expo.out'},w(58.25));
@@ -485,7 +487,7 @@ scene('s7', 7, (w,t0)=>{
   count('#m7', 20000, w(61.4), 1.1, v=>'= '+rm(v)); fx('counter', w(61.4), {d:1.1}); fx('cash', w(62.5));
 });
 // 8 — "Sebab itu, Wasiyyah Berhad perkenalkan Wasitah Intan. Kami bantu uruskan pusaka anda, sehingga dapat Surat Kuasa."
-scene('s8', 8, (w,t0)=>{
+scene('s8', 9, (w,t0)=>{
   tl.fromTo('#glow',{autoAlpha:0},{autoAlpha:1,duration:1},t0);
   up('#s8 .p', w(63.4));                           fx('rise', w(63.4));
   tl.fromTo('#s8 .logo',{autoAlpha:0,scale:.5,rotation:-6},{autoAlpha:1,scale:1,rotation:0,duration:1,ease:'back.out(1.6)'},w(65.8));
@@ -493,15 +495,15 @@ scene('s8', 8, (w,t0)=>{
   up('#s8 .h3', w(67.35));                         fx('rise', w(67.35));
 });
 // 9 — "Tiada caj selepas kematian. Hanya RM32.40 sebulan, selama 15 tahun. Kami uruskan aset sehingga 2 juta ringgit."
-scene('s8b', 9, (w,t0)=>{
+scene('s8b', 10, (w,t0)=>{
   pop('#s8b .pill', w(71.35));                     fx('pop', w(71.35));
   up('#s8b .p', w(73.6));
   pop('#s8b .price', w(73.95), {s:.4,d:.8});       fx('cash', w(73.95));
   [76.6, 78.35, 79.9].forEach((x,k)=>{ up(q('#s8b .t',k), w(x), {y:40}); fx('check', w(x), {p:[1,1.26,1.5][k]}); });
-  tl.to('#glow',{autoAlpha:0,duration:1},END[9]-1);
+  tl.to('#glow',{autoAlpha:0,duration:1},END[10]-1);
 });
 // 10 — "Bandingkan. Aset 2 juta, caj lawyer 40 ribu ke atas. Wasitah Intan? Jumlahnya RM5,832 sahaja."
-scene('s9', 10, (w,t0)=>{
+scene('s9', 11, (w,t0)=>{
   up(q('#s9 .a',0), w(81.45));                     fx('rise', w(81.45));
   up(q('#s9 .a',1), w(82.6));
   tl.fromTo('#f1',{scaleX:0},{scaleX:1,duration:1.6,ease:'power2.out'},w(83.6));
@@ -511,14 +513,14 @@ scene('s9', 10, (w,t0)=>{
   tl.fromTo('#v2',{scale:1},{scale:1.12,duration:.3,repeat:1,yoyo:true,transformOrigin:'0 50%'},w(89.2));
   fx('success', w(89.2));
   up(q('#s9 .a',2), w(90.6));
-  pop('#mo9', WN(10)(101.55));                     fx('check', WN(10)(101.55), {p:1.26});
+  pop('#mo9', WN(11)(101.55));                     fx('check', WN(10)(101.55), {p:1.26});
 });
 // 11 — "Bila apa-apa berlaku pada anda, keluarga tak perlu cari lawyer atau trustee. Kami yang bantu, sampai dapat Surat Kuasa."
-scene('s10', 11, (w,t0)=>{
+scene('s10', 12, (w,t0)=>{
   [91.8, 94.05, 96.75].forEach((x,k)=>{ up(q('#s10 .a',k), w(x)); fx('rise', w(x)); });
 });
 // 13 — "Dan bezanya bila ada dokumen hibah, dokumen itu dibentangkan semasa bicara kuasa, supaya aset tersebut terkeluar dari bahagian faraid."
-scene('s11', 12, (w,t0)=>{
+scene('s11', 5, (w,t0)=>{
   up('#s11 .h2', w(107.6));                        fx('rise', w(107.6));
   up('#boxF', w(108.0));
   pop('#s11 .achip', w(108.2), {st:.12});          for(let k=0;k<4;k++) fx('pop', w(108.2)+k*.12, {p:1+k*.07,g:.7});
