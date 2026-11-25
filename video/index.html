@@ -300,15 +300,6 @@
     <div class="h3 a" style="color:var(--muted)">Kami bantu proses dokumen<br>sehingga dapat <b style="color:var(--cream)">Surat Kuasa</b><br>&amp; <b style="color:var(--cream)">Perintah Pembahagian</b>.</div>
   </section>
 
-  <section class="scene" id="s10b">
-    <div class="p a">Dengan <b class="gold">Perintah Pembahagian</b>,<br>keluarga boleh terus ke</div>
-    <div class="dest">
-      <div class="card d"><div class="icon"><svg class="ic" viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11"/><rect x="3" y="11" width="18" height="6" rx="2"/><circle cx="7.5" cy="17" r="1.8"/><circle cx="16.5" cy="17" r="1.8"/></svg></div><div class="n">JPJ</div><div class="d">Tukar nama<br>kenderaan</div></div>
-      <div class="card d"><div class="icon"><svg class="ic" viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg></div><div class="n">Pejabat Tanah</div><div class="d">Tukar nama<br>geran</div></div>
-      <div class="card d"><div class="icon"><svg class="ic" viewBox="0 0 24 24"><path d="M3 9l9-5 9 5"/><path d="M4 9h16"/><path d="M6 9v8M10 9v8M14 9v8M18 9v8"/><path d="M3 20h18"/></svg></div><div class="n">Bank</div><div class="d">Cairkan<br>duit</div></div>
-    </div>
-    <div class="h2 a"><span class="green">Aset tak lagi terbeku.</span></div>
-  </section>
 
   <!-- S11 HIBAH -->
   <section class="scene" id="s11" style="justify-content:flex-start">
@@ -330,7 +321,16 @@
     <div class="logo a"><div class="n">WASITAH<br>INTAN</div><div class="s">OLEH WASIYYAH BERHAD</div></div>
     <div class="p" id="claim" style="font-size:34px;margin-top:-6px">Syarikat amanah patuh syariah<br><b style="color:var(--cream)">terbesar di Malaysia</b></div>
     <div class="price a" style="margin-top:0"><span class="rm" style="font-size:50px">RM</span><span class="amt" style="font-size:120px">32.40</span><span class="per">/bulan</span></div>
-    <div class="tick a" style="justify-content:center;width:100%;flex-direction:column;gap:8px;padding:30px 34px"><div style="font-size:36px;color:var(--muted)">Hubungi kami: <b style="color:var(--cream)">Penasihat Elsa</b></div><div style="font-size:64px;font-weight:900;color:var(--gold2);letter-spacing:.02em">019-660 5789</div></div>
+  </section>
+
+  <!-- S13 CTA (ending hook) -->
+  <section class="scene" id="s13">
+    <div class="icon" id="ctaIcon" style="width:150px;height:150px"><svg class="ic" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M12 11.5l3 1.2v2.4c0 2-1.4 3.1-3 3.5-1.6-.4-3-1.5-3-3.5v-2.4z"/></svg></div>
+    <div class="h2" id="ctaQ">Nak urusan pusaka keluarga<br><span class="gold">lebih mudah?</span></div>
+    <div class="logo" id="ctaYa" style="display:flex;align-items:center;gap:30px;padding:40px 64px"><div class="n" style="font-size:118px;white-space:nowrap">BALAS YA</div>
+      <svg viewBox="0 0 24 24" style="width:100px;height:100px;fill:#1b1406"><path d="M4 4l17 8-17 8 3-8z"/></svg></div>
+    <div id="ctaBantu" style="border:3px solid var(--gold);color:var(--gold2);font-size:46px;font-weight:800;letter-spacing:.2em;padding:20px 50px;border-radius:20px">UNTUK SAYA BANTU</div>
+    <div id="ctaC"><div style="font-size:38px;color:var(--muted);font-weight:600">Penasihat Elsa</div><div style="font-size:84px;font-weight:900;color:var(--cream);margin-top:6px">019-660 5789</div></div>
   </section>
 
   <div id="progress"><i id="bar"></i></div>
@@ -347,22 +347,23 @@ function fx(name, t, o={}){ SFX.push({name, t:+t.toFixed(3), ...o}); }
 // ---- Voiceover clips: [start, end, extra pause after] in the source VO file (seconds).
 // Cut points sit in the silences between babak; each babak's scene lasts clip + pause.
 const VO_SRC = 'vo/info_wasitah_3.wav';
+const SPD = 1.1;   // voiceover tempo (pitch preserved) — everything below follows it
 const CLIPS = [
-  [0.00, 4.98, 1.6],    // 1 hook
-  [4.98, 12.19, 0.6],    // 2 aset beku
-  [12.19, 21.36, 0.5],    // 3 surat kuasa & perintah pembahagian
-  [21.36, 33.54, 0.8],    // 4 garis masa
-  [33.54, 44.07, 0.5],    // 5 bicara kuasa
-  [44.07, 56.00, 0.3],    // 6 kata sepakat
-  [56.00, 60.50, 0.9],    // 7 RM90 bilion
-  [60.50, 70.71, 1.0],    // 8 caj trustee
-  [70.71, 79.51, 0.4],    // 9 Wasitah Intan
-  [79.51, 91.07, 0.6],    // 10 harga
-  [91.07, 103.71, 0.8],    // 11 banding
-  [103.71, 111.38, 0.3],    // 12 keluarga
-  [111.38, 118.47, 0.8],    // 13 JPJ / tanah / bank
-  [119.68, 129.66, 2.2],    // 14 hibah (skips the read-out "13")
-  [129.66, 142.92, 2.0],    // 15 penutup
+  [0.00, 4.98, 1.0],      // 1 hook
+  [4.98, 12.19, 0.3],     // 2 aset beku
+  [12.19, 21.36, 0.3],    // 3 surat kuasa & perintah pembahagian
+  [21.36, 33.54, 0.5],    // 4 garis masa
+  [33.54, 44.07, 0.3],    // 5 bicara kuasa
+  [44.07, 56.00, 0.2],    // 6 kata sepakat
+  [56.00, 60.50, 0.6],    // 7 RM90 bilion
+  [60.50, 70.71, 0.6],    // 8 caj trustee
+  [70.71, 79.51, 0.3],    // 9 Wasitah Intan
+  [79.51, 91.07, 0.4],    // 10 harga
+  [91.07, 103.71, 0.5],   // 11 banding
+  [103.71, 111.38, 0.3],  // 12 keluarga  (JPJ / tanah / bank babak removed)
+  [119.68, 129.66, 1.6],  // 13 hibah (skips the read-out "13")
+  [129.66, 140.90, 0.2],  // 14 penutup: lindungi aset… terbesar di Malaysia
+  [140.90, 142.92, 3.2],  // 15 CTA: hubungi kami hari ini
 ];
 // Animation cues below were written against the first voiceover take (info_wasitah_1).
 // REMAP pairs [time in take 1, time in current take] for every word both takes share, found by
@@ -375,13 +376,13 @@ function R(x){
 }
 const LEAD = 0.3;
 const VO = []; let T = LEAD;
-CLIPS.forEach(([a,b,pad])=>{ VO.push({a, b, at:+T.toFixed(3)}); T += (b-a) + pad; });
+CLIPS.forEach(([a,b,pad])=>{ VO.push({a, b, at:+T.toFixed(3)}); T += (b-a)/SPD + pad; });
 VO[0].scene = 0;                       // first scene starts at 0, not at LEAD
 const START = VO.map((v,i)=> i===0 ? 0 : v.at);
 const END = START.slice(1).concat([T]);
 // map a timestamp in the source VO (e.g. when a word is spoken) to video time
-const W = i => x => VO[i].at + (R(x) - VO[i].a);      // x = time in take 1
-const WN = i => x => VO[i].at + (x - VO[i].a);        // x = time in current take
+const W = i => x => VO[i].at + (R(x) - VO[i].a)/SPD;      // x = time in take 1
+const WN = i => x => VO[i].at + (x - VO[i].a)/SPD;        // x = time in current take
 
 function scene(id, i, build){
   const s = '#'+id, t0 = START[i], t1 = END[i];
@@ -516,14 +517,8 @@ scene('s9', 10, (w,t0)=>{
 scene('s10', 11, (w,t0)=>{
   [91.8, 94.05, 96.75].forEach((x,k)=>{ up(q('#s10 .a',k), w(x)); fx('rise', w(x)); });
 });
-// 12 — "Dah dapat Surat Kuasa, keluarga boleh terus ke JPJ, Pejabat Tanah dan bank, untuk tukar nama dan cairkan duit."
-scene('s10b', 12, (w,t0)=>{
-  up('#s10b .p', w(99.7));                         fx('rise', w(99.7));
-  [102.3, 103.3, 104.15].forEach((x,k)=>{ pop(q('#s10b .dest > .card',k), w(x)); fx('pop', w(x), {p:1+k*.1}); });
-  up('#s10b .h2', w(106.1));                       fx('success', w(106.1));
-});
 // 13 — "Dan bezanya bila ada dokumen hibah, dokumen itu dibentangkan semasa bicara kuasa, supaya aset tersebut terkeluar dari bahagian faraid."
-scene('s11', 13, (w,t0)=>{
+scene('s11', 12, (w,t0)=>{
   up('#s11 .h2', w(107.6));                        fx('rise', w(107.6));
   up('#boxF', w(108.0));
   pop('#s11 .achip', w(108.2), {st:.12});          for(let k=0;k<4;k++) fx('pop', w(108.2)+k*.12, {p:1+k*.07,g:.7});
@@ -541,17 +536,27 @@ scene('s11', 13, (w,t0)=>{
   up('#s11 .p', w(115.4));
 });
 // 14 — "Lindungi aset anda. Mudahkan urusan keluarga. Wasitah Intan, oleh Wasiyyah Berhad. Hubungi kami hari ini."
-scene('s12', 14, (w,t0)=>{
+scene('s12', 13, (w,t0)=>{
   tl.fromTo('#glow',{autoAlpha:0},{autoAlpha:1,duration:1},t0);
   up(q('#s12 .a',0), w(116.2));                    fx('rise', w(116.2));
   tl.fromTo(q('#s12 .a',1),{autoAlpha:0,scale:.6},{autoAlpha:1,scale:1,duration:.9,ease:'back.out(1.6)'},w(119.9));
   fx('riser', w(119.9)-1.1, {g:.7}); fx('reveal', w(119.9));
   pop(q('#s12 .a',2), w(120.8));                   fx('cash', w(120.8), {g:.6});
-  up('#claim', WN(14)(137.3));                     fx('rise', WN(14)(137.3));
-  up(q('#s12 .a',3), w(122.75));                   fx('chime', w(122.75));
+  up('#claim', WN(13)(137.3));                     fx('rise', WN(13)(137.3));
+});
+// 15 — "Hubungi kami hari ini." → ending hook card (BALAS YA)
+scene('s13', 14, (w,t0)=>{
+  const n = WN(14);
+  pop('#ctaIcon', t0+.1, {s:.4});                  fx('pop', t0+.1);
+  up('#ctaQ', t0+.35);                             fx('rise', t0+.35);
+  tl.fromTo('#ctaYa',{autoAlpha:0,scale:.6},{autoAlpha:1,scale:1,duration:.6,ease:'back.out(1.8)'},n(141.13));
+  fx('reveal', n(141.13), {g:.8});
+  tl.to('#ctaYa',{scale:1.05,duration:.35,repeat:5,yoyo:true,ease:'sine.inOut'},n(141.13)+.8);
+  up('#ctaBantu', n(141.13)+.5);
+  up('#ctaC', n(141.13)+1.0);                      fx('chime', n(141.13)+1.0);
 });
 const DURATION = +T.toFixed(3);
-window.SFX = SFX; window.VO = VO; window.VO_SRC = VO_SRC;
+window.SFX = SFX; window.VO = VO.map(v=>({a:v.a/SPD, b:v.b/SPD, at:v.at})); window.VO_SRC = VO_SRC; window.VO_TEMPO = SPD;
 
 // background drift + progress
 tl.fromTo('#pattern',{x:0,y:0,rotation:0},{x:-160,y:-160,rotation:3,duration:DURATION,ease:'none'},0);
