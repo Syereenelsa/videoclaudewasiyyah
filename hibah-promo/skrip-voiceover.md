@@ -2,60 +2,68 @@
 
 Nada: mesra, tenang, yakin, macam bercakap dengan kawan. Tak perlu nada "iklan jualan" yang keras.
 Kelajuan: sederhana. Berhenti seketika di tempat bertanda "…".
-Masa di bawah ikut video preview sekarang. Lepas rakaman siap, video akan diselaraskan ikut suara.
+Lepas rakaman siap, video akan diselaraskan ikut suara. Babak 7B baru ditambah. Kalau tak nak rakam semua sekali, rakam babak 7B saja dan ia akan disisipkan.
 
 ---
 
-**1. HOOK (0:00–0:05)**
+**1. HOOK**
 Rumah anda masih dalam loan?
 Rumah dah ada… tapi masa depan keluarga, dah dirancang?
 
-**2. ANSURAN (0:05–0:12)**
-Bertahun-tahun anda bayar ansuran.
+**2. ANSURAN**
+Bertahun-tahun anda bayar ansuran. (sebut "ansuran" dengan jelas)
 Setiap bulan, sebahagian gaji untuk rumah tempat keluarga berteduh.
 
-**3. PERSOALAN (0:12–0:18)**
+**3. PERSOALAN**
 Tapi pernah terfikir…
 kalau sesuatu berlaku pada anda, apa jadi pada rumah ini?
 
-**4. REALITI (0:18–0:25)**
+**4. REALITI**
 Rumah masih ada. Baki pinjaman masih ada.
 Keluarga masih perlukan tempat tinggal.
 Bila pemilik meninggal dunia, urusan boleh jadi rumit tanpa perancangan.
 
-**5. KUSUT (0:25–0:31)**
+**5. KUSUT**
 Keluarga mungkin perlu berdepan dengan urusan pusaka, dokumentasi… dan pihak bank.
 
-**6. PENYELESAIAN (0:31–0:37)**
+**6. PENYELESAIAN**
 Sebab itu ada Hibah Bersyarat daripada Wasiyyah Shoppe Berhad.
 Rumah belum habis bayar pun, anda dah boleh mula merancang.
 
-**7. BEZANYA (0:37–0:47)**
+**7. BEZANYA**
 Bezanya?
 Tanpa hibah, rumah diagih ikut faraid.
 Dengan dokumen hibah, ia boleh dibentangkan semasa bicara kuasa, supaya rumah dikeluarkan daripada faraid dan sampai kepada penerima pilihan anda.
 
-**8. BUKTI (0:47–0:53)**
+**7B. RUMAH JOINT NAME (BARU)**
+Rumah atas nama suami isteri?
+Ramai sangka, bila suami meninggal dunia, rumah terus jadi milik isteri seratus peratus.
+Realitinya… lima puluh peratus bahagian suami jadi harta pusaka, dan diagih ikut faraid kepada bapa, ibu, isteri dan anak-anak.
+Sebab itu, hibah dibuat ikut pemilik.
+Satu pemilik, satu dokumen hibah. Dua pemilik, dua dokumen hibah.
+Supaya bahagian suami dan bahagian isteri, masing-masing sampai kepada penerima pilihan.
+
+**8. BUKTI**
 Hibah digital Wasiyyah telah mendapat pengesahan daripada Mahkamah Syariah, dan digunakan oleh lebih lima belas ribu pelanggan.
 
-**9. HARGA (0:53–1:00)**
+**9. HARGA**
 Harga asal, dua ribu enam ratus ringgit.
 Sekarang… cuma empat ratus sembilan puluh sembilan ringgit sahaja!
 
-**10. 4 LANGKAH (1:00–1:15)**
+**10. 4 LANGKAH**
 Caranya mudah.
 Satu, daftar dan bayar melalui pautan yang kami beri.
 Dua, muat naik S-N-P, surat tawaran loan, MRTA atau MRTT, dan IC penerima hibah.
 Tiga, skrip akad kami siapkan dalam seminggu.
 Empat, akad ijab qabul secara online melalui aplikasi UsraHDD.
-Siap! Rumah anda dirancang untuk sampai kepada penerima yang anda pilih.
+Siap! (nada yakin, bukan soalan) Rumah anda dirancang untuk sampai kepada penerima yang anda pilih.
 
-**11. CTA (1:15–1:21)**
+**11. CTA**
 Nak tahu rumah anda layak?
 WhatsApp kami sekarang di kosong satu sembilan, enam enam kosong, lima tujuh lapan sembilan.
 Promosi sehingga tiga puluh satu Disember ini.
 
-**12. PENUTUP (1:21–akhir)**
+**12. PENUTUP**
 Wasiyyah Shoppe Berhad.
 Perancangan harta untuk ketenangan keluarga.
 Terma dan syarat dikenakan.
@@ -72,6 +80,8 @@ Terma dan syarat dikenakan.
 | SNP | es-en-pi |
 | MRTA / MRTT | em-ar-ti-ei / em-ar-ti-ti |
 | UsraHDD | us-ra, eic-di-di |
+| 50% | lima puluh peratus |
+| 100% | seratus peratus |
 
 ## Tip rakaman
 
