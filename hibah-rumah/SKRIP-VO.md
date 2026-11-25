@@ -1,6 +1,6 @@
 # Skrip Voice Over: Promosi Hibah Rumah RM499
 
-> **Rakaman versi 2 sudah dimasukkan** (`assets/voice.wav`, 2:32, dengan ayat 100%). Video kini 2:33 dan setiap babak diselaraskan dengan rakaman, jadi masa dalam jadual di bawah ialah masa asal sebelum rakaman.
+> **Rakaman versi 2 sudah dimasukkan** (`assets/voice.wav`, 2:32, dengan ayat 100%). Video kini 2:30 (suara dipercepat 1.075×, nada kekal) dan setiap babak diselaraskan dengan rakaman, jadi masa dalam jadual di bawah ialah masa asal sebelum rakaman.
 
 **Durasi video:** 1:46.5 (106.5 saat) · **Format:** 1080×1920 (Reels / TikTok / Shorts)
 **Nada:** mesra, tenang, macam bercakap dengan kawan. Perlahan sedikit pada babak 1 dan 8 (emosi), lebih bertenaga pada babak 6 (promosi).

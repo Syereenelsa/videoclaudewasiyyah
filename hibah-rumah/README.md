@@ -1,6 +1,6 @@
 # Hibah Rumah RM499: infographic video (HyperFrames)
 
-Vertical 1080×1920 motion-graphic infographic, 2:41, timed to the recorded voice-over. Soft-blue background, navy cards and text, gold accents.
+Vertical 1080×1920 motion-graphic infographic, 2:30, timed to the recorded voice-over. Soft-blue background, navy cards and text, gold accents.
 No footage: every visual is HTML/SVG animated with GSAP.
 
 - **Voice-over script with timecodes:** [`SKRIP-VO.md`](SKRIP-VO.md)
@@ -22,6 +22,9 @@ No footage: every visual is HTML/SVG animated with GSAP.
 | 8 | 2:21.2 – 2:41.3 | Closing line, tamat 30 November, "Reply YA" button |
 
 Faraid example (scene 4): husband dies, house RM1 juta, heirs wife 1/8 (RM125,000), mother 1/6 (RM166,667), father 1/6 (RM166,667), residue RM541,666 split 2:1 to son (RM361,111) and daughter (RM180,555). The voice pauses for 8 s after "...dibahagikan mengikut faraid" (`VO_CUT`/`VO_GAP` in `tools/build.py`; two `<audio>` clips of the same recording).
+
+## Speed
+The film runs at 1.075× so it lands on 2:30 (`TARGET`, `SPEED` and `TS` in `tools/build.py`). Cue values in the build script stay in recording seconds and are scaled at build time; the voice is time-stretched with pitch kept by `tools/make_voice.sh` (`assets/voice_1x.wav` → `assets/voice.wav`). The scene table above is in recording seconds; multiply by 0.93 for film time.
 
 ## Sound
 - No background music (sound effects only).

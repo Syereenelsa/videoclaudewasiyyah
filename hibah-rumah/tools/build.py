@@ -29,8 +29,15 @@ FARAID = [("Isteri","1/8",125000),("Ibu","1/6",166667),("Bapa","1/6",166667),("A
 BILA_CUES = [3.54, 6.75, 8.96, 11.12, 14.58, 17.25]   # the six checklist rows
 CARA_DOCS = [9.43, 10.85, 12.7, 14.35]                # the four documents
 
+# The whole film runs faster by SPEED: the voice file is time-stretched (pitch kept,
+# tools/make_voice.sh) and every cue below is scaled by TS = 1/SPEED. Cue values in
+# this file stay in "recording seconds"; scaling happens here and in build().
+TARGET = 150.0                 # requested running time (2:30)
+SPEED = TOTAL / TARGET         # ~1.075x
+TS = 1 / SPEED
+
 def S(name, off=0.0):
-    return round(SCENES[name][0] + off, 3)
+    return round((SCENES[name][0] + off) * TS, 3)
 
 # ---------------------------------------------------------------- icons
 ICONS = {
@@ -86,7 +93,7 @@ def sfx(name, t, vol):
 # against the pauses in assets/voice.wav. Offsets are seconds from scene start.
 # hook
 sfx("whoosh", S("hook", 0.0), .30); sfx("pop", S("hook", 2.12), .26)
-sfx("ding", S("hook", 2.15), .24); sfx("pop", S("hook", 4.4), .22)
+sfx("ding", S("hook", 2.15), .24); sfx("pop", S("hook", 3.9), .22)
 sfx("riser", S("hook", 3.4), .22); sfx("impact", S("hook", 5.0), .40)
 # bila
 sfx("whoosh", S("bila"), .28); sfx("stamp", S("bila", .45), .32)
@@ -160,7 +167,8 @@ def sfx_tags():
 
 def scene_tags(name, inner):
     a, b = SCENES[name]
-    return (f'      <div id="sc-{name}" class="clip scene" data-start="{a}" data-duration="{round(b - a, 3)}" '
+    a, b = a * TS, b * TS
+    return (f'      <div id="sc-{name}" class="clip scene" data-start="{round(a, 3)}" data-duration="{round(b - a, 3)}" '
             f'data-track-index="2">\n{inner}\n      </div>')
 
 # deterministic sparkle burst for the price slam
@@ -673,7 +681,7 @@ SLAM('#hk-l2b',H+1.85,{s:1.5});
 tl.to('#hk-house .win',{fill:'#FFD36E',duration:0.35,ease:'power2.out'},H+2.15);
 tl.to('#hk-glow',{opacity:1,duration:0.6},H+2.15);
 IN('#hk-l3',H+3.7);
-POP('#hk-pill',H+4.4);
+POP('#hk-pill',H+3.9);
 tl.to('#hk-house .win',{fill:'#3E6290',duration:0.12,ease:'none'},H+5.0);
 tl.to('#hk-glow',{opacity:0,duration:0.25},H+5.0);
 tl.to('#hk-house',{opacity:.55,duration:0.4},H+5.05);
@@ -818,9 +826,9 @@ window.__timelines["main"] = tl;
 '''
 
 def build():
-    consts = (f"const TOTAL={TOTAL};const H={S('hook')},B={S('bila')},T={S('tunggu')},Z={S('beza')},"
+    consts = (f"const TOTAL={round(TOTAL * TS, 3)};const H={S('hook')},B={S('bila')},T={S('tunggu')},Z={S('beza')},"
               f"K={S('kenali')},R={S('seratus')},P={S('promo')},C={S('cara')},A={S('cta')};"
-              f"const BILA_CUES={BILA_CUES},CARA_DOCS={CARA_DOCS},FR={[r[2] for r in FARAID]};")
+              f"const BILA_CUES={[round(x * TS, 3) for x in BILA_CUES]},CARA_DOCS={[round(x * TS, 3) for x in CARA_DOCS]},FR={[r[2] for r in FARAID]};")
     scenes = "\n".join([
         scene_tags("hook", HOOK), scene_tags("bila", BILA), scene_tags("tunggu", TUNGGU),
         scene_tags("beza", BEZA), scene_tags("kenali", KENALI), scene_tags("promo", PROMO),
@@ -836,7 +844,7 @@ def build():
     <style>{CSS}</style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="{TOTAL}" data-width="1080" data-height="1920">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="{round(TOTAL * TS, 3)}" data-width="1080" data-height="1920">
       <div id="bg" data-layout-ignore><div id="bg-pattern"></div><div class="orb" id="orb1"></div><div class="orb" id="orb2"></div><div class="orb" id="orb3"></div></div>
       <div id="brand" data-layout-ignore><span>Hibah Digital Wasiyyah</span></div>
       <div id="progress" data-layout-ignore><i></i></div>
@@ -846,8 +854,8 @@ def build():
       <div id="flash" data-layout-ignore></div>
 
       <!-- Voice-over (cleaned: highpass, denoise, compression, -16 LUFS) -->
-      <audio id="voice" class="clip" src="assets/voice.wav" data-start="0" data-duration="{VO_CUT}" data-volume="1" data-track-index="0"></audio>
-      <audio id="voice2" class="clip" src="assets/voice.wav" data-start="{round(VO_CUT + VO_GAP, 3)}" data-media-start="{VO_CUT}" data-duration="{round(151.88 - VO_CUT, 3)}" data-volume="1" data-track-index="0"></audio>
+      <audio id="voice" class="clip" src="assets/voice.wav" data-start="0" data-duration="{round(VO_CUT * TS, 3)}" data-volume="1" data-track-index="0"></audio>
+      <audio id="voice2" class="clip" src="assets/voice.wav" data-start="{round((VO_CUT + VO_GAP) * TS, 3)}" data-media-start="{round(VO_CUT * TS, 3)}" data-duration="{round((151.88 - VO_CUT) * TS, 3)}" data-volume="1" data-track-index="0"></audio>
 
       <hf-audio-group id="sfx"></hf-audio-group>
 {sfx_tags()}
@@ -859,6 +867,7 @@ def build():
   </body>
 </html>
 '''
+    html = re.sub(r"\b([HBTZKRPCA])\+(\d+(?:\.\d+)?)", lambda m: f"{m.group(1)}+{round(float(m.group(2)) * TS, 3)}", html)
     html = expand_icons(html)
     (ROOT / "index.html").write_text(html, encoding="utf-8")
     print(f"index.html written: {len(html)} bytes, {len(SFX)} sfx")
