@@ -16,8 +16,8 @@ No footage: every visual is HTML/SVG animated with GSAP.
 | 3 | 0:26.5 – 0:38.8 | Jangan tunggu sehingga rumah habis bayar (loan bar + stamp) |
 | 4 | 0:38.8 – 1:04.2 | Tanpa vs dengan dokumen hibah (faraid pie vs 3-step flow) |
 | 5 | 1:04.2 – 1:17.3 | Kenali Hibah Digital Wasiyyah: press clippings (Berita Harian, DagangNews) + 3 proof points |
-| 5b | 1:17.3 – 1:22.8 | Setakat ini, 100% hibah di Wasiyyah berjaya mendapat pengesahan (ring fills to 100%) |
-| 6 | 1:22.8 – 1:40.3 | Promosi: RM2,600 struck out, RM499 slam, RM47 × 12, JIMAT RM2,101 |
+| 5b | 1:17.3 – 1:24 | Setakat ini, 100% hibah di Wasiyyah berjaya mendapat pengesahan: ring fills to 100%, proof clipping of the company profile 2025 p.5 statistics with the "100% Hibah Verification Success Rate" cell circled |
+| 6 | 1:24 – 1:40.3 | Promosi: RM2,600 struck out, RM499 slam, RM47 × 12, JIMAT RM2,101 |
 | 7 | 1:40.3 – 2:13.2 | 4 langkah (documents; draf untuk semakan; akad dipantau HQ Wasiyyah via UsraHDD) |
 | 8 | 2:13.2 – 2:33.3 | Closing line, tamat 30 November, "Reply YA" button |
 
@@ -39,7 +39,7 @@ npx --yes hyperframes@0.9.66 render --quality draft -o renders/hibah-rumah-previ
 Scene start/end times live in `SCENES` at the top of `tools/build.py`; animation and SFX offsets inside a scene follow it.
 
 ## To do before final
-1. Scene 5b (100%) follows the voice-over wording. The company profile it refers to (Scribd, page 5) could not be opened from here; add any figures from it once supplied.
+1. Scene 5b proof: `assets/press/profil-2025-ms5-statistik.jpg`, cropped from the user's screenshot of Wasiyyah Shoppe Berhad Company Profile 2025, page 5 (statistics panel).
 2. Scene 5 press clippings, sources:
    - Berita Harian, 1 Apr 2024, "Hibah digital Wasiyyah diiktiraf Mahkamah Syariah": https://www.bharian.com.my/bisnes/korporat/2024/04/1230342/hibah-digital-wasiyyah-diiktiraf-mahkamah-syariah . Its photo is blocked for automated download, so this clipping is typeset from the real headline, date and opening paragraph. To use the real photo or a screenshot, save it in `assets/press/` and add an `<img>` to `#kn-bh`.
    - DagangNews, 11 Feb 2026, "Wasiyyah Cipta Sejarah Pendigitalan Hibah, Diiktiraf Malaysia Book of Records": https://www.dagangnews.com/article/kolumnis-terkini/wasiyyah-cipta-sejarah-pendigitalan-hibah-diiktiraf-malaysia-book-records-64907 . Photo: `assets/press/dagangnews-mbor.jpg` (from the article).

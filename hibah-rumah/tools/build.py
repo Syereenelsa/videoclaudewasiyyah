@@ -16,8 +16,8 @@ SCENES = {            # name: (start, end), aligned to assets/voice.wav
     "tunggu":  (26.5, 38.8),
     "beza":    (38.8, 64.2),
     "kenali":  (64.2, 77.3),
-    "seratus": (77.3, 82.75),
-    "promo":   (82.75, 100.25),
+    "seratus": (77.3, 84.0),
+    "promo":   (84.0, 100.25),
     "cara":    (100.25, 133.2),
     "cta":     (133.2, TOTAL),
 }
@@ -113,13 +113,13 @@ sfx("riser", S("seratus", 1.7), .22)
 for k in range(8):
     sfx("tick", S("seratus", 2.1 + k * .15), .24)
 sfx("impact", S("seratus", 3.3), .40); sfx("ding", S("seratus", 3.32), .26)
-sfx("stamp", S("seratus", 3.96), .40)
+sfx("stamp", S("seratus", 3.96), .40); sfx("swish", S("seratus", 1.0), .22); sfx("stamp", S("seratus", 4.66), .36)
 # promo
-sfx("whoosh", S("promo"), .30); sfx("ding", S("promo", .25), .26)
-sfx("pop", S("promo", 2.95), .24); sfx("swish", S("promo", 4.3), .30)
-sfx("riser", S("promo", 5.95), .30); sfx("impact", S("promo", 7.53), .55)
-sfx("pop", S("promo", 8.15), .26); sfx("pop", S("promo", 9.06), .30)
-sfx("cash", S("promo", 12.75), .40); sfx("ding", S("promo", 15.47), .24)
+sfx("whoosh", S("promo"), .30); sfx("ding", S("promo", 0.2), .26)
+sfx("pop", S("promo", 1.7), .24); sfx("swish", S("promo", 3.05), .30)
+sfx("riser", S("promo", 4.7), .30); sfx("impact", S("promo", 6.28), .55)
+sfx("pop", S("promo", 6.9), .26); sfx("pop", S("promo", 7.81), .30)
+sfx("cash", S("promo", 11.5), .40); sfx("ding", S("promo", 14.22), .24)
 # cara
 sfx("whoosh", S("cara"), .28); sfx("pop", S("cara", .5), .24)
 for off in (3.55, 7.76, 17.16, 22.29):
@@ -329,10 +329,10 @@ CARA = f'''
 '''
 
 SERATUS = f'''
-        <div class="col" style="top:360px">
+        <div class="col" style="top:300px">
           <span class="kick" id="sr-kick">Setakat ini</span>
-          <span class="t-md" id="sr-l1" style="margin-top:26px">hibah di <span class="goldt">Wasiyyah</span></span>
-          <div class="ringwrap" id="sr-ringwrap">
+          <span class="t-md" id="sr-l1" style="margin-top:18px">hibah di <span class="goldt">Wasiyyah</span></span>
+          <div class="ringwrap sm" id="sr-ringwrap">
             <svg width="440" height="440" viewBox="0 0 440 440">
               <circle cx="220" cy="220" r="185" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="28"/>
               <circle id="sr-arc" cx="220" cy="220" r="185" fill="none" stroke="url(#srg)" stroke-width="28" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" transform="rotate(-90 220 220)"/>
@@ -340,8 +340,14 @@ SERATUS = f'''
             </svg>
             <span class="ringnum gold" id="sr-num">100%</span>
           </div>
-          <span class="t-lg greent" id="sr-l2" style="margin-top:34px">BERJAYA</span>
+          <span class="t-lg greent" id="sr-l2" style="margin-top:22px">BERJAYA</span>
           <span class="t-md center-t" id="sr-l3" style="margin-top:6px">mendapat <span class="goldt">pengesahan hibah</span></span>
+          <!-- Proof: Wasiyyah Shoppe Berhad company profile 2025, page 5 (statistics panel) -->
+          <div class="proof" id="sr-proof" style="margin-top:34px" data-layout-allow-overlap data-layout-allow-occlusion>
+            <div class="proofhd">@@file:26:#FFFFFF:2.4@@ Profil Syarikat Wasiyyah 2025 &middot; ms. 5</div>
+            <div class="proofimg"><img src="assets/press/profil-2025-ms5-statistik.jpg" alt="Statistik profil syarikat Wasiyyah 2025: 100% Hibah Verification Success Rate"><i class="hl100" id="sr-hl"></i></div>
+            <div class="bukti" id="sr-bukti">BUKTI</div>
+          </div>
         </div>
 '''
 
@@ -504,6 +510,18 @@ html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:
 .ringwrap { position:relative; width:440px; height:440px; margin-top:30px; flex:none; }
 .ringwrap svg { position:absolute; inset:0; }
 .ringnum { position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); text-align:center; font-weight:900; font-size:112px; letter-spacing:-.04em; line-height:1; }
+.ringwrap.sm { width:300px; height:300px; margin-top:22px; }
+.ringwrap.sm svg { width:300px; height:300px; }
+.ringwrap.sm .ringnum { font-size:80px; }
+.proof { position:relative; width:780px; flex:none; background:#FFFFFF; border-radius:18px; padding:0 18px 18px;
+  box-shadow:0 22px 48px rgba(20,55,100,.30); transform:rotate(-1.5deg); }
+.proofhd { margin:0 -18px 16px; padding:12px 20px; background:#0F2B50; color:#FFFFFF; font-weight:700; font-size:26px;
+  border-radius:18px 18px 0 0; display:flex; align-items:center; gap:12px; text-align:left; }
+.proofimg { position:relative; width:744px; height:317px; border-radius:10px; overflow:visible; }
+.proofimg img { width:100%; height:100%; display:block; border-radius:10px; }
+.hl100 { position:absolute; left:482px; top:156px; width:202px; height:112px; border:5px solid #D2334A; border-radius:20px; opacity:0;
+  box-shadow:0 0 0 6px rgba(210,51,74,.18); }
+#sr-bukti { left:auto; right:-34px; top:356px; font-size:38px; }
 /* cara */
 .rail { position:absolute; left:163px; top:596px; width:6px; height:690px; border-radius:6px; background:rgba(255,255,255,.12); overflow:hidden; }
 .rail i { position:absolute; inset:0; transform-origin:50% 0; transform:scaleY(0); background:linear-gradient(180deg,#F2CF76,#C9962E); }
@@ -677,39 +695,43 @@ COUNT('#kn-num',0,15000,K+7.27,1.5,v=>NUM(v)+'+');
 IN('#kn-i2',K+10.05,{x:-60,y:0});
 OUT('#sc-kenali > *',K+12.8);
 
-/* 5b SERATUS: 100% pengesahan */
+/* 5b SERATUS: 100% pengesahan, with the company-profile proof */
 POP('#sr-kick',R+0.35);
+tl.fromTo('#sr-proof',{opacity:0,y:120,rotation:-6},{opacity:1,y:0,rotation:-1.5,duration:0.6,ease:'power3.out'},R+1.0);
 IN('#sr-l1',R+1.8);
 tl.fromTo('#sr-ringwrap',{opacity:0,scale:0.7},{opacity:1,scale:1,duration:0.45,ease:'back.out(1.8)'},R+1.6);
 tl.fromTo('#sr-arc',{strokeDashoffset:1},{strokeDashoffset:0,duration:1.2,ease:'power2.inOut'},R+2.1);
 COUNT('#sr-num',0,100,R+2.1,1.2,v=>Math.round(v)+'%','power2.inOut');
 tl.fromTo('#sr-ringwrap',{scale:1},{scale:1.08,duration:0.18,yoyo:true,repeat:1,ease:'power2.out',immediateRender:false},R+3.3);
-FLASH(R+3.3,.35);
+FLASH(R+3.3,.3);
+tl.fromTo('#sr-hl',{opacity:0,scale:1.5},{opacity:1,scale:1,duration:0.35,ease:'back.out(2)'},R+3.35);
+tl.fromTo('#sr-hl',{boxShadow:'0 0 0 6px rgba(210,51,74,.18)'},{boxShadow:'0 0 0 16px rgba(210,51,74,.10)',duration:0.5,yoyo:true,repeat:3,ease:'sine.inOut',immediateRender:false},R+3.7);
 SLAM('#sr-l2',R+3.7,{s:1.9});
 IN('#sr-l3',R+4.0,{y:12});
-OUT('#sc-seratus > *',R+5.15);
+SLAM('#sr-bukti',R+4.4,{s:2.4});
+OUT('#sc-seratus > *',R+6.4);
 
 /* 6 PROMO */
-POP('#pr-kick',P+0.25,{s:0.5});
-IN('#pr-panel',P+2.45,{y:40});
-IN('#pr-asal-l',P+2.85,{y:10}); IN('#pr-asal',P+2.95,{y:14});
-tl.fromTo('#pr-line',{scaleX:0,scaleY:1,skewX:0,rotation:-6},{scaleX:1,scaleY:1,skewX:0,rotation:-6,duration:0.35,ease:'power2.out'},P+4.3);
-tl.to('#pr-asal',{scale:0.9,opacity:.7,duration:0.3},P+4.75);
-IN('#pr-now',P+5.95,{y:12});
-SLAM('#pr-price',P+7.25,{s:2.6,d:0.28});
-FLASH(P+7.53,.6); SHAKE(P+7.53,14);
+POP('#pr-kick',P+0.2,{s:0.5});
+IN('#pr-panel',P+1.2,{y:40});
+IN('#pr-asal-l',P+1.6,{y:10}); IN('#pr-asal',P+1.7,{y:14});
+tl.fromTo('#pr-line',{scaleX:0,scaleY:1,skewX:0,rotation:-6},{scaleX:1,scaleY:1,skewX:0,rotation:-6,duration:0.35,ease:'power2.out'},P+3.05);
+tl.to('#pr-asal',{scale:0.9,opacity:.7,duration:0.3},P+3.5);
+IN('#pr-now',P+4.7,{y:12});
+SLAM('#pr-price',P+6.0,{s:2.6,d:0.28});
+FLASH(P+6.28,.6); SHAKE(P+6.28,14);
 document.querySelectorAll('#pr-burst .spk').forEach((el,i)=>{
   const a=parseFloat(el.dataset.a)*Math.PI/180, d=parseFloat(el.dataset.d);
-  tl.fromTo(el,{x:0,y:0,opacity:0,scale:0.3},{x:Math.cos(a)*d,y:Math.sin(a)*d*0.6,opacity:1,scale:1,duration:0.5,ease:'power3.out'},P+7.55);
-  tl.to(el,{opacity:0,scale:0.2,duration:0.5,ease:'power2.in'},P+8.15+(i%5)*0.06);
+  tl.fromTo(el,{x:0,y:0,opacity:0,scale:0.3},{x:Math.cos(a)*d,y:Math.sin(a)*d*0.6,opacity:1,scale:1,duration:0.5,ease:'power3.out'},P+6.3);
+  tl.to(el,{opacity:0,scale:0.2,duration:0.5,ease:'power2.in'},P+6.9+(i%5)*0.06);
 });
-POP('#pr-sahaja',P+8.15,{s:0.2});
-tl.to('#pr-price',{scale:1.05,duration:0.6,yoyo:true,repeat:3,ease:'sine.inOut'},P+8.6);
-POP('#pr-month',P+9.06);
-POP('#pr-save',P+12.75,{s:0.5});
-COUNT('#pr-savenum',0,2101,P+12.8,1.0,v=>'RM'+NUM(v));
-IN('#pr-note',P+15.1,{y:10});
-OUT('#sc-promo > *',P+17.22,0.26);
+POP('#pr-sahaja',P+6.9,{s:0.2});
+tl.to('#pr-price',{scale:1.05,duration:0.6,yoyo:true,repeat:3,ease:'sine.inOut'},P+7.35);
+POP('#pr-month',P+7.81);
+POP('#pr-save',P+11.5,{s:0.5});
+COUNT('#pr-savenum',0,2101,P+11.55,1.0,v=>'RM'+NUM(v));
+IN('#pr-note',P+13.85,{y:10});
+OUT('#sc-promo > *',P+15.97,0.26);
 
 /* 7 CARA */
 POP('#cr-kick',C+0.05);
