@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<title>Wasitah Intan 60s</title>
+<script src="gsap.min.js"></script>
+<style>
+  @font-face{font-family:JBM;font-weight:700;src:url(fonts/jetbrains-mono-latin-700-normal.woff2) format('woff2')}
+  @font-face{font-family:JBM;font-weight:800;src:url(fonts/jetbrains-mono-latin-800-normal.woff2) format('woff2')}
+  :root{
+    --bg1:#2E65A0; --bg2:#1D4878;
+    --y:#FFD24A; --cy:#93DAFF; --wh:#F3F8FF; --red:#FF6B6B; --grn:#5BE3A1; --navy:#0E2747;
+    --panel:rgba(10,30,62,.42); --line:rgba(147,218,255,.55);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#000;overflow:hidden}
+  body{font-family:JBM, "DejaVu Sans Mono", monospace;color:var(--wh)}
+  #stage{width:1080px;height:1920px;position:relative;overflow:hidden;transform-origin:0 0;
+    background:radial-gradient(90% 60% at 50% 42%, #3A76B4 0%, var(--bg1) 45%, var(--bg2) 100%)}
+  #grid{position:absolute;inset:-200px;
+    background-image:
+      linear-gradient(rgba(170,215,255,.17) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(170,215,255,.17) 2px, transparent 2px),
+      linear-gradient(rgba(170,215,255,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(170,215,255,.07) 1px, transparent 1px);
+    background-size:180px 180px,180px 180px,36px 36px,36px 36px}
+  #vig{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%, transparent 55%, rgba(8,24,52,.55) 100%)}
+  #scan{position:absolute;left:0;right:0;height:180px;top:-200px;
+    background:linear-gradient(transparent, rgba(147,218,255,.10) 70%, rgba(147,218,255,.55) 98%, transparent);pointer-events:none;z-index:8}
+
+  /* chapter bar */
+  #bar{position:absolute;left:70px;right:70px;top:120px;height:76px;border:2px solid var(--line);background:var(--panel);
+    display:flex;align-items:center;justify-content:space-between;padding:0 26px;z-index:6}
+  #barTxt{font-weight:800;font-size:30px;letter-spacing:.08em;color:var(--y);white-space:pre}
+  #dots{display:flex;gap:10px}
+  #dots i{width:18px;height:18px;background:rgba(147,218,255,.25)}
+  #dots i.on{background:var(--y)} #dots i.done{background:var(--cy)}
+
+  /* captions */
+  #cap{position:absolute;left:60px;right:60px;top:1560px;display:flex;justify-content:center;z-index:7;visibility:hidden}
+  #capIn{font-family:Inter, sans-serif;font-weight:800;font-size:42px;line-height:1.3;text-align:center;
+    background:rgba(9,26,54,.88);padding:18px 32px;border-radius:20px;max-width:960px}
+  #capIn b{color:var(--cy);font-weight:900}
+  #wm{position:absolute;left:70px;top:1790px;font-size:22px;letter-spacing:.14em;color:rgba(243,248,255,.75);border-left:4px solid var(--y);padding-left:14px;z-index:6}
+
+  .scene{position:absolute;inset:0;visibility:hidden}
+  .c{position:absolute;left:0;right:0;text-align:center}
+  .box{position:absolute;border:3px solid var(--y);background:rgba(10,30,62,.30);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+    font-weight:800;text-transform:uppercase;letter-spacing:.04em;text-align:center}
+  .box.cy{border-color:var(--cy)} .box.red{border-color:var(--red)} .box.grn{border-color:var(--grn)}
+  .tag{display:inline-block;border:2px solid var(--y);padding:12px 26px;font-size:28px;font-weight:800;letter-spacing:.24em;color:var(--y);background:var(--panel)}
+  .lbl{font-size:30px;font-weight:800;letter-spacing:.22em;color:var(--cy)}
+  .ic{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;width:100%;height:100%}
+  .ico{color:var(--y)}
+  .badge{position:absolute;width:64px;height:64px;display:flex;align-items:center;justify-content:center;z-index:2}
+  .badge svg{width:40px;height:40px}
+  .b-ok{background:var(--y);color:var(--navy);border-radius:50%}
+  .b-x{background:var(--red);color:#fff;border-radius:50%}
+  .b-lock{background:var(--cy);color:var(--navy)}
+  svg.wires{position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:none}
+  svg.wires path{fill:none;stroke:var(--cy);stroke-width:4}
+  .big{font-weight:800;line-height:1;letter-spacing:-.01em}
+  .glow-y{text-shadow:0 0 30px rgba(255,210,74,.45)}
+  .glow-c{text-shadow:0 0 34px rgba(147,218,255,.7)}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="grid"></div>
+  <div id="vig"></div>
+
+  <div id="bar"><div id="barTxt"></div><div id="dots"><i></i><i></i><i></i><i></i></div></div>
+
+  <!-- 1 HOOK -->
+  <section class="scene" id="sc1">
+    <div class="c" style="top:470px"><span class="tag" id="s1tag">TAHUKAH ANDA?</span></div>
+    <div class="box" id="s1box" style="left:90px;right:90px;top:600px;height:640px;gap:18px">
+      <div id="s1l1" data-tw="BILA BERLAKU KEMATIAN," style="font-size:54px;color:var(--wh);white-space:pre"></div>
+      <div id="s1l2" class="big glow-y" style="font-size:118px;color:var(--y)">SEMUA ASET</div>
+      <div id="s1l3" class="big glow-c" style="font-size:150px;color:var(--cy)">TERBEKU</div>
+    </div>
+    <div class="ico" id="s1flake" style="position:absolute;left:465px;top:1275px;width:150px;height:150px;color:var(--cy)">
+      <svg class="ic" viewBox="0 0 24 24"><path pathLength="1" d="M12 2v20M3.3 7l17.4 10M20.7 7L3.3 17"/><path pathLength="1" d="M9.5 3.5L12 5l2.5-1.5M9.5 20.5L12 19l2.5 1.5M3.6 10l2.4-1.3-.1-2.8M18.1 18.1l-.1-2.8 2.4-1.3M3.6 14l2.4 1.3-.1 2.8M18.1 5.9l-.1 2.8 2.4 1.3"/></svg>
+    </div>
+  </section>
+
+  <!-- 2 ASSETS -->
+  <section class="scene" id="sc2">
+    <div class="c" style="top:300px"><span class="tag">ASET SI MATI</span></div>
+    <div id="assets"></div>
+    <div class="box red" id="s2no" style="left:140px;right:140px;top:1300px;height:120px;font-size:46px;color:var(--red)">TAK BOLEH DIKELUARKAN</div>
+  </section>
+
+  <!-- 3 DOCS -->
+  <section class="scene" id="sc3">
+    <div class="c" style="top:300px"><span class="tag" id="s3tag">UNTUK CAIRKAN ASET</span></div>
+    <svg class="wires" id="w3"><path pathLength="1" d="M540 560 V650 H280 V740"/><path pathLength="1" d="M540 650 H800 V740"/>
+      <path pathLength="1" d="M280 960 V1110"/><path pathLength="1" d="M800 960 V1110"/></svg>
+    <div class="box cy" id="s3waris" style="left:370px;width:340px;top:420px;height:140px;font-size:44px;flex-direction:row;color:var(--wh)">
+      <div class="ico" style="width:70px;height:70px;color:var(--cy)"><svg class="ic" viewBox="0 0 24 24"><circle pathLength="1" cx="9" cy="8" r="3"/><path pathLength="1" d="M3 20a6 6 0 0 1 12 0"/><circle pathLength="1" cx="17" cy="9" r="2.5"/><path pathLength="1" d="M15.5 14a5 5 0 0 1 6 5"/></svg></div>WARIS</div>
+    <div class="box" id="s3d1" style="left:70px;width:420px;top:740px;height:220px;font-size:42px;color:var(--y)">
+      <div class="ico" style="width:80px;height:80px"><svg class="ic" viewBox="0 0 24 24"><path pathLength="1" d="M6 3h9l4 4v14H6z"/><path pathLength="1" d="M15 3v4h4"/><path pathLength="1" d="M9 12h7M9 16h7M9 8h3"/></svg></div>SURAT<br>KUASA</div>
+    <div class="box" id="s3d2" style="left:590px;width:420px;top:740px;height:220px;font-size:40px;color:var(--y)">
+      <div class="ico" style="width:80px;height:80px"><svg class="ic" viewBox="0 0 24 24"><path pathLength="1" d="M6 3h9l4 4v14H6z"/><path pathLength="1" d="M15 3v4h4"/><path pathLength="1" d="M9 12h7M9 16h7M9 8h3"/></svg></div>PERINTAH<br>PEMBAHAGIAN</div>
+    <div class="c lbl" id="s3dari" style="top:1015px">DARI</div>
+    <div class="box cy" id="s3p1" style="left:70px;width:420px;top:1110px;height:130px;font-size:38px;color:var(--wh)">PEJABAT TANAH</div>
+    <div class="box cy" id="s3p2" style="left:590px;width:420px;top:1110px;height:130px;font-size:38px;color:var(--wh)">MAHKAMAH TINGGI</div>
+  </section>
+
+  <!-- 4 TIMELINE -->
+  <section class="scene" id="sc4">
+    <div class="c" style="top:300px"><span class="tag">BICARA KUASA</span></div>
+    <div class="box cy" id="s4cal" style="left:450px;width:180px;top:400px;height:180px;color:var(--cy)">
+      <div style="width:110px;height:110px"><svg class="ic" viewBox="0 0 24 24"><rect pathLength="1" x="3" y="5" width="18" height="16" rx="2"/><path pathLength="1" d="M3 10h18M8 3v4M16 3v4"/></svg></div></div>
+    <div class="c big glow-y" id="s4mon" style="top:625px;font-size:112px;color:var(--y)">6–7 BULAN</div>
+    <div id="months" style="position:absolute;left:212px;top:775px;display:flex;gap:16px"></div>
+    <div class="box" id="s4a" style="left:70px;width:420px;top:930px;height:150px;font-size:36px;color:var(--wh)">AHLI FARAID<br><span style="color:var(--cy);font-size:28px">GAGAL HADIR</span>
+      <div class="badge b-x" style="right:-22px;top:-22px"><svg class="ic" viewBox="0 0 24 24" style="stroke-width:3"><path d="M6 6l12 12M18 6L6 18"/></svg></div></div>
+    <div class="box" id="s4b" style="left:590px;width:420px;top:930px;height:150px;font-size:36px;color:var(--wh)">BORANG<br><span style="color:var(--cy);font-size:28px">PERSETUJUAN</span>
+      <div class="badge b-x" style="right:-22px;top:-22px"><svg class="ic" viewBox="0 0 24 24" style="stroke-width:3"><path d="M6 6l12 12M18 6L6 18"/></svg></div></div>
+    <div class="box red" id="s4t" style="left:220px;width:640px;top:1150px;height:150px;font-size:96px;background:var(--red);color:var(--navy)">TANGGUH</div>
+    <div class="c" id="s4t2" style="top:1330px;font-size:38px;font-weight:800;letter-spacing:.14em;color:var(--red)">+6–7 BULAN LAGI</div>
+  </section>
+
+  <!-- 5 COST -->
+  <section class="scene" id="sc5">
+    <div class="c" style="top:300px"><span class="tag">MINTA BANTUAN</span></div>
+    <div class="box cy" id="s5tr" style="left:150px;width:780px;top:400px;height:140px;font-size:50px;flex-direction:row;gap:26px;color:var(--wh)">
+      <div style="width:80px;height:80px;color:var(--cy)"><svg class="ic" viewBox="0 0 24 24"><path pathLength="1" d="M3 9l9-5 9 5"/><path pathLength="1" d="M4 9h16"/><path pathLength="1" d="M6 9v8M10 9v8M14 9v8M18 9v8"/><path pathLength="1" d="M3 20h18"/></svg></div>3RD PARTY TRUSTEE</div>
+    <div class="c lbl" id="s5caj" style="top:610px">CAJ KEBANYAKANNYA</div>
+    <div class="c big glow-y" id="s5pct" style="top:670px;font-size:230px;color:var(--y)">2%++</div>
+    <svg class="wires" id="w5"><path pathLength="1" d="M470 1060 H600" style="stroke:var(--y);stroke-width:6"/><path pathLength="1" d="M580 1036 L612 1060 L580 1084" style="stroke:var(--y);stroke-width:6"/></svg>
+    <div class="box cy" id="s5a" style="left:70px;width:400px;top:980px;height:160px;color:var(--wh)"><span class="lbl" style="font-size:24px">SETIAP</span><span style="font-size:60px">RM1 JUTA</span></div>
+    <div class="box" id="s5b" style="left:620px;width:390px;top:980px;height:160px;background:var(--y);color:var(--navy)"><span style="font-size:24px;letter-spacing:.2em">WARIS BAYAR</span><span id="s5num" style="font-size:62px">RM0</span></div>
+  </section>
+
+  <!-- 6 SOLUTION -->
+  <section class="scene" id="sc6">
+    <div class="c" style="top:300px"><span class="tag" id="s6tag">WASIYYAH BERHAD PERKENALKAN</span></div>
+    <svg class="wires" id="w6"><path pathLength="1" d="M540 760 V860 H280 V960"/><path pathLength="1" d="M540 860 H800 V960"/></svg>
+    <div class="box" id="s6logo" style="left:140px;width:800px;top:400px;height:360px;background:var(--y);color:var(--navy);box-shadow:0 0 70px rgba(255,210,74,.5)">
+      <div style="width:90px;height:90px"><svg class="ic" viewBox="0 0 24 24" style="stroke-width:2"><path pathLength="1" d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path pathLength="1" d="M8.5 12l2.5 2.5 4.5-5"/></svg></div>
+      <div class="big" style="font-size:104px">WASITAH<br>INTAN</div></div>
+    <div class="c" style="top:835px"><span class="lbl" id="s6lbl" style="background:#244f84;padding:6px 16px">KAMI BANTU SEHINGGA DAPAT</span></div>
+    <div class="box" id="s6d1" style="left:70px;width:420px;top:960px;height:200px;font-size:42px;color:var(--y)">SURAT<br>KUASA
+      <div class="badge b-ok" style="right:-22px;top:-22px"><svg class="ic" viewBox="0 0 24 24" style="stroke-width:3"><path d="M5 12l5 5 9-10"/></svg></div></div>
+    <div class="box" id="s6d2" style="left:590px;width:420px;top:960px;height:200px;font-size:40px;color:var(--y)">PERINTAH<br>PEMBAHAGIAN
+      <div class="badge b-ok" style="right:-22px;top:-22px"><svg class="ic" viewBox="0 0 24 24" style="stroke-width:3"><path d="M5 12l5 5 9-10"/></svg></div></div>
+  </section>
+
+  <!-- 7 PRICE -->
+  <section class="scene" id="sc7">
+    <div class="box grn" id="s7stamp" style="left:110px;width:860px;top:360px;height:130px;font-size:44px;color:var(--grn);background:rgba(91,227,161,.12)">TIADA CAJ SELEPAS KEMATIAN</div>
+    <div class="c lbl" id="s7hanya" style="top:575px">HANYA SERENDAH</div>
+    <div class="c" id="s7price" style="top:630px"><span class="big glow-y" id="s7num" style="font-size:210px;color:var(--y)">RM0.00</span></div>
+    <div class="c" id="s7per" style="top:850px;font-size:50px;font-weight:800;letter-spacing:.2em;color:var(--cy)">/ BULAN</div>
+    <div class="box" id="s7a" style="left:70px;width:420px;top:990px;height:220px;color:var(--wh)"><span style="font-size:64px;color:var(--y)">15 TAHUN</span><span class="lbl" style="font-size:24px">JUMLAH RM5,832</span>
+      <div class="badge b-ok" style="right:-22px;top:-22px"><svg class="ic" viewBox="0 0 24 24" style="stroke-width:3"><path d="M5 12l5 5 9-10"/></svg></div></div>
+    <div class="box" id="s7b" style="left:590px;width:420px;top:990px;height:220px;color:var(--wh)"><span class="lbl" style="font-size:24px">URUS ASET SEHINGGA</span><span style="font-size:64px;color:var(--y)">RM2 JUTA</span>
+      <div class="badge b-ok" style="right:-22px;top:-22px"><svg class="ic" viewBox="0 0 24 24" style="stroke-width:3"><path d="M5 12l5 5 9-10"/></svg></div></div>
+  </section>
+
+  <!-- 8 CTA -->
+  <section class="scene" id="sc8">
+    <div class="box cy" id="s8panel" style="left:80px;right:80px;top:330px;height:1030px;justify-content:flex-start;padding-top:70px;gap:34px;background:rgba(10,30,62,.45)">
+      <div style="width:150px;height:150px;color:var(--y)"><svg class="ic" viewBox="0 0 24 24"><path pathLength="1" d="M3 11l9-7 9 7"/><path pathLength="1" d="M5 10v10h14V10"/><path pathLength="1" d="M12 11.5l3 1.2v2.4c0 2-1.4 3.1-3 3.5-1.6-.4-3-1.5-3-3.5v-2.4z"/></svg></div>
+      <div id="s8q" style="font-size:50px;line-height:1.25;color:var(--wh)">NAK URUSAN PUSAKA<br>KELUARGA <span style="color:var(--y)">LEBIH MUDAH?</span></div>
+      <div id="s8ya" style="background:var(--y);color:var(--navy);font-size:88px;padding:26px 70px;box-shadow:0 0 60px rgba(255,210,74,.5);display:flex;gap:34px;align-items:center">BALAS <span style="letter-spacing:.1em">YA</span>
+        <svg viewBox="0 0 24 24" style="width:70px;height:70px;fill:var(--navy)"><path d="M4 4l17 8-17 8 3-8z"/></svg></div>
+      <div id="s8bantu" style="border:3px solid var(--y);color:var(--y);font-size:40px;letter-spacing:.2em;padding:16px 40px">UNTUK SAYA BANTU</div>
+      <div id="s8c" style="margin-top:20px"><div class="lbl" style="font-size:30px">PENASIHAT ELSA</div><div style="font-size:72px;color:var(--wh);margin-top:12px">019-660 5789</div></div>
+    </div>
+  </section>
+
+  <div id="cap"><div id="capIn"></div></div>
+  <div id="wm">WASITAH INTAN · WASIYYAH BERHAD</div>
+  <div id="scan"></div>
+</div>
+
+<script>
+// ---------- build repeated bits ----------
+const ICON = {
+  kereta:'<path pathLength="1" d="M5 11l1.5-4.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11"/><rect pathLength="1" x="3" y="11" width="18" height="6" rx="2"/><circle pathLength="1" cx="7.5" cy="17" r="1.8"/><circle pathLength="1" cx="16.5" cy="17" r="1.8"/>',
+  rumah:'<path pathLength="1" d="M3 11l9-7 9 7"/><path pathLength="1" d="M5 10v10h14V10"/><path pathLength="1" d="M10 20v-6h4v6"/>',
+  bank:'<path pathLength="1" d="M3 9l9-5 9 5"/><path pathLength="1" d="M4 9h16"/><path pathLength="1" d="M6 9v8M10 9v8M14 9v8M18 9v8"/><path pathLength="1" d="M3 20h18"/>',
+  asb:'<path pathLength="1" d="M3 20h18"/><path pathLength="1" d="M5 16l4-4 3 3 6-7"/><path pathLength="1" d="M14 8h4v4"/>',
+  th:'<path pathLength="1" d="M19 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 9.5 10.5z"/><path pathLength="1" d="M17 4l.7 1.6 1.7.2-1.3 1.1.4 1.7-1.5-.9-1.5.9.4-1.7-1.3-1.1 1.7-.2z"/>',
+};
+const LOCK = '<svg class="ic" viewBox="0 0 24 24" style="stroke-width:2.4"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>';
+[['kereta','KERETA',70,420],['rumah','RUMAH',590,420],['bank','AKAUN BANK',70,690],['asb','ASB',590,690],['th','TABUNG HAJI',330,960]].forEach(([k,n,x,y],i)=>{
+  document.getElementById('assets').insertAdjacentHTML('beforeend',
+    `<div class="box asset" id="as${i}" style="left:${x}px;width:420px;top:${y}px;height:230px;font-size:38px;color:var(--wh)">
+      <div class="ico" style="width:100px;height:100px"><svg class="ic" viewBox="0 0 24 24">${ICON[k]}</svg></div>${n}
+      <div class="badge b-lock" style="right:-22px;top:-22px">${LOCK}</div></div>`);
+});
+for(let i=0;i<7;i++) document.getElementById('months').insertAdjacentHTML('beforeend','<i style="display:block;width:80px;height:80px;border:3px solid var(--y)"><b style="display:block;width:100%;height:100%;background:var(--y);transform-origin:0 50%"></b></i>');
+
+// ---------- voiceover: segments of take 3, sped up slightly ----------
+const VO_SRC = 'vo/info_wasitah_3.wav';
+const SPD = 1.1;           // voiceover tempo (pitch preserved)
+const LEAD = 0.3;
+// [start, end, pause after] in the source take; times between them are dropped
+const SEG = [
+  [0.00,  4.98, .5],   // 0 Tahukah anda… terbeku
+  [4.98, 12.10, .3],   // 1 Kereta… tak boleh dikeluarkan
+  [12.95, 21.10, .3],  // 2 Untuk keluarkan duit… Mahkamah Tinggi
+  [23.39, 26.42, .1],  // 3 Tarikh bicara kuasa 6–7 bulan
+  [26.60, 31.25, .4],  // 4 Kalau ahli faraid… tangguh
+  [60.70, 65.43, .1],  // 5 Nak minta bantuan third party trustee… 2%
+  [65.43, 70.60, .4],  // 6 Bayangkan… RM20,000
+  [71.00, 79.50, .3],  // 7 Wasiyyah Berhad perkenalkan Wasitah Intan… Perintah Pembahagian
+  [80.05, 87.15, .1],  // 8 Tiada caj… 15 tahun
+  [87.40, 91.00, .4],  // 9 Kami uruskan aset… RM2 juta
+  [140.85, 142.80, 2.9]// 10 Hubungi kami hari ini
+];
+const VO = []; let T = LEAD;
+SEG.forEach(([a,b,p])=>{ VO.push({a:+(a/SPD).toFixed(4), b:+(b/SPD).toFixed(4), at:+T.toFixed(3), src:[a,b]}); T += (b-a)/SPD + p; });
+const DURATION = +T.toFixed(3);
+// take-3 timestamp -> video time
+function V(x){
+  let k = SEG.findIndex(([a,b])=> x>=a && x<=b);
+  if(k<0){ k = SEG.reduce((best,[a,b],i)=> Math.min(Math.abs(x-a),Math.abs(x-b)) < Math.min(Math.abs(x-SEG[best][0]),Math.abs(x-SEG[best][1])) ? i : best, 0); }
+  return VO[k].at + (x - SEG[k][0])/SPD;
+}
+
+// ---------- engine ----------
+const tl = gsap.timeline({paused:true});
+const E = 'power3.out';
+const SFX = []; const fx = (name,t,o={}) => SFX.push({name, t:+t.toFixed(3), ...o});
+const hooks = [];      // per-frame text updates (counters, typewriter, captions)
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+
+function inBox(sel,t,o={}){  // tech box reveal: CRT-style open (thin line -> full) + flash
+  tl.fromTo(sel,{autoAlpha:0,scaleX:0,scaleY:.05},{autoAlpha:1,scaleX:1,duration:.22,ease:'power2.out'},t);
+  tl.to(sel,{scaleY:1,duration:.2,ease:'power2.out'},t+.2);
+  tl.fromTo(sel,{filter:'brightness(2.2)'},{filter:'brightness(1)',duration:.4,ease:'none'},t+.2);
+  if(!o.silent) fx('blip', t, {p:o.p??1});
+}
+function up(sel,t,o={}){ tl.fromTo(sel,{autoAlpha:0,y:o.y??40},{autoAlpha:1,y:0,duration:o.d??.5,ease:E,stagger:o.st??0},t); }
+function pop(sel,t,o={}){ tl.fromTo(sel,{autoAlpha:0,scale:o.s??0},{autoAlpha:1,scale:1,duration:o.d??.4,ease:'back.out(2)'},t); }
+function draw(sel,t,d=.8){ tl.fromTo($$(sel),{strokeDasharray:1,strokeDashoffset:1},{strokeDashoffset:0,duration:d,ease:'power1.inOut',stagger:.08},t); }
+function fill(sel,t,bg='#FFD24A',fg='#0E2747'){ tl.to(sel,{backgroundColor:bg,color:fg,boxShadow:'0 0 50px rgba(255,210,74,.45)',duration:.3},t); tl.to(sel+' .ico',{color:fg,duration:.3},t); }
+function count(sel,to,t,dur,fmt){ const el=$(sel),o={v:0}; hooks.push(()=>el.textContent=fmt(o.v)); tl.fromTo(o,{v:0},{v:to,duration:dur,ease:'power2.out'},t); }
+function type(sel,t,dur){ const el=$(sel),full=el.dataset.tw,o={v:0}; hooks.push(()=>el.textContent=full.slice(0,Math.round(o.v))); tl.fromTo(o,{v:0},{v:full.length,duration:dur,ease:'none'},t); fx('type',t,{d:dur}); }
+function glitch(sel,t){ tl.to(sel,{keyframes:[{x:-14,skewX:8,duration:.04},{x:12,skewX:-6,duration:.04},{x:-6,skewX:0,duration:.04},{x:0,duration:.05}]},t); fx('glitch',t); }
+function scan(t){ tl.fromTo('#scan',{top:-200},{top:1920,duration:.55,ease:'power1.in'},t); fx('scan',t); }
+
+// chapter bar
+const bar = {txt:'', i:-1};
+function chapter(t,txt,i){
+  const o={v:0}, el=$('#barTxt');
+  hooks.push(()=>{ if(tl.time()>=t){ el.textContent = txt.slice(0,Math.round(o.v)); $$('#dots i').forEach((d,k)=>d.className = k<i?'done':k===i?'on':''); } });
+  tl.fromTo(o,{v:0},{v:txt.length,duration:.5,ease:'none',immediateRender:false},t);
+  fx('type',t,{d:.5,g:.6});
+}
+
+// scenes
+const SC = [];
+function scene(id, segs, build){ SC.push({id,segs,build}); }
+function buildScenes(){
+  SC.forEach((s,i)=>{
+    const t0 = i===0 ? 0 : VO[s.segs[0]].at - .15;
+    const nx = SC[i+1], t1 = nx ? VO[nx.segs[0]].at - .15 : DURATION;
+    tl.fromTo('#'+s.id,{autoAlpha:0},{autoAlpha:1,duration:.25,ease:'none'},t0);
+    if(i>0) scan(t0-.1);
+    s.build(t0);
+    if(nx) tl.to('#'+s.id,{autoAlpha:0,duration:.2,ease:'none'},t1-.2);
+  });
+}
+
+// captions: [take-3 start, text] — **word** is highlighted
+const CAPS = [
+  [0.00,'Tahukah anda,'],[1.34,'bila berlaku **kematian**,'],[3.02,'semua aset kita akan **terbeku**.'],
+  [5.16,'**Kereta**, **rumah**, **akaun bank**,'],[7.58,'**ASB**, **Tabung Haji**,'],[9.42,'semuanya dibekukan dan **tak boleh dikeluarkan**.'],
+  [13.18,'Untuk keluarkan duit dan **tukar nama geran**,'],[15.76,'waris perlu dapatkan **Surat Kuasa** dan **Perintah Pembahagian**'],[18.80,'dari **Pejabat Tanah** atau **Mahkamah Tinggi**.'],
+  [23.58,'Tarikh bicara kuasa biasanya **6–7 bulan**.'],
+  [26.82,'Kalau ada ahli faraid **gagal hadir**'],[28.64,'dan tiada **borang persetujuan**,'],[30.25,'terpaksa **tangguh**.'],
+  [60.95,'Nak minta bantuan **third party trustee**,'],[63.00,'kebanyakannya caj **2% ke atas**.'],
+  [65.60,'Bayangkan, setiap **RM1 juta**,'],[68.30,'waris kena keluarkan **RM20,000**.'],
+  [71.24,'Sebab itu, Wasiyyah Berhad perkenalkan **Wasitah Intan**.'],[74.81,'Kami bantu uruskan pusaka anda'],[76.54,'sehingga dapat **Surat Kuasa** dan **Perintah Pembahagian**.'],
+  [80.31,'**Tiada caj** dari kami selepas kematian.'],[82.67,'Hanya serendah **RM32.40 sebulan**,'],[85.76,'selama **15 tahun**.'],
+  [87.62,'Kami uruskan aset pusaka anda sehingga **RM2 juta**.'],
+  [141.13,'**Hubungi kami** hari ini.'],
+];
+const capT = CAPS.map(([x,s])=>[V(x), s.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')]);
+const segEnd = x => { const k = VO.findIndex(v=> v.at <= x && x <= v.at + (v.src[1]-v.src[0])/SPD + .01); return k<0 ? x+2 : VO[k].at + (VO[k].src[1]-VO[k].src[0])/SPD + .25; };
+let capShown = null;
+hooks.push(()=>{
+  const t = tl.time(); let cur = null;
+  for(let k=0;k<capT.length;k++){ const s=capT[k][0], e=Math.min(capT[k+1]?capT[k+1][0]:1e9, segEnd(s)); if(t>=s-.05 && t<e) cur=k; }
+  if(cur!==capShown){ $('#capIn').innerHTML = cur===null?'':capT[cur][1]; $('#cap').style.visibility = cur===null?'hidden':'visible'; capShown=cur; }
+  if(cur!==null){ const age=t-capT[cur][0]; const k=Math.min(1,Math.max(0,age/.18)); $('#capIn').style.transform=`translateY(${(1-k)*14}px)`; $('#capIn').style.opacity=k; }
+});
+
+// ---------- scenes (times are take-3 timestamps via V) ----------
+scene('sc1',[0], t0=>{
+  chapter(t0+.05,'BAB 1 · ASET BEKU',0);
+  pop('#s1tag', V(.15), {s:.6});                           fx('blip', V(.15));
+  inBox('#s1box', V(.7), {silent:true});                    fx('scan', V(.7), {g:.5});
+  type('#s1l1', V(1.34), 1.0);
+  tl.fromTo('#s1l2',{autoAlpha:0,scale:1.4},{autoAlpha:1,scale:1,duration:.4,ease:'expo.out'},V(3.02)); fx('impact', V(3.02), {g:.55});
+  tl.fromTo('#s1l3',{autoAlpha:0,filter:'blur(16px)'},{autoAlpha:1,filter:'blur(0px)',duration:.5,ease:'expo.out'},V(4.24));
+  fx('freeze', V(4.24)); glitch('#s1l3', V(4.55));
+  tl.fromTo('#s1flake',{autoAlpha:0},{autoAlpha:1,duration:.1},V(4.4)); draw('#s1flake path', V(4.4), .9);
+  tl.to('#s1box',{borderColor:'#93DAFF',boxShadow:'0 0 60px rgba(147,218,255,.45)',duration:.4},V(4.3));
+});
+scene('sc2',[1], t0=>{
+  up('#sc2 .tag', t0+.15);
+  [5.16,6.06,6.72,7.58,8.46].forEach((x,k)=>{ inBox('#as'+k, V(x), {p:1+k*.06}); draw(`#as${k} .ico path, #as${k} .ico rect, #as${k} .ico circle`, V(x)+.1, .6); });
+  [0,1,2,3,4].forEach(k=>{
+    const t=V(9.98)+k*.12;
+    tl.to('#as'+k,{borderColor:'#93DAFF',backgroundColor:'rgba(147,218,255,.22)',duration:.25},t);
+    tl.to(`#as${k} .ico`,{color:'#93DAFF',duration:.25},t);
+    pop(`#as${k} .badge`, t+.05);
+    fx('ice', t, {g:.55});
+  });
+  fx('lock', V(9.98)+.6);
+  inBox('#s2no', V(10.94), {silent:true}); fx('buzz', V(10.94), {g:.7});
+});
+scene('sc3',[2], t0=>{
+  chapter(t0+.05,'BAB 2 · PROSES PUSAKA',1);
+  pop('#s3tag', V(13.18), {s:.6});                          fx('blip', V(13.18));
+  inBox('#s3waris', V(15.76)); draw('#s3waris path, #s3waris circle', V(15.8), .6);
+  draw('#w3 path:nth-child(-n+2)', V(16.4), .5);
+  inBox('#s3d1', V(16.78)); draw('#s3d1 path', V(16.85), .6); fill('#s3d1', V(17.3));
+  inBox('#s3d2', V(17.8), {p:1.12}); draw('#s3d2 path', V(17.85), .6); fill('#s3d2', V(18.3));
+  up('#s3dari', V(18.8), {y:20});
+  draw('#w3 path:nth-child(n+3)', V(19.0), .4);
+  inBox('#s3p1', V(19.24), {p:.9}); inBox('#s3p2', V(20.36), {p:.95});
+});
+scene('sc4',[3,4], t0=>{
+  up('#sc4 .tag', t0+.1);
+  inBox('#s4cal', V(23.58)); draw('#s4cal path, #s4cal rect', V(23.6), .6);
+  tl.fromTo('#s4mon',{autoAlpha:0,y:30},{autoAlpha:1,y:0,duration:.4,ease:E},V(25.0)); fx('impact', V(25.0), {g:.4});
+  tl.fromTo('#months b',{scaleX:0},{scaleX:1,duration:.12,stagger:.13,ease:'none'},V(25.0)+.1);
+  for(let k=0;k<7;k++) fx('tick', V(25.0)+.1+k*.13, {p:1+k*.05,g:.7});
+  inBox('#s4a', V(26.82), {silent:true}); fx('blip', V(26.82));
+  pop('#s4a .badge', V(27.94)); fx('buzz', V(27.94), {g:.55});
+  inBox('#s4b', V(28.64)); pop('#s4b .badge', V(29.2)); fx('buzz', V(29.2), {g:.55});
+  inBox('#s4t', V(30.55), {silent:true}); fx('alarm', V(30.55));
+  tl.to('#s4t',{opacity:.35,duration:.12,repeat:3,yoyo:true,ease:'none'},V(30.55)+.45);
+  glitch('#s4t', V(30.6));
+  up('#s4t2', V(30.9), {y:20});
+});
+scene('sc5',[5,6], t0=>{
+  chapter(t0+.05,'BAB 3 · KOS PENGURUSAN',2);
+  up('#sc5 .tag', t0+.15);
+  inBox('#s5tr', V(61.68)); draw('#s5tr path', V(61.7), .6);
+  up('#s5caj', V(63.0), {y:20});
+  tl.fromTo('#s5pct',{autoAlpha:0,scale:1.8},{autoAlpha:1,scale:1,duration:.45,ease:'expo.out'},V(63.76)); fx('impact', V(63.76));
+  glitch('#s5pct', V(64.1));
+  inBox('#s5a', V(66.46));
+  draw('#w5 path', V(68.0), .35);
+  inBox('#s5b', V(68.3), {silent:true});
+  count('#s5num', 20000, V(68.7), 1.0, v=>'RM'+Math.round(v).toLocaleString('en-US')); fx('counter', V(68.7), {d:1}); fx('cash', V(69.75));
+});
+scene('sc6',[7], t0=>{
+  chapter(t0+.05,'BAB 4 · PENYELESAIAN',3);
+  pop('#s6tag', V(71.24), {s:.6});                          fx('blip', V(71.24));
+  fx('riser', V(73.38)-1.1, {g:.7});
+  tl.fromTo('#s6logo',{autoAlpha:0,scale:.6},{autoAlpha:1,scale:1,duration:.6,ease:'back.out(1.6)'},V(73.38)); fx('reveal', V(73.38));
+  draw('#s6logo path', V(73.5), .7);
+  up('#s6lbl', V(74.81), {y:20});
+  draw('#w6 path', V(75.6), .5);
+  inBox('#s6d1', V(77.48)); fill('#s6d1', V(77.8)); pop('#s6d1 .badge', V(77.9)); fx('check', V(77.9));
+  inBox('#s6d2', V(78.32), {p:1.12}); fill('#s6d2', V(78.6)); pop('#s6d2 .badge', V(78.7)); fx('check', V(78.7), {p:1.26});
+});
+scene('sc7',[8,9], t0=>{
+  tl.fromTo('#s7stamp',{autoAlpha:0,scale:1.6,rotation:-6},{autoAlpha:1,scale:1,rotation:-2,duration:.3,ease:'power4.in'},V(80.31)); fx('stamp', V(80.6));
+  up('#s7hanya', V(82.67), {y:20});
+  up('#s7price', V(83.1), {y:20,d:.3});
+  count('#s7num', 32.40, V(83.2), .9, v=>'RM'+v.toFixed(2)); fx('counter', V(83.2), {d:.9}); fx('cash', V(84.2));
+  up('#s7per', V(85.0), {y:20});
+  inBox('#s7a', V(86.14)); pop('#s7a .badge', V(86.5)); fx('check', V(86.5));
+  inBox('#s7b', V(89.4), {p:1.1}); pop('#s7b .badge', V(89.8)); fx('check', V(89.8), {p:1.26});
+});
+scene('sc8',[10], t0=>{
+  tl.call(()=>{}, null, t0);
+  inBox('#s8panel', t0+.1, {silent:true}); fx('scan', t0+.1, {g:.5});
+  draw('#s8panel path', t0+.3, .8);
+  up('#s8q', t0+.5);
+  tl.fromTo('#s8ya',{autoAlpha:0,scale:.7},{autoAlpha:1,scale:1,duration:.5,ease:'back.out(1.8)'},V(141.13)); fx('reveal', V(141.13), {g:.8});
+  tl.to('#s8ya',{scale:1.05,duration:.35,repeat:5,yoyo:true,ease:'sine.inOut'},V(141.13)+.8);
+  up('#s8bantu', V(141.13)+.5);
+  up('#s8c', V(141.13)+1.0); fx('chime', V(141.13)+1.0);
+});
+
+// chapter bar "done" state at the end card (registered after the scenes so it wins)
+const endBar = () => hooks.push(()=>{ if(tl.time()>=VO[10].at-.15){ $('#barTxt').textContent='WASITAH INTAN · WASIYYAH BERHAD'; $$('#dots i').forEach(d=>d.className='done'); } });
+
+tl.fromTo('#bar',{autoAlpha:0,y:-20},{autoAlpha:1,y:0,duration:.4},0);
+tl.fromTo('#wm',{autoAlpha:0},{autoAlpha:1,duration:.4},0);
+buildScenes();
+endBar();
+tl.fromTo('#grid',{y:0},{y:-180,duration:DURATION,ease:'none'},0);
+tl.set({}, {}, DURATION);
+
+function seek(t){ tl.seek(t,false); for(const h of hooks) h(); }
+window.DURATION = DURATION; window.seek = seek;
+window.SFX = SFX; window.VO = VO.map(({a,b,at})=>({a,b,at})); window.VO_SRC = VO_SRC; window.VO_TEMPO = SPD;
+
+if(!location.search.includes('render')){
+  const st=$('#stage');
+  const fit=()=>{const k=Math.min(innerWidth/1080,innerHeight/1920);st.style.transform=`translate(${(innerWidth-1080*k)/2}px,0) scale(${k})`;};
+  fit(); addEventListener('resize',fit);
+  const start=performance.now();
+  (function loop(now){ seek(((now-start)/1000)%DURATION); requestAnimationFrame(loop); })(start);
+} else { seek(0); }
+</script>
+</body>
+</html>

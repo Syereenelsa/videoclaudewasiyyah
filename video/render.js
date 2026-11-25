@@ -7,7 +7,8 @@ const { spawn, execFileSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 
-const URL = 'file://' + path.join(__dirname, 'index.html') + '?render';
+// PAGE=short60.html node render.js ...   renders another page in this folder
+const URL = 'file://' + path.join(__dirname, process.env.PAGE || 'index.html') + '?render';
 
 async function openPage(browser) {
   const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
@@ -66,7 +67,7 @@ async function video(out, fps = 30, workers = 4) {
 async function cues(out) {
   const browser = await chromium.launch();
   const page = await openPage(browser);
-  const data = await page.evaluate(() => ({ duration: window.DURATION, cues: window.SFX, vo: window.VO, vo_src: window.VO_SRC }));
+  const data = await page.evaluate(() => ({ duration: window.DURATION, cues: window.SFX, vo: window.VO, vo_src: window.VO_SRC, vo_tempo: window.VO_TEMPO || 1 }));
   fs.writeFileSync(out, JSON.stringify(data, null, 1));
   await browser.close();
   console.log(`${data.cues.length} cues, ${data.duration}s -> ${out}`);

@@ -287,6 +287,45 @@ def s_chime(**_):
     return out
 
 
+
+# ---- UI / "tech HUD" sounds for the blueprint style ----
+def s_blip(p=1, **_):
+    d = 0.12
+    t = tt(d)
+    f = 1150 * p * (1 + .35 * (t / d))
+    s = np.sign(np.sin(2 * np.pi * np.cumsum(f) / SR)) * .5 + np.sin(2 * np.pi * np.cumsum(f) / SR) * .5
+    s = svf(s, 3500, .8, 'low') * expenv(d, .035, .001) * .32
+    return stereo(s, rng.uniform(-.25, .25))
+
+
+def s_type(d=0.8, **_):
+    out = mono(d + .05)
+    n = max(3, int(d / .055))
+    for k in range(n):
+        c = svf(noise(.012), rng.uniform(2500, 4200), 1.6) * np.linspace(1, 0, int(.012 * SR)) * rng.uniform(.35, .6)
+        place(out, c, k * d / n + rng.uniform(0, .012))
+    return out * .5
+
+
+def s_scan(**_):
+    d = 0.5
+    t = tt(d)
+    env = np.sin(np.pi * t / d) ** 2
+    s = svf(noise(d), 1500 + 6000 * t / d, 2.0) * env * .22
+    s += np.sin(2 * np.pi * np.cumsum(600 + 1800 * t / d) / SR) * env * .04
+    return stereo(s, np.linspace(-.5, .5, len(s)))
+
+
+def s_glitch(**_):
+    d = 0.22
+    out = mono(d)
+    for k in range(6):
+        seg = noise(.02) * rng.uniform(.2, .5)
+        seg = np.round(seg * 4) / 4  # bit-crush
+        place(out, svf(seg, rng.uniform(800, 5000), 1.5), k * .035)
+    return out * .8
+
+
 SOUNDS = {k[2:]: v for k, v in globals().items() if k.startswith('s_')}
 
 
@@ -309,7 +348,9 @@ def fftconv(x, h):
 def voice_track(data, n):
     import subprocess, os
     src = os.path.join(os.path.dirname(os.path.abspath(__file__)), data['vo_src'])
-    raw = subprocess.run(['ffmpeg', '-loglevel', 'error', '-i', src, '-ac', '1', '-ar', str(SR), '-f', 'f32le', '-'],
+    tempo = data.get('vo_tempo', 1) or 1
+    af = ['-af', f'atempo={tempo}'] if tempo != 1 else []
+    raw = subprocess.run(['ffmpeg', '-loglevel', 'error', '-i', src, *af, '-ac', '1', '-ar', str(SR), '-f', 'f32le', '-'],
                          capture_output=True, check=True).stdout
     src = np.frombuffer(raw, np.float32).astype(float)
     src /= np.max(np.abs(src))
