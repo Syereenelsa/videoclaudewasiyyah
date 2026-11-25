@@ -8,18 +8,20 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-TOTAL = 106.5
+TOTAL = 144.0      # voice-over is 142.8 s; hold the end card ~1.2 s after it
 
-SCENES = {            # name: (start, end)
-    "hook":   (0.0, 6.5),
-    "bila":   (6.5, 24.0),
-    "tunggu": (24.0, 33.0),
-    "beza":   (33.0, 49.5),
-    "kenali": (49.5, 60.5),
-    "promo":  (60.5, 73.5),
-    "cara":   (73.5, 92.5),
-    "cta":    (92.5, TOTAL),
+SCENES = {            # name: (start, end), aligned to assets/voice.wav
+    "hook":   (0.0, 6.75),
+    "bila":   (6.75, 26.4),
+    "tunggu": (26.4, 38.5),
+    "beza":   (38.5, 67.05),
+    "kenali": (67.05, 80.25),
+    "promo":  (80.25, 97.5),
+    "cara":   (97.5, 124.85),
+    "cta":    (124.85, TOTAL),
 }
+BILA_CUES = [3.37, 6.09, 7.98, 10.02, 14.16, 16.41]   # the six checklist rows
+CARA_DOCS = [8.81, 9.8, 12.03, 13.5]                  # the four documents
 
 def S(name, off=0.0):
     return round(SCENES[name][0] + off, 3)
@@ -74,51 +76,55 @@ SFX = []
 def sfx(name, t, vol):
     SFX.append((name, round(t, 3), vol))
 
+# Cue times are taken from the voice-over (tools/transcript.json), corrected
+# against the pauses in assets/voice.wav. Offsets are seconds from scene start.
 # hook
-sfx("whoosh", S("hook", .1), .30); sfx("ding", S("hook", 1.7), .26)
-sfx("pop", S("hook", 2.3), .26); sfx("riser", S("hook", 2.6), .26)
-sfx("impact", S("hook", 4.2), .40); sfx("pop", S("hook", 4.3), .22)
+sfx("whoosh", S("hook", 0.0), .30); sfx("pop", S("hook", 2.66), .26)
+sfx("ding", S("hook", 2.66), .24); sfx("pop", S("hook", 4.9), .22)
+sfx("riser", S("hook", 4.4), .22); sfx("impact", S("hook", 5.95), .40)
 # bila
-sfx("whoosh", S("bila"), .28); sfx("stamp", S("bila", .45), .32)
-for i, off in enumerate([2.1, 4.4, 6.7, 9.1, 11.7, 14.3]):
+sfx("whoosh", S("bila"), .28); sfx("stamp", S("bila", .4), .32)
+for off in BILA_CUES:
     sfx("swish", S("bila", off), .20); sfx("pop", S("bila", off + .55), .30)
 # tunggu
-sfx("whoosh", S("tunggu"), .28); sfx("ding", S("tunggu", 1.3), .24)
-sfx("clock", S("tunggu", 2.2), .22); sfx("stamp", S("tunggu", 3.5), .45)
-sfx("pop", S("tunggu", 4.2), .22); sfx("ding", S("tunggu", 6.0), .20)
+sfx("whoosh", S("tunggu"), .28); sfx("ding", S("tunggu", 3.7), .24)
+sfx("clock", S("tunggu", 6.2), .22); sfx("stamp", S("tunggu", 6.95), .45)
+sfx("pop", S("tunggu", 8.3), .22); sfx("ding", S("tunggu", 9.36), .20)
 # beza
-sfx("whoosh", S("beza"), .28); sfx("pop", S("beza", .5), .26)
-sfx("swish", S("beza", 2.7), .22); sfx("lock", S("beza", 3.4), .32)
+sfx("whoosh", S("beza"), .28); sfx("pop", S("beza", .25), .26)
+sfx("swish", S("beza", 4.6), .22); sfx("lock", S("beza", 5.3), .32)
 for k in range(4):
-    sfx("tick", S("beza", 4.6 + k * .12), .30)
-sfx("swish", S("beza", 6.9), .22)
-sfx("pop", S("beza", 7.6), .28); sfx("pop", S("beza", 9.3), .28); sfx("pop", S("beza", 12.0), .28)
-sfx("ding", S("beza", 13.7), .30)
+    sfx("tick", S("beza", 9.0 + k * .12), .30)
+sfx("swish", S("beza", 10.9), .22)
+for off in (14.1, 16.2, 19.5):
+    sfx("pop", S("beza", off), .28)
+sfx("ding", S("beza", 22.25), .30)
 # kenali
-sfx("whoosh", S("kenali"), .28); sfx("riser", S("kenali", -.2), .18)
-sfx("swish", S("kenali", 1.0), .22); sfx("swish", S("kenali", 1.5), .22); sfx("stamp", S("kenali", 2.3), .45)
-sfx("pop", S("kenali", 3.0), .28); sfx("pop", S("kenali", 5.6), .28)
+sfx("whoosh", S("kenali"), .28)
+sfx("swish", S("kenali", .8), .22); sfx("swish", S("kenali", 1.3), .22); sfx("stamp", S("kenali", 2.1), .45)
+sfx("pop", S("kenali", 3.18), .28); sfx("pop", S("kenali", 6.15), .28)
 for k in range(6):
-    sfx("tick", S("kenali", 5.75 + k * .25), .22)
-sfx("ding", S("kenali", 7.4), .22); sfx("pop", S("kenali", 8.2), .28)
+    sfx("tick", S("kenali", 6.3 + k * .25), .22)
+sfx("ding", S("kenali", 7.85), .22); sfx("pop", S("kenali", 9.05), .28)
 # promo
 sfx("whoosh", S("promo"), .30); sfx("ding", S("promo", .3), .26)
-sfx("pop", S("promo", 1.0), .24); sfx("swish", S("promo", 2.0), .30)
-sfx("riser", S("promo", 1.7), .30); sfx("impact", S("promo", 3.25), .55)
-sfx("pop", S("promo", 6.6), .30); sfx("cash", S("promo", 9.3), .40)
-sfx("ding", S("promo", 10.7), .24)
+sfx("pop", S("promo", 2.75), .24); sfx("swish", S("promo", 3.65), .30)
+sfx("riser", S("promo", 5.6), .30); sfx("impact", S("promo", 7.18), .55)
+sfx("pop", S("promo", 8.45), .26); sfx("pop", S("promo", 9.25), .30)
+sfx("cash", S("promo", 12.27), .40); sfx("ding", S("promo", 14.05), .24)
 # cara
 sfx("whoosh", S("cara"), .28); sfx("pop", S("cara", .5), .24)
-for off in (1.8, 3.8, 11.5, 14.0):
+for off in (2.74, 7.62, 16.41, 20.45):
     sfx("lock", S("cara", off), .30)
-for off in (5.0, 6.5, 8.4, 9.9):
+for off in CARA_DOCS:
     sfx("pop", S("cara", off), .28)
-sfx("stamp", S("cara", 17.3), .45); sfx("ding", S("cara", 17.4), .30)
+sfx("stamp", S("cara", 26.6), .45); sfx("ding", S("cara", 26.65), .30)
 # cta
 sfx("whoosh", S("cta"), .28); sfx("ding", S("cta", .9), .26)
-sfx("pop", S("cta", 3.0), .22); sfx("clock", S("cta", 6.6), .20)
-sfx("stamp", S("cta", 7.2), .40); sfx("riser", S("cta", 8.4), .24)
-sfx("impact", S("cta", 9.95), .40); sfx("pop", S("cta", 11.6), .22)
+sfx("pop", S("cta", 6.1), .22); sfx("clock", S("cta", 7.95), .20)
+sfx("stamp", S("cta", 9.69), .40); sfx("riser", S("cta", 12.4), .24)
+sfx("impact", S("cta", 14.05), .35); sfx("pop", S("cta", 15.05), .22)
+
 
 def sfx_tags():
     out = []
@@ -517,126 +523,129 @@ tl.set('#flash',{opacity:0},0);
 IN('#brand',0.2,{y:-10});
 
 /* 1 HOOK */
-DRAW('#hk-house .draw',H+0.15,1.3);
-tl.to('#hk-house .win',{fill:'#FFD36E',duration:0.35,ease:'power2.out'},H+1.7);
-tl.to('#hk-glow',{opacity:1,duration:0.6},H+1.7);
-IN('#hk-l1',H+0.9);
-IN('#hk-l2',H+2.1); SLAM('#hk-l2b',H+2.45,{s:1.5});
-IN('#hk-l3',H+4.0);
-tl.to('#hk-house .win',{fill:'#0D2446',duration:0.12,ease:'none'},H+4.2);
-tl.to('#hk-glow',{opacity:0,duration:0.25},H+4.2);
-tl.to('#hk-house',{opacity:.55,duration:0.4},H+4.25);
-SHAKE(H+4.2,8);
-POP('#hk-pill',H+4.3);
-OUT('#sc-hook > *',H+6.2);
+DRAW('#hk-house .draw',H+0.05,1.3);
+IN('#hk-l1',H+0.28);
+IN('#hk-l2',H+1.42);
+SLAM('#hk-l2b',H+2.4,{s:1.5});
+tl.to('#hk-house .win',{fill:'#FFD36E',duration:0.35,ease:'power2.out'},H+2.65);
+tl.to('#hk-glow',{opacity:1,duration:0.6},H+2.65);
+IN('#hk-l3',H+4.2);
+POP('#hk-pill',H+4.9);
+tl.to('#hk-house .win',{fill:'#0D2446',duration:0.12,ease:'none'},H+5.95);
+tl.to('#hk-glow',{opacity:0,duration:0.25},H+5.95);
+tl.to('#hk-house',{opacity:.55,duration:0.4},H+6.0);
+SHAKE(H+5.95,8);
+OUT('#sc-hook > *',H+6.45);
 
 /* 2 BILA */
 POP('#bl-kick',B+0.05);
-SLAM('#bl-title',B+0.3,{s:1.6});
-[2.1,4.4,6.7,9.1,11.7,14.3].forEach((o,i)=>{
+SLAM('#bl-title',B+0.15,{s:1.6});
+BILA_CUES.forEach((o,i)=>{
   IN('#bl-i'+i,B+o,{x:-60,y:0});
   POP('#bl-t'+i,B+o+0.55,{s:0.2});
 });
-OUT('#sc-bila > *',B+17.2);
+OUT('#sc-bila > *',B+19.35);
 
 /* 3 TUNGGU */
-IN('#tg-l1',T+0.1);
-IN('#tg-l2',T+1.2); IN('#tg-l2b',T+1.45);
-IN('#tg-panel',T+2.0,{y:40});
-tl.fromTo('#tg-bar',{scaleX:0},{scaleX:0.33,duration:2.6,ease:'power1.inOut'},T+2.2);
-COUNT('#tg-yr',1,10,T+2.2,2.6,v=>'Tahun '+Math.round(v),'power1.inOut');
-SLAM('#tg-stamp',T+3.3,{s:2.2});
-SHAKE(T+3.55,7);
-IN('#tg-hg',T+4.2,{y:10});
-IN('#tg-q',T+6.0);
-OUT('#sc-tunggu > *',T+8.7);
+IN('#tg-l1',T+0.22);
+IN('#tg-l2',T+3.3); IN('#tg-l2b',T+3.7);
+IN('#tg-panel',T+6.2,{y:40});
+tl.fromTo('#tg-bar',{scaleX:0},{scaleX:0.33,duration:2.4,ease:'power1.inOut'},T+6.4);
+COUNT('#tg-yr',1,10,T+6.4,2.4,v=>'Tahun '+Math.round(v),'power1.inOut');
+SLAM('#tg-stamp',T+6.7,{s:2.2});
+SHAKE(T+6.95,7);
+IN('#tg-hg',T+8.3,{y:10});
+IN('#tg-q',T+9.36);
+OUT('#sc-tunggu > *',T+11.75);
 
 /* 4 BEZA */
 POP('#bz-kick',Z+0.05);
-IN('#bz-title',Z+0.5);
-IN('#bz-a',Z+2.7,{y:40});
-tl.fromTo('#bz-pie .sl',{scale:1,x:0,y:0,transformOrigin:'0px 0px'},{scale:0.86,duration:0.3,ease:'power2.out'},Z+4.5);
+IN('#bz-title',Z+0.25);
+tl.fromTo('#bz-title .goldt',{textShadow:'0 0 0px rgba(242,207,118,0)'},{textShadow:'0 0 26px rgba(242,207,118,.9)',duration:0.55,yoyo:true,repeat:1,ease:'sine.inOut'},Z+2.3);
+IN('#bz-a',Z+4.6,{y:40});
+tl.fromTo('#bz-pie .sl',{scale:1,x:0,y:0,transformOrigin:'0px 0px'},{scale:0.86,duration:0.3,ease:'power2.out'},Z+8.9);
 ['#bz-pie .sl:nth-child(1)','#bz-pie .sl:nth-child(2)','#bz-pie .sl:nth-child(3)','#bz-pie .sl:nth-child(4)'].forEach((s,i)=>{
   const d=[[9,-9],[9,9],[-9,9],[-9,-9]][i];
-  tl.to(s,{x:d[0],y:d[1],duration:0.3,ease:'back.out(2)'},Z+4.6+i*0.12);
+  tl.to(s,{x:d[0],y:d[1],duration:0.3,ease:'back.out(2)'},Z+9.0+i*0.12);
 });
-IN('#bz-b',Z+6.9,{y:40});
-POP('#bz-s1',Z+7.6); POP('#bz-s2',Z+9.3); POP('#bz-s3',Z+12.0);
-IN('#bz-res',Z+13.7,{y:16});
-tl.fromTo('#bz-res',{boxShadow:'0 0 0 0 rgba(108,240,180,0)'},{boxShadow:'0 0 0 14px rgba(108,240,180,.18)',duration:0.5,yoyo:true,repeat:1},Z+14.1);
-OUT('#sc-beza > *',Z+16.2);
+IN('#bz-b',Z+10.9,{y:40});
+POP('#bz-s1',Z+14.1); POP('#bz-s2',Z+16.2); POP('#bz-s3',Z+19.5);
+IN('#bz-res',Z+22.25,{y:16});
+tl.fromTo('#bz-res',{boxShadow:'0 0 0 0 rgba(108,240,180,0)'},{boxShadow:'0 0 0 14px rgba(108,240,180,.18)',duration:0.5,yoyo:true,repeat:1},Z+24.7);
+OUT('#sc-beza > *',Z+28.2);
 
 /* 5 KENALI */
 POP('#kn-kick',K+0.05);
-SLAM('#kn-title',K+0.3,{s:1.5});
-tl.fromTo('#kn-bh',{opacity:0,x:-160,y:80,rotation:-16},{opacity:1,x:0,y:0,rotation:-5,duration:0.6,ease:'power3.out'},K+1.0);
-tl.fromTo('#kn-dn',{opacity:0,x:160,y:80,rotation:14},{opacity:1,x:0,y:0,rotation:4,duration:0.6,ease:'power3.out'},K+1.5);
-SLAM('#kn-bukti',K+2.05,{s:2.4});
-tl.fromTo('#kn-hi',{backgroundSize:'0% 100%'},{backgroundSize:'100% 100%',duration:0.9,ease:'power2.inOut'},K+2.5);
-IN('#kn-i0',K+3.0,{x:-60,y:0});
-IN('#kn-i1',K+5.6,{x:-60,y:0});
-COUNT('#kn-num',0,15000,K+5.75,1.5,v=>NUM(v)+'+');
-IN('#kn-i2',K+8.2,{x:-60,y:0});
-OUT('#sc-kenali > *',K+10.7);
+SLAM('#kn-title',K+0.23,{s:1.5});
+tl.fromTo('#kn-bh',{opacity:0,x:-160,y:80,rotation:-16},{opacity:1,x:0,y:0,rotation:-5,duration:0.6,ease:'power3.out'},K+0.8);
+tl.fromTo('#kn-dn',{opacity:0,x:160,y:80,rotation:14},{opacity:1,x:0,y:0,rotation:4,duration:0.6,ease:'power3.out'},K+1.3);
+SLAM('#kn-bukti',K+1.85,{s:2.4});
+tl.fromTo('#kn-hi',{backgroundSize:'0% 100%'},{backgroundSize:'100% 100%',duration:0.9,ease:'power2.inOut'},K+2.3);
+IN('#kn-i0',K+3.18,{x:-60,y:0});
+IN('#kn-i1',K+6.15,{x:-60,y:0});
+COUNT('#kn-num',0,15000,K+6.3,1.5,v=>NUM(v)+'+');
+IN('#kn-i2',K+9.05,{x:-60,y:0});
+OUT('#sc-kenali > *',K+12.8);
 
 /* 6 PROMO */
-POP('#pr-kick',P+0.05,{s:0.5});
-IN('#pr-panel',P+0.6,{y:40});
-IN('#pr-asal-l',P+0.9,{y:10}); IN('#pr-asal',P+1.0,{y:14});
-tl.fromTo('#pr-line',{scaleX:0,rotation:-6},{scaleX:1,rotation:-6,duration:0.35,ease:'power2.out'},P+2.0);
-tl.to('#pr-asal',{scale:0.9,opacity:.7,duration:0.3},P+2.4);
-IN('#pr-now',P+2.6,{y:12});
-SLAM('#pr-price',P+3.0,{s:2.6,d:0.28});
-FLASH(P+3.28,.6); SHAKE(P+3.28,14);
+POP('#pr-kick',P+0.2,{s:0.5});
+IN('#pr-panel',P+2.25,{y:40});
+IN('#pr-asal-l',P+2.65,{y:10}); IN('#pr-asal',P+2.75,{y:14});
+tl.fromTo('#pr-line',{scaleX:0,rotation:-6},{scaleX:1,rotation:-6,duration:0.35,ease:'power2.out'},P+3.65);
+tl.to('#pr-asal',{scale:0.9,opacity:.7,duration:0.3},P+4.1);
+IN('#pr-now',P+5.62,{y:12});
+SLAM('#pr-price',P+6.9,{s:2.6,d:0.28});
+FLASH(P+7.18,.6); SHAKE(P+7.18,14);
 document.querySelectorAll('#pr-burst .spk').forEach((el,i)=>{
   const a=parseFloat(el.dataset.a)*Math.PI/180, d=parseFloat(el.dataset.d);
-  tl.fromTo(el,{x:0,y:0,opacity:0,scale:0.3},{x:Math.cos(a)*d,y:Math.sin(a)*d*0.6,opacity:1,scale:1,duration:0.5,ease:'power3.out'},P+3.3);
-  tl.to(el,{opacity:0,scale:0.2,duration:0.5,ease:'power2.in'},P+3.9+(i%5)*0.06);
+  tl.fromTo(el,{x:0,y:0,opacity:0,scale:0.3},{x:Math.cos(a)*d,y:Math.sin(a)*d*0.6,opacity:1,scale:1,duration:0.5,ease:'power3.out'},P+7.2);
+  tl.to(el,{opacity:0,scale:0.2,duration:0.5,ease:'power2.in'},P+7.8+(i%5)*0.06);
 });
-POP('#pr-sahaja',P+4.0,{s:0.2});
-tl.to('#pr-price',{scale:1.05,duration:0.6,yoyo:true,repeat:3,ease:'sine.inOut'},P+4.4);
-POP('#pr-month',P+6.6);
-POP('#pr-save',P+9.3,{s:0.5});
-COUNT('#pr-savenum',0,2101,P+9.35,1.0,v=>'RM'+NUM(v));
-IN('#pr-note',P+10.7,{y:10});
-OUT('#sc-promo > *',P+12.7);
+POP('#pr-sahaja',P+8.45,{s:0.2});
+tl.to('#pr-price',{scale:1.05,duration:0.6,yoyo:true,repeat:3,ease:'sine.inOut'},P+8.8);
+POP('#pr-month',P+9.25);
+POP('#pr-save',P+12.27,{s:0.5});
+COUNT('#pr-savenum',0,2101,P+12.32,1.0,v=>'RM'+NUM(v));
+IN('#pr-note',P+14.05,{y:10});
+OUT('#sc-promo > *',P+16.95);
 
 /* 7 CARA */
 POP('#cr-kick',C+0.05);
-SLAM('#cr-title',C+0.3,{s:1.6});
-IN('#cr-sub',C+0.6,{y:10});
-tl.fromTo('#cr-rail',{scaleY:0},{scaleY:0.04,duration:0.6,ease:'power2.out'},C+1.8);
-IN('#cr-s1',C+1.8,{x:-50,y:0});
-tl.to('#cr-rail',{scaleY:0.21,duration:0.6,ease:'power2.out'},C+3.8);
-IN('#cr-s2',C+3.8,{x:-50,y:0});
-[5.0,6.5,8.4,9.9].forEach((o,i)=>POP('#cr-d'+i,C+o,{s:0.4}));
-tl.to('#cr-rail',{scaleY:0.80,duration:0.6,ease:'power2.out'},C+11.5);
-IN('#cr-s3',C+11.5,{x:-50,y:0});
-tl.to('#cr-rail',{scaleY:1,duration:0.6,ease:'power2.out'},C+14.0);
-IN('#cr-s4',C+14.0,{x:-50,y:0});
-SLAM('#cr-siap',C+17.1,{s:2.3});
-SHAKE(C+17.35,8);
-OUT('#sc-cara > *',C+18.7);
+SLAM('#cr-title',C+0.34,{s:1.6});
+IN('#cr-sub',C+1.63,{y:10});
+tl.fromTo('#cr-rail',{scaleY:0},{scaleY:0.04,duration:0.6,ease:'power2.out'},C+2.74);
+IN('#cr-s1',C+2.74,{x:-50,y:0});
+tl.to('#cr-rail',{scaleY:0.21,duration:0.6,ease:'power2.out'},C+7.62);
+IN('#cr-s2',C+7.62,{x:-50,y:0});
+CARA_DOCS.forEach((o,i)=>POP('#cr-d'+i,C+o,{s:0.4}));
+tl.to('#cr-rail',{scaleY:0.80,duration:0.6,ease:'power2.out'},C+16.41);
+IN('#cr-s3',C+16.41,{x:-50,y:0});
+tl.to('#cr-rail',{scaleY:1,duration:0.6,ease:'power2.out'},C+20.45);
+IN('#cr-s4',C+20.45,{x:-50,y:0});
+SLAM('#cr-siap',C+26.35,{s:2.3});
+SHAKE(C+26.6,8);
+OUT('#sc-cara > *',C+27.05);
 
 /* 8 CTA */
 DRAW('#ct-house .draw',A+0.1,1.0,0.08);
 tl.to('#ct-house .win',{fill:'#FFD36E',duration:0.4},A+0.9);
 tl.to('#ct-glow',{opacity:1,duration:0.8},A+0.9);
-tl.fromTo('#ct-house .hheart',{opacity:0,scale:0.3,transformOrigin:'250px 250px'},{opacity:1,scale:1,duration:0.6,ease:'back.out(2.5)'},A+3.0);
-IN('#ct-l1',A+0.5); IN('#ct-l2',A+2.2); IN('#ct-l3',A+3.2); IN('#ct-l3b',A+3.5);
-tl.to('#ct-hwrap',{y:-14,duration:1.6,yoyo:true,repeat:6,ease:'sine.inOut'},A+3.8);
-tl.to('#ct-glow',{opacity:.6,duration:1.6,yoyo:true,repeat:6,ease:'sine.inOut'},A+3.8);
-SLAM('#ct-dead',A+7.0,{s:1.8});
-POP('#ct-btn',A+9.7,{s:0.4});
-tl.to('#ct-btn',{scale:1.06,duration:0.45,yoyo:true,repeat:5,ease:'sine.inOut'},A+10.3);
-IN('#ct-sub',A+10.4,{y:10});
+IN('#ct-l1',A+0.15); IN('#ct-l2',A+2.55); IN('#ct-l3',A+4.17); IN('#ct-l3b',A+6.05);
+tl.fromTo('#ct-house .hheart',{opacity:0,scale:0.3,transformOrigin:'250px 250px'},{opacity:1,scale:1,duration:0.6,ease:'back.out(2.5)'},A+6.1);
+tl.to('#ct-hwrap',{y:-14,duration:1.6,yoyo:true,repeat:7,ease:'sine.inOut'},A+6.5);
+tl.to('#ct-glow',{opacity:.6,duration:1.6,yoyo:true,repeat:7,ease:'sine.inOut'},A+6.5);
+SLAM('#ct-dead',A+9.43,{s:1.8});
+POP('#ct-btn',A+14.0,{s:0.4});
+tl.to('#ct-btn',{scale:1.06,duration:0.45,yoyo:true,repeat:7,ease:'sine.inOut'},A+14.6);
+IN('#ct-sub',A+15.05,{y:10});
 
 window.__timelines["main"] = tl;
 '''
 
 def build():
     consts = (f"const TOTAL={TOTAL};const H={S('hook')},B={S('bila')},T={S('tunggu')},Z={S('beza')},"
-              f"K={S('kenali')},P={S('promo')},C={S('cara')},A={S('cta')};")
+              f"K={S('kenali')},P={S('promo')},C={S('cara')},A={S('cta')};"
+              f"const BILA_CUES={BILA_CUES},CARA_DOCS={CARA_DOCS};")
     scenes = "\n".join([
         scene_tags("hook", HOOK), scene_tags("bila", BILA), scene_tags("tunggu", TUNGGU),
         scene_tags("beza", BEZA), scene_tags("kenali", KENALI), scene_tags("promo", PROMO),
@@ -661,9 +670,8 @@ def build():
       </div>
       <div id="flash" data-layout-ignore></div>
 
-      <!-- VOICE-OVER: save your recording as assets/voice.wav, then uncomment the line below
-      <audio id="voice" class="clip" src="assets/voice.wav" data-start="0" data-duration="{TOTAL}" data-volume="1" data-track-index="0"></audio>
-      -->
+      <!-- Voice-over (cleaned: highpass, denoise, compression, -16 LUFS) -->
+      <audio id="voice" class="clip" src="assets/voice.wav" data-start="0" data-duration="142.84" data-volume="1" data-track-index="0"></audio>
 
       <hf-audio-group id="sfx"></hf-audio-group>
 {sfx_tags()}
