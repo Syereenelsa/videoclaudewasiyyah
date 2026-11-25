@@ -1,6 +1,6 @@
 # Skrip Voice Over: Promosi Hibah Rumah RM499
 
-> **Rakaman sudah dimasukkan** (`assets/voice.wav`, 2:23). Video kini 2:24 dan setiap babak diselaraskan dengan rakaman, jadi masa dalam jadual di bawah ialah masa asal sebelum rakaman.
+> **Rakaman versi 2 sudah dimasukkan** (`assets/voice.wav`, 2:32, dengan ayat 100%). Video kini 2:33 dan setiap babak diselaraskan dengan rakaman, jadi masa dalam jadual di bawah ialah masa asal sebelum rakaman.
 
 **Durasi video:** 1:46.5 (106.5 saat) · **Format:** 1080×1920 (Reels / TikTok / Shorts)
 **Nada:** mesra, tenang, macam bercakap dengan kawan. Perlahan sedikit pada babak 1 dan 8 (emosi), lebih bertenaga pada babak 6 (promosi).
@@ -94,17 +94,17 @@ Masa di kiri ialah bila teks itu **muncul di skrin**. Mula sebut baris itu pada 
 
 > Pernah terfikir, apa akan jadi kepada rumah yang kita tinggalkan, jika suatu hari nanti kita sudah tiada?
 >
-> Bila anda perlu buat hibah rumah? Kalau anda dah ada rumah atas nama sendiri, rumah masih dalam pinjaman bank, dah berkahwin dan ada anak, nak pastikan rumah diberikan kepada pasangan atau anak yang dipilih, nak kurangkan risiko pertikaian keluarga, dan nak rancang pembahagian harta semasa masih hidup.
+> Bila anda perlu bertindak buat hibah rumah? Kalau anda dah ada rumah atas nama sendiri, rumah masih dalam pinjaman bank, dah berkahwin dan ada anak, nak pastikan rumah diberikan kepada pasangan atau anak yang dipilih, nak kurangkan risiko pertikaian keluarga, dan nak rancang pembahagian harta semasa masih hidup.
 >
 > Jika anda tergolong dalam salah satu situasi ini, inilah masa yang sesuai untuk mula merancang. Jangan tunggu sehingga rumah habis bayar. Perancangan harta yang baik bermula semasa kita masih hidup.
 >
 > Apa bezanya ada dan tiada dokumen pengisytiharan hibah? Tanpa hibah yang sah, rumah yang menjadi harta pusaka lazimnya akan dibahagikan mengikut faraid. Dengan dokumen pengisytiharan hibah yang sah, dokumen ini boleh dikemukakan semasa proses pengurusan pusaka atau bicara kuasa, bagi membuktikan pemberian kepada penerima yang anda pilih. Jika hibah itu sah, rumah tersebut boleh dikeluarkan daripada harta pusaka yang difaraidkan.
 >
-> Kenali, Hibah Digital Wasiyyah. Hibah digital yang telah mendapat pengesahan daripada Mahkamah Syariah, telah digunakan oleh lebih lima belas ribu pelanggan, dan membantu anda merancang pemberian rumah kepada orang tersayang.
+> Kenali, Hibah Digital Wasiyyah. Hibah digital yang telah mendapat pengesahan daripada Mahkamah Syariah, telah digunakan oleh lebih lima belas ribu pelanggan, dan membantu anda merancang pemberian rumah kepada orang tersayang. Dan setakat ini, hibah di syarikat Wasiyyah 100% berjaya dapat pengesahan hibah.
 >
 > Dan sekarang, ada promosi istimewa! Harga asal, dua ribu enam ratus ringgit. Sekarang cuma empat ratus sembilan puluh sembilan ringgit sahaja! Atau empat puluh tujuh ringgit sebulan, selama dua belas bulan. Jimat dua ribu seratus satu ringgit, untuk rumah yang masih dalam pinjaman bank.
 >
-> Caranya mudah, empat langkah sahaja. Satu, daftar dan buat bayaran melalui pautan yang diberikan. Dua, muat naik dokumen: salinan S&P, surat tawaran pinjaman bank, dokumen MRTA atau MRTT, dan salinan IC penerima hibah. Tiga, skrip akad hibah akan disediakan dalam tempoh seminggu. Empat, laksanakan akad ijab dan qabul secara online melalui aplikasi UsraHDD. Siap!
+> Caranya mudah, empat langkah sahaja. Satu, daftar dan buat bayaran melalui pautan yang diberikan. Dua, muat naik dokumen: salinan S&P, surat tawaran pinjaman bank, dokumen MRTA atau MRTT, dan salinan IC penerima hibah. Tiga, skrip akad hibah akan disediakan dan draf akan dikeluarkan untuk semakan. Empat, laksanakan akad ijab dan qabul secara online di bawah pemantauan pihak HQ Wasiyyah melalui aplikasi UsraHDD. Siap!
 >
 > Rumah yang kita beli dengan penuh usaha bukan sekadar aset, tetapi tempat berteduh untuk orang yang kita sayang. Jangan tunggu sehingga terlambat. Promosi RM499 akan tamat tiga puluh November ini. Reply "YA" sekarang, saya akan kongsikan pautan pendaftaran untuk anda.
 
