@@ -55,13 +55,13 @@ const COUNT=(s,a,b,t,d,f,e='power2.out')=>{const el=document.querySelector(s);co
 const RM=(v)=>'RM'+Math.round(v).toLocaleString('en-US');
 
 
-    IN('#fz-panel',0.05,{y:-30});
-    POP('#fz-kick',0.55);
-    IN('#fz-l1',1.65);
-    SLAM('#fz-l2',2.61,{s:2.2});
-    POP('#fz-lock',2.71,{s:0.2});
-    tl.fromTo('#fz-f1,#fz-f2,#fz-f3,#fz-f4',{opacity:0,scale:0,rotation:-90},{opacity:0.9,scale:1,rotation:0,duration:0.5,ease:'back.out(2)',stagger:0.05},2.75);
-    OUT('#fz-panel',3.27);
+    IN('#fz-panel',0.052,{y:-30});
+    POP('#fz-kick',0.572);
+    IN('#fz-l1',1.925);
+    SLAM('#fz-l2',2.924,{s:2.2});
+    POP('#fz-lock',3.028,{s:0.2});
+    tl.fromTo('#fz-f1,#fz-f2,#fz-f3,#fz-f4',{opacity:0,scale:0,rotation:-90},{opacity:0.9,scale:1,rotation:0,duration:0.5,ease:'back.out(2)',stagger:0.05},3.069);
+    OUT('#fz-panel',3.611);
 
     window.__timelines["freeze"] = tl;
   </script>

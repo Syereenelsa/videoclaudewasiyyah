@@ -6,3 +6,4 @@ node_modules/
 assets/person.webm
 assets/voice.wav
 assets/.tmp-*
+__pycache__/

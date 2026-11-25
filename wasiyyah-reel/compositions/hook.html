@@ -65,18 +65,18 @@ const COUNT=(s,a,b,t,d,f,e='power2.out')=>{const el=document.querySelector(s);co
 const RM=(v)=>'RM'+Math.round(v).toLocaleString('en-US');
 
 
-    tl.fromTo('#hook-top',{scale:1.05},{scale:1,duration:0.6,ease:'power2.out'},0);
-    tl.to('#hook-w1,#hook-w2',{color:'#9ADBFF',duration:0.15},0.8);
-    tl.fromTo('#hook-w2',{scale:1},{scale:1.12,duration:0.18,yoyo:true,repeat:1,ease:'power2.out'},1.19);
-    tl.to('#hook-top',{y:-160,opacity:0,filter:'blur(10px)',duration:0.3,ease:'power3.in'},2.5);
-    tl.to('#hook-dim',{opacity:1,duration:0.35,ease:'power2.out'},2.5);
-    IN('#hook-glabel',2.62,{y:30});
-    tl.fromTo('#hook-gnum',{opacity:0,scale:0.55},{opacity:1,scale:1,duration:0.3,ease:'power3.out'},2.66);
-    COUNT('#hook-n',0,90,2.69,0.68,v=>Math.round(v),'power2.in');
-    tl.fromTo('#hook-gnum',{scale:1.28},{scale:1,duration:0.4,ease:'back.out(2.5)',immediateRender:false},3.37);
-    SLAM('#hook-gbil',3.86,{s:2.4,d:0.18});
-    tl.to('#hook-giant',{scale:1.18,opacity:0,filter:'blur(14px)',duration:0.24,ease:'power3.in'},4.48);
-    tl.to('#hook-dim',{opacity:0,duration:0.24,ease:'power2.in'},4.48);
+    tl.fromTo('#hook-top',{scale:1.05},{scale:1,duration:0.6,ease:'power2.out'},0.0);
+    tl.to('#hook-w1,#hook-w2',{color:'#9ADBFF',duration:0.15},0.833);
+    tl.fromTo('#hook-w2',{scale:1},{scale:1.12,duration:0.18,yoyo:true,repeat:1,ease:'power2.out'},1.238);
+    tl.to('#hook-top',{y:-160,opacity:0,filter:'blur(10px)',duration:0.3,ease:'power3.in'},2.602);
+    tl.to('#hook-dim',{opacity:1,duration:0.35,ease:'power2.out'},2.602);
+    IN('#hook-glabel',2.727,{y:30});
+    tl.fromTo('#hook-gnum',{opacity:0,scale:0.55},{opacity:1,scale:1,duration:0.3,ease:'power3.out'},2.768);
+    COUNT('#hook-n',0,90,2.799,0.708,v=>Math.round(v),'power2.in');
+    tl.fromTo('#hook-gnum',{scale:1.28},{scale:1,duration:0.4,ease:'back.out(2.5)',immediateRender:false},3.507);
+    SLAM('#hook-gbil',4.017,{s:2.4,d:0.18});
+    tl.to('#hook-giant',{scale:1.18,opacity:0,filter:'blur(14px)',duration:0.24,ease:'power3.in'},4.662);
+    tl.to('#hook-dim',{opacity:0,duration:0.24,ease:'power2.in'},4.662);
 
     window.__timelines["hook"] = tl;
   </script>

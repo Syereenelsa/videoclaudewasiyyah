@@ -9,11 +9,22 @@ from icons import icon
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 PROJ = os.path.dirname(HERE)
-D = 115.7  # edited A-roll length (s)
+D1 = 115.7  # v1 edited length: every authored time below is on this timeline
 W, H = 1080, 1920
 
 words = json.load(open(os.path.join(HERE, "words_edit.json")))
 pieces = json.load(open(os.path.join(HERE, "pieces.json")))
+
+# v1 -> v2 time map (slower pacing, breathing pauses, repeats removed); see retime.py
+_RT = json.load(open(os.path.join(HERE, "retime.json")))
+D = _RT["D"]
+_TAB = _RT["table"]
+def T(t1):
+    if t1 >= D1:
+        return D if t1 > D1 else _TAB[-1][1]
+    i = max(0, min(int(t1 / 0.01), len(_TAB) - 2))
+    (a, x), (b, y) = _TAB[i], _TAB[i + 1]
+    return round(x + (y - x) * (t1 - a) / (b - a), 4)
 
 GOLD = "#E9C46A"
 ICE = "#9ADBFF"
@@ -84,13 +95,26 @@ def scene_file(sid, extra_css, body, js, panel_h=None):
 
 SCENES = []  # (sid, start, end, html)
 
+# v2 removes "semuanya dibekukan dan tak boleh dikeluarkan", so the assets card's lock beat
+# would land in the cut. Lock right after "Tabung Haji", hold the card briefly, then hand over.
+_haji = next(w for w in words if w["text"].lower().startswith("haji"))
+LOCK2 = round(_haji["end"] + 0.12, 3)
+ASSETS_END2 = round(LOCK2 + 1.45, 3)
+# "Sekiranya anda melanggan Wasitah Intan ini," is cut too: the comparison card opens just before "jumlahnya".
+BANDING_S2 = round(next(w for w in words if w["text"].lower().startswith("jumlahnya"))["start"] - 0.35, 3)
+OVR = {"assets": (None, ASSETS_END2), "surat": (ASSETS_END2, None),
+       "harga": (None, BANDING_S2), "banding": (BANDING_S2, None)}  # v2 start/end overrides
+
 def add_scene(sid, start, end, extra_css, body, js):
-    SCENES.append((sid, start, end))
+    a, b = OVR.get(sid, (None, None))
+    a = a if a is not None else round(T(start), 3)
+    b = b if b is not None else (D if end >= D1 else round(T(end), 3))
+    SCENES.append((sid, a, b))
     with open(os.path.join(PROJ, "compositions", f"{sid}.html"), "w") as f:
         f.write(scene_file(sid, extra_css, body, js))
 
 def L(start):
-    return lambda g: round(g - start, 3)
+    return lambda g: round(T(g) - T(start), 3)
 
 # ================================================================ 1. HOOK
 s0, s1 = 0.0, 4.75; t = L(s0)
@@ -117,18 +141,18 @@ add_scene("hook", s0, s1, """
       <div class="g-bil" id="hook-gbil"><span class="gold">BILION</span></div>
     </div>
 """, f"""
-    tl.fromTo('#hook-top',{{scale:1.05}},{{scale:1,duration:0.6,ease:'power2.out'}},0);
-    tl.to('#hook-w1,#hook-w2',{{color:'{ICE}',duration:0.15}},0.8);
-    tl.fromTo('#hook-w2',{{scale:1}},{{scale:1.12,duration:0.18,yoyo:true,repeat:1,ease:'power2.out'}},1.19);
-    tl.to('#hook-top',{{y:-160,opacity:0,filter:'blur(10px)',duration:0.3,ease:'power3.in'}},2.5);
-    tl.to('#hook-dim',{{opacity:1,duration:0.35,ease:'power2.out'}},2.5);
-    IN('#hook-glabel',2.62,{{y:30}});
-    tl.fromTo('#hook-gnum',{{opacity:0,scale:0.55}},{{opacity:1,scale:1,duration:0.3,ease:'power3.out'}},2.66);
-    COUNT('#hook-n',0,90,2.69,0.68,v=>Math.round(v),'power2.in');
-    tl.fromTo('#hook-gnum',{{scale:1.28}},{{scale:1,duration:0.4,ease:'back.out(2.5)',immediateRender:false}},3.37);
-    SLAM('#hook-gbil',3.86,{{s:2.4,d:0.18}});
-    tl.to('#hook-giant',{{scale:1.18,opacity:0,filter:'blur(14px)',duration:0.24,ease:'power3.in'}},4.48);
-    tl.to('#hook-dim',{{opacity:0,duration:0.24,ease:'power2.in'}},4.48);
+    tl.fromTo('#hook-top',{{scale:1.05}},{{scale:1,duration:0.6,ease:'power2.out'}},{t(0)});
+    tl.to('#hook-w1,#hook-w2',{{color:'{ICE}',duration:0.15}},{t(0.8)});
+    tl.fromTo('#hook-w2',{{scale:1}},{{scale:1.12,duration:0.18,yoyo:true,repeat:1,ease:'power2.out'}},{t(1.19)});
+    tl.to('#hook-top',{{y:-160,opacity:0,filter:'blur(10px)',duration:0.3,ease:'power3.in'}},{t(2.5)});
+    tl.to('#hook-dim',{{opacity:1,duration:0.35,ease:'power2.out'}},{t(2.5)});
+    IN('#hook-glabel',{t(2.62)},{{y:30}});
+    tl.fromTo('#hook-gnum',{{opacity:0,scale:0.55}},{{opacity:1,scale:1,duration:0.3,ease:'power3.out'}},{t(2.66)});
+    COUNT('#hook-n',0,90,{t(2.69)},{round(t(3.37)-t(2.69),3)},v=>Math.round(v),'power2.in');
+    tl.fromTo('#hook-gnum',{{scale:1.28}},{{scale:1,duration:0.4,ease:'back.out(2.5)',immediateRender:false}},{t(3.37)});
+    SLAM('#hook-gbil',{t(3.86)},{{s:2.4,d:0.18}});
+    tl.to('#hook-giant',{{scale:1.18,opacity:0,filter:'blur(14px)',duration:0.24,ease:'power3.in'}},{t(4.48)});
+    tl.to('#hook-dim',{{opacity:0,duration:0.24,ease:'power2.in'}},{t(4.48)});
 """)
 
 # ================================================================ 2. FREEZE (B)
@@ -175,15 +199,15 @@ add_scene("assets", s0, s1, """
     IN('#as-panel',{t(8.32)},{{y:-30}});
     POP('#as-kick',{t(8.4)});
 """ + "".join(f"    POP('#as-c{i}',{t(tt)});\n" for i, (_, _, tt) in enumerate(chips)) + f"""
-    tl.to('#as-fr0,#as-fr1,#as-fr2,#as-fr3,#as-fr4',{{opacity:1,duration:0.3,stagger:0.07,ease:'power2.out'}},{t(12.5)});
-    POP('#as-lk0,#as-lk1,#as-lk2,#as-lk3,#as-lk4',{t(12.55)},{{st:0.07}});
-    tl.fromTo('#as-panel',{{x:0}},{{x:7,duration:0.05,yoyo:true,repeat:5,ease:'none'}},{t(12.55)});
-    POP('#as-ban',{t(13.55)});
-    OUT('#as-panel',{t(14.45)});
+    tl.to('#as-fr0,#as-fr1,#as-fr2,#as-fr3,#as-fr4',{{opacity:1,duration:0.3,stagger:0.07,ease:'power2.out'}},{round(LOCK2-T(s0),3)});
+    POP('#as-lk0,#as-lk1,#as-lk2,#as-lk3,#as-lk4',{round(LOCK2+0.05-T(s0),3)},{{st:0.07}});
+    tl.fromTo('#as-panel',{{x:0}},{{x:7,duration:0.05,yoyo:true,repeat:5,ease:'none'}},{round(LOCK2+0.05-T(s0),3)});
+    POP('#as-ban',{round(LOCK2+0.5-T(s0),3)});
+    OUT('#as-panel',{round(ASSETS_END2-0.3-T(s0),3)});
 """)
 
 # ================================================================ 4. SURAT KUASA (D)
-s0, s1 = 14.75, 22.45; t = L(s0)
+s0, s1 = 14.75, 22.45; t = lambda g: round(max(0.0, T(g) - ASSETS_END2), 3)
 add_scene("surat", s0, s1, """
 #surat .doc{display:flex;align-items:center;gap:18px;padding:16px 28px;border-radius:28px;background:linear-gradient(180deg,#FFF8E7,#F1E3C2);color:#0B1F3A;box-shadow:0 18px 40px rgba(0,0,0,.4)}
 #surat .seal{position:absolute;right:22px;top:86px;width:104px;height:104px;border-radius:50%;border:5px solid #C9962E;color:#C9962E;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:28px;letter-spacing:.04em;background:rgba(255,248,231,.95)}
@@ -240,7 +264,7 @@ add_scene("tarikh", s0, s1, """
     IN('#ta-bln',{t(27.0)},{{y:14}});
     IN('#ta-barw',{t(25.7)},{{y:10,d:0.3}});
     tl.to('#ta-b1',{{scaleX:1,duration:1.5,ease:'power2.inOut'}},{t(25.75)});
-    tl.to('#ta-foot',{{opacity:0.65,duration:0.3}},{t(27.5)});
+    tl.to('#ta-foot',{{opacity:0.65,duration:0.3}},{t(26.3)});
     OUT('#ta-ph1,#ta-foot',{t(28.75)});
     tl.set('#ta-ph2',{{opacity:1}},{t(29.0)});
     IN('#ta-w1',{t(30.2)},{{y:0}});
@@ -415,7 +439,7 @@ add_scene("harga", s0, s1, "", f"""
 """)
 
 # ================================================================ 12. BANDING (M)
-s0, s1 = 96.95, 104.05; t = L(s0)
+s0, s1 = 96.95, 104.05; t = lambda g: round(max(0.0, T(g) - BANDING_S2), 3)
 add_scene("banding", s0, s1, """
 #banding .cmp{position:absolute;left:40px;right:44px}
 #banding .ch{display:flex;justify-content:space-between;align-items:baseline;font-weight:800;font-size:30px;margin-bottom:8px}
@@ -430,11 +454,11 @@ add_scene("banding", s0, s1, """
     </div>
 """, f"""
     tl.fromTo('#bd-b1,#bd-b2',{{scaleX:0}},{{scaleX:0,duration:0.01}},0);
-    IN('#bd-panel',{t(97.0)},{{y:-30}});
-    POP('#bd-kick',{t(97.05)});
-    IN('#bd-r1',{t(97.2)},{{y:12}});
-    tl.to('#bd-b1',{{scaleX:1,duration:1.0,ease:'power3.out'}},{t(97.4)});
-    IN('#bd-r2',{t(99.0)},{{y:12}});
+    IN('#bd-panel',0.02,{{y:-30}});
+    POP('#bd-kick',0.07);
+    IN('#bd-r1',0.18,{{y:12}});
+    tl.to('#bd-b1',{{scaleX:1,duration:1.0,ease:'power3.out'}},0.35);
+    IN('#bd-r2',0.55,{{y:12}});
     tl.to('#bd-b2',{{scaleX:1,duration:0.6,ease:'power3.out'}},{t(100.5)});
     COUNT('#bd-v2',0,5832,{t(100.45)},0.6,RM);
     tl.fromTo('#bd-v2',{{scale:1.3}},{{scale:1,duration:0.35,ease:'back.out(2.5)',immediateRender:false}},{t(101.05)});
@@ -467,7 +491,7 @@ add_scene("lepas", s0, s1, """
 """)
 
 # ================================================================ 14. CTA (P)
-s0, s1 = 111.3, D; t = L(s0)
+s0, s1 = 111.3, D1; t = L(s0)
 add_scene("cta", s0, s1, """
 #cta .btn{display:inline-flex;align-items:center;gap:14px;padding:18px 34px;border-radius:999px;background:linear-gradient(180deg,#F6D98B,#E2B65A);color:#0B1F3A;font-weight:900;font-size:36px;box-shadow:0 16px 40px rgba(233,196,106,.35)}
 """, f"""
@@ -571,8 +595,8 @@ SFX = [
     ("riser", 1.75, .32), ("impact", 3.35, .55), ("stamp", 3.86, .42), ("whoosh", 4.45, .30),
     ("swish", 5.3, .22), ("lock", 7.42, .42),
     ("whoosh", 8.25, .24), ("pop", 8.37, .30), ("pop", 9.17, .30), ("pop", 9.93, .30), ("pop", 10.63, .30), ("pop", 11.31, .30),
-    ("lock", 12.5, .40), ("tick", 13.55, .28),
-    ("whoosh", 14.75, .24), ("stamp", 18.84, .45), ("pop", 20.3, .28), ("pop", 21.42, .28),
+    ("lock", ("v2", LOCK2), .40), ("tick", ("v2", LOCK2 + 0.5), .28),
+    ("whoosh", ("v2", ASSETS_END2), .24), ("stamp", 18.84, .45), ("pop", 20.3, .28), ("pop", 21.42, .28),
     ("swish", 22.5, .24), ("clock", 25.65, .22), ("tick", 30.2, .30), ("tick", 31.75, .30), ("impact", 35.3, .38),
     ("whoosh", 37.55, .24), ("swish", 39.95, .20), ("ding", 42.3, .22), ("pop", 45.85, .28), ("swish", 50.85, .20), ("stamp", 53.85, .32), ("ding", 54.1, .26),
     ("whoosh", 55.6, .24), ("stamp", 57.2, .26), ("lock", 60.25, .40),
@@ -580,7 +604,7 @@ SFX = [
     ("whoosh", 71.5, .26), ("ding", 72.8, .28), ("swish", 77.4, .22),
     ("whoosh", 78.55, .22), ("tick", 80.0, .30), ("tick", 81.4, .30), ("tick", 83.7, .30),
     ("whoosh", 84.88, .24), ("stamp", 85.0, .30), ("ding", 87.8, .28), ("pop", 90.55, .26), ("pop", 92.05, .26), ("swish", 95.1, .20),
-    ("whoosh", 97.0, .24), ("swish", 97.4, .18), ("cash", 101.0, .32), ("stamp", 102.3, .30), ("ding", 102.4, .24),
+    ("whoosh", ("v2", BANDING_S2), .24), ("swish", ("v2", BANDING_S2 + 0.4), .18), ("cash", 101.0, .32), ("stamp", 102.3, .30), ("ding", 102.4, .24),
     ("whoosh", 104.1, .24), ("pop", 106.85, .28), ("pop", 107.7, .28), ("pop", 108.75, .28), ("tick", 109.45, .28), ("tick", 110.4, .28),
     ("whoosh", 111.3, .28), ("ding", 111.4, .30), ("pop", 113.05, .26),
 ]
@@ -592,6 +616,7 @@ sfx_html = []
 lane_end = [0.0, 0.0, 0.0]
 for i, (n, st, v) in enumerate(SFX):
     d = round(lens[n], 3)
+    st = st[1] if isinstance(st, tuple) else round(T(st), 3)
     lane = next(k for k in range(3) if lane_end[k] <= st)
     lane_end[lane] = st + d
     sfx_html.append(f'      <audio id="sfx{i:02d}" class="clip" src="assets/sfx/{n}.wav" data-start="{st}" data-duration="{d}" data-volume="{v}" data-audio-group="sfx" data-track-index="{4+lane}"></audio>')
@@ -601,11 +626,11 @@ hosts = []
 for sid, a, b in SCENES:
     hosts.append(f'      <div id="{sid}" class="clip scene" data-composition-id="{sid}" data-composition-src="compositions/{sid}.html" data-start="{a}" data-duration="{round(b-a,3)}" data-track-index="2" data-track-kind="graphics" data-width="{W}" data-height="{H}"></div>')
 
-FROST = [(7.42, 8.3), (12.5, 13.7), (60.25, 61.0)]
+FROST = [(T(a), max(T(b), T(a) + 0.8)) for a, b in [(7.42, 8.3), (60.25, 61.0)]] + [(LOCK2, LOCK2 + 1.2)]
 frost_js = "".join(
     f"    tl.fromTo('#frost',{{opacity:0,scale:1.08}},{{opacity:1,scale:1,duration:0.18,ease:'power2.out',immediateRender:false}},{a});\n"
     f"    tl.to('#frost',{{opacity:0,duration:0.5,ease:'power2.in'}},{b-0.5});\n" for a, b in FROST)
-SHAKE = [(3.35, 14), (35.3, 7), (64.1, 6), (7.42, 5), (12.5, 5)]
+SHAKE = [(T(a), amp) for a, amp in [(3.35, 14), (35.3, 7), (64.1, 6), (7.42, 5)]] + [(LOCK2 + 0.05, 5)]
 shake_js = ""
 for a, amp in SHAKE:
     seq = [(1, -0.6), (-0.8, 0.9), (0.6, -0.4), (-0.4, 0.5), (0.2, -0.2), (0, 0)]
@@ -670,14 +695,14 @@ index = f"""<!doctype html>
         tl.set('#cam', {{ x: x0, y: y0, scale: s0 }}, t);
         tl.to('#cam', {{ x: x1, y: y1, scale: s1, duration: d, ease: 'none' }}, t);
       }});
-      // giant-hook push-in (2.5s -> 4.5s)
-      tl.to('#cam', {{ x: {HOOK_PUSH[0]}, y: {HOOK_PUSH[1]}, scale: {HOOK_PUSH[2]}, duration: 2.0, ease: 'power2.in' }}, 2.5);
+      // giant-hook push-in
+      tl.to('#cam', {{ x: {HOOK_PUSH[0]}, y: {HOOK_PUSH[1]}, scale: {HOOK_PUSH[2]}, duration: {round(T(4.5)-T(2.5),3)}, ease: 'power2.in' }}, {T(2.5)});
       // calm background drift
       tl.fromTo('#orb1', {{ x: 0, y: 0 }}, {{ x: 160, y: 220, duration: {D}, ease: 'sine.inOut' }}, 0);
       tl.fromTo('#orb2', {{ x: 0, y: 0 }}, {{ x: -180, y: -260, duration: {D}, ease: 'sine.inOut' }}, 0);
       tl.fromTo('#orb3', {{ x: 0, y: 0 }}, {{ x: 120, y: 160, duration: {D}, ease: 'sine.inOut' }}, 0);
       tl.fromTo('#bg-pattern', {{ x: 0, y: 0 }}, {{ x: 60, y: 120, duration: {D}, ease: 'none' }}, 0);
-      tl.fromTo('#flash', {{ opacity: 0.85 }}, {{ opacity: 0, duration: 0.22, ease: 'power2.out', immediateRender: false }}, 3.37);
+      tl.fromTo('#flash', {{ opacity: 0.85 }}, {{ opacity: 0, duration: 0.22, ease: 'power2.out', immediateRender: false }}, {T(3.37)});
       tl.set('#flash', {{ opacity: 0 }}, 0);
 {frost_js}{shake_js}      window.__timelines["main"] = tl;
     </script>

@@ -54,19 +54,19 @@ const COUNT=(s,a,b,t,d,f,e='power2.out')=>{const el=document.querySelector(s);co
 const RM=(v)=>'RM'+Math.round(v).toLocaleString('en-US');
 
 
-    IN('#hg-panel',0.03,{y:-30});
-    POP('#hg-kick',0.05);
-    SLAM('#hg-big',0.15,{s:1.8});
-    OUT('#hg-big',1.9,0.25);
-    tl.set('#hg-ph2',{opacity:1},2.1);
-    IN('#hg-ph2 .t-sm',2.1,{y:10});
-    tl.fromTo('#hg-price',{opacity:0,scale:0.6},{opacity:1,scale:1,duration:0.4,ease:'back.out(2)'},2.9);
-    COUNT('#hg-price',0,32.40,2.95,0.9,v=>'RM'+v.toFixed(2));
-    POP('#hg-p1',5.7);
-    POP('#hg-p2',7.2);
-    OUT('#hg-pills',10.05,0.2);
-    POP('#hg-2j',10.3);
-    OUT('#hg-panel',11.83);
+    IN('#hg-panel',0.031,{y:-30});
+    POP('#hg-kick',0.318);
+    SLAM('#hg-big',0.422,{s:1.8});
+    OUT('#hg-big',2.464,0.25);
+    tl.set('#hg-ph2',{opacity:1},2.672);
+    IN('#hg-ph2 .t-sm',2.672,{y:10});
+    tl.fromTo('#hg-price',{opacity:0,scale:0.6},{opacity:1,scale:1,duration:0.4,ease:'back.out(2)'},3.505);
+    COUNT('#hg-price',0,32.40,3.557,0.9,v=>'RM'+v.toFixed(2));
+    POP('#hg-p1',6.522);
+    POP('#hg-p2',8.083);
+    OUT('#hg-pills',11.225,0.2);
+    POP('#hg-2j',11.485);
+    OUT('#hg-panel',13.077);
 
     window.__timelines["harga"] = tl;
   </script>

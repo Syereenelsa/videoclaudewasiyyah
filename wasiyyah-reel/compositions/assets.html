@@ -53,19 +53,19 @@ const COUNT=(s,a,b,t,d,f,e='power2.out')=>{const el=document.querySelector(s);co
 const RM=(v)=>'RM'+Math.round(v).toLocaleString('en-US');
 
 
-    IN('#as-panel',0.02,{y:-30});
-    POP('#as-kick',0.1);
-    POP('#as-c0',0.07);
-    POP('#as-c1',0.87);
-    POP('#as-c2',1.63);
-    POP('#as-c3',2.33);
-    POP('#as-c4',3.01);
+    IN('#as-panel',0.021,{y:-30});
+    POP('#as-kick',0.138);
+    POP('#as-c0',0.107);
+    POP('#as-c1',0.939);
+    POP('#as-c2',1.73);
+    POP('#as-c3',2.459);
+    POP('#as-c4',3.166);
 
-    tl.to('#as-fr0,#as-fr1,#as-fr2,#as-fr3,#as-fr4',{opacity:1,duration:0.3,stagger:0.07,ease:'power2.out'},4.2);
-    POP('#as-lk0,#as-lk1,#as-lk2,#as-lk3,#as-lk4',4.25,{st:0.07});
-    tl.fromTo('#as-panel',{x:0},{x:7,duration:0.05,yoyo:true,repeat:5,ease:'none'},4.25);
-    POP('#as-ban',5.25);
-    OUT('#as-panel',6.15);
+    tl.to('#as-fr0,#as-fr1,#as-fr2,#as-fr3,#as-fr4',{opacity:1,duration:0.3,stagger:0.07,ease:'power2.out'},3.9);
+    POP('#as-lk0,#as-lk1,#as-lk2,#as-lk3,#as-lk4',3.95,{st:0.07});
+    tl.fromTo('#as-panel',{x:0},{x:7,duration:0.05,yoyo:true,repeat:5,ease:'none'},3.95);
+    POP('#as-ban',4.4);
+    OUT('#as-panel',5.05);
 
     window.__timelines["assets"] = tl;
   </script>

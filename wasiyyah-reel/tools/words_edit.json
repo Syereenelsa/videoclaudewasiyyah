@@ -1,1632 +1,1499 @@
 [
 {
 "text": "bila",
-"start": 4.77,
-"end": 5.048,
+"start": 4.972,
+"end": 5.261,
 "lab": "B",
 "src": 2.52
 },
 {
 "text": "berlaku",
-"start": 5.067,
-"end": 5.418,
+"start": 5.28,
+"end": 5.645,
 "lab": "B",
 "src": 2.84
 },
 {
 "text": "kematian,",
-"start": 5.437,
-"end": 5.967,
+"start": 5.666,
+"end": 6.217,
 "lab": "B",
 "src": 3.24
 },
 {
 "text": "semua",
-"start": 6.467,
-"end": 6.578,
+"start": 6.945,
+"end": 7.06,
 "lab": "B",
 "src": 4.58
 },
 {
 "text": "aset",
-"start": 6.596,
-"end": 6.856,
+"start": 7.08,
+"end": 7.35,
 "lab": "B",
 "src": 4.72
 },
 {
 "text": "kita",
-"start": 6.874,
-"end": 7.189,
+"start": 7.369,
+"end": 7.697,
 "lab": "B",
 "src": 5.02
 },
 {
 "text": "akan",
-"start": 7.207,
-"end": 7.467,
+"start": 7.716,
+"end": 7.986,
 "lab": "B",
 "src": 5.38
 },
 {
 "text": "terbeku.",
-"start": 7.485,
-"end": 8.282,
+"start": 8.005,
+"end": 8.834,
 "lab": "B",
 "src": 5.68
 },
 {
 "text": "Kereta,",
-"start": 8.37,
-"end": 8.963,
+"start": 8.96,
+"end": 9.577,
 "lab": "C",
 "src": 6.68
 },
 {
 "text": "rumah,",
-"start": 9.167,
-"end": 9.611,
+"start": 9.788,
+"end": 10.25,
 "lab": "C",
 "src": 7.54
 },
 {
 "text": "akaun",
-"start": 9.926,
-"end": 10.204,
+"start": 10.579,
+"end": 10.868,
 "lab": "C",
 "src": 8.36
 },
 {
 "text": "bank,",
-"start": 10.222,
-"end": 10.389,
+"start": 10.887,
+"end": 11.061,
 "lab": "C",
 "src": 8.68
 },
 {
 "text": "ASB,",
-"start": 10.63,
-"end": 11.093,
+"start": 11.311,
+"end": 11.793,
 "lab": "C",
 "src": 9.12
 },
 {
 "text": "Tabung",
-"start": 11.315,
-"end": 11.444,
+"start": 12.024,
+"end": 12.158,
 "lab": "C",
 "src": 9.86
 },
 {
-"text": "Haji,",
-"start": 11.463,
-"end": 11.9,
+"text": "Haji.",
+"start": 12.178,
+"end": 12.633,
 "lab": "C",
 "src": 10.02
 },
 {
-"text": "semuanya",
-"start": 12.252,
-"end": 12.511,
-"lab": "C",
-"src": 11.18
-},
-{
-"text": "dibekukan",
-"start": 12.53,
-"end": 13.326,
-"lab": "C",
-"src": 11.48
-},
-{
-"text": "dan",
-"start": 13.344,
-"end": 13.585,
-"lab": "C",
-"src": 12.36
-},
-{
-"text": "tak",
-"start": 13.604,
-"end": 13.826,
-"lab": "C",
-"src": 12.64
-},
-{
-"text": "boleh",
-"start": 13.844,
-"end": 14.03,
-"lab": "C",
-"src": 12.9
-},
-{
-"text": "dikeluarkan.",
-"start": 14.048,
-"end": 14.789,
-"lab": "C",
-"src": 13.12
-},
-{
 "text": "Untuk",
-"start": 14.87,
-"end": 15.148,
+"start": 12.896,
+"end": 13.186,
 "lab": "D1",
 "src": 14.62
 },
 {
 "text": "keluarkan",
-"start": 15.167,
-"end": 15.611,
+"start": 13.205,
+"end": 13.667,
 "lab": "D1",
 "src": 14.94
 },
 {
 "text": "duit",
-"start": 15.63,
-"end": 16.0,
+"start": 13.686,
+"end": 14.072,
 "lab": "D1",
 "src": 15.44
 },
 {
 "text": "dan",
-"start": 16.018,
-"end": 16.222,
+"start": 14.09,
+"end": 14.303,
 "lab": "D1",
-"src": 15.86
+"src": 15.859
 },
 {
 "text": "tukar",
-"start": 16.241,
-"end": 16.722,
+"start": 14.322,
+"end": 14.823,
 "lab": "D1",
 "src": 16.1
 },
 {
 "text": "nama",
-"start": 16.741,
-"end": 17.0,
+"start": 14.843,
+"end": 15.112,
 "lab": "D1",
 "src": 16.64
 },
 {
 "text": "geran,",
-"start": 17.018,
-"end": 17.367,
+"start": 15.131,
+"end": 15.494,
 "lab": "D1",
-"src": 16.94
+"src": 16.939
 },
 {
 "text": "waris",
-"start": 17.598,
-"end": 17.894,
+"start": 15.965,
+"end": 16.273,
 "lab": "D1",
 "src": 18.04
 },
 {
 "text": "perlu",
-"start": 17.913,
-"end": 18.098,
+"start": 16.293,
+"end": 16.486,
 "lab": "D1",
 "src": 18.38
 },
 {
 "text": "dapatkan",
-"start": 18.117,
-"end": 18.82,
+"start": 16.505,
+"end": 17.237,
 "lab": "D1",
 "src": 18.6
 },
 {
 "text": "surat",
-"start": 18.839,
-"end": 19.135,
+"start": 17.257,
+"end": 17.565,
 "lab": "D1",
 "src": 19.38
 },
 {
 "text": "kuasa",
-"start": 19.154,
-"end": 19.654,
+"start": 17.584,
+"end": 18.105,
 "lab": "D1",
 "src": 19.72
 },
 {
 "text": "ataupun",
-"start": 19.672,
-"end": 19.752,
+"start": 18.167,
+"end": 18.247,
 "lab": "D1",
-"src": 20.28
+"src": 23.2
 },
 {
 "text": "dari",
-"start": 19.719,
-"end": 20.33,
+"start": 18.187,
+"end": 18.823,
 "lab": "D2",
-"src": 23.22
+"src": 23.221
 },
 {
 "text": "pejabat",
-"start": 20.348,
-"end": 20.737,
+"start": 18.841,
+"end": 19.246,
 "lab": "D2",
 "src": 23.9
 },
 {
 "text": "tanah",
-"start": 20.756,
-"end": 21.144,
+"start": 19.265,
+"end": 19.669,
 "lab": "D2",
 "src": 24.34
 },
 {
 "text": "atau",
-"start": 21.163,
-"end": 21.441,
+"start": 19.689,
+"end": 19.978,
 "lab": "D2",
 "src": 24.78
 },
 {
 "text": "mahkamah",
-"start": 21.459,
-"end": 21.811,
+"start": 19.997,
+"end": 20.364,
 "lab": "D2",
 "src": 25.1
 },
 {
 "text": "tinggi.",
-"start": 21.83,
-"end": 22.533,
+"start": 20.383,
+"end": 21.114,
 "lab": "D2",
 "src": 25.5
 },
 {
 "text": "Prosesnya",
-"start": 22.552,
-"end": 22.632,
+"start": 21.133,
+"end": 21.217,
 "lab": "D2",
 "src": 26.28
 },
 {
 "text": "panjang.",
-"start": 23.367,
-"end": 24.033,
+"start": 22.089,
+"end": 22.61,
 "lab": "E",
-"src": 27.24
+"src": 27.26
 },
 {
 "text": "Tarikh",
-"start": 24.348,
-"end": 24.515,
+"start": 23.33,
+"end": 23.504,
 "lab": "E",
 "src": 28.54
 },
 {
 "text": "bicara",
-"start": 24.533,
-"end": 24.848,
+"start": 23.523,
+"end": 23.85,
 "lab": "E",
 "src": 28.74
 },
 {
 "text": "kuasa",
-"start": 24.867,
-"end": 25.182,
+"start": 23.87,
+"end": 24.197,
 "lab": "E",
 "src": 29.1
 },
 {
 "text": "biasanya",
-"start": 25.2,
-"end": 25.733,
+"start": 24.216,
+"end": 24.771,
 "lab": "E",
 "src": 29.46
 },
 {
 "text": "6",
-"start": 25.733,
-"end": 26.28,
+"start": 24.891,
+"end": 25.46,
 "lab": "E",
-"src": 30.08
+"src": 30.17
 },
 {
 "text": "hingga",
-"start": 26.298,
-"end": 26.687,
+"start": 25.479,
+"end": 25.884,
 "lab": "E",
 "src": 30.78
 },
 {
 "text": "7",
-"start": 26.706,
-"end": 27.039,
+"start": 25.904,
+"end": 26.25,
 "lab": "E",
-"src": 31.22
+"src": 31.221
 },
 {
-"text": "bulan",
-"start": 27.057,
-"end": 27.483,
+"text": "bulan.",
+"start": 26.269,
+"end": 26.703,
 "lab": "E",
 "src": 31.6
 },
 {
-"text": "bergantung",
-"start": 27.502,
-"end": 28.243,
-"lab": "E",
-"src": 32.08
-},
-{
-"text": "kawasan.",
-"start": 28.261,
-"end": 28.909,
-"lab": "E",
-"src": 32.9
-},
-{
 "text": "Kalau",
-"start": 28.97,
-"end": 29.23,
+"start": 26.796,
+"end": 27.067,
 "lab": "F",
 "src": 34.04
 },
 {
 "text": "ada",
-"start": 29.248,
-"end": 29.618,
+"start": 27.085,
+"end": 27.47,
 "lab": "F",
 "src": 34.34
 },
 {
 "text": "ahli",
-"start": 29.637,
-"end": 29.841,
+"start": 27.49,
+"end": 27.702,
 "lab": "F",
 "src": 34.76
 },
 {
 "text": "faraid",
-"start": 29.859,
-"end": 30.248,
+"start": 27.721,
+"end": 28.126,
 "lab": "F",
 "src": 35.0
 },
 {
 "text": "gagal",
-"start": 30.267,
-"end": 31.026,
+"start": 28.145,
+"end": 28.935,
 "lab": "F",
 "src": 35.44
 },
 {
 "text": "hadir",
-"start": 31.044,
-"end": 31.47,
+"start": 28.955,
+"end": 29.398,
 "lab": "F",
 "src": 36.28
 },
 {
 "text": "dan",
-"start": 31.489,
-"end": 31.785,
+"start": 29.417,
+"end": 29.725,
 "lab": "F",
 "src": 36.76
 },
 {
 "text": "tiada",
-"start": 31.804,
-"end": 32.341,
+"start": 29.745,
+"end": 30.304,
 "lab": "F",
 "src": 37.1
 },
 {
 "text": "borang",
-"start": 32.359,
-"end": 32.748,
+"start": 30.323,
+"end": 30.728,
 "lab": "F",
 "src": 37.7
 },
 {
 "text": "persetujuan",
-"start": 32.767,
-"end": 33.359,
+"start": 30.747,
+"end": 31.363,
 "lab": "F",
 "src": 38.14
 },
 {
 "text": "disediakan,",
-"start": 33.378,
-"end": 34.285,
+"start": 31.383,
+"end": 32.327,
 "lab": "F",
 "src": 38.8
 },
 {
 "text": "bicara",
-"start": 34.748,
-"end": 35.156,
+"start": 32.809,
+"end": 33.234,
 "lab": "F",
 "src": 40.28
 },
 {
 "text": "akan",
-"start": 35.174,
-"end": 35.526,
+"start": 33.252,
+"end": 33.619,
 "lab": "F",
 "src": 40.74
 },
 {
 "text": "tangguh.",
-"start": 35.544,
-"end": 36.089,
+"start": 33.638,
+"end": 33.973,
 "lab": "F",
 "src": 41.14
 },
 {
 "text": "Ketika",
-"start": 36.17,
-"end": 36.856,
+"start": 34.363,
+"end": 35.077,
 "lab": "G",
 "src": 45.34
 },
 {
 "text": "bicara",
-"start": 36.874,
-"end": 37.226,
+"start": 35.095,
+"end": 35.462,
 "lab": "G",
 "src": 46.1
 },
 {
 "text": "kuasa,",
-"start": 37.244,
-"end": 37.733,
+"start": 35.481,
+"end": 35.99,
 "lab": "G",
 "src": 46.5
 },
 {
 "text": "semua",
-"start": 38.224,
-"end": 38.354,
+"start": 36.683,
+"end": 36.819,
 "lab": "G",
 "src": 47.74
 },
 {
 "text": "aset",
-"start": 38.372,
-"end": 38.798,
+"start": 36.838,
+"end": 37.281,
 "lab": "G",
 "src": 47.9
 },
 {
 "text": "yang",
-"start": 38.817,
-"end": 39.168,
+"start": 37.3,
+"end": 37.665,
 "lab": "G",
 "src": 48.38
 },
 {
 "text": "diberi",
-"start": 39.187,
-"end": 39.835,
+"start": 37.686,
+"end": 38.36,
 "lab": "G",
 "src": 48.78
 },
 {
 "text": "akan",
-"start": 39.854,
-"end": 40.039,
+"start": 38.379,
+"end": 38.572,
 "lab": "G",
 "src": 49.5
 },
 {
 "text": "dibentangkan.",
-"start": 40.057,
-"end": 40.733,
+"start": 38.591,
+"end": 39.295,
 "lab": "G",
 "src": 49.72
 },
 {
 "text": "Yang",
-"start": 40.891,
-"end": 40.971,
+"start": 39.855,
+"end": 39.935,
 "lab": "G",
 "src": 51.56
 },
 {
 "text": "mana",
-"start": 40.946,
-"end": 41.668,
+"start": 39.913,
+"end": 40.664,
 "lab": "G",
 "src": 51.62
 },
 {
 "text": "ada",
-"start": 41.687,
-"end": 42.113,
+"start": 40.684,
+"end": 41.127,
 "lab": "G",
 "src": 52.42
 },
 {
 "text": "dokumen",
-"start": 42.131,
-"end": 42.465,
+"start": 41.146,
+"end": 41.494,
 "lab": "G",
 "src": 52.9
 },
 {
 "text": "hibah",
-"start": 42.483,
-"end": 42.967,
+"start": 41.512,
+"end": 42.015,
 "lab": "G",
 "src": 53.28
 },
 {
 "text": "akan",
-"start": 42.967,
-"end": 43.198,
+"start": 42.125,
+"end": 42.365,
 "lab": "G",
-"src": 53.88
+"src": 53.97
 },
 {
 "text": "terkeluar",
-"start": 43.217,
-"end": 43.606,
+"start": 42.385,
+"end": 42.789,
 "lab": "G",
 "src": 54.24
 },
 {
 "text": "daripada",
-"start": 43.624,
-"end": 44.143,
+"start": 42.809,
+"end": 43.349,
 "lab": "G",
 "src": 54.68
 },
 {
 "text": "aset",
-"start": 44.161,
-"end": 44.476,
+"start": 43.368,
+"end": 43.695,
 "lab": "G",
 "src": 55.26
 },
 {
 "text": "faraid.",
-"start": 44.494,
-"end": 44.846,
+"start": 43.713,
+"end": 44.08,
 "lab": "G",
-"src": 55.62
+"src": 55.619
 },
 {
 "text": "Yang",
-"start": 45.081,
-"end": 45.248,
+"start": 44.712,
+"end": 44.886,
 "lab": "G",
 "src": 56.72
 },
 {
 "text": "tiada",
-"start": 45.267,
-"end": 45.6,
+"start": 44.905,
+"end": 45.251,
 "lab": "G",
 "src": 56.92
 },
 {
 "text": "dokumen",
-"start": 45.618,
-"end": 45.933,
+"start": 45.27,
+"end": 45.598,
 "lab": "G",
-"src": 57.3
+"src": 57.299
 },
 {
 "text": "hibah",
-"start": 45.952,
-"end": 46.367,
+"start": 45.618,
+"end": 46.049,
 "lab": "G",
 "src": 57.66
 },
 {
 "text": "perlu",
-"start": 46.367,
-"end": 46.57,
+"start": 46.158,
+"end": 46.369,
 "lab": "G",
-"src": 58.48
+"src": 58.58
 },
 {
 "text": "ikut",
-"start": 46.589,
-"end": 47.144,
+"start": 46.389,
+"end": 46.967,
 "lab": "G",
 "src": 58.82
 },
 {
 "text": "pembahagian",
-"start": 47.163,
-"end": 47.7,
+"start": 46.986,
+"end": 47.545,
 "lab": "G",
 "src": 59.44
 },
 {
 "text": "secara",
-"start": 47.719,
-"end": 47.996,
+"start": 47.565,
+"end": 47.853,
 "lab": "G",
 "src": 60.04
 },
 {
 "text": "faraid",
-"start": 48.015,
-"end": 48.478,
+"start": 47.873,
+"end": 48.355,
 "lab": "G",
 "src": 60.36
 },
 {
 "text": "atau",
-"start": 48.496,
-"end": 48.922,
+"start": 48.374,
+"end": 48.817,
 "lab": "G",
 "src": 60.88
 },
 {
 "text": "muafakat",
-"start": 48.941,
-"end": 49.385,
+"start": 48.837,
+"end": 49.299,
 "lab": "G",
 "src": 61.36
 },
 {
 "text": "waris.",
-"start": 49.404,
-"end": 49.911,
+"start": 49.318,
+"end": 49.731,
 "lab": "G",
 "src": 61.86
 },
 {
 "text": "Setelah",
-"start": 50.096,
-"end": 50.448,
+"start": 50.176,
+"end": 50.543,
 "lab": "G",
 "src": 62.76
 },
 {
 "text": "dapat",
-"start": 50.467,
-"end": 50.911,
+"start": 50.562,
+"end": 51.024,
 "lab": "G",
 "src": 63.16
 },
 {
 "text": "kata",
-"start": 50.93,
-"end": 51.448,
+"start": 51.044,
+"end": 51.583,
 "lab": "G",
 "src": 63.66
 },
 {
 "text": "sepakat",
-"start": 51.467,
-"end": 51.967,
+"start": 51.602,
+"end": 52.123,
 "lab": "G",
 "src": 64.24
 },
 {
 "text": "untuk",
-"start": 51.967,
-"end": 52.291,
+"start": 52.225,
+"end": 52.562,
 "lab": "G",
-"src": 64.88
+"src": 64.99
 },
 {
 "text": "semua",
-"start": 52.309,
-"end": 52.772,
+"start": 52.581,
+"end": 53.063,
 "lab": "G",
 "src": 65.36
 },
 {
 "text": "ahli",
-"start": 52.791,
-"end": 52.994,
+"start": 53.082,
+"end": 53.293,
 "lab": "G",
 "src": 65.88
 },
 {
 "text": "faraid,",
-"start": 53.013,
-"end": 53.367,
+"start": 53.313,
+"end": 53.681,
 "lab": "G",
 "src": 66.12
 },
 {
 "text": "barulah",
-"start": 53.533,
-"end": 53.867,
+"start": 54.011,
+"end": 54.359,
 "lab": "G",
 "src": 66.86
 },
 {
 "text": "surat",
-"start": 53.885,
-"end": 54.163,
+"start": 54.377,
+"end": 54.666,
 "lab": "G",
 "src": 67.24
 },
 {
 "text": "kuasa",
-"start": 54.182,
-"end": 54.626,
+"start": 54.686,
+"end": 55.149,
 "lab": "G",
-"src": 67.56
+"src": 67.561
 },
 {
 "text": "akan",
-"start": 54.644,
-"end": 54.867,
+"start": 55.166,
+"end": 55.398,
 "lab": "G",
-"src": 68.06
+"src": 68.059
 },
 {
 "text": "dikeluarkan.",
-"start": 54.885,
-"end": 55.644,
+"start": 55.418,
+"end": 56.208,
 "lab": "G",
 "src": 68.32
 },
 {
 "text": "Masalahnya,",
-"start": 55.704,
-"end": 56.5,
+"start": 56.372,
+"end": 57.2,
 "lab": "H",
-"src": 70.30000000000001
+"src": 70.3
 },
 {
 "text": "ramai",
-"start": 56.574,
-"end": 56.963,
+"start": 57.278,
+"end": 57.682,
 "lab": "H",
 "src": 71.24
 },
 {
 "text": "waris",
-"start": 56.982,
-"end": 57.259,
+"start": 57.703,
+"end": 57.991,
 "lab": "H",
-"src": 71.68
+"src": 71.681
 },
 {
 "text": "tak",
-"start": 57.278,
-"end": 57.482,
+"start": 58.01,
+"end": 58.222,
 "lab": "H",
 "src": 72.0
 },
 {
 "text": "mampu",
-"start": 57.5,
-"end": 57.889,
+"start": 58.241,
+"end": 58.646,
 "lab": "H",
 "src": 72.24
 },
 {
 "text": "uruskan",
-"start": 57.907,
-"end": 58.315,
+"start": 58.665,
+"end": 59.09,
 "lab": "H",
 "src": 72.68
 },
 {
 "text": "proses",
-"start": 58.333,
-"end": 58.556,
+"start": 59.108,
+"end": 59.34,
 "lab": "H",
 "src": 73.14
 },
 {
 "text": "ini.",
-"start": 58.574,
-"end": 58.967,
+"start": 59.359,
+"end": 59.767,
 "lab": "H",
 "src": 73.4
 },
 {
 "text": "Akibatnya,",
-"start": 58.967,
-"end": 59.667,
+"start": 60.156,
+"end": 60.884,
 "lab": "H",
-"src": 74.0
+"src": 74.24
 },
 {
 "text": "aset",
-"start": 59.926,
-"end": 60.056,
+"start": 61.394,
+"end": 61.53,
 "lab": "H",
 "src": 75.72
 },
 {
 "text": "terus",
-"start": 60.074,
-"end": 60.389,
+"start": 61.548,
+"end": 61.876,
 "lab": "H",
 "src": 75.88
 },
 {
 "text": "terbeku.",
-"start": 60.407,
-"end": 61.037,
+"start": 61.895,
+"end": 62.551,
 "lab": "H",
 "src": 76.24
 },
 {
 "text": "Tahukah",
-"start": 0.037,
-"end": 0.352,
+"start": 0.039,
+"end": 0.366,
 "lab": "A",
 "src": 77.24
 },
 {
 "text": "anda",
-"start": 0.37,
-"end": 0.778,
+"start": 0.385,
+"end": 0.81,
 "lab": "A",
 "src": 77.6
 },
 {
 "text": "aset",
-"start": 0.796,
-"end": 1.167,
+"start": 0.829,
+"end": 1.215,
 "lab": "A",
 "src": 78.06
 },
 {
 "text": "terbeku",
-"start": 1.185,
-"end": 1.648,
+"start": 1.233,
+"end": 1.715,
 "lab": "A",
 "src": 78.48
 },
 {
 "text": "di",
-"start": 1.667,
-"end": 1.815,
+"start": 1.734,
+"end": 1.888,
 "lab": "A",
 "src": 79.0
 },
 {
 "text": "Malaysia",
-"start": 1.833,
-"end": 2.056,
+"start": 1.908,
+"end": 2.14,
 "lab": "A",
 "src": 79.18
 },
 {
 "text": "sekarang",
-"start": 2.074,
-"end": 2.667,
+"start": 2.158,
+"end": 2.775,
 "lab": "A",
 "src": 79.44
 },
 {
 "text": "mencecah",
-"start": 2.685,
-"end": 3.352,
+"start": 2.794,
+"end": 3.488,
 "lab": "A",
 "src": 80.1
 },
 {
 "text": "RM90",
-"start": 3.37,
-"end": 4.019,
+"start": 3.507,
+"end": 4.183,
 "lab": "A",
 "src": 80.84
 },
 {
 "text": "bilion?",
-"start": 4.037,
-"end": 4.685,
+"start": 4.201,
+"end": 4.875,
 "lab": "A",
 "src": 81.56
 },
 {
 "text": "Nak",
-"start": 61.104,
-"end": 61.326,
+"start": 62.896,
+"end": 63.127,
 "lab": "I",
 "src": 83.24
 },
 {
 "text": "minta",
-"start": 61.344,
-"end": 61.789,
+"start": 63.146,
+"end": 63.609,
 "lab": "I",
-"src": 83.5
+"src": 83.499
 },
 {
 "text": "bantuan",
-"start": 61.807,
-"end": 62.196,
+"start": 63.629,
+"end": 64.033,
 "lab": "I",
 "src": 84.0
 },
 {
 "text": "third party?",
-"start": 62.215,
-"end": 62.833,
+"start": 64.053,
+"end": 64.696,
 "lab": "I",
 "src": 84.44
 },
 {
 "text": "Kebanyakannya,",
-"start": 63.231,
-"end": 63.972,
+"start": 65.311,
+"end": 66.082,
 "lab": "I",
 "src": 85.74
 },
 {
 "text": "cas",
-"start": 64.209,
-"end": 64.357,
+"start": 66.574,
+"end": 66.728,
 "lab": "I",
 "src": 87.34
 },
 {
 "text": "2%",
-"start": 64.376,
-"end": 65.061,
+"start": 66.748,
+"end": 67.46,
 "lab": "I",
 "src": 87.52
 },
 {
 "text": "ke",
-"start": 65.08,
-"end": 65.283,
+"start": 67.48,
+"end": 67.691,
 "lab": "I",
 "src": 88.28
 },
 {
 "text": "atas.",
-"start": 65.302,
-"end": 65.717,
+"start": 67.711,
+"end": 68.056,
 "lab": "I",
 "src": 88.52
 },
 {
 "text": "Bayangkan,",
-"start": 65.846,
-"end": 66.513,
+"start": 68.556,
+"end": 69.202,
 "lab": "I",
 "src": 89.4
 },
 {
 "text": "setiap",
-"start": 66.587,
-"end": 67.18,
+"start": 69.454,
+"end": 70.071,
 "lab": "I",
 "src": 90.32
 },
 {
 "text": "RM1",
-"start": 67.198,
-"end": 67.643,
+"start": 70.09,
+"end": 70.553,
 "lab": "I",
 "src": 90.98
 },
 {
 "text": "juta,",
-"start": 67.661,
-"end": 67.92,
+"start": 70.572,
+"end": 70.841,
 "lab": "I",
 "src": 91.48
 },
 {
 "text": "waris",
-"start": 68.391,
-"end": 68.613,
+"start": 71.555,
+"end": 71.786,
 "lab": "I",
 "src": 92.72
 },
 {
 "text": "perlu",
-"start": 68.631,
-"end": 68.872,
+"start": 71.805,
+"end": 72.056,
 "lab": "I",
 "src": 92.98
 },
 {
 "text": "keluarkan",
-"start": 68.891,
-"end": 69.428,
+"start": 72.075,
+"end": 72.634,
 "lab": "I",
 "src": 93.26
 },
 {
-"text": "RM20,000",
-"start": 69.446,
-"end": 70.668,
+"text": "RM20,000.",
+"start": 72.653,
+"end": 73.916,
 "lab": "I",
 "src": 93.86
 },
 {
-"text": "at",
-"start": 70.687,
-"end": 71.094,
-"lab": "I",
-"src": 95.2
-},
-{
-"text": "least.",
-"start": 71.113,
-"end": 71.422,
-"lab": "I",
-"src": 95.66
-},
-{
 "text": "Sebab",
-"start": 71.504,
-"end": 71.744,
+"start": 73.939,
+"end": 74.188,
 "lab": "J1",
 "src": 96.62
 },
 {
 "text": "itu,",
-"start": 71.763,
-"end": 72.059,
+"start": 74.208,
+"end": 74.516,
 "lab": "J1",
 "src": 96.9
 },
 {
 "text": "Syarikat",
-"start": 72.119,
-"end": 72.841,
+"start": 74.754,
+"end": 75.505,
 "lab": "J2",
-"src": 100.32
+"src": 100.321
 },
 {
 "text": "Wasiyyah",
-"start": 72.859,
-"end": 73.248,
+"start": 75.523,
+"end": 75.928,
 "lab": "J2",
 "src": 101.12
 },
 {
 "text": "Berhad",
-"start": 73.267,
-"end": 73.563,
+"start": 75.947,
+"end": 76.255,
 "lab": "J2",
 "src": 101.56
 },
 {
 "text": "memperkenalkan",
-"start": 73.581,
-"end": 75.343,
+"start": 76.274,
+"end": 78.098,
 "lab": "J2",
-"src": 101.9
+"src": 101.899
 },
 {
 "text": "satu",
-"start": 75.361,
-"end": 75.843,
+"start": 78.253,
+"end": 78.755,
 "lab": "J2",
 "src": 104.0
 },
 {
 "text": "produk",
-"start": 75.861,
-"end": 76.268,
+"start": 78.774,
+"end": 79.197,
 "lab": "J2",
 "src": 104.54
 },
 {
 "text": "Wasitah",
-"start": 76.287,
-"end": 76.961,
+"start": 79.217,
+"end": 79.89,
 "lab": "J2",
 "src": 105.0
 },
 {
 "text": "sebagai",
-"start": 76.98,
-"end": 77.572,
+"start": 80.039,
+"end": 80.655,
 "lab": "J2",
 "src": 106.32
 },
 {
 "text": "Khairiat",
-"start": 77.591,
-"end": 77.887,
+"start": 80.675,
+"end": 80.983,
 "lab": "J2",
 "src": 106.98
 },
 {
 "text": "Pusaka.",
-"start": 77.906,
-"end": 78.48,
+"start": 81.004,
+"end": 81.601,
 "lab": "J2",
-"src": 107.32
-},
-{
-"text": "Yang",
-"start": 78.57,
-"end": 78.65,
-"lab": "K",
-"src": 108.32
-},
-{
-"text": "mana",
-"start": 78.644,
-"end": 79.089,
-"lab": "K",
-"src": 108.4
+"src": 107.321
 },
 {
 "text": "kami",
-"start": 79.107,
-"end": 79.607,
+"start": 81.915,
+"end": 82.435,
 "lab": "K",
 "src": 108.9
 },
 {
 "text": "akan",
-"start": 79.626,
-"end": 80.052,
+"start": 82.454,
+"end": 82.898,
 "lab": "K",
 "src": 109.46
 },
 {
 "text": "bantu",
-"start": 80.07,
-"end": 80.478,
+"start": 82.917,
+"end": 83.342,
 "lab": "K",
 "src": 109.94
 },
 {
 "text": "uruskan",
-"start": 80.496,
-"end": 80.922,
+"start": 83.36,
+"end": 83.804,
 "lab": "K",
 "src": 110.4
 },
 {
 "text": "pusaka",
-"start": 80.941,
-"end": 81.459,
+"start": 83.823,
+"end": 84.362,
 "lab": "K",
 "src": 110.88
 },
 {
 "text": "anda",
-"start": 81.478,
-"end": 81.996,
+"start": 84.382,
+"end": 84.921,
 "lab": "K",
 "src": 111.46
 },
 {
 "text": "sehingga",
-"start": 82.015,
-"end": 83.033,
+"start": 84.94,
+"end": 86.0,
 "lab": "K",
 "src": 112.04
 },
 {
 "text": "waris",
-"start": 83.052,
-"end": 83.367,
+"start": 86.144,
+"end": 86.472,
 "lab": "K",
 "src": 113.34
 },
 {
 "text": "dapat",
-"start": 83.385,
-"end": 83.737,
+"start": 86.491,
+"end": 86.857,
 "lab": "K",
 "src": 113.7
 },
 {
 "text": "surat",
-"start": 83.756,
-"end": 84.015,
+"start": 86.877,
+"end": 87.147,
 "lab": "K",
-"src": 114.1
+"src": 114.101
 },
 {
 "text": "kuasa.",
-"start": 84.033,
-"end": 84.867,
+"start": 87.165,
+"end": 88.033,
 "lab": "K",
 "src": 114.4
 },
 {
 "text": "Tiada",
-"start": 84.937,
-"end": 85.159,
+"start": 88.372,
+"end": 88.603,
 "lab": "L",
 "src": 115.72
 },
 {
 "text": "cas",
-"start": 85.178,
-"end": 85.363,
+"start": 88.622,
+"end": 88.815,
 "lab": "L",
 "src": 115.98
 },
 {
 "text": "selepas",
-"start": 85.381,
-"end": 85.752,
+"start": 88.833,
+"end": 89.219,
 "lab": "L",
-"src": 116.2
+"src": 116.199
 },
 {
 "text": "kematian,",
-"start": 85.77,
-"end": 86.633,
+"start": 89.239,
+"end": 90.137,
 "lab": "L",
 "src": 116.62
 },
 {
 "text": "hanya",
-"start": 87.05,
-"end": 87.161,
+"start": 90.791,
+"end": 90.907,
 "lab": "L",
 "src": 118.4
 },
 {
 "text": "serendah",
-"start": 87.18,
-"end": 87.828,
+"start": 90.926,
+"end": 91.601,
 "lab": "L",
 "src": 118.54
 },
 {
 "text": "RM32.40",
-"start": 87.846,
-"end": 89.593,
+"start": 91.62,
+"end": 92.821,
 "lab": "L",
 "src": 119.26
 },
 {
 "text": "sebulan,",
-"start": 89.611,
-"end": 90.574,
+"start": 93.56,
+"end": 94.563,
 "lab": "L",
 "src": 121.38
 },
 {
 "text": "termasuk",
-"start": 90.611,
-"end": 90.981,
+"start": 94.601,
+"end": 94.986,
 "lab": "L",
 "src": 122.46
 },
 {
 "text": "SST,",
-"start": 91.0,
-"end": 91.778,
+"start": 95.006,
+"end": 95.815,
 "lab": "L",
 "src": 122.88
 },
 {
 "text": "selama",
-"start": 92.111,
-"end": 92.593,
+"start": 96.162,
+"end": 96.664,
 "lab": "L",
 "src": 124.08
 },
 {
 "text": "15",
-"start": 92.611,
-"end": 93.352,
+"start": 96.682,
+"end": 97.454,
 "lab": "L",
 "src": 124.62
 },
 {
 "text": "tahun.",
-"start": 93.37,
-"end": 93.9,
+"start": 97.473,
+"end": 98.024,
 "lab": "L",
 "src": 125.44
 },
 {
 "text": "Kami",
-"start": 93.9,
-"end": 94.4,
+"start": 98.199,
+"end": 98.72,
 "lab": "L",
-"src": 126.06
+"src": 126.2
 },
 {
 "text": "uruskan",
-"start": 94.419,
-"end": 94.919,
+"start": 98.74,
+"end": 99.26,
 "lab": "L",
-"src": 126.76
+"src": 126.761
 },
 {
 "text": "aset",
-"start": 94.937,
-"end": 95.196,
+"start": 99.279,
+"end": 99.548,
 "lab": "L",
 "src": 127.32
 },
 {
 "text": "sehingga",
-"start": 95.215,
-"end": 95.77,
+"start": 99.568,
+"end": 100.145,
 "lab": "L",
 "src": 127.62
 },
 {
 "text": "RM2",
-"start": 95.789,
-"end": 96.196,
+"start": 100.165,
+"end": 100.589,
 "lab": "L",
 "src": 128.24
 },
 {
 "text": "juta.",
-"start": 96.215,
-"end": 96.933,
+"start": 100.608,
+"end": 101.183,
 "lab": "L",
 "src": 128.7
 },
 {
-"text": "Sekiranya",
-"start": 97.004,
-"end": 97.485,
-"lab": "M",
-"src": 140.94
-},
-{
-"text": "anda",
-"start": 97.504,
-"end": 97.874,
-"lab": "M",
-"src": 141.48
-},
-{
-"text": "melanggan",
-"start": 97.893,
-"end": 98.393,
-"lab": "M",
-"src": 141.9
-},
-{
-"text": "Wasitah",
-"start": 98.411,
-"end": 99.022,
-"lab": "M",
-"src": 142.46
-},
-{
-"text": "Intan",
-"start": 99.041,
-"end": 99.319,
-"lab": "M",
-"src": 143.14
-},
-{
-"text": "ini,",
-"start": 99.337,
-"end": 99.8,
-"lab": "M",
-"src": 143.46
-},
-{
 "text": "jumlahnya",
-"start": 100.041,
-"end": 100.559,
+"start": 101.548,
+"end": 102.087,
 "lab": "M",
 "src": 144.22
 },
 {
 "text": "hanya",
-"start": 100.578,
-"end": 101.004,
+"start": 102.107,
+"end": 102.55,
 "lab": "M",
 "src": 144.8
 },
 {
 "text": "RM5,832",
-"start": 101.022,
-"end": 103.244,
+"start": 102.57,
+"end": 104.882,
 "lab": "M",
 "src": 145.28
 },
 {
 "text": "saja.",
-"start": 103.263,
-"end": 104.059,
+"start": 104.901,
+"end": 105.73,
 "lab": "M",
 "src": 147.7
 },
 {
 "text": "Dah",
-"start": 104.137,
-"end": 104.217,
+"start": 106.105,
+"end": 106.185,
 "lab": "N",
 "src": 158.26
 },
 {
 "text": "dapat",
-"start": 104.193,
-"end": 104.378,
+"start": 106.163,
+"end": 106.356,
 "lab": "N",
 "src": 158.32
 },
 {
 "text": "surat",
-"start": 104.396,
-"end": 104.637,
+"start": 106.375,
+"end": 106.626,
 "lab": "N",
 "src": 158.54
 },
 {
 "text": "kuasa,",
-"start": 104.656,
-"end": 105.333,
+"start": 106.645,
+"end": 107.177,
 "lab": "N",
 "src": 158.82
 },
 {
 "text": "keluarga",
-"start": 105.463,
-"end": 106.043,
+"start": 107.526,
+"end": 108.12,
 "lab": "N",
 "src": 160.04
 },
 {
 "text": "boleh",
-"start": 106.061,
-"end": 106.32,
+"start": 108.253,
+"end": 108.523,
 "lab": "N",
 "src": 160.9
 },
 {
 "text": "terus",
-"start": 106.339,
-"end": 106.635,
+"start": 108.542,
+"end": 108.851,
 "lab": "N",
 "src": 161.2
 },
 {
 "text": "ke",
-"start": 106.654,
-"end": 106.894,
+"start": 108.87,
+"end": 109.12,
 "lab": "N",
 "src": 161.54
 },
 {
 "text": "JPJ,",
-"start": 106.913,
-"end": 107.598,
+"start": 109.14,
+"end": 109.853,
 "lab": "N",
 "src": 161.82
 },
 {
 "text": "Pejabat",
-"start": 107.746,
-"end": 108.006,
+"start": 110.007,
+"end": 110.278,
 "lab": "N",
 "src": 162.72
 },
 {
 "text": "Tanah",
-"start": 108.024,
-"end": 108.561,
+"start": 110.296,
+"end": 110.855,
 "lab": "N",
 "src": 163.02
 },
 {
 "text": "dan",
-"start": 108.567,
-"end": 108.78,
+"start": 110.991,
+"end": 111.213,
 "lab": "N",
-"src": 163.62
+"src": 163.73
 },
 {
 "text": "bank",
-"start": 108.798,
-"end": 109.094,
+"start": 111.232,
+"end": 111.54,
 "lab": "N",
 "src": 163.98
 },
 {
 "text": "untuk",
-"start": 109.113,
-"end": 109.502,
+"start": 111.56,
+"end": 111.964,
 "lab": "N",
 "src": 164.32
 },
 {
 "text": "tukar",
-"start": 109.52,
-"end": 109.854,
+"start": 111.984,
+"end": 112.331,
 "lab": "N",
 "src": 164.76
 },
 {
 "text": "nama",
-"start": 109.872,
-"end": 110.169,
+"start": 112.35,
+"end": 112.659,
 "lab": "N",
 "src": 165.14
 },
 {
 "text": "dan",
-"start": 110.187,
-"end": 110.446,
+"start": 112.677,
+"end": 112.947,
 "lab": "N",
 "src": 165.48
 },
 {
 "text": "cairkan",
-"start": 110.465,
-"end": 110.817,
+"start": 112.966,
+"end": 113.333,
 "lab": "N",
 "src": 165.78
 },
 {
 "text": "duit.",
-"start": 110.835,
-"end": 111.313,
+"start": 113.352,
+"end": 113.627,
 "lab": "N",
 "src": 166.18
 },
 {
 "text": "Lindungi",
-"start": 111.385,
-"end": 112.441,
+"start": 113.91,
+"end": 115.009,
 "lab": "P1",
 "src": 176.26
 },
 {
 "text": "aset",
-"start": 112.459,
-"end": 112.682,
+"start": 115.028,
+"end": 115.26,
 "lab": "P1",
 "src": 177.42
 },
 {
-"text": "anda",
-"start": 112.7,
-"end": 113.07,
+"text": "anda.",
+"start": 115.279,
+"end": 115.664,
 "lab": "P1",
 "src": 177.68
 },
 {
-"text": "kerana",
-"start": 113.089,
-"end": 113.169,
-"lab": "P1",
-"src": 178.1
-},
-{
 "text": "Contact",
-"start": 113.137,
-"end": 114.322,
+"start": 115.815,
+"end": 117.048,
 "lab": "P2",
 "src": 204.14
 },
 {
 "text": "saya",
-"start": 114.341,
-"end": 114.711,
+"start": 117.068,
+"end": 117.453,
 "lab": "P2",
 "src": 205.44
 },
 {
 "text": "untuk",
-"start": 114.73,
-"end": 115.044,
+"start": 117.472,
+"end": 117.799,
 "lab": "P2",
 "src": 205.86
 },
 {
 "text": "lebih",
-"start": 115.063,
-"end": 115.267,
+"start": 117.819,
+"end": 118.031,
 "lab": "P2",
 "src": 206.22
 },
 {
 "text": "detail.",
-"start": 115.285,
-"end": 115.619,
+"start": 118.05,
+"end": 118.398,
 "lab": "P2",
 "src": 206.46
 }
