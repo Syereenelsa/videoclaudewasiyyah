@@ -21,8 +21,8 @@ No footage: every visual is HTML/SVG animated with GSAP.
 | 8 | 1:32.5 – 1:46.5 | Closing line, tamat 30 November, "Reply YA" button |
 
 ## Sound
-- `assets/bed.wav`: soft ambient pad, synthesised by `tools/make_bed.py` (no licensing issues), at volume 0.4.
-- 82 sound effects (whoosh, pop, ding, stamp, impact, riser, cash, clock, tick, lock) placed on each animation beat, from `assets/sfx/`.
+- No background music (sound effects only).
+- 83 sound effects (whoosh, pop, ding, stamp, impact, riser, cash, clock, tick, lock) placed on each animation beat, from `assets/sfx/`.
 - Voice-over slot is ready in `index.html` (commented out). Save the recording as `assets/voice.wav` and uncomment the `<audio id="voice">` line.
 
 ## Editing

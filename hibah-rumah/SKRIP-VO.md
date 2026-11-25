@@ -111,4 +111,4 @@ Masa di kiri ialah bila teks itu **muncul di skrin**. Mula sebut baris itu pada 
 ## Tip rakaman
 - Rakam dalam bilik senyap (bilik tidur dengan langsir/tilam kurang bergema). Telefon 15–20 cm dari mulut.
 - Rakam **satu fail penuh**, kemudian simpan sebagai `assets/voice.wav`. Kalau terlajak laju atau perlahan, beritahu saya: saya boleh laraskan masa setiap babak ikut rakaman anda (transkrip automatik).
-- Bunyi latar (SFX) dan muzik ambien sudah dimasukkan; muzik akan diperlahankan lagi bila suara dimasukkan.
+- Kesan bunyi (SFX) sudah dimasukkan. Tiada muzik latar.

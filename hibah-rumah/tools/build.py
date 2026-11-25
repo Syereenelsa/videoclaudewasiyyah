@@ -661,8 +661,6 @@ def build():
       </div>
       <div id="flash" data-layout-ignore></div>
 
-      <!-- Background music bed (synthesised, tools/make_bed.py) -->
-      <audio id="bed" class="clip" src="assets/bed.wav" data-start="0" data-duration="{TOTAL}" data-volume="0.4" data-track-index="1"></audio>
       <!-- VOICE-OVER: save your recording as assets/voice.wav, then uncomment the line below
       <audio id="voice" class="clip" src="assets/voice.wav" data-start="0" data-duration="{TOTAL}" data-volume="1" data-track-index="0"></audio>
       -->
