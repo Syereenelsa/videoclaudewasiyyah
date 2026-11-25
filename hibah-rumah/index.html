@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1080, height=1920" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700&display=block" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700&display=block" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <style>
 * { margin:0; padding:0; box-sizing:border-box; }
@@ -111,22 +111,26 @@ html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:
   background:rgba(108,240,180,.10); border:1.5px dashed rgba(108,240,180,.6); }
 .result span { font-weight:700; font-size:30px; line-height:1.25; text-align:left; }
 
-/* kenali clipping placeholder */
-.clipwrap { position:relative; width:600px; height:360px; transform:rotate(-3deg); flex:none; }
-.paper { position:absolute; inset:0; border-radius:10px; background:linear-gradient(170deg,#F7F0DE,#E8DDC2); padding:26px 30px;
-  box-shadow:0 30px 60px rgba(0,0,0,.55); }
-.mast { font-family:Georgia,'Times New Roman',serif; font-weight:700; font-size:40px; color:#2B2418; letter-spacing:.04em;
-  border-bottom:3px double #2B2418; padding-bottom:8px; margin-bottom:16px; text-align:center; }
-.ph-line { height:18px; border-radius:4px; background:#3B3224; margin-bottom:12px; }
-.w90 { width:92%; } .w70 { width:68%; }
-.ph-flex { display:flex; gap:20px; margin-top:16px; }
-.ph-img { width:290px; height:180px; border-radius:6px; border:3px dashed #8C7A55; display:flex; flex-direction:column; align-items:center;
-  justify-content:center; gap:10px; background:rgba(140,122,85,.10); }
-.ph-img span { font-weight:700; font-size:22px; line-height:1.25; color:#6E5F40; text-align:center; }
-.ph-col { flex:1; display:flex; flex-direction:column; gap:14px; padding-top:4px; }
-.ph-t { height:10px; border-radius:3px; background:#9A8C70; }
-.ph-t.s { width:60%; }
-.bukti { position:absolute; right:-30px; top:-34px; padding:8px 22px; border:5px solid #C93545; color:#C93545; border-radius:14px;
+/* kenali press clippings */
+.clipwrap { position:relative; width:850px; height:440px; flex:none; }
+.paper { position:absolute; border-radius:8px; background:linear-gradient(170deg,#F8F2E2,#E9DFC6); color:#211B12;
+  box-shadow:0 26px 54px rgba(0,0,0,.55); overflow:hidden; text-align:left; }
+.paper.bh { left:6px; top:34px; width:440px; height:392px; padding:22px 26px; transform:rotate(-5deg); }
+.mast { font-family:'Merriweather',Georgia,serif; font-weight:900; font-size:34px; letter-spacing:.06em; text-align:center;
+  border-bottom:3px double #211B12; padding-bottom:6px; }
+.dateline { font-weight:700; font-size:16px; letter-spacing:.12em; color:#6B5B3E; text-align:center; margin:8px 0 12px; }
+.hl { font-family:'Merriweather',Georgia,serif; font-weight:900; font-size:32px; line-height:1.18; }
+.lead { font-family:'Merriweather',Georgia,serif; font-size:19px; line-height:1.5; color:#3A3122; margin-top:12px;
+  border-top:1.5px solid rgba(33,27,18,.35); padding-top:10px; }
+.hi { background-image:linear-gradient(transparent 52%, rgba(242,207,118,.95) 52%); background-repeat:no-repeat; background-size:0% 100%; }
+.paper.dn { right:6px; top:0; width:400px; height:430px; padding:16px 18px 18px; transform:rotate(4deg); background:#FFFFFF; }
+.dnmast { display:flex; justify-content:space-between; align-items:baseline; border-bottom:4px solid #6B2C8F; padding-bottom:6px; }
+.dnmast span { font-weight:900; font-size:30px; letter-spacing:-.02em; color:#2A2A2A; }
+.dnmast small { font-weight:600; font-size:16px; color:#777; }
+.dnimg { margin-top:12px; height:200px; border-radius:4px; overflow:hidden; background:#ddd; }
+.dnimg img { width:100%; height:100%; object-fit:cover; object-position:50% 45%; display:block; }
+.dnhl { font-weight:800; font-size:26px; line-height:1.22; color:#1E1E1E; margin-top:12px; }
+.bukti { position:absolute; left:640px; top:410px; z-index:3; padding:8px 22px; border:5px solid #C93545; color:#C93545; border-radius:14px;
   font-weight:900; font-size:44px; letter-spacing:.1em; transform:rotate(10deg); background:rgba(255,248,231,.92); }
 
 /* promo */
@@ -286,16 +290,23 @@ html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:
         <div class="col" style="top:300px">
           <span class="kick" id="kn-kick">Kenali</span>
           <div id="kn-title" class="col-in" style="margin-top:14px"><span class="t-lg gold">HIBAH DIGITAL</span><span class="t-lg">WASIYYAH</span></div>
-          <div class="clipwrap" id="kn-clip" style="margin-top:44px" data-layout-allow-overlap>
-            <div class="paper">
-              <div class="mast">KERATAN AKHBAR</div>
-              <div class="ph-line w90"></div><div class="ph-line w70"></div>
-              <div class="ph-flex"><div class="ph-img" data-layout-ignore><svg class="ico" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#8C7A55" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8z"/></svg><span>Gambar sebenar<br>dimasukkan di sini</span></div>
-                <div class="ph-col"><div class="ph-t"></div><div class="ph-t"></div><div class="ph-t s"></div><div class="ph-t"></div><div class="ph-t"></div><div class="ph-t s"></div></div></div>
+          <div class="clipwrap" id="kn-clip" style="margin-top:34px" data-layout-allow-overlap data-layout-allow-occlusion>
+            <!-- Press coverage: Berita Harian, 1 Apr 2024 (bharian.com.my/bisnes/korporat/2024/04/1230342) -->
+            <div class="paper bh" id="kn-bh">
+              <div class="mast">BERITA HARIAN</div>
+              <div class="dateline">BISNES &middot; KORPORAT &middot; 1 APRIL 2024</div>
+              <div class="hl">Hibah digital Wasiyyah diiktiraf Mahkamah Syariah</div>
+              <div class="lead" data-layout-ignore><b>KUALA LUMPUR:</b> Wasiyyah Shoppe Bhd mengumumkan bahawa ia telah berjaya memperoleh <span class="hi" id="kn-hi">perintah pengesahan hibah pertama untuk dokumen hibah digital</span> pelanggannya.</div>
+            </div>
+            <!-- Press coverage: DagangNews, 11 Feb 2026 (dagangnews.com/article/kolumnis-terkini/...-64907) -->
+            <div class="paper dn" id="kn-dn">
+              <div class="dnmast"><span>dagangnews</span><small>11 Feb 2026</small></div>
+              <div class="dnimg"><img src="assets/press/dagangnews-mbor.jpg" alt="Sijil Malaysia Book of Records Wasiyyah"></div>
+              <div class="dnhl">Wasiyyah Cipta Sejarah Pendigitalan Hibah, Diiktiraf Malaysia Book of Records</div>
             </div>
             <div class="bukti" id="kn-bukti">BUKTI</div>
           </div>
-          <div class="item rel" id="kn-i0" style="margin-top:40px"><span class="ibub"><svg class="ico" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 12.5l-8 8a2.12 2.12 0 1 1-3-3l8-8"/><path d="M16 16l6-6"/><path d="M8 8l6-6"/><path d="M9 7l8 8"/><path d="M21 11l-8-8"/></svg></span><span class="itxt">Hibah digital yang telah mendapat <b>pengesahan Mahkamah Syariah</b></span></div>
+          <div class="item rel" id="kn-i0" style="margin-top:54px"><span class="ibub"><svg class="ico" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 12.5l-8 8a2.12 2.12 0 1 1-3-3l8-8"/><path d="M16 16l6-6"/><path d="M8 8l6-6"/><path d="M9 7l8 8"/><path d="M21 11l-8-8"/></svg></span><span class="itxt">Hibah digital yang telah mendapat <b>pengesahan Mahkamah Syariah</b></span></div>
           <div class="item rel" id="kn-i1" style="margin-top:20px"><span class="ibub"><svg class="ico" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span><span class="itxt">Digunakan oleh lebih <b class="goldt big" id="kn-num">15,000+</b> <b>pelanggan</b></span></div>
           <div class="item rel" id="kn-i2" style="margin-top:20px"><span class="ibub"><svg class="ico" width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#E9C46A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7z"/></svg></span><span class="itxt">Rancang pemberian rumah kepada <b>orang tersayang</b></span></div>
         </div>
@@ -409,47 +420,48 @@ html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:
       <audio id="sfx38" class="clip" src="assets/sfx/ding.wav" data-start="46.7" data-duration="1.2" data-volume="0.3" data-audio-group="sfx" data-track-index="4"></audio>
       <audio id="sfx39" class="clip" src="assets/sfx/riser.wav" data-start="49.3" data-duration="1.6" data-volume="0.18" data-audio-group="sfx" data-track-index="4"></audio>
       <audio id="sfx40" class="clip" src="assets/sfx/whoosh.wav" data-start="49.5" data-duration="0.55" data-volume="0.28" data-audio-group="sfx" data-track-index="5"></audio>
-      <audio id="sfx41" class="clip" src="assets/sfx/swish.wav" data-start="50.6" data-duration="0.32" data-volume="0.22" data-audio-group="sfx" data-track-index="5"></audio>
-      <audio id="sfx42" class="clip" src="assets/sfx/stamp.wav" data-start="51.5" data-duration="0.35" data-volume="0.45" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx43" class="clip" src="assets/sfx/pop.wav" data-start="52.5" data-duration="0.12" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx44" class="clip" src="assets/sfx/pop.wav" data-start="55.1" data-duration="0.12" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx45" class="clip" src="assets/sfx/tick.wav" data-start="55.25" data-duration="0.05" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx46" class="clip" src="assets/sfx/tick.wav" data-start="55.5" data-duration="0.05" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx47" class="clip" src="assets/sfx/tick.wav" data-start="55.75" data-duration="0.05" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx48" class="clip" src="assets/sfx/tick.wav" data-start="56.0" data-duration="0.05" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx49" class="clip" src="assets/sfx/tick.wav" data-start="56.25" data-duration="0.05" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx50" class="clip" src="assets/sfx/tick.wav" data-start="56.5" data-duration="0.05" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx51" class="clip" src="assets/sfx/ding.wav" data-start="56.9" data-duration="1.2" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx52" class="clip" src="assets/sfx/pop.wav" data-start="57.7" data-duration="0.12" data-volume="0.28" data-audio-group="sfx" data-track-index="5"></audio>
-      <audio id="sfx53" class="clip" src="assets/sfx/whoosh.wav" data-start="60.5" data-duration="0.55" data-volume="0.3" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx54" class="clip" src="assets/sfx/ding.wav" data-start="60.8" data-duration="1.2" data-volume="0.26" data-audio-group="sfx" data-track-index="5"></audio>
-      <audio id="sfx55" class="clip" src="assets/sfx/pop.wav" data-start="61.5" data-duration="0.12" data-volume="0.24" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx56" class="clip" src="assets/sfx/riser.wav" data-start="62.2" data-duration="1.6" data-volume="0.3" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx57" class="clip" src="assets/sfx/swish.wav" data-start="62.5" data-duration="0.32" data-volume="0.3" data-audio-group="sfx" data-track-index="5"></audio>
-      <audio id="sfx58" class="clip" src="assets/sfx/impact.wav" data-start="63.75" data-duration="1.4" data-volume="0.55" data-audio-group="sfx" data-track-index="5"></audio>
-      <audio id="sfx59" class="clip" src="assets/sfx/pop.wav" data-start="67.1" data-duration="0.12" data-volume="0.3" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx60" class="clip" src="assets/sfx/cash.wav" data-start="69.8" data-duration="0.6" data-volume="0.4" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx61" class="clip" src="assets/sfx/ding.wav" data-start="71.2" data-duration="1.2" data-volume="0.24" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx62" class="clip" src="assets/sfx/whoosh.wav" data-start="73.5" data-duration="0.55" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx63" class="clip" src="assets/sfx/pop.wav" data-start="74.0" data-duration="0.12" data-volume="0.24" data-audio-group="sfx" data-track-index="5"></audio>
-      <audio id="sfx64" class="clip" src="assets/sfx/lock.wav" data-start="75.3" data-duration="0.5" data-volume="0.3" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx65" class="clip" src="assets/sfx/lock.wav" data-start="77.3" data-duration="0.5" data-volume="0.3" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx66" class="clip" src="assets/sfx/pop.wav" data-start="78.5" data-duration="0.12" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx67" class="clip" src="assets/sfx/pop.wav" data-start="80.0" data-duration="0.12" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx68" class="clip" src="assets/sfx/pop.wav" data-start="81.9" data-duration="0.12" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx69" class="clip" src="assets/sfx/pop.wav" data-start="83.4" data-duration="0.12" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx70" class="clip" src="assets/sfx/lock.wav" data-start="85.0" data-duration="0.5" data-volume="0.3" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx71" class="clip" src="assets/sfx/lock.wav" data-start="87.5" data-duration="0.5" data-volume="0.3" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx72" class="clip" src="assets/sfx/stamp.wav" data-start="90.8" data-duration="0.35" data-volume="0.45" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx73" class="clip" src="assets/sfx/ding.wav" data-start="90.9" data-duration="1.2" data-volume="0.3" data-audio-group="sfx" data-track-index="5"></audio>
-      <audio id="sfx74" class="clip" src="assets/sfx/whoosh.wav" data-start="92.5" data-duration="0.55" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx75" class="clip" src="assets/sfx/ding.wav" data-start="93.4" data-duration="1.2" data-volume="0.26" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx76" class="clip" src="assets/sfx/pop.wav" data-start="95.5" data-duration="0.12" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx77" class="clip" src="assets/sfx/clock.wav" data-start="99.1" data-duration="2.0" data-volume="0.2" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx78" class="clip" src="assets/sfx/stamp.wav" data-start="99.7" data-duration="0.35" data-volume="0.4" data-audio-group="sfx" data-track-index="5"></audio>
-      <audio id="sfx79" class="clip" src="assets/sfx/riser.wav" data-start="100.9" data-duration="1.6" data-volume="0.24" data-audio-group="sfx" data-track-index="5"></audio>
-      <audio id="sfx80" class="clip" src="assets/sfx/impact.wav" data-start="102.45" data-duration="1.4" data-volume="0.4" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx81" class="clip" src="assets/sfx/pop.wav" data-start="104.1" data-duration="0.12" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx41" class="clip" src="assets/sfx/swish.wav" data-start="50.5" data-duration="0.32" data-volume="0.22" data-audio-group="sfx" data-track-index="5"></audio>
+      <audio id="sfx42" class="clip" src="assets/sfx/swish.wav" data-start="51.0" data-duration="0.32" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx43" class="clip" src="assets/sfx/stamp.wav" data-start="51.8" data-duration="0.35" data-volume="0.45" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx44" class="clip" src="assets/sfx/pop.wav" data-start="52.5" data-duration="0.12" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx45" class="clip" src="assets/sfx/pop.wav" data-start="55.1" data-duration="0.12" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx46" class="clip" src="assets/sfx/tick.wav" data-start="55.25" data-duration="0.05" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx47" class="clip" src="assets/sfx/tick.wav" data-start="55.5" data-duration="0.05" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx48" class="clip" src="assets/sfx/tick.wav" data-start="55.75" data-duration="0.05" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx49" class="clip" src="assets/sfx/tick.wav" data-start="56.0" data-duration="0.05" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx50" class="clip" src="assets/sfx/tick.wav" data-start="56.25" data-duration="0.05" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx51" class="clip" src="assets/sfx/tick.wav" data-start="56.5" data-duration="0.05" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx52" class="clip" src="assets/sfx/ding.wav" data-start="56.9" data-duration="1.2" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx53" class="clip" src="assets/sfx/pop.wav" data-start="57.7" data-duration="0.12" data-volume="0.28" data-audio-group="sfx" data-track-index="5"></audio>
+      <audio id="sfx54" class="clip" src="assets/sfx/whoosh.wav" data-start="60.5" data-duration="0.55" data-volume="0.3" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx55" class="clip" src="assets/sfx/ding.wav" data-start="60.8" data-duration="1.2" data-volume="0.26" data-audio-group="sfx" data-track-index="5"></audio>
+      <audio id="sfx56" class="clip" src="assets/sfx/pop.wav" data-start="61.5" data-duration="0.12" data-volume="0.24" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx57" class="clip" src="assets/sfx/riser.wav" data-start="62.2" data-duration="1.6" data-volume="0.3" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx58" class="clip" src="assets/sfx/swish.wav" data-start="62.5" data-duration="0.32" data-volume="0.3" data-audio-group="sfx" data-track-index="5"></audio>
+      <audio id="sfx59" class="clip" src="assets/sfx/impact.wav" data-start="63.75" data-duration="1.4" data-volume="0.55" data-audio-group="sfx" data-track-index="5"></audio>
+      <audio id="sfx60" class="clip" src="assets/sfx/pop.wav" data-start="67.1" data-duration="0.12" data-volume="0.3" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx61" class="clip" src="assets/sfx/cash.wav" data-start="69.8" data-duration="0.6" data-volume="0.4" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx62" class="clip" src="assets/sfx/ding.wav" data-start="71.2" data-duration="1.2" data-volume="0.24" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx63" class="clip" src="assets/sfx/whoosh.wav" data-start="73.5" data-duration="0.55" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx64" class="clip" src="assets/sfx/pop.wav" data-start="74.0" data-duration="0.12" data-volume="0.24" data-audio-group="sfx" data-track-index="5"></audio>
+      <audio id="sfx65" class="clip" src="assets/sfx/lock.wav" data-start="75.3" data-duration="0.5" data-volume="0.3" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx66" class="clip" src="assets/sfx/lock.wav" data-start="77.3" data-duration="0.5" data-volume="0.3" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx67" class="clip" src="assets/sfx/pop.wav" data-start="78.5" data-duration="0.12" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx68" class="clip" src="assets/sfx/pop.wav" data-start="80.0" data-duration="0.12" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx69" class="clip" src="assets/sfx/pop.wav" data-start="81.9" data-duration="0.12" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx70" class="clip" src="assets/sfx/pop.wav" data-start="83.4" data-duration="0.12" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx71" class="clip" src="assets/sfx/lock.wav" data-start="85.0" data-duration="0.5" data-volume="0.3" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx72" class="clip" src="assets/sfx/lock.wav" data-start="87.5" data-duration="0.5" data-volume="0.3" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx73" class="clip" src="assets/sfx/stamp.wav" data-start="90.8" data-duration="0.35" data-volume="0.45" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx74" class="clip" src="assets/sfx/ding.wav" data-start="90.9" data-duration="1.2" data-volume="0.3" data-audio-group="sfx" data-track-index="5"></audio>
+      <audio id="sfx75" class="clip" src="assets/sfx/whoosh.wav" data-start="92.5" data-duration="0.55" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx76" class="clip" src="assets/sfx/ding.wav" data-start="93.4" data-duration="1.2" data-volume="0.26" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx77" class="clip" src="assets/sfx/pop.wav" data-start="95.5" data-duration="0.12" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx78" class="clip" src="assets/sfx/clock.wav" data-start="99.1" data-duration="2.0" data-volume="0.2" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx79" class="clip" src="assets/sfx/stamp.wav" data-start="99.7" data-duration="0.35" data-volume="0.4" data-audio-group="sfx" data-track-index="5"></audio>
+      <audio id="sfx80" class="clip" src="assets/sfx/riser.wav" data-start="100.9" data-duration="1.6" data-volume="0.24" data-audio-group="sfx" data-track-index="5"></audio>
+      <audio id="sfx81" class="clip" src="assets/sfx/impact.wav" data-start="102.45" data-duration="1.4" data-volume="0.4" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx82" class="clip" src="assets/sfx/pop.wav" data-start="104.1" data-duration="0.12" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
     </div>
     <script>
 const TOTAL=106.5;const H=0.0,B=6.5,T=24.0,Z=33.0,K=49.5,P=60.5,C=73.5,A=92.5;
@@ -527,8 +539,10 @@ OUT('#sc-beza > *',Z+16.2);
 /* 5 KENALI */
 POP('#kn-kick',K+0.05);
 SLAM('#kn-title',K+0.3,{s:1.5});
-tl.fromTo('#kn-clip',{opacity:0,y:120,rotation:-12},{opacity:1,y:0,rotation:-3,duration:0.7,ease:'power3.out'},K+1.1);
-SLAM('#kn-bukti',K+1.75,{s:2.4});
+tl.fromTo('#kn-bh',{opacity:0,x:-160,y:80,rotation:-16},{opacity:1,x:0,y:0,rotation:-5,duration:0.6,ease:'power3.out'},K+1.0);
+tl.fromTo('#kn-dn',{opacity:0,x:160,y:80,rotation:14},{opacity:1,x:0,y:0,rotation:4,duration:0.6,ease:'power3.out'},K+1.5);
+SLAM('#kn-bukti',K+2.05,{s:2.4});
+tl.fromTo('#kn-hi',{backgroundSize:'0% 100%'},{backgroundSize:'100% 100%',duration:0.9,ease:'power2.inOut'},K+2.5);
 IN('#kn-i0',K+3.0,{x:-60,y:0});
 IN('#kn-i1',K+5.6,{x:-60,y:0});
 COUNT('#kn-num',0,15000,K+5.75,1.5,v=>NUM(v)+'+');

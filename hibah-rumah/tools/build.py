@@ -96,7 +96,7 @@ sfx("pop", S("beza", 7.6), .28); sfx("pop", S("beza", 9.3), .28); sfx("pop", S("
 sfx("ding", S("beza", 13.7), .30)
 # kenali
 sfx("whoosh", S("kenali"), .28); sfx("riser", S("kenali", -.2), .18)
-sfx("swish", S("kenali", 1.1), .22); sfx("stamp", S("kenali", 2.0), .45)
+sfx("swish", S("kenali", 1.0), .22); sfx("swish", S("kenali", 1.5), .22); sfx("stamp", S("kenali", 2.3), .45)
 sfx("pop", S("kenali", 3.0), .28); sfx("pop", S("kenali", 5.6), .28)
 for k in range(6):
     sfx("tick", S("kenali", 5.75 + k * .25), .22)
@@ -255,16 +255,23 @@ KENALI = f'''
         <div class="col" style="top:300px">
           <span class="kick" id="kn-kick">Kenali</span>
           <div id="kn-title" class="col-in" style="margin-top:14px"><span class="t-lg gold">HIBAH DIGITAL</span><span class="t-lg">WASIYYAH</span></div>
-          <div class="clipwrap" id="kn-clip" style="margin-top:44px" data-layout-allow-overlap>
-            <div class="paper">
-              <div class="mast">KERATAN AKHBAR</div>
-              <div class="ph-line w90"></div><div class="ph-line w70"></div>
-              <div class="ph-flex"><div class="ph-img" data-layout-ignore>@@newspaper:60:#8C7A55:1.6@@<span>Gambar sebenar<br>dimasukkan di sini</span></div>
-                <div class="ph-col"><div class="ph-t"></div><div class="ph-t"></div><div class="ph-t s"></div><div class="ph-t"></div><div class="ph-t"></div><div class="ph-t s"></div></div></div>
+          <div class="clipwrap" id="kn-clip" style="margin-top:34px" data-layout-allow-overlap data-layout-allow-occlusion>
+            <!-- Press coverage: Berita Harian, 1 Apr 2024 (bharian.com.my/bisnes/korporat/2024/04/1230342) -->
+            <div class="paper bh" id="kn-bh">
+              <div class="mast">BERITA HARIAN</div>
+              <div class="dateline">BISNES &middot; KORPORAT &middot; 1 APRIL 2024</div>
+              <div class="hl">Hibah digital Wasiyyah diiktiraf Mahkamah Syariah</div>
+              <div class="lead" data-layout-ignore><b>KUALA LUMPUR:</b> Wasiyyah Shoppe Bhd mengumumkan bahawa ia telah berjaya memperoleh <span class="hi" id="kn-hi">perintah pengesahan hibah pertama untuk dokumen hibah digital</span> pelanggannya.</div>
+            </div>
+            <!-- Press coverage: DagangNews, 11 Feb 2026 (dagangnews.com/article/kolumnis-terkini/...-64907) -->
+            <div class="paper dn" id="kn-dn">
+              <div class="dnmast"><span>dagangnews</span><small>11 Feb 2026</small></div>
+              <div class="dnimg"><img src="assets/press/dagangnews-mbor.jpg" alt="Sijil Malaysia Book of Records Wasiyyah"></div>
+              <div class="dnhl">Wasiyyah Cipta Sejarah Pendigitalan Hibah, Diiktiraf Malaysia Book of Records</div>
             </div>
             <div class="bukti" id="kn-bukti">BUKTI</div>
           </div>
-          <div class="item rel" id="kn-i0" style="margin-top:40px"><span class="ibub">@@gavel:42@@</span><span class="itxt">Hibah digital yang telah mendapat <b>pengesahan Mahkamah Syariah</b></span></div>
+          <div class="item rel" id="kn-i0" style="margin-top:54px"><span class="ibub">@@gavel:42@@</span><span class="itxt">Hibah digital yang telah mendapat <b>pengesahan Mahkamah Syariah</b></span></div>
           <div class="item rel" id="kn-i1" style="margin-top:20px"><span class="ibub">@@users:42@@</span><span class="itxt">Digunakan oleh lebih <b class="goldt big" id="kn-num">15,000+</b> <b>pelanggan</b></span></div>
           <div class="item rel" id="kn-i2" style="margin-top:20px"><span class="ibub">@@heart:42@@</span><span class="itxt">Rancang pemberian rumah kepada <b>orang tersayang</b></span></div>
         </div>
@@ -427,22 +434,26 @@ html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:
   background:rgba(108,240,180,.10); border:1.5px dashed rgba(108,240,180,.6); }
 .result span { font-weight:700; font-size:30px; line-height:1.25; text-align:left; }
 
-/* kenali clipping placeholder */
-.clipwrap { position:relative; width:600px; height:360px; transform:rotate(-3deg); flex:none; }
-.paper { position:absolute; inset:0; border-radius:10px; background:linear-gradient(170deg,#F7F0DE,#E8DDC2); padding:26px 30px;
-  box-shadow:0 30px 60px rgba(0,0,0,.55); }
-.mast { font-family:Georgia,'Times New Roman',serif; font-weight:700; font-size:40px; color:#2B2418; letter-spacing:.04em;
-  border-bottom:3px double #2B2418; padding-bottom:8px; margin-bottom:16px; text-align:center; }
-.ph-line { height:18px; border-radius:4px; background:#3B3224; margin-bottom:12px; }
-.w90 { width:92%; } .w70 { width:68%; }
-.ph-flex { display:flex; gap:20px; margin-top:16px; }
-.ph-img { width:290px; height:180px; border-radius:6px; border:3px dashed #8C7A55; display:flex; flex-direction:column; align-items:center;
-  justify-content:center; gap:10px; background:rgba(140,122,85,.10); }
-.ph-img span { font-weight:700; font-size:22px; line-height:1.25; color:#6E5F40; text-align:center; }
-.ph-col { flex:1; display:flex; flex-direction:column; gap:14px; padding-top:4px; }
-.ph-t { height:10px; border-radius:3px; background:#9A8C70; }
-.ph-t.s { width:60%; }
-.bukti { position:absolute; right:-30px; top:-34px; padding:8px 22px; border:5px solid #C93545; color:#C93545; border-radius:14px;
+/* kenali press clippings */
+.clipwrap { position:relative; width:850px; height:440px; flex:none; }
+.paper { position:absolute; border-radius:8px; background:linear-gradient(170deg,#F8F2E2,#E9DFC6); color:#211B12;
+  box-shadow:0 26px 54px rgba(0,0,0,.55); overflow:hidden; text-align:left; }
+.paper.bh { left:6px; top:34px; width:440px; height:392px; padding:22px 26px; transform:rotate(-5deg); }
+.mast { font-family:'Merriweather',Georgia,serif; font-weight:900; font-size:34px; letter-spacing:.06em; text-align:center;
+  border-bottom:3px double #211B12; padding-bottom:6px; }
+.dateline { font-weight:700; font-size:16px; letter-spacing:.12em; color:#6B5B3E; text-align:center; margin:8px 0 12px; }
+.hl { font-family:'Merriweather',Georgia,serif; font-weight:900; font-size:32px; line-height:1.18; }
+.lead { font-family:'Merriweather',Georgia,serif; font-size:19px; line-height:1.5; color:#3A3122; margin-top:12px;
+  border-top:1.5px solid rgba(33,27,18,.35); padding-top:10px; }
+.hi { background-image:linear-gradient(transparent 52%, rgba(242,207,118,.95) 52%); background-repeat:no-repeat; background-size:0% 100%; }
+.paper.dn { right:6px; top:0; width:400px; height:430px; padding:16px 18px 18px; transform:rotate(4deg); background:#FFFFFF; }
+.dnmast { display:flex; justify-content:space-between; align-items:baseline; border-bottom:4px solid #6B2C8F; padding-bottom:6px; }
+.dnmast span { font-weight:900; font-size:30px; letter-spacing:-.02em; color:#2A2A2A; }
+.dnmast small { font-weight:600; font-size:16px; color:#777; }
+.dnimg { margin-top:12px; height:200px; border-radius:4px; overflow:hidden; background:#ddd; }
+.dnimg img { width:100%; height:100%; object-fit:cover; object-position:50% 45%; display:block; }
+.dnhl { font-weight:800; font-size:26px; line-height:1.22; color:#1E1E1E; margin-top:12px; }
+.bukti { position:absolute; left:640px; top:410px; z-index:3; padding:8px 22px; border:5px solid #C93545; color:#C93545; border-radius:14px;
   font-weight:900; font-size:44px; letter-spacing:.1em; transform:rotate(10deg); background:rgba(255,248,231,.92); }
 
 /* promo */
@@ -558,8 +569,10 @@ OUT('#sc-beza > *',Z+16.2);
 /* 5 KENALI */
 POP('#kn-kick',K+0.05);
 SLAM('#kn-title',K+0.3,{s:1.5});
-tl.fromTo('#kn-clip',{opacity:0,y:120,rotation:-12},{opacity:1,y:0,rotation:-3,duration:0.7,ease:'power3.out'},K+1.1);
-SLAM('#kn-bukti',K+1.75,{s:2.4});
+tl.fromTo('#kn-bh',{opacity:0,x:-160,y:80,rotation:-16},{opacity:1,x:0,y:0,rotation:-5,duration:0.6,ease:'power3.out'},K+1.0);
+tl.fromTo('#kn-dn',{opacity:0,x:160,y:80,rotation:14},{opacity:1,x:0,y:0,rotation:4,duration:0.6,ease:'power3.out'},K+1.5);
+SLAM('#kn-bukti',K+2.05,{s:2.4});
+tl.fromTo('#kn-hi',{backgroundSize:'0% 100%'},{backgroundSize:'100% 100%',duration:0.9,ease:'power2.inOut'},K+2.5);
 IN('#kn-i0',K+3.0,{x:-60,y:0});
 IN('#kn-i1',K+5.6,{x:-60,y:0});
 COUNT('#kn-num',0,15000,K+5.75,1.5,v=>NUM(v)+'+');
@@ -634,7 +647,7 @@ def build():
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1080, height=1920" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700&display=block" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700&display=block" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
     <style>{CSS}</style>
   </head>
