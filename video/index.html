@@ -254,6 +254,7 @@
     <div class="h3 a">Aset terbeku di Malaysia<br>sekarang mencecah</div>
     <div class="money" id="m6c" style="font-size:230px;color:var(--ice);line-height:1">RM0</div>
     <div class="h1" id="bil6c" style="color:var(--ice);letter-spacing:.08em">BILION</div>
+    <div class="note" id="src6c" style="font-size:28px;color:var(--muted);line-height:1.4;margin-top:20px">Sumber: Ekonomi Rakyat, &ldquo;RM90 Bilion Harta Pusaka Terbiar&rdquo;<br>(diterbitkan bersama AmanahRaya)</div>
   </section>
 
   <!-- S7 LAWYER COST -->
@@ -475,6 +476,7 @@ scene('s6c', 7, (w,t0)=>{
   tl.fromTo('#bil6c',{autoAlpha:0,scale:1.8},{autoAlpha:1,scale:1,duration:.5,ease:'expo.out'},n(59.25));
   fx('impact', n(59.25));
   tl.to('#m6c',{x:'+=12',duration:.05,repeat:5,yoyo:true,ease:'none'},n(59.4));
+  up('#src6c', n(59.6), {y:20});
 });
 // 7 — "Nak minta bantuan lawyer atau trustee? Kebanyakannya caj 2% ke atas. Setiap satu juta ringgit, dua puluh ribu ringgit."
 scene('s7', 8, (w,t0)=>{
