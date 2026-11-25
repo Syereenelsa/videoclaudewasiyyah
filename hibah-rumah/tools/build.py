@@ -8,19 +8,24 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-TOTAL = 153.3      # voice-over is 151.9 s; hold the end card ~1.4 s after it
+TOTAL = 161.3      # voice-over 151.9 s + an 8 s pause for the faraid example; end card held ~1.4 s
 
-SCENES = {            # name: (start, end), aligned to assets/voice.wav
+# The voice pauses at VO_CUT for VO_GAP seconds while the faraid example plays
+# (two <audio> clips of the same file; the recording itself is untouched).
+VO_CUT, VO_GAP = 48.53, 8.0
+
+SCENES = {            # name: (start, end), aligned to assets/voice.wav (+ the pause)
     "hook":    (0.0, 5.85),
     "bila":    (5.85, 26.5),
     "tunggu":  (26.5, 38.8),
-    "beza":    (38.8, 64.2),
-    "kenali":  (64.2, 77.3),
-    "seratus": (77.3, 84.0),
-    "promo":   (84.0, 100.25),
-    "cara":    (100.25, 133.2),
-    "cta":     (133.2, TOTAL),
+    "beza":    (38.8, 72.2),
+    "kenali":  (72.2, 85.3),
+    "seratus": (85.3, 92.0),
+    "promo":   (92.0, 108.25),
+    "cara":    (108.25, 141.2),
+    "cta":     (141.2, TOTAL),
 }
+FARAID = [("Isteri","1/8",125000),("Ibu","1/6",166667),("Bapa","1/6",166667),("Anak lelaki","Baki 2:1",361111),("Anak perempuan","Baki 2:1",180555)]  # RM1 juta house
 BILA_CUES = [3.54, 6.75, 8.96, 11.12, 14.58, 17.25]   # the six checklist rows
 CARA_DOCS = [9.43, 10.85, 12.7, 14.35]                # the four documents
 
@@ -96,10 +101,15 @@ sfx("whoosh", S("beza"), .28); sfx("pop", S("beza", .29), .26)
 sfx("swish", S("beza", 4.45), .22); sfx("lock", S("beza", 5.15), .32)
 for k in range(4):
     sfx("tick", S("beza", 8.9 + k * .12), .30)
-sfx("swish", S("beza", 10.25), .22)
-for off in (12.8, 14.8, 18.5):
+sfx("swish", S("beza", 18.25), .22)
+for off in (20.8, 22.8, 26.5):
     sfx("pop", S("beza", off), .28)
-sfx("ding", S("beza", 20.83), .30)
+sfx("ding", S("beza", 28.83), .30)
+# faraid example (during the voice pause)
+sfx("swish", S("beza", 9.8), .24)
+for k in range(5):
+    sfx("pop", S("beza", 10.6 + k * .6), .26)
+sfx("cash", S("beza", 13.4), .32); sfx("lock", S("beza", 14.4), .34)
 # kenali
 sfx("whoosh", S("kenali"), .28)
 sfx("swish", S("kenali", 1.9), .22); sfx("swish", S("kenali", 2.35), .22); sfx("stamp", S("kenali", 3.11), .45)
@@ -263,6 +273,18 @@ BEZA = f'''
             <div class="result" id="bz-res">@@shield:40:#6CF0B4@@<span>Jika sah, rumah boleh <b class="greent">dikeluarkan</b> daripada harta pusaka yang difaraidkan</span></div>
             <span class="fine">*jika hibah memenuhi syarat &amp; diiktiraf sebagai sah</span>
           </div>
+        </div>
+        <!-- Faraid example: husband dies; heirs wife, mother, father, 1 son, 1 daughter; house RM1 juta -->
+        <div class="panel fr" id="fr-panel" style="top:900px">
+          <div class="frhd"><span class="frtag">CONTOH</span><span>Rumah bernilai <b class="goldt">RM1 juta</b></span></div>
+          <div class="frsub">Suami meninggal. Waris: isteri, ibu, bapa, 1 anak lelaki &amp; 1 anak perempuan</div>
+            <div class="frrow" id="fr-r0"><span class="frn">Isteri<small>ada anak</small></span><span class="frs">1/8</span><span class="frbar"><i id="fr-b0" style="width:12.5%"></i></span><span class="frv goldt" id="fr-v0">RM125,000</span></div>
+            <div class="frrow" id="fr-r1"><span class="frn">Ibu<small>ada anak</small></span><span class="frs">1/6</span><span class="frbar"><i id="fr-b1" style="width:16.7%"></i></span><span class="frv goldt" id="fr-v1">RM166,667</span></div>
+            <div class="frrow" id="fr-r2"><span class="frn">Bapa<small>ada anak lelaki</small></span><span class="frs">1/6</span><span class="frbar"><i id="fr-b2" style="width:16.7%"></i></span><span class="frv goldt" id="fr-v2">RM166,667</span></div>
+            <div class="frrow" id="fr-r3"><span class="frn">Anak lelaki<small>2 bahagian</small></span><span class="frs">Baki 2:1</span><span class="frbar"><i id="fr-b3" style="width:36.1%"></i></span><span class="frv goldt" id="fr-v3">RM361,111</span></div>
+            <div class="frrow" id="fr-r4"><span class="frn">Anak perempuan<small>1 bahagian</small></span><span class="frs">Baki 2:1</span><span class="frbar"><i id="fr-b4" style="width:18.1%"></i></span><span class="frv goldt" id="fr-v4">RM180,555</span></div>
+          <div class="frcall" id="fr-call">@@alert:30:#FF8A8A:2.4@@<span>Rumah dikongsi 5 waris. Isteri hanya dapat <b>1/8</b>.</span></div>
+          <div class="frfine">*Contoh anggaran; bergantung pada waris yang ada.</div>
         </div>
 '''
 
@@ -472,6 +494,21 @@ html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:
   background:rgba(108,240,180,.10); border:1.5px dashed rgba(108,240,180,.6); }
 .result span { font-weight:700; font-size:30px; line-height:1.25; text-align:left; }
 
+/* faraid example */
+.panel.fr { left:110px; width:850px; padding:24px 30px 20px; display:flex; flex-direction:column; gap:8px; }
+.frhd { display:flex; align-items:center; gap:16px; font-weight:800; font-size:38px; }
+.frtag { font-weight:800; font-size:24px; letter-spacing:.1em; color:#0B1F3A; background:linear-gradient(180deg,#F6D98B,#E2B65A); padding:6px 14px; border-radius:10px; }
+.frsub { font-weight:600; font-size:28px; line-height:1.22; color:rgba(255,248,231,.80); margin-bottom:4px; }
+.frrow { display:flex; align-items:center; gap:14px; height:58px; padding:0 14px; border-radius:16px; background:rgba(255,255,255,.06); }
+.frn { width:272px; font-weight:800; font-size:29px; white-space:nowrap; line-height:1.05; display:flex; flex-direction:column; }
+.frn small { font-weight:600; font-size:20px; color:rgba(255,248,231,.62); margin-top:3px; }
+.frs { width:116px; font-weight:800; font-size:28px; color:#FFE9AE; }
+.frbar { flex:1; height:16px; border-radius:999px; background:rgba(255,255,255,.12); overflow:hidden; position:relative; }
+.frbar i { position:absolute; left:0; top:0; bottom:0; border-radius:999px; background:linear-gradient(90deg,#3CCB8C,#8FF7C6); transform-origin:0 50%; }
+.frv { width:184px; text-align:right; font-weight:900; font-size:32px; }
+.frcall { display:flex; align-items:center; gap:12px; margin-top:8px; font-weight:700; font-size:30px; color:#FFD0D0; }
+.frcall b { color:#FF8A8A; font-weight:900; }
+.frfine { font-weight:500; font-style:italic; font-size:24px; color:rgba(255,248,231,.6); }
 /* kenali press clippings */
 .clipwrap { position:relative; width:850px; height:440px; flex:none; }
 .paper { position:absolute; border-radius:8px; background:linear-gradient(170deg,#F8F2E2,#E9DFC6); color:#211B12;
@@ -676,11 +713,21 @@ tl.fromTo('#bz-pie .sl',{scale:1,x:0,y:0,transformOrigin:'0px 0px'},{scale:0.86,
   const d=[[9,-9],[9,9],[-9,9],[-9,-9]][i];
   tl.to(s,{x:d[0],y:d[1],duration:0.3,ease:'back.out(2)'},Z+8.9+i*0.12);
 });
-IN('#bz-b',Z+10.25,{y:40});
-POP('#bz-s1',Z+12.8); POP('#bz-s2',Z+14.8); GLOW('#bz-s2 b',Z+16.7); POP('#bz-s3',Z+18.5);
-IN('#bz-res',Z+20.83,{y:16});
-tl.fromTo('#bz-res',{boxShadow:'0 0 0 0 rgba(108,240,180,0)'},{boxShadow:'0 0 0 14px rgba(108,240,180,.18)',duration:0.5,yoyo:true,repeat:1},Z+23.3);
-OUT('#sc-beza > *',Z+25.1);
+IN('#bz-b',Z+18.25,{y:40});
+POP('#bz-s1',Z+20.8); POP('#bz-s2',Z+22.8); GLOW('#bz-s2 b',Z+24.7); POP('#bz-s3',Z+26.5);
+IN('#bz-res',Z+28.83,{y:16});
+tl.fromTo('#bz-res',{boxShadow:'0 0 0 0 rgba(108,240,180,0)'},{boxShadow:'0 0 0 14px rgba(108,240,180,.18)',duration:0.5,yoyo:true,repeat:1},Z+31.3);
+/* faraid example during the voice pause */
+IN('#fr-panel',Z+9.8,{y:40});
+FR.forEach((r,i)=>{
+  IN('#fr-r'+i,Z+10.6+i*0.6,{x:-40,y:0,d:0.35});
+  tl.fromTo('#fr-b'+i,{scaleX:0},{scaleX:1,duration:0.5,ease:'power2.out'},Z+10.7+i*0.6);
+  COUNT('#fr-v'+i,0,r,Z+10.7+i*0.6,0.5,v=>'RM'+NUM(v));
+});
+IN('#fr-call',Z+14.4,{y:12});
+tl.fromTo('#fr-r0',{boxShadow:'0 0 0 0px rgba(255,138,138,0)'},{boxShadow:'0 0 0 4px rgba(255,138,138,.85)',duration:0.3,ease:'power2.out'},Z+14.4);
+OUT('#fr-panel',Z+17.4,0.3);
+OUT('#sc-beza > *',Z+33.1);
 
 /* 5 KENALI */
 POP('#kn-kick',K+0.22);
@@ -774,7 +821,7 @@ window.__timelines["main"] = tl;
 def build():
     consts = (f"const TOTAL={TOTAL};const H={S('hook')},B={S('bila')},T={S('tunggu')},Z={S('beza')},"
               f"K={S('kenali')},R={S('seratus')},P={S('promo')},C={S('cara')},A={S('cta')};"
-              f"const BILA_CUES={BILA_CUES},CARA_DOCS={CARA_DOCS};")
+              f"const BILA_CUES={BILA_CUES},CARA_DOCS={CARA_DOCS},FR={[r[2] for r in FARAID]};")
     scenes = "\n".join([
         scene_tags("hook", HOOK), scene_tags("bila", BILA), scene_tags("tunggu", TUNGGU),
         scene_tags("beza", BEZA), scene_tags("kenali", KENALI), scene_tags("promo", PROMO),
@@ -800,7 +847,8 @@ def build():
       <div id="flash" data-layout-ignore></div>
 
       <!-- Voice-over (cleaned: highpass, denoise, compression, -16 LUFS) -->
-      <audio id="voice" class="clip" src="assets/voice.wav" data-start="0" data-duration="151.88" data-volume="1" data-track-index="0"></audio>
+      <audio id="voice" class="clip" src="assets/voice.wav" data-start="0" data-duration="{VO_CUT}" data-volume="1" data-track-index="0"></audio>
+      <audio id="voice2" class="clip" src="assets/voice.wav" data-start="{round(VO_CUT + VO_GAP, 3)}" data-media-start="{VO_CUT}" data-duration="{round(151.88 - VO_CUT, 3)}" data-volume="1" data-track-index="0"></audio>
 
       <hf-audio-group id="sfx"></hf-audio-group>
 {sfx_tags()}

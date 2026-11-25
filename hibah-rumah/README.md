@@ -1,6 +1,6 @@
 # Hibah Rumah RM499: infographic video (HyperFrames)
 
-Vertical 1080×1920 motion-graphic infographic, 2:33, timed to the recorded voice-over. Soft-blue background, navy cards and text, gold accents.
+Vertical 1080×1920 motion-graphic infographic, 2:41, timed to the recorded voice-over. Soft-blue background, navy cards and text, gold accents.
 No footage: every visual is HTML/SVG animated with GSAP.
 
 - **Voice-over script with timecodes:** [`SKRIP-VO.md`](SKRIP-VO.md)
@@ -14,12 +14,14 @@ No footage: every visual is HTML/SVG animated with GSAP.
 | 1 | 0:00 – 0:05.9 | Hook: house drawn, lights on, then out ("jika kita sudah tiada?") |
 | 2 | 0:05.9 – 0:26.5 | Bila perlu buat hibah rumah: 6-item checklist |
 | 3 | 0:26.5 – 0:38.8 | Jangan tunggu sehingga rumah habis bayar (loan bar + stamp) |
-| 4 | 0:38.8 – 1:04.2 | Tanpa vs dengan dokumen hibah (faraid pie vs 3-step flow) |
-| 5 | 1:04.2 – 1:17.3 | Kenali Hibah Digital Wasiyyah: press clippings (Berita Harian, DagangNews) + 3 proof points |
-| 5b | 1:17.3 – 1:24 | Setakat ini, 100% hibah di Wasiyyah berjaya mendapat pengesahan: ring fills to 100%, proof clipping of the company profile 2025 p.5 statistics with the "100% Hibah Verification Success Rate" cell circled |
-| 6 | 1:24 – 1:40.3 | Promosi: RM2,600 struck out, RM499 slam, RM47 × 12, JIMAT RM2,101 |
-| 7 | 1:40.3 – 2:13.2 | 4 langkah (documents; draf untuk semakan; akad dipantau HQ Wasiyyah via UsraHDD) |
-| 8 | 2:13.2 – 2:33.3 | Closing line, tamat 30 November, "Reply YA" button |
+| 4 | 0:38.8 – 1:12.2 | Tanpa vs dengan dokumen hibah (faraid pie, then an 8 s faraid example during a voice pause, then the 3-step flow) |
+| 5 | 1:12.2 – 1:25.3 | Kenali Hibah Digital Wasiyyah: press clippings (Berita Harian, DagangNews) + 3 proof points |
+| 5b | 1:25.3 – 1:32 | Setakat ini, 100% hibah di Wasiyyah berjaya mendapat pengesahan: ring + company profile 2025 p.5 proof |
+| 6 | 1:32 – 1:48.3 | Promosi: RM2,600 struck out, RM499 slam, RM47 × 12, JIMAT RM2,101 |
+| 7 | 1:48.3 – 2:21.2 | 4 langkah (documents; draf untuk semakan; akad dipantau HQ Wasiyyah via UsraHDD) |
+| 8 | 2:21.2 – 2:41.3 | Closing line, tamat 30 November, "Reply YA" button |
+
+Faraid example (scene 4): husband dies, house RM1 juta, heirs wife 1/8 (RM125,000), mother 1/6 (RM166,667), father 1/6 (RM166,667), residue RM541,666 split 2:1 to son (RM361,111) and daughter (RM180,555). The voice pauses for 8 s after "...dibahagikan mengikut faraid" (`VO_CUT`/`VO_GAP` in `tools/build.py`; two `<audio>` clips of the same recording).
 
 ## Sound
 - No background music (sound effects only).
