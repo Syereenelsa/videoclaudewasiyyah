@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ms"><head><meta charset="utf-8">
+<title>Wasiat vs Hibah</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1350px;background:#0A1A33}
+body{font-family:'Montserrat',sans-serif;color:#FFF8E7;position:relative;overflow:hidden}
+#bg{position:absolute;inset:0;background:radial-gradient(ellipse 120% 70% at 50% 22%,#24507F 0%,#14325A 45%,#0A1A33 100%)}
+#pat{position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><g fill='none' stroke='%23E9C46A' stroke-width='1.2'><path d='M60 14 L73 47 L106 60 L73 73 L60 106 L47 73 L14 60 L47 47 Z'/><rect x='35' y='35' width='50' height='50' transform='rotate(45 60 60)'/><circle cx='60' cy='60' r='9'/></g></svg>");background-size:120px 120px}
+.orb{position:absolute;border-radius:50%}
+#o1{left:-260px;top:-80px;width:760px;height:760px;background:radial-gradient(circle,rgba(233,196,106,.18),rgba(233,196,106,0) 65%)}
+#o2{right:-300px;top:700px;width:820px;height:820px;background:radial-gradient(circle,rgba(120,170,230,.16),rgba(120,170,230,0) 65%)}
+.wrap{position:relative;padding:62px 60px 0}
+.kick{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#F6D98B,#E2B65A);color:#0B1F3A;font-weight:800;font-size:20px;letter-spacing:.12em;padding:9px 20px;border-radius:999px;text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,.35)}
+.head{text-align:center}
+h1{font-weight:900;font-size:50px;line-height:1.08;letter-spacing:-.02em;margin-top:22px}
+h1 .no{display:block;margin-top:6px}
+.gold{background:linear-gradient(180deg,#FFF0C2 0%,#F2CF76 45%,#C9962E 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin-top:16px;font-weight:600;font-size:22px;color:rgba(255,248,231,.82)}
+.sub b{color:#FFE9AE;font-weight:800}
+
+.panel{margin-top:30px;border-radius:30px;background:linear-gradient(165deg,rgba(16,36,68,.92),rgba(6,15,32,.90));border:1.5px solid rgba(233,196,106,.45);box-shadow:0 30px 70px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.10);overflow:hidden}
+.grid{display:grid;grid-template-columns:200px 1fr 1fr}
+.colh{display:flex;align-items:center;justify-content:center;gap:12px;padding:20px 10px;font-weight:900;font-size:30px;letter-spacing:.06em}
+.colh.w{color:#CFEFFF;background:rgba(110,198,255,.08)}
+.colh.h{color:#0B1F3A;background:linear-gradient(180deg,#F6D98B,#E2B65A)}
+.corner{display:flex;align-items:center;padding-left:24px;font-weight:800;font-size:16px;letter-spacing:.14em;color:rgba(255,233,174,.7)}
+.row{display:contents}
+.row>div{border-top:1px solid rgba(255,248,231,.10);padding:20px 22px;min-height:132px}
+.lab{display:flex;flex-direction:column;justify-content:center;gap:8px}
+.num{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:rgba(233,196,106,.16);border:1.5px solid rgba(233,196,106,.6);font-weight:900;font-size:19px;color:#FFE9AE}
+.lab .t{font-weight:800;font-size:18px;line-height:1.2;color:#FFF8E7;text-transform:uppercase;letter-spacing:.04em}
+.cell{display:flex;flex-direction:column;justify-content:center;gap:6px}
+.cell.w{background:rgba(110,198,255,.04)}
+.cell.h{background:rgba(233,196,106,.06);border-left:1px solid rgba(233,196,106,.25)}
+.big{font-weight:800;font-size:23px;line-height:1.2}
+.w .big{color:#E6F6FF}
+.h .big{color:#FFE9AE}
+.sm{font-weight:600;font-size:16.5px;line-height:1.35;color:rgba(255,248,231,.72)}
+.frac{font-weight:900;font-size:34px;line-height:1;letter-spacing:-.02em}
+.w .frac{color:#9ADBFF}
+.h .frac{color:#F2CF76}
+.strike{position:relative;display:inline-block}
+.tag{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;margin-top:2px;padding:4px 10px;border-radius:999px;font-weight:800;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;background:#FF7A7A;color:#2A0B0B}
+.hl>div{background-color:rgba(233,196,106,.05)}
+.chk{color:#6CF0B4}
+
+.warn{margin-top:26px;display:flex;align-items:center;gap:20px;padding:20px 26px;border-radius:24px;background:rgba(255,122,122,.08);border:1.5px solid rgba(255,122,122,.45)}
+.warn .ic{flex:none;width:56px;height:56px;border-radius:16px;background:rgba(255,122,122,.16);display:flex;align-items:center;justify-content:center}
+.warn .t1{font-weight:900;font-size:24px;color:#FF9A9A}
+.warn .t2{font-weight:600;font-size:18px;color:rgba(255,248,231,.82);margin-top:4px;line-height:1.35}
+
+.foot{margin-top:28px;display:flex;align-items:center;justify-content:center;gap:16px}
+.rule{height:2px;width:90px;background:linear-gradient(90deg,transparent,#E9C46A)}
+.rule.r{background:linear-gradient(90deg,#E9C46A,transparent)}
+.foot .m{font-weight:800;font-size:24px;letter-spacing:.02em}
+.cta{margin-top:18px;display:flex;justify-content:center;gap:14px}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:999px;background:rgba(233,196,106,.16);border:1.5px solid rgba(233,196,106,.55);font-weight:700;font-size:18px;color:#FFE9AE}
+.pill b{font-weight:900;color:#0B1F3A;background:linear-gradient(180deg,#F6D98B,#E2B65A);padding:3px 10px;border-radius:8px;letter-spacing:.06em}
+.pill.o{background:transparent;border-color:rgba(255,248,231,.3);color:#FFF8E7}
+</style></head>
+<body>
+<div id="bg"></div><div id="pat"></div><div class="orb" id="o1"></div><div class="orb" id="o2"></div>
+<div class="wrap">
+  <div class="head">
+    <span class="kick"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B1F3A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M5 7l-3 7a3.5 3.5 0 0 0 6 0zM19 7l-3 7a3.5 3.5 0 0 0 6 0zM8 21h8"/></svg>Wasiat vs Hibah</span>
+    <h1>Dah tulis wasiat, rumah confirm<br>jadi hak anak? <span class="no gold">Belum tentu.</span></h1>
+    <p class="sub">Wasiat dan hibah ialah dua benda berbeza. Ni <b>4 perbezaan</b> yang anda kena tahu.</p>
+  </div>
+
+  <div class="panel">
+    <div class="grid">
+      <div class="corner">PERKARA</div>
+      <div class="colh w"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#CFEFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>WASIAT</div>
+      <div class="colh h"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0B1F3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>HIBAH</div>
+
+      <div class="row">
+        <div class="lab"><span class="num">1</span><span class="t">Bila berkuat kuasa</span></div>
+        <div class="cell w"><span class="big">Selepas meninggal dunia</span></div>
+        <div class="cell h"><span class="big">Semasa masih hidup</span></div>
+      </div>
+
+      <div class="row">
+        <div class="lab"><span class="num">2</span><span class="t">Kepada siapa</span></div>
+        <div class="cell w"><span class="big">Bukan waris faraid</span><span class="sm">Nak beri kepada waris? Perlu persetujuan waris-waris lain</span></div>
+        <div class="cell h"><span class="big">Sesiapa sahaja</span><span class="sm">Termasuk anak, isteri &amp; ibu bapa</span></div>
+      </div>
+
+      <div class="row">
+        <div class="lab"><span class="num">3</span><span class="t">Berapa banyak</span></div>
+        <div class="cell w"><span class="big">Maksimum <span class="frac">1/3</span></span><span class="sm">daripada harta pusaka bersih</span></div>
+        <div class="cell h"><span class="big" style="font-size:28px">Tiada had <span class="frac">1/3</span></span></div>
+      </div>
+
+      <div class="row hl">
+        <div class="lab"><span class="num">4</span><span class="t">Proses pusaka</span><span class="tag">Ramai tak tahu</span></div>
+        <div class="cell w"><span class="big">Masih tertakluk</span><span class="sm">kepada proses pentadbiran pusaka</span></div>
+        <div class="cell h"><span class="big">Boleh dikeluarkan daripada harta pusaka</span><span class="sm"><span class="chk">✓</span> Jika sah &amp; sempurna · tak tertakluk kepada faraid</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <div class="ic"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#FF9A9A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div>
+    <div><div class="t1">Tapi ingat, hibah bukan magik.</div><div class="t2">Kalau rukun dan syarat tak dipenuhi, hibah boleh dipertikaikan.</div></div>
+  </div>
+
+  <div class="foot"><span class="rule"></span><span class="m">Tak perlu pilih — <span class="gold">wasiat &amp; hibah saling melengkapi</span></span><span class="rule r"></span></div>
+  <div class="cta">
+    <span class="pill">Komen <b>HIBAH</b> untuk checklist perancangan</span>
+    <span class="pill o">Follow untuk part 2 →</span>
+  </div>
+</div>
+</body></html>
