@@ -1,6 +1,6 @@
 # Hibah Rumah RM499: infographic video (HyperFrames)
 
-Vertical 1080×1920 motion-graphic infographic, 2:33, timed to the recorded voice-over, navy + gold (same look as `wasiyyah-reel`).
+Vertical 1080×1920 motion-graphic infographic, 2:33, timed to the recorded voice-over. Soft-blue background, navy cards and text, gold accents.
 No footage: every visual is HTML/SVG animated with GSAP.
 
 - **Voice-over script with timecodes:** [`SKRIP-VO.md`](SKRIP-VO.md)

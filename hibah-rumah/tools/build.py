@@ -169,8 +169,8 @@ HOUSE = '''<svg id="{id}" class="house" width="{w}" height="{h}" viewBox="0 0 50
   <path class="draw" pathLength="1" d="M345 120 V60 H395 V160" stroke="#F2CF76" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
   <path class="draw" pathLength="1" d="M90 175 V410 H410 V175" stroke="#FFF8E7" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
   <path class="draw" pathLength="1" d="M30 410 H470" stroke="#FFF8E7" stroke-width="10" stroke-linecap="round"/>
-  <rect class="win" x="130" y="225" width="80" height="70" rx="8" fill="#0D2446" stroke="#FFF8E7" stroke-width="8"/>
-  <rect class="win" x="290" y="225" width="80" height="70" rx="8" fill="#0D2446" stroke="#FFF8E7" stroke-width="8"/>
+  <rect class="win" x="130" y="225" width="80" height="70" rx="8" fill="#3E6290" stroke="#FFF8E7" stroke-width="8"/>
+  <rect class="win" x="290" y="225" width="80" height="70" rx="8" fill="#3E6290" stroke="#FFF8E7" stroke-width="8"/>
   <path class="draw" pathLength="1" d="M215 410 V320 Q250 290 285 320 V410" stroke="#FFF8E7" stroke-width="10" stroke-linejoin="round"/>
   <path class="hheart" d="M250 262c6-6 12-12 12-20a12 12 0 0 0-12-12c-4 0-7 2-10 5-3-3-6-5-10-5a12 12 0 0 0-12 12c0 8 6 14 12 20l10 10z" transform="translate(10 -150)" fill="#FF8A8A" opacity="0"/>
 </svg>'''
@@ -529,6 +529,63 @@ html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:
 .btn { display:inline-flex; align-items:center; gap:18px; padding:26px 52px; border-radius:999px; background:linear-gradient(180deg,#F6D98B,#E2B65A);
   color:#0B1F3A; font-weight:800; font-size:50px; white-space:nowrap; box-shadow:0 0 0 10px rgba(233,196,106,.20), 0 20px 40px rgba(0,0,0,.45); }
 .btn b { font-weight:900; }
+
+/* ===== SOFT BLUE THEME (overrides the navy base above) ===== */
+html, body { background:#DCEBFA; }
+#root { color:#0E2A4D; }
+#bg { background: radial-gradient(ellipse 120% 72% at 50% 26%, #F4F9FF 0%, #DCEBFA 42%, #B7D4F1 100%); }
+#bg-pattern { opacity:.10; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'><g fill='none' stroke='%233A6EA8' stroke-width='1.2'><path d='M60 14 L73 47 L106 60 L73 73 L60 106 L47 73 L14 60 L47 47 Z'/><rect x='35' y='35' width='50' height='50' transform='rotate(45 60 60)'/><circle cx='60' cy='60' r='9'/></g></svg>"); }
+#orb1 { background:radial-gradient(circle, rgba(255,255,255,.70) 0%, rgba(255,255,255,0) 65%); }
+#orb2 { background:radial-gradient(circle, rgba(120,175,235,.35) 0%, rgba(120,175,235,0) 65%); }
+#orb3 { background:radial-gradient(circle, rgba(255,236,190,.45) 0%, rgba(255,236,190,0) 65%); }
+#brand span { color:#2C5C90; }
+#brand span::before, #brand span::after { background:linear-gradient(90deg,rgba(44,92,144,0),#2C5C90); }
+#progress { background:rgba(14,42,77,.12); }
+
+/* text that sits straight on the light background */
+.t-xs { color:rgba(14,42,77,.78); }
+.t-sm { color:rgba(14,42,77,.88); }
+.quote { color:#163A66; }
+.gold { background:linear-gradient(180deg,#D99A22 0%,#B8780F 50%,#8E5609 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.goldt { color:#A86A0A; }
+.redt { color:#D2334A; }
+.greent { color:#13895A; }
+.pill { background:rgba(255,255,255,.75); border-color:rgba(184,120,15,.55); color:#8A560A; }
+.pill svg, .sico svg, .doc svg { stroke:#B8780F; }
+.kick { box-shadow:0 10px 22px rgba(20,60,110,.22); }
+.stamp.greent { background:rgba(255,255,255,.6); }
+
+/* dark cards keep light text and the bright gold */
+.panel, .item { color:#FFF8E7; }
+.panel { background:linear-gradient(165deg,#1B4272,#0F2B50); box-shadow:0 26px 60px rgba(20,55,100,.30), inset 0 1px 0 rgba(255,255,255,.12); }
+.item { background:linear-gradient(165deg,#1B4272,#0F2B50); box-shadow:0 16px 36px rgba(20,55,100,.26); }
+.panel .t-xs { color:rgba(255,248,231,.80); }
+.panel .t-sm { color:rgba(255,248,231,.88); }
+.panel .gold { background:linear-gradient(180deg,#FFF0C2 0%,#F2CF76 45%,#C9962E 100%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.panel .goldt, .item .goldt { color:#F2CF76; }
+.panel .redt { color:#FF8A8A; }
+.panel .greent { color:#6CF0B4; }
+.panel .pill { background:rgba(233,196,106,.16); border-color:rgba(233,196,106,.55); color:#FFE9AE; }
+.panel .pill svg { stroke:#E9C46A; }
+
+/* house art */
+.house .draw[stroke="#FFF8E7"] { stroke:#1C3D66; }
+.house .draw[stroke="#F2CF76"] { stroke:#C98614; }
+.house .win { stroke:#1C3D66; }
+.glow { background:radial-gradient(circle, rgba(255,205,100,.55) 0%, rgba(255,205,100,0) 62%); }
+
+/* seratus ring */
+#sr-ringwrap circle:first-of-type { stroke:rgba(14,42,77,.12); }
+
+/* cara: steps and documents sit on the background */
+.st { color:#0E2A4D; }
+.ss { color:rgba(14,42,77,.78); }
+.sico { background:rgba(255,255,255,.72); border-color:rgba(184,120,15,.40); }
+.rail { background:rgba(14,42,77,.14); }
+.num { box-shadow:0 0 0 8px rgba(233,196,106,.25), 0 12px 24px rgba(20,55,100,.25); }
+.doc { background:rgba(255,255,255,.78); border-color:rgba(14,42,77,.12); color:#0E2A4D; box-shadow:0 8px 20px rgba(20,55,100,.10); }
+.btn { box-shadow:0 0 0 10px rgba(233,196,106,.25), 0 18px 36px rgba(20,55,100,.28); }
+.deadline { box-shadow:0 12px 26px rgba(210,51,74,.25); }
 '''
 
 JS = r'''
@@ -562,7 +619,7 @@ tl.to('#hk-house .win',{fill:'#FFD36E',duration:0.35,ease:'power2.out'},H+2.15);
 tl.to('#hk-glow',{opacity:1,duration:0.6},H+2.15);
 IN('#hk-l3',H+3.7);
 POP('#hk-pill',H+4.4);
-tl.to('#hk-house .win',{fill:'#0D2446',duration:0.12,ease:'none'},H+5.0);
+tl.to('#hk-house .win',{fill:'#3E6290',duration:0.12,ease:'none'},H+5.0);
 tl.to('#hk-glow',{opacity:0,duration:0.25},H+5.0);
 tl.to('#hk-house',{opacity:.55,duration:0.4},H+5.05);
 SHAKE(H+5.0,8);
