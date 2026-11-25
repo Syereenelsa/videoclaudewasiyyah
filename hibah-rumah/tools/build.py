@@ -109,7 +109,7 @@ sfx("ding", S("beza", 28.83), .30)
 sfx("swish", S("beza", 9.8), .24)
 for k in range(5):
     sfx("pop", S("beza", 10.6 + k * .6), .26)
-sfx("cash", S("beza", 13.4), .32); sfx("lock", S("beza", 14.4), .34)
+sfx("cash", S("beza", 13.4), .32); sfx("pop", S("beza", 14.4), .24)
 # kenali
 sfx("whoosh", S("kenali"), .28)
 sfx("swish", S("kenali", 1.9), .22); sfx("swish", S("kenali", 2.35), .22); sfx("stamp", S("kenali", 3.11), .45)
@@ -283,7 +283,7 @@ BEZA = f'''
             <div class="frrow" id="fr-r2"><span class="frn">Bapa<small>ada anak lelaki</small></span><span class="frs">1/6</span><span class="frbar"><i id="fr-b2" style="width:16.7%"></i></span><span class="frv goldt" id="fr-v2">RM166,667</span></div>
             <div class="frrow" id="fr-r3"><span class="frn">Anak lelaki<small>2 bahagian</small></span><span class="frs">Baki 2:1</span><span class="frbar"><i id="fr-b3" style="width:36.1%"></i></span><span class="frv goldt" id="fr-v3">RM361,111</span></div>
             <div class="frrow" id="fr-r4"><span class="frn">Anak perempuan<small>1 bahagian</small></span><span class="frs">Baki 2:1</span><span class="frbar"><i id="fr-b4" style="width:18.1%"></i></span><span class="frv goldt" id="fr-v4">RM180,555</span></div>
-          <div class="frcall" id="fr-call">@@alert:30:#FF8A8A:2.4@@<span>Rumah dikongsi 5 waris. Isteri hanya dapat <b>1/8</b>.</span></div>
+          <div class="frtotal" id="fr-call"><span>Jumlah</span><span class="goldt">RM1,000,000</span></div>
           <div class="frfine">*Contoh anggaran; bergantung pada waris yang ada.</div>
         </div>
 '''
@@ -506,8 +506,8 @@ html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:
 .frbar { flex:1; height:16px; border-radius:999px; background:rgba(255,255,255,.12); overflow:hidden; position:relative; }
 .frbar i { position:absolute; left:0; top:0; bottom:0; border-radius:999px; background:linear-gradient(90deg,#3CCB8C,#8FF7C6); transform-origin:0 50%; }
 .frv { width:184px; text-align:right; font-weight:900; font-size:32px; }
-.frcall { display:flex; align-items:center; gap:12px; margin-top:8px; font-weight:700; font-size:30px; color:#FFD0D0; }
-.frcall b { color:#FF8A8A; font-weight:900; }
+.frtotal { display:flex; justify-content:space-between; align-items:center; margin-top:6px; padding:8px 14px 0; border-top:1.5px solid rgba(255,248,231,.25); font-weight:800; font-size:30px; }
+.frtotal .goldt { font-weight:900; font-size:32px; }
 .frfine { font-weight:500; font-style:italic; font-size:24px; color:rgba(255,248,231,.6); }
 /* kenali press clippings */
 .clipwrap { position:relative; width:850px; height:440px; flex:none; }
@@ -725,7 +725,6 @@ FR.forEach((r,i)=>{
   COUNT('#fr-v'+i,0,r,Z+10.7+i*0.6,0.5,v=>'RM'+NUM(v));
 });
 IN('#fr-call',Z+14.4,{y:12});
-tl.fromTo('#fr-r0',{boxShadow:'0 0 0 0px rgba(255,138,138,0)'},{boxShadow:'0 0 0 4px rgba(255,138,138,.85)',duration:0.3,ease:'power2.out'},Z+14.4);
 OUT('#fr-panel',Z+17.4,0.3);
 OUT('#sc-beza > *',Z+33.1);
 

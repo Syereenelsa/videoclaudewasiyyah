@@ -123,8 +123,8 @@ html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:
 .frbar { flex:1; height:16px; border-radius:999px; background:rgba(255,255,255,.12); overflow:hidden; position:relative; }
 .frbar i { position:absolute; left:0; top:0; bottom:0; border-radius:999px; background:linear-gradient(90deg,#3CCB8C,#8FF7C6); transform-origin:0 50%; }
 .frv { width:184px; text-align:right; font-weight:900; font-size:32px; }
-.frcall { display:flex; align-items:center; gap:12px; margin-top:8px; font-weight:700; font-size:30px; color:#FFD0D0; }
-.frcall b { color:#FF8A8A; font-weight:900; }
+.frtotal { display:flex; justify-content:space-between; align-items:center; margin-top:6px; padding:8px 14px 0; border-top:1.5px solid rgba(255,248,231,.25); font-weight:800; font-size:30px; }
+.frtotal .goldt { font-weight:900; font-size:32px; }
 .frfine { font-weight:500; font-style:italic; font-size:24px; color:rgba(255,248,231,.6); }
 /* kenali press clippings */
 .clipwrap { position:relative; width:850px; height:440px; flex:none; }
@@ -380,7 +380,7 @@ html, body { background:#DCEBFA; }
             <div class="frrow" id="fr-r2"><span class="frn">Bapa<small>ada anak lelaki</small></span><span class="frs">1/6</span><span class="frbar"><i id="fr-b2" style="width:16.7%"></i></span><span class="frv goldt" id="fr-v2">RM166,667</span></div>
             <div class="frrow" id="fr-r3"><span class="frn">Anak lelaki<small>2 bahagian</small></span><span class="frs">Baki 2:1</span><span class="frbar"><i id="fr-b3" style="width:36.1%"></i></span><span class="frv goldt" id="fr-v3">RM361,111</span></div>
             <div class="frrow" id="fr-r4"><span class="frn">Anak perempuan<small>1 bahagian</small></span><span class="frs">Baki 2:1</span><span class="frbar"><i id="fr-b4" style="width:18.1%"></i></span><span class="frv goldt" id="fr-v4">RM180,555</span></div>
-          <div class="frcall" id="fr-call"><svg class="ico" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#FF8A8A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><span>Rumah dikongsi 5 waris. Isteri hanya dapat <b>1/8</b>.</span></div>
+          <div class="frtotal" id="fr-call"><span>Jumlah</span><span class="goldt">RM1,000,000</span></div>
           <div class="frfine">*Contoh anggaran; bergantung pada waris yang ada.</div>
         </div>
 
@@ -542,7 +542,7 @@ html, body { background:#DCEBFA; }
       <audio id="sfx38" class="clip" src="assets/sfx/pop.wav" data-start="51.2" data-duration="0.12" data-volume="0.26" data-audio-group="sfx" data-track-index="4"></audio>
       <audio id="sfx39" class="clip" src="assets/sfx/pop.wav" data-start="51.8" data-duration="0.12" data-volume="0.26" data-audio-group="sfx" data-track-index="4"></audio>
       <audio id="sfx40" class="clip" src="assets/sfx/cash.wav" data-start="52.2" data-duration="0.6" data-volume="0.32" data-audio-group="sfx" data-track-index="4"></audio>
-      <audio id="sfx41" class="clip" src="assets/sfx/lock.wav" data-start="53.2" data-duration="0.5" data-volume="0.34" data-audio-group="sfx" data-track-index="4"></audio>
+      <audio id="sfx41" class="clip" src="assets/sfx/pop.wav" data-start="53.2" data-duration="0.12" data-volume="0.24" data-audio-group="sfx" data-track-index="4"></audio>
       <audio id="sfx42" class="clip" src="assets/sfx/swish.wav" data-start="57.05" data-duration="0.32" data-volume="0.22" data-audio-group="sfx" data-track-index="4"></audio>
       <audio id="sfx43" class="clip" src="assets/sfx/pop.wav" data-start="59.6" data-duration="0.12" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
       <audio id="sfx44" class="clip" src="assets/sfx/pop.wav" data-start="61.6" data-duration="0.12" data-volume="0.28" data-audio-group="sfx" data-track-index="4"></audio>
@@ -695,7 +695,6 @@ FR.forEach((r,i)=>{
   COUNT('#fr-v'+i,0,r,Z+10.7+i*0.6,0.5,v=>'RM'+NUM(v));
 });
 IN('#fr-call',Z+14.4,{y:12});
-tl.fromTo('#fr-r0',{boxShadow:'0 0 0 0px rgba(255,138,138,0)'},{boxShadow:'0 0 0 4px rgba(255,138,138,.85)',duration:0.3,ease:'power2.out'},Z+14.4);
 OUT('#fr-panel',Z+17.4,0.3);
 OUT('#sc-beza > *',Z+33.1);
 
