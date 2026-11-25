@@ -135,8 +135,8 @@ html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:
 
 /* promo */
 .strike { position:relative; display:inline-block; }
-.strike i { position:absolute; left:-12px; right:-12px; top:50%; height:8px; margin-top:-4px; border-radius:8px; background:#FF6B6B;
-  transform:scaleX(0) rotate(-6deg); transform-origin:0 50%; }
+.strike i { position:absolute; left:-12px; right:-12px; top:60%; height:8px; margin-top:-4px; border-radius:8px; background:#FF6B6B;
+  transform:rotate(-6deg); transform-origin:0 50%; }
 .sahaja { position:relative; margin-top:-6px; font-weight:900; font-size:40px; color:#0B1F3A; background:#6CF0B4; padding:6px 22px; border-radius:14px;
   transform:rotate(-4deg); }
 .pricewrap { position:relative; display:flex; justify-content:center; align-items:center; }
@@ -379,7 +379,7 @@ html, body { background:#DCEBFA; }
           <span class="kick big" id="pr-kick"><svg class="ico" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0B1F3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8L20 10l-6.1 1.2L12 17l-1.9-5.8L4 10l6.1-1.2z"/></svg> Promosi Istimewa! <svg class="ico" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0B1F3A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.8L20 10l-6.1 1.2L12 17l-1.9-5.8L4 10l6.1-1.2z"/></svg></span>
           <div class="panel fp" id="pr-panel" style="margin-top:40px;padding:46px 40px 54px">
             <span class="t-sm" id="pr-asal-l">Harga asal</span>
-            <span class="strike" id="pr-asal" style="margin-top:4px"><span class="t-lg dim">RM2,600</span><i id="pr-line"></i></span>
+            <span class="strike" id="pr-asal" style="margin-top:4px" data-layout-allow-occlusion><span class="t-lg dim">RM2,600</span><i id="pr-line" data-layout-allow-occlusion></i></span>
             <span class="t-md" id="pr-now" style="margin-top:40px">Sekarang cuma</span>
             <div class="pricewrap"><span class="burst" id="pr-burst" data-layout-ignore><i class="spk" data-a="0.0" data-d="230" style="width:10px;height:10px"></i><i class="spk" data-a="137.5" data-d="283" style="width:17px;height:17px"></i><i class="spk" data-a="275.0" data-d="336" style="width:10px;height:10px"></i><i class="spk" data-a="52.5" data-d="389" style="width:17px;height:17px"></i><i class="spk" data-a="190.0" data-d="272" style="width:10px;height:10px"></i><i class="spk" data-a="327.5" data-d="325" style="width:17px;height:17px"></i><i class="spk" data-a="105.0" data-d="378" style="width:10px;height:10px"></i><i class="spk" data-a="242.6" data-d="261" style="width:17px;height:17px"></i><i class="spk" data-a="20.1" data-d="314" style="width:10px;height:10px"></i><i class="spk" data-a="157.6" data-d="367" style="width:17px;height:17px"></i><i class="spk" data-a="295.1" data-d="250" style="width:10px;height:10px"></i><i class="spk" data-a="72.6" data-d="303" style="width:17px;height:17px"></i><i class="spk" data-a="210.1" data-d="356" style="width:10px;height:10px"></i><i class="spk" data-a="347.6" data-d="239" style="width:17px;height:17px"></i><i class="spk" data-a="125.1" data-d="292" style="width:10px;height:10px"></i><i class="spk" data-a="262.6" data-d="345" style="width:17px;height:17px"></i><i class="spk" data-a="40.1" data-d="398" style="width:10px;height:10px"></i><i class="spk" data-a="177.6" data-d="281" style="width:17px;height:17px"></i><i class="spk" data-a="315.1" data-d="334" style="width:10px;height:10px"></i><i class="spk" data-a="92.7" data-d="387" style="width:17px;height:17px"></i><i class="spk" data-a="230.2" data-d="270" style="width:10px;height:10px"></i><i class="spk" data-a="7.7" data-d="323" style="width:17px;height:17px"></i></span><span class="t-mega gold" id="pr-price">RM499</span></div>
             <span class="sahaja" id="pr-sahaja">sahaja!</span>
@@ -662,7 +662,7 @@ OUT('#sc-seratus > *',R+5.15);
 POP('#pr-kick',P+0.25,{s:0.5});
 IN('#pr-panel',P+2.45,{y:40});
 IN('#pr-asal-l',P+2.85,{y:10}); IN('#pr-asal',P+2.95,{y:14});
-tl.fromTo('#pr-line',{scaleX:0,rotation:-6},{scaleX:1,rotation:-6,duration:0.35,ease:'power2.out'},P+4.3);
+tl.fromTo('#pr-line',{scaleX:0,scaleY:1,skewX:0,rotation:-6},{scaleX:1,scaleY:1,skewX:0,rotation:-6,duration:0.35,ease:'power2.out'},P+4.3);
 tl.to('#pr-asal',{scale:0.9,opacity:.7,duration:0.3},P+4.75);
 IN('#pr-now',P+5.95,{y:12});
 SLAM('#pr-price',P+7.25,{s:2.6,d:0.28});

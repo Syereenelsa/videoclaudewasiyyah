@@ -297,7 +297,7 @@ PROMO = f'''
           <span class="kick big" id="pr-kick">@@spark:34:#0B1F3A:2.4@@ Promosi Istimewa! @@spark:34:#0B1F3A:2.4@@</span>
           <div class="panel fp" id="pr-panel" style="margin-top:40px;padding:46px 40px 54px">
             <span class="t-sm" id="pr-asal-l">Harga asal</span>
-            <span class="strike" id="pr-asal" style="margin-top:4px"><span class="t-lg dim">RM2,600</span><i id="pr-line"></i></span>
+            <span class="strike" id="pr-asal" style="margin-top:4px" data-layout-allow-occlusion><span class="t-lg dim">RM2,600</span><i id="pr-line" data-layout-allow-occlusion></i></span>
             <span class="t-md" id="pr-now" style="margin-top:40px">Sekarang cuma</span>
             <div class="pricewrap"><span class="burst" id="pr-burst" data-layout-ignore>{sparkles()}</span><span class="t-mega gold" id="pr-price">RM499</span></div>
             <span class="sahaja" id="pr-sahaja">sahaja!</span>
@@ -490,8 +490,8 @@ html, body { margin:0; width:1080px; height:1920px; overflow:hidden; background:
 
 /* promo */
 .strike { position:relative; display:inline-block; }
-.strike i { position:absolute; left:-12px; right:-12px; top:50%; height:8px; margin-top:-4px; border-radius:8px; background:#FF6B6B;
-  transform:scaleX(0) rotate(-6deg); transform-origin:0 50%; }
+.strike i { position:absolute; left:-12px; right:-12px; top:60%; height:8px; margin-top:-4px; border-radius:8px; background:#FF6B6B;
+  transform:rotate(-6deg); transform-origin:0 50%; }
 .sahaja { position:relative; margin-top:-6px; font-weight:900; font-size:40px; color:#0B1F3A; background:#6CF0B4; padding:6px 22px; border-radius:14px;
   transform:rotate(-4deg); }
 .pricewrap { position:relative; display:flex; justify-content:center; align-items:center; }
@@ -693,7 +693,7 @@ OUT('#sc-seratus > *',R+5.15);
 POP('#pr-kick',P+0.25,{s:0.5});
 IN('#pr-panel',P+2.45,{y:40});
 IN('#pr-asal-l',P+2.85,{y:10}); IN('#pr-asal',P+2.95,{y:14});
-tl.fromTo('#pr-line',{scaleX:0,rotation:-6},{scaleX:1,rotation:-6,duration:0.35,ease:'power2.out'},P+4.3);
+tl.fromTo('#pr-line',{scaleX:0,scaleY:1,skewX:0,rotation:-6},{scaleX:1,scaleY:1,skewX:0,rotation:-6,duration:0.35,ease:'power2.out'},P+4.3);
 tl.to('#pr-asal',{scale:0.9,opacity:.7,duration:0.3},P+4.75);
 IN('#pr-now',P+5.95,{y:12});
 SLAM('#pr-price',P+7.25,{s:2.6,d:0.28});
